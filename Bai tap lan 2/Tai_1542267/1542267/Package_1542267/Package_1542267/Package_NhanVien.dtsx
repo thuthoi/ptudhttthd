@@ -1,0 +1,651 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/30/2017 9:58:25 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WIN7-PC"
+  DTS:CreatorName="Win7-PC\Win7"
+  DTS:DTSID="{51E78B23-DC48-4ED2-8277-A4B233D2B42E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.2430.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package_NhanVien"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{29315C22-6314-47AA-B24E-7F29716E6989}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{10697854-A41A-4C24-9D2D-BD0669A830A2}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::file_path_import]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\Win7\Desktop\test\NhanVien_Data_30032017.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="manv"
+              DTS:DTSID="{7E1D184F-BBBB-4751-8EF3-6FD5727CB88B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="hoten"
+              DTS:DTSID="{2B236BB6-CF0C-4625-ADE0-182944A38D3A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="diachi"
+              DTS:DTSID="{C3762AC7-C5A3-49E1-A24C-595E41AAC459}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="email"
+              DTS:DTSID="{3B8EDDBF-AC73-4D84-8B58-B7ABEF0AB7A2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="luong"
+              DTS:DTSID="{0CDF2D8C-4A11-404B-82BC-4A11C989846F}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager 1]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{D7B29777-2F14-41C1-98B8-864B31D7A641}"
+      DTS:ObjectName="Flat File Connection Manager 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\Win7\Desktop\test\NhanVien_Data_30032017.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="manv"
+              DTS:DTSID="{03E3A340-106D-4691-9489-A566C810E93B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="hoten"
+              DTS:DTSID="{1E98B102-6599-4F23-AC21-C87945804490}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="diachi"
+              DTS:DTSID="{7706EDFA-3EA8-4138-B652-98FC94D732FB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="email"
+              DTS:DTSID="{3BB9C65A-5CCC-4ECF-BA75-0909DCF31BDF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="luong"
+              DTS:DTSID="{2F11F0F1-EF0F-4F81-87AD-DF3FA3BCC860}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[WIN7-PC\SQLEXPRESS.QLNV]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9750A15C-77CA-431D-A56A-B95E0DE88CF1}"
+      DTS:ObjectName="WIN7-PC\SQLEXPRESS.QLNV">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=WIN7-PC\SQLEXPRESS;Initial Catalog=QLNV;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F5B3B414-2E2E-4A85-89E6-2C5489E88B75}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="file_path_import">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\Win7\Desktop\test\NhanVien_Data_30032017.txt</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Import dữ liệu nhân viên"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{298D3E50-1045-47D3-9911-7809A95CED49}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import dữ liệu nhân viên"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Import dữ liệu nhân viên\File nhân viên"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="File nhân viên"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import dữ liệu nhân viên\File nhân viên.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager 1]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].Columns[manv]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].ExternalColumns[manv]"
+                      length="50"
+                      lineageId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].Columns[manv]"
+                      name="manv"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].Columns[hoten]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].ExternalColumns[hoten]"
+                      length="50"
+                      lineageId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].Columns[hoten]"
+                      name="hoten"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].Columns[diachi]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].ExternalColumns[diachi]"
+                      length="50"
+                      lineageId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].Columns[diachi]"
+                      name="diachi"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].Columns[email]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].ExternalColumns[email]"
+                      length="50"
+                      lineageId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].Columns[email]"
+                      name="email"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].Columns[luong]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].ExternalColumns[luong]"
+                      length="50"
+                      lineageId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].Columns[luong]"
+                      name="luong"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].ExternalColumns[manv]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="manv" />
+                    <externalMetadataColumn
+                      refId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].ExternalColumns[hoten]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="hoten" />
+                    <externalMetadataColumn
+                      refId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].ExternalColumns[diachi]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="diachi" />
+                    <externalMetadataColumn
+                      refId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].ExternalColumns[email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="email" />
+                    <externalMetadataColumn
+                      refId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].ExternalColumns[luong]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="luong" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import dữ liệu nhân viên\Table nhân viên"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Table nhân viên"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[NhanVien]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import dữ liệu nhân viên\Table nhân viên.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[WIN7-PC\SQLEXPRESS.QLNV]"
+                  connectionManagerRefId="Package.ConnectionManagers[WIN7-PC\SQLEXPRESS.QLNV]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import dữ liệu nhân viên\Table nhân viên.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import dữ liệu nhân viên\Table nhân viên.Inputs[OLE DB Destination Input].Columns[manv]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="manv"
+                      externalMetadataColumnId="Package\Import dữ liệu nhân viên\Table nhân viên.Inputs[OLE DB Destination Input].ExternalColumns[manv]"
+                      lineageId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].Columns[manv]" />
+                    <inputColumn
+                      refId="Package\Import dữ liệu nhân viên\Table nhân viên.Inputs[OLE DB Destination Input].Columns[hoten]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="hoten"
+                      externalMetadataColumnId="Package\Import dữ liệu nhân viên\Table nhân viên.Inputs[OLE DB Destination Input].ExternalColumns[hoten]"
+                      lineageId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].Columns[hoten]" />
+                    <inputColumn
+                      refId="Package\Import dữ liệu nhân viên\Table nhân viên.Inputs[OLE DB Destination Input].Columns[diachi]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="diachi"
+                      externalMetadataColumnId="Package\Import dữ liệu nhân viên\Table nhân viên.Inputs[OLE DB Destination Input].ExternalColumns[diachi]"
+                      lineageId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].Columns[diachi]" />
+                    <inputColumn
+                      refId="Package\Import dữ liệu nhân viên\Table nhân viên.Inputs[OLE DB Destination Input].Columns[email]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="email"
+                      externalMetadataColumnId="Package\Import dữ liệu nhân viên\Table nhân viên.Inputs[OLE DB Destination Input].ExternalColumns[email]"
+                      lineageId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].Columns[email]" />
+                    <inputColumn
+                      refId="Package\Import dữ liệu nhân viên\Table nhân viên.Inputs[OLE DB Destination Input].Columns[luong]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="luong"
+                      externalMetadataColumnId="Package\Import dữ liệu nhân viên\Table nhân viên.Inputs[OLE DB Destination Input].ExternalColumns[luong]"
+                      lineageId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output].Columns[luong]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import dữ liệu nhân viên\Table nhân viên.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Import dữ liệu nhân viên\Table nhân viên.Inputs[OLE DB Destination Input].ExternalColumns[manv]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="manv" />
+                    <externalMetadataColumn
+                      refId="Package\Import dữ liệu nhân viên\Table nhân viên.Inputs[OLE DB Destination Input].ExternalColumns[hoten]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="hoten" />
+                    <externalMetadataColumn
+                      refId="Package\Import dữ liệu nhân viên\Table nhân viên.Inputs[OLE DB Destination Input].ExternalColumns[diachi]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="diachi" />
+                    <externalMetadataColumn
+                      refId="Package\Import dữ liệu nhân viên\Table nhân viên.Inputs[OLE DB Destination Input].ExternalColumns[luong]"
+                      dataType="r8"
+                      name="luong" />
+                    <externalMetadataColumn
+                      refId="Package\Import dữ liệu nhân viên\Table nhân viên.Inputs[OLE DB Destination Input].ExternalColumns[email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="email" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import dữ liệu nhân viên\Table nhân viên.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Import dữ liệu nhân viên\Table nhân viên.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import dữ liệu nhân viên\Table nhân viên.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import dữ liệu nhân viên\Table nhân viên.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import dữ liệu nhân viên\Table nhân viên.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import dữ liệu nhân viên\Table nhân viên.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Import dữ liệu nhân viên.Paths[Flat File Source Output]"
+              endId="Package\Import dữ liệu nhân viên\Table nhân viên.Inputs[OLE DB Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Import dữ liệu nhân viên\File nhân viên.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="198,42"
+          Id="Package\Import dữ liệu nhân viên"
+          TopLeft="226,52" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Import dữ liệu nhân viên">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Import dữ liệu nhân viên\Table nhân viên"
+          TopLeft="220,128" />
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Import dữ liệu nhân viên\File nhân viên"
+          TopLeft="225,17" />
+        <EdgeLayout
+          Id="Package\Import dữ liệu nhân viên.Paths[Flat File Source Output]"
+          TopLeft="298,59">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,69"
+              Start="0,0"
+              End="0,61.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import dữ liệu nhân viên\Table nhân viên">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

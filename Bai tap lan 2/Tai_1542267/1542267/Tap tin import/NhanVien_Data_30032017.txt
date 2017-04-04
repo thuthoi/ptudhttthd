@@ -1,0 +1,5 @@
+manv,hoten,diachi,email,luong
+em001,nguyen quang thuc, tp hcm, nqthuc@gmail.com, 123.321
+em002,Truong Huu Hieu, binh duong, thhieu@gmail.com, 765.23
+em002,Pham Anh Phu, nha trang, paphu@gmail.com, 72.33
+em002,Ngo Minh Thuan, tp hcm, nmthuan@gmail.com, 30.32

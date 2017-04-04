@@ -1,0 +1,9 @@
+C:\Users\Win7\Desktop\App_Import_NhanVien_1542267\App_Import_NhanVien_1542267\bin\Debug\App_Import_NhanVien_1542267.exe.config
+C:\Users\Win7\Desktop\App_Import_NhanVien_1542267\App_Import_NhanVien_1542267\bin\Debug\App_Import_NhanVien_1542267.exe
+C:\Users\Win7\Desktop\App_Import_NhanVien_1542267\App_Import_NhanVien_1542267\bin\Debug\App_Import_NhanVien_1542267.pdb
+C:\Users\Win7\Desktop\App_Import_NhanVien_1542267\App_Import_NhanVien_1542267\obj\Debug\App_Import_NhanVien_1542267.csprojResolveAssemblyReference.cache
+C:\Users\Win7\Desktop\App_Import_NhanVien_1542267\App_Import_NhanVien_1542267\obj\Debug\App_Import_NhanVien_1542267.Form1.resources
+C:\Users\Win7\Desktop\App_Import_NhanVien_1542267\App_Import_NhanVien_1542267\obj\Debug\App_Import_NhanVien_1542267.Properties.Resources.resources
+C:\Users\Win7\Desktop\App_Import_NhanVien_1542267\App_Import_NhanVien_1542267\obj\Debug\App_Import_NhanVien_1542267.csproj.GenerateResource.Cache
+C:\Users\Win7\Desktop\App_Import_NhanVien_1542267\App_Import_NhanVien_1542267\obj\Debug\App_Import_NhanVien_1542267.exe
+C:\Users\Win7\Desktop\App_Import_NhanVien_1542267\App_Import_NhanVien_1542267\obj\Debug\App_Import_NhanVien_1542267.pdb
