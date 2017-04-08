@@ -1,0 +1,9 @@
+C:\Users\Hainz Nguyen\Desktop\1542225\Source Code\App Import\App Import\bin\Debug\App Import.exe.config
+C:\Users\Hainz Nguyen\Desktop\1542225\Source Code\App Import\App Import\bin\Debug\App Import.exe
+C:\Users\Hainz Nguyen\Desktop\1542225\Source Code\App Import\App Import\bin\Debug\App Import.pdb
+C:\Users\Hainz Nguyen\Desktop\1542225\Source Code\App Import\App Import\obj\Debug\App_Import.Form1.resources
+C:\Users\Hainz Nguyen\Desktop\1542225\Source Code\App Import\App Import\obj\Debug\App_Import.Properties.Resources.resources
+C:\Users\Hainz Nguyen\Desktop\1542225\Source Code\App Import\App Import\obj\Debug\App Import.csproj.GenerateResource.Cache
+C:\Users\Hainz Nguyen\Desktop\1542225\Source Code\App Import\App Import\obj\Debug\App Import.exe
+C:\Users\Hainz Nguyen\Desktop\1542225\Source Code\App Import\App Import\obj\Debug\App Import.pdb
+C:\Users\Hainz Nguyen\Desktop\1542225\Source Code\App Import\App Import\obj\Debug\App Import.csprojResolveAssemblyReference.cache

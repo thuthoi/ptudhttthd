@@ -1,0 +1,6 @@
+mahs,hoten,diachi,email,sdt,diem
+hs001,Nguyen Van A,TPHCM,a@gmail.com,01284577777,8.5
+hs002,Tran Thi C,TPHCM,c@gmail.com,098565888,7.5
+hs003,Nguyen Hoai D,TPHCM,d@gmail.com,092555666,8.0
+hs004,Vu Minh E,TPHCM,e@gmail.com,01201111111,8.0
+hs005,Hoang Van L,TPHCM,l@gmail.com,0978889888,5.5
