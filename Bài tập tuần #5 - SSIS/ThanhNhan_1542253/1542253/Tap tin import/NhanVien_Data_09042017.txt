@@ -1,0 +1,6 @@
+manv,hoten,diachi,email,luong
+em001,Le Quang Toai,lam dong,toailq@gmail.com,9.000.000
+em002,Pham Xuan Bang,binh phuoc,bangpx@gmail.com,7.000.000
+em003,Nguyen Hoang Son,long an,sonnh@gmail.com,7.500.000
+em004,Nguyen Van Nghia,hue,nghianv@gmail.com,8.000.000
+em005,Pham Duc Hiep,tphcm,hieppd@gmail.com,10.000.000
