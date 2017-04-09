@@ -1,0 +1,10 @@
+C:\Users\ptcth\Desktop\ImportApplication\ImportApplication\bin\Debug\ImportApplication.exe.config
+C:\Users\ptcth\Desktop\ImportApplication\ImportApplication\bin\Debug\ImportApplication.exe
+C:\Users\ptcth\Desktop\ImportApplication\ImportApplication\bin\Debug\ImportApplication.pdb
+C:\Users\ptcth\Desktop\ImportApplication\ImportApplication\obj\Debug\ImportApplication.csprojResolveAssemblyReference.cache
+C:\Users\ptcth\Desktop\ImportApplication\ImportApplication\obj\Debug\ImportApplication.ImportForm.resources
+C:\Users\ptcth\Desktop\ImportApplication\ImportApplication\obj\Debug\ImportApplication.Properties.Resources.resources
+C:\Users\ptcth\Desktop\ImportApplication\ImportApplication\obj\Debug\ImportApplication.csproj.GenerateResource.Cache
+C:\Users\ptcth\Desktop\ImportApplication\ImportApplication\obj\Debug\ImportApplication.exe
+C:\Users\ptcth\Desktop\ImportApplication\ImportApplication\obj\Debug\ImportApplication.pdb
+C:\Users\ptcth\Desktop\ImportApplication\ImportApplication\bin\Debug\Microsoft.SqlServer.DTSRuntimeWrap.dll
