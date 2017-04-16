@@ -18,5 +18,9 @@ namespace DomainModel
         public string Password { get; set; }
         public string UserID { get; set; }
         public string Role { get; set; }
+    
+        public virtual Agent Agents { get; set; }
+        public virtual Merchant Merchants { get; set; }
+        public virtual Master Masters { get; set; }
     }
 }

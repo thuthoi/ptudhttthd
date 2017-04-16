@@ -14,10 +14,21 @@ namespace DomainModel
     
     public partial class Master
     {
+        public Master()
+        {
+            this.Account = new HashSet<Account>();
+            this.NotificationsSend = new HashSet<Notification>();
+            this.NotificationsReceive = new HashSet<Notification>();
+        }
+    
         public string MasterID { get; set; }
         public string MasterName { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public Nullable<bool> Status { get; set; }
+    
+        public virtual ICollection<Account> Account { get; set; }
+        public virtual ICollection<Notification> NotificationsSend { get; set; }
+        public virtual ICollection<Notification> NotificationsReceive { get; set; }
     }
 }

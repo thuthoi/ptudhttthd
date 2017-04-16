@@ -21,5 +21,12 @@ namespace DomainModel
         public string SenderID { get; set; }
         public string ReceiverID { get; set; }
         public Nullable<bool> Status { get; set; }
+    
+        public virtual Agent AgentSender { get; set; }
+        public virtual Agent AgentReceiver { get; set; }
+        public virtual Merchant MerchantSender { get; set; }
+        public virtual Merchant MerchantReceiver { get; set; }
+        public virtual Master MasterSender { get; set; }
+        public virtual Master MasterReceiver { get; set; }
     }
 }

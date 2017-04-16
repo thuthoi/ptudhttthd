@@ -27,5 +27,9 @@ namespace DomainModel
         public string MerchantRegionID { get; set; }
         public string MerchantTypeID { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
+    
+        public virtual Merchant Merchant { get; set; }
+        public virtual MerchantType MerchantType { get; set; }
+        public virtual MerchantRegion MerchantRegion { get; set; }
     }
 }

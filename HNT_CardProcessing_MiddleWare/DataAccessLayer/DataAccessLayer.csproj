@@ -31,11 +31,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -50,64 +50,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account.cs">
-      <DependentUpon>CardProcessingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Agent.cs">
-      <DependentUpon>CardProcessingModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="CardProcessingModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CardProcessingModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CardProcessingModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CardProcessingModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CardProcessingModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CardProcessingModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DailyReport.cs">
-      <DependentUpon>CardProcessingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Master.cs">
-      <DependentUpon>CardProcessingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Merchant.cs">
-      <DependentUpon>CardProcessingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MerchantRegion.cs">
-      <DependentUpon>CardProcessingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MerchantType.cs">
-      <DependentUpon>CardProcessingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MonthlyReport.cs">
-      <DependentUpon>CardProcessingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Notification.cs">
-      <DependentUpon>CardProcessingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Parameter.cs">
-      <DependentUpon>CardProcessingModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="GenericDataRepository.cs" />
+    <Compile Include="ICardProcessingRepository.cs" />
+    <Compile Include="IGenericDataRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegistrationForm.cs">
-      <DependentUpon>CardProcessingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>CardProcessingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TransactionDetail.cs">
-      <DependentUpon>CardProcessingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="YearlyReport.cs">
-      <DependentUpon>CardProcessingModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
@@ -123,15 +79,16 @@
     <None Include="CardProcessingModel.edmx.diagram">
       <DependentUpon>CardProcessingModel.edmx</DependentUpon>
     </None>
-    <None Include="CardProcessingModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CardProcessingModel.edmx</DependentUpon>
-      <LastGenOutput>CardProcessingModel.cs</LastGenOutput>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DomainModel\DomainModel.csproj">
+      <Project>{7455f2d9-5a47-41ad-b9d3-9756b2c025bc}</Project>
+      <Name>DomainModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

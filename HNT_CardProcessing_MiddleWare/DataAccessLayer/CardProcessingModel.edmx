@@ -239,6 +239,9 @@
           <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="UserID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Role" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Agents" Relationship="CardProcessingModel.AccountAgent" FromRole="Account" ToRole="Agent" />
+          <NavigationProperty Name="Merchants" Relationship="CardProcessingModel.AccountMerchant" FromRole="Account" ToRole="Merchant" />
+          <NavigationProperty Name="Masters" Relationship="CardProcessingModel.AccountMaster" FromRole="Account" ToRole="Master" />
         </EntityType>
         <EntityType Name="Agent">
           <Key>
@@ -251,6 +254,10 @@
           <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Account" Relationship="CardProcessingModel.AccountAgent" FromRole="Agent" ToRole="Account" />
+          <NavigationProperty Name="Merchants" Relationship="CardProcessingModel.AgentMerchant" FromRole="Agent" ToRole="Merchant" />
+          <NavigationProperty Name="NotificationsSend" Relationship="CardProcessingModel.AgentNotification" FromRole="Agent" ToRole="Notification" />
+          <NavigationProperty Name="NotificationsReceive" Relationship="CardProcessingModel.AgentNotification1" FromRole="Agent" ToRole="Notification" />
         </EntityType>
         <EntityType Name="DailyReport">
           <Key>
@@ -279,6 +286,9 @@
           <Property Name="NetAmount" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="NetCount" Type="Int32" />
           <Property Name="Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Merchant" Relationship="CardProcessingModel.MerchantDailyReport" FromRole="DailyReport" ToRole="Merchant" />
+          <NavigationProperty Name="MerchantType" Relationship="CardProcessingModel.MerchantTypeDailyReport" FromRole="DailyReport" ToRole="MerchantType" />
+          <NavigationProperty Name="MerchantRegion" Relationship="CardProcessingModel.MerchantRegionDailyReport" FromRole="DailyReport" ToRole="MerchantRegion" />
         </EntityType>
         <EntityType Name="Master">
           <Key>
@@ -289,6 +299,9 @@
           <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Account" Relationship="CardProcessingModel.AccountMaster" FromRole="Master" ToRole="Account" />
+          <NavigationProperty Name="NotificationsSend" Relationship="CardProcessingModel.MasterNotification" FromRole="Master" ToRole="Notification" />
+          <NavigationProperty Name="NotificationsReceive" Relationship="CardProcessingModel.MasterNotification1" FromRole="Master" ToRole="Notification" />
         </EntityType>
         <EntityType Name="Merchant">
           <Key>
@@ -305,6 +318,16 @@
           <Property Name="MerchantTypeID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MerchantRegionID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="AgentID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Account" Relationship="CardProcessingModel.AccountMerchant" FromRole="Merchant" ToRole="Account" />
+          <NavigationProperty Name="MerchantRegion" Relationship="CardProcessingModel.MerchantRegionMerchant" FromRole="Merchant" ToRole="MerchantRegion" />
+          <NavigationProperty Name="MerchantType" Relationship="CardProcessingModel.MerchantTypeMerchant" FromRole="Merchant" ToRole="MerchantType" />
+          <NavigationProperty Name="Agent" Relationship="CardProcessingModel.AgentMerchant" FromRole="Merchant" ToRole="Agent" />
+          <NavigationProperty Name="NotificationsSend" Relationship="CardProcessingModel.MerchantNotification" FromRole="Merchant" ToRole="Notification" />
+          <NavigationProperty Name="NotificationsReceive" Relationship="CardProcessingModel.MerchantNotification1" FromRole="Merchant" ToRole="Notification" />
+          <NavigationProperty Name="TransactionDetails" Relationship="CardProcessingModel.MerchantTransactionDetail" FromRole="Merchant" ToRole="TransactionDetail" />
+          <NavigationProperty Name="DailyReports" Relationship="CardProcessingModel.MerchantDailyReport" FromRole="Merchant" ToRole="DailyReport" />
+          <NavigationProperty Name="YearlyReports" Relationship="CardProcessingModel.MerchantYearlyReport" FromRole="Merchant" ToRole="YearlyReport" />
+          <NavigationProperty Name="MonthlyReports" Relationship="CardProcessingModel.MerchantMonthlyReport" FromRole="Merchant" ToRole="MonthlyReport" />
         </EntityType>
         <EntityType Name="MerchantRegion">
           <Key>
@@ -312,6 +335,11 @@
           </Key>
           <Property Name="MerchantRegionID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MerchantRegionName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Merchants" Relationship="CardProcessingModel.MerchantRegionMerchant" FromRole="MerchantRegion" ToRole="Merchant" />
+          <NavigationProperty Name="TransactionDetails" Relationship="CardProcessingModel.MerchantRegionTransactionDetail" FromRole="MerchantRegion" ToRole="TransactionDetail" />
+          <NavigationProperty Name="MonthlyReports" Relationship="CardProcessingModel.MerchantRegionMonthlyReport" FromRole="MerchantRegion" ToRole="MonthlyReport" />
+          <NavigationProperty Name="DailyReports" Relationship="CardProcessingModel.MerchantRegionDailyReport" FromRole="MerchantRegion" ToRole="DailyReport" />
+          <NavigationProperty Name="YearlyReports" Relationship="CardProcessingModel.MerchantRegionYearlyReport" FromRole="MerchantRegion" ToRole="YearlyReport" />
         </EntityType>
         <EntityType Name="MerchantType">
           <Key>
@@ -319,6 +347,11 @@
           </Key>
           <Property Name="MerchantTypeID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MerchantTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Merchants" Relationship="CardProcessingModel.MerchantTypeMerchant" FromRole="MerchantType" ToRole="Merchant" />
+          <NavigationProperty Name="TransactionDetails" Relationship="CardProcessingModel.MerchantTypeTransactionDetail" FromRole="MerchantType" ToRole="TransactionDetail" />
+          <NavigationProperty Name="MonthlyReports" Relationship="CardProcessingModel.MerchantTypeMonthlyReport" FromRole="MerchantType" ToRole="MonthlyReport" />
+          <NavigationProperty Name="DailyReports" Relationship="CardProcessingModel.MerchantTypeDailyReport" FromRole="MerchantType" ToRole="DailyReport" />
+          <NavigationProperty Name="YearlyReports" Relationship="CardProcessingModel.MerchantTypeYearlyReport" FromRole="MerchantType" ToRole="YearlyReport" />
         </EntityType>
         <EntityType Name="MonthlyReport">
           <Key>
@@ -347,6 +380,9 @@
           <Property Name="NetAmount" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="NetCount" Type="Int32" />
           <Property Name="Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Merchant" Relationship="CardProcessingModel.MerchantMonthlyReport" FromRole="MonthlyReport" ToRole="Merchant" />
+          <NavigationProperty Name="MerchantType" Relationship="CardProcessingModel.MerchantTypeMonthlyReport" FromRole="MonthlyReport" ToRole="MerchantType" />
+          <NavigationProperty Name="MerchantRegion" Relationship="CardProcessingModel.MerchantRegionMonthlyReport" FromRole="MonthlyReport" ToRole="MerchantRegion" />
         </EntityType>
         <EntityType Name="Notification">
           <Key>
@@ -359,6 +395,12 @@
           <Property Name="SenderID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="ReceiverID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="AgentSender" Relationship="CardProcessingModel.AgentNotification" FromRole="Notification" ToRole="Agent" />
+          <NavigationProperty Name="AgentReceiver" Relationship="CardProcessingModel.AgentNotification1" FromRole="Notification" ToRole="Agent" />
+          <NavigationProperty Name="MerchantSender" Relationship="CardProcessingModel.MerchantNotification" FromRole="Notification" ToRole="Merchant" />
+          <NavigationProperty Name="MerchantReceiver" Relationship="CardProcessingModel.MerchantNotification1" FromRole="Notification" ToRole="Merchant" />
+          <NavigationProperty Name="MasterSender" Relationship="CardProcessingModel.MasterNotification" FromRole="Notification" ToRole="Master" />
+          <NavigationProperty Name="MasterReceiver" Relationship="CardProcessingModel.MasterNotification1" FromRole="Notification" ToRole="Master" />
         </EntityType>
         <EntityType Name="Parameter">
           <Key>
@@ -407,6 +449,9 @@
           <Property Name="MerchantRegionID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MerchantTypeID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Merchant" Relationship="CardProcessingModel.MerchantTransactionDetail" FromRole="TransactionDetail" ToRole="Merchant" />
+          <NavigationProperty Name="MerchantType" Relationship="CardProcessingModel.MerchantTypeTransactionDetail" FromRole="TransactionDetail" ToRole="MerchantType" />
+          <NavigationProperty Name="MerchantRegion" Relationship="CardProcessingModel.MerchantRegionTransactionDetail" FromRole="TransactionDetail" ToRole="MerchantRegion" />
         </EntityType>
         <EntityType Name="YearlyReport">
           <Key>
@@ -435,6 +480,9 @@
           <Property Name="NetAmount" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="NetCount" Type="Int32" />
           <Property Name="Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Merchant" Relationship="CardProcessingModel.MerchantYearlyReport" FromRole="YearlyReport" ToRole="Merchant" />
+          <NavigationProperty Name="MerchantType" Relationship="CardProcessingModel.MerchantTypeYearlyReport" FromRole="YearlyReport" ToRole="MerchantType" />
+          <NavigationProperty Name="MerchantRegion" Relationship="CardProcessingModel.MerchantRegionYearlyReport" FromRole="YearlyReport" ToRole="MerchantRegion" />
         </EntityType>
         <EntityContainer Name="CardProcessingEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="Self.Account" />
@@ -451,7 +499,391 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TransactionDetails" EntityType="Self.TransactionDetail" />
           <EntitySet Name="YearlyReports" EntityType="Self.YearlyReport" />
+          <AssociationSet Name="AccountAgent" Association="CardProcessingModel.AccountAgent">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Agent" EntitySet="Agents" />
+          </AssociationSet>
+          <AssociationSet Name="AccountMerchant" Association="CardProcessingModel.AccountMerchant">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Merchant" EntitySet="Merchants" />
+          </AssociationSet>
+          <AssociationSet Name="AccountMaster" Association="CardProcessingModel.AccountMaster">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Master" EntitySet="Masters" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantRegionMerchant" Association="CardProcessingModel.MerchantRegionMerchant">
+            <End Role="MerchantRegion" EntitySet="MerchantRegions" />
+            <End Role="Merchant" EntitySet="Merchants" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantTypeMerchant" Association="CardProcessingModel.MerchantTypeMerchant">
+            <End Role="MerchantType" EntitySet="MerchantTypes" />
+            <End Role="Merchant" EntitySet="Merchants" />
+          </AssociationSet>
+          <AssociationSet Name="AgentMerchant" Association="CardProcessingModel.AgentMerchant">
+            <End Role="Agent" EntitySet="Agents" />
+            <End Role="Merchant" EntitySet="Merchants" />
+          </AssociationSet>
+          <AssociationSet Name="AgentNotification" Association="CardProcessingModel.AgentNotification">
+            <End Role="Agent" EntitySet="Agents" />
+            <End Role="Notification" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="AgentNotification1" Association="CardProcessingModel.AgentNotification1">
+            <End Role="Agent" EntitySet="Agents" />
+            <End Role="Notification" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantNotification" Association="CardProcessingModel.MerchantNotification">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="Notification" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantNotification1" Association="CardProcessingModel.MerchantNotification1">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="Notification" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="MasterNotification" Association="CardProcessingModel.MasterNotification">
+            <End Role="Master" EntitySet="Masters" />
+            <End Role="Notification" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="MasterNotification1" Association="CardProcessingModel.MasterNotification1">
+            <End Role="Master" EntitySet="Masters" />
+            <End Role="Notification" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantTransactionDetail" Association="CardProcessingModel.MerchantTransactionDetail">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="TransactionDetail" EntitySet="TransactionDetails" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantTypeTransactionDetail" Association="CardProcessingModel.MerchantTypeTransactionDetail">
+            <End Role="MerchantType" EntitySet="MerchantTypes" />
+            <End Role="TransactionDetail" EntitySet="TransactionDetails" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantRegionTransactionDetail" Association="CardProcessingModel.MerchantRegionTransactionDetail">
+            <End Role="MerchantRegion" EntitySet="MerchantRegions" />
+            <End Role="TransactionDetail" EntitySet="TransactionDetails" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantDailyReport" Association="CardProcessingModel.MerchantDailyReport">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="DailyReport" EntitySet="DailyReports" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantYearlyReport" Association="CardProcessingModel.MerchantYearlyReport">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="YearlyReport" EntitySet="YearlyReports" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantMonthlyReport" Association="CardProcessingModel.MerchantMonthlyReport">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="MonthlyReport" EntitySet="MonthlyReports" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantTypeMonthlyReport" Association="CardProcessingModel.MerchantTypeMonthlyReport">
+            <End Role="MerchantType" EntitySet="MerchantTypes" />
+            <End Role="MonthlyReport" EntitySet="MonthlyReports" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantTypeDailyReport" Association="CardProcessingModel.MerchantTypeDailyReport">
+            <End Role="MerchantType" EntitySet="MerchantTypes" />
+            <End Role="DailyReport" EntitySet="DailyReports" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantTypeYearlyReport" Association="CardProcessingModel.MerchantTypeYearlyReport">
+            <End Role="MerchantType" EntitySet="MerchantTypes" />
+            <End Role="YearlyReport" EntitySet="YearlyReports" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantRegionMonthlyReport" Association="CardProcessingModel.MerchantRegionMonthlyReport">
+            <End Role="MerchantRegion" EntitySet="MerchantRegions" />
+            <End Role="MonthlyReport" EntitySet="MonthlyReports" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantRegionDailyReport" Association="CardProcessingModel.MerchantRegionDailyReport">
+            <End Role="MerchantRegion" EntitySet="MerchantRegions" />
+            <End Role="DailyReport" EntitySet="DailyReports" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantRegionYearlyReport" Association="CardProcessingModel.MerchantRegionYearlyReport">
+            <End Role="MerchantRegion" EntitySet="MerchantRegions" />
+            <End Role="YearlyReport" EntitySet="YearlyReports" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="AccountAgent">
+          <End Type="CardProcessingModel.Account" Role="Account" Multiplicity="*" />
+          <End Type="CardProcessingModel.Agent" Role="Agent" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AccountMerchant">
+          <End Type="CardProcessingModel.Account" Role="Account" Multiplicity="*" />
+          <End Type="CardProcessingModel.Merchant" Role="Merchant" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AccountMaster">
+          <End Type="CardProcessingModel.Account" Role="Account" Multiplicity="*" />
+          <End Type="CardProcessingModel.Master" Role="Master" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Master">
+              <PropertyRef Name="MasterID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantRegionMerchant">
+          <End Type="CardProcessingModel.MerchantRegion" Role="MerchantRegion" Multiplicity="0..1" />
+          <End Type="CardProcessingModel.Merchant" Role="Merchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MerchantRegion">
+              <PropertyRef Name="MerchantRegionID" />
+            </Principal>
+            <Dependent Role="Merchant">
+              <PropertyRef Name="MerchantRegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantTypeMerchant">
+          <End Type="CardProcessingModel.MerchantType" Role="MerchantType" Multiplicity="0..1" />
+          <End Type="CardProcessingModel.Merchant" Role="Merchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MerchantType">
+              <PropertyRef Name="MerchantTypeID" />
+            </Principal>
+            <Dependent Role="Merchant">
+              <PropertyRef Name="MerchantTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AgentMerchant">
+          <End Type="CardProcessingModel.Agent" Role="Agent" Multiplicity="0..1" />
+          <End Type="CardProcessingModel.Merchant" Role="Merchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="Merchant">
+              <PropertyRef Name="AgentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AgentNotification">
+          <End Type="CardProcessingModel.Agent" Role="Agent" Multiplicity="0..1" />
+          <End Type="CardProcessingModel.Notification" Role="Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="SenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AgentNotification1">
+          <End Type="CardProcessingModel.Agent" Role="Agent" Multiplicity="0..1" />
+          <End Type="CardProcessingModel.Notification" Role="Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="ReceiverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantNotification">
+          <End Type="CardProcessingModel.Merchant" Role="Merchant" Multiplicity="0..1" />
+          <End Type="CardProcessingModel.Notification" Role="Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="SenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantNotification1">
+          <End Type="CardProcessingModel.Merchant" Role="Merchant" Multiplicity="0..1" />
+          <End Type="CardProcessingModel.Notification" Role="Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="ReceiverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MasterNotification">
+          <End Type="CardProcessingModel.Master" Role="Master" Multiplicity="0..1" />
+          <End Type="CardProcessingModel.Notification" Role="Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Master">
+              <PropertyRef Name="MasterID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="SenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MasterNotification1">
+          <End Type="CardProcessingModel.Master" Role="Master" Multiplicity="0..1" />
+          <End Type="CardProcessingModel.Notification" Role="Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Master">
+              <PropertyRef Name="MasterID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="ReceiverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantTransactionDetail">
+          <End Type="CardProcessingModel.Merchant" Role="Merchant" Multiplicity="0..1" />
+          <End Type="CardProcessingModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="TransactionDetail">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantTypeTransactionDetail">
+          <End Type="CardProcessingModel.MerchantType" Role="MerchantType" Multiplicity="0..1" />
+          <End Type="CardProcessingModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MerchantType">
+              <PropertyRef Name="MerchantTypeID" />
+            </Principal>
+            <Dependent Role="TransactionDetail">
+              <PropertyRef Name="MerchantTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantRegionTransactionDetail">
+          <End Type="CardProcessingModel.MerchantRegion" Role="MerchantRegion" Multiplicity="0..1" />
+          <End Type="CardProcessingModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MerchantRegion">
+              <PropertyRef Name="MerchantRegionID" />
+            </Principal>
+            <Dependent Role="TransactionDetail">
+              <PropertyRef Name="MerchantRegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantDailyReport">
+          <End Type="CardProcessingModel.Merchant" Role="Merchant" Multiplicity="0..1" />
+          <End Type="CardProcessingModel.DailyReport" Role="DailyReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="DailyReport">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantYearlyReport">
+          <End Type="CardProcessingModel.Merchant" Role="Merchant" Multiplicity="0..1" />
+          <End Type="CardProcessingModel.YearlyReport" Role="YearlyReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="YearlyReport">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantMonthlyReport">
+          <End Type="CardProcessingModel.Merchant" Role="Merchant" Multiplicity="0..1" />
+          <End Type="CardProcessingModel.MonthlyReport" Role="MonthlyReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="MonthlyReport">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantTypeMonthlyReport">
+          <End Type="CardProcessingModel.MerchantType" Role="MerchantType" Multiplicity="0..1" />
+          <End Type="CardProcessingModel.MonthlyReport" Role="MonthlyReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MerchantType">
+              <PropertyRef Name="MerchantTypeID" />
+            </Principal>
+            <Dependent Role="MonthlyReport">
+              <PropertyRef Name="MerchantTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantTypeDailyReport">
+          <End Type="CardProcessingModel.MerchantType" Role="MerchantType" Multiplicity="0..1" />
+          <End Type="CardProcessingModel.DailyReport" Role="DailyReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MerchantType">
+              <PropertyRef Name="MerchantTypeID" />
+            </Principal>
+            <Dependent Role="DailyReport">
+              <PropertyRef Name="MerchantTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantTypeYearlyReport">
+          <End Type="CardProcessingModel.MerchantType" Role="MerchantType" Multiplicity="0..1" />
+          <End Type="CardProcessingModel.YearlyReport" Role="YearlyReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MerchantType">
+              <PropertyRef Name="MerchantTypeID" />
+            </Principal>
+            <Dependent Role="YearlyReport">
+              <PropertyRef Name="MerchantTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantRegionMonthlyReport">
+          <End Type="CardProcessingModel.MerchantRegion" Role="MerchantRegion" Multiplicity="0..1" />
+          <End Type="CardProcessingModel.MonthlyReport" Role="MonthlyReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MerchantRegion">
+              <PropertyRef Name="MerchantRegionID" />
+            </Principal>
+            <Dependent Role="MonthlyReport">
+              <PropertyRef Name="MerchantRegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantRegionDailyReport">
+          <End Type="CardProcessingModel.MerchantRegion" Role="MerchantRegion" Multiplicity="0..1" />
+          <End Type="CardProcessingModel.DailyReport" Role="DailyReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MerchantRegion">
+              <PropertyRef Name="MerchantRegionID" />
+            </Principal>
+            <Dependent Role="DailyReport">
+              <PropertyRef Name="MerchantRegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantRegionYearlyReport">
+          <End Type="CardProcessingModel.MerchantRegion" Role="MerchantRegion" Multiplicity="0..1" />
+          <End Type="CardProcessingModel.YearlyReport" Role="YearlyReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MerchantRegion">
+              <PropertyRef Name="MerchantRegionID" />
+            </Principal>
+            <Dependent Role="YearlyReport">
+              <PropertyRef Name="MerchantRegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

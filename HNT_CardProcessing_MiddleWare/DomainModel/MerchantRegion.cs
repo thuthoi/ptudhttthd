@@ -14,7 +14,22 @@ namespace DomainModel
     
     public partial class MerchantRegion
     {
+        public MerchantRegion()
+        {
+            this.Merchants = new HashSet<Merchant>();
+            this.TransactionDetails = new HashSet<TransactionDetail>();
+            this.MonthlyReports = new HashSet<MonthlyReport>();
+            this.DailyReports = new HashSet<DailyReport>();
+            this.YearlyReports = new HashSet<YearlyReport>();
+        }
+    
         public string MerchantRegionID { get; set; }
         public string MerchantRegionName { get; set; }
+    
+        public virtual ICollection<Merchant> Merchants { get; set; }
+        public virtual ICollection<TransactionDetail> TransactionDetails { get; set; }
+        public virtual ICollection<MonthlyReport> MonthlyReports { get; set; }
+        public virtual ICollection<DailyReport> DailyReports { get; set; }
+        public virtual ICollection<YearlyReport> YearlyReports { get; set; }
     }
 }

@@ -14,6 +14,17 @@ namespace DomainModel
     
     public partial class Merchant
     {
+        public Merchant()
+        {
+            this.Account = new HashSet<Account>();
+            this.NotificationsSend = new HashSet<Notification>();
+            this.NotificationsReceive = new HashSet<Notification>();
+            this.TransactionDetails = new HashSet<TransactionDetail>();
+            this.DailyReports = new HashSet<DailyReport>();
+            this.YearlyReports = new HashSet<YearlyReport>();
+            this.MonthlyReports = new HashSet<MonthlyReport>();
+        }
+    
         public string MerchantID { get; set; }
         public string MerchantName { get; set; }
         public string Owner { get; set; }
@@ -25,5 +36,16 @@ namespace DomainModel
         public string MerchantTypeID { get; set; }
         public string MerchantRegionID { get; set; }
         public string AgentID { get; set; }
+    
+        public virtual ICollection<Account> Account { get; set; }
+        public virtual MerchantRegion MerchantRegion { get; set; }
+        public virtual MerchantType MerchantType { get; set; }
+        public virtual Agent Agent { get; set; }
+        public virtual ICollection<Notification> NotificationsSend { get; set; }
+        public virtual ICollection<Notification> NotificationsReceive { get; set; }
+        public virtual ICollection<TransactionDetail> TransactionDetails { get; set; }
+        public virtual ICollection<DailyReport> DailyReports { get; set; }
+        public virtual ICollection<YearlyReport> YearlyReports { get; set; }
+        public virtual ICollection<MonthlyReport> MonthlyReports { get; set; }
     }
 }
