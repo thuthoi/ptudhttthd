@@ -28,7 +28,7 @@ namespace DomainModel
         public string Address { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public Nullable<bool> Status { get; set; }
+        public bool Status { get; set; }
     
         public virtual ICollection<Account> Account { get; set; }
         public virtual ICollection<Merchant> Merchants { get; set; }

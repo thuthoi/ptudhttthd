@@ -25,7 +25,7 @@ namespace DomainModel
         public string MasterName { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public Nullable<bool> Status { get; set; }
+        public bool Status { get; set; }
     
         public virtual ICollection<Account> Account { get; set; }
         public virtual ICollection<Notification> NotificationsSend { get; set; }

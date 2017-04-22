@@ -1,0 +1,934 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CardProcessingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="255" />
+          <Property Name="UserID" Type="varchar" MaxLength="10" />
+          <Property Name="Role" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="AgentID" />
+          </Key>
+          <Property Name="AgentID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="AgentName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phone" Type="varchar" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="MasterID" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="DailyReport">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MerchantID" Type="varchar" MaxLength="10" />
+          <Property Name="MerchantTypeID" Type="varchar" MaxLength="10" />
+          <Property Name="MerchantRegionID" Type="varchar" MaxLength="10" />
+          <Property Name="SaleAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ReturnAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SaleCount" Type="int" />
+          <Property Name="ReturnCount" Type="int" />
+          <Property Name="DebitCardSaleAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardSaleAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardSaleAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DebitCardReturnAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardReturnAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardReturnAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DebitCardSaleCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardSaleCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardSaleCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DebitCardReturnCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardReturnCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardReturnCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="NetAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="NetCount" Type="int" />
+          <Property Name="Date" Type="date" />
+        </EntityType>
+        <EntityType Name="Master">
+          <Key>
+            <PropertyRef Name="MasterID" />
+          </Key>
+          <Property Name="MasterID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MasterName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phone" Type="varchar" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Merchant">
+          <Key>
+            <PropertyRef Name="MerchantID" />
+          </Key>
+          <Property Name="MerchantID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MerchantName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phone" Type="varchar" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="MerchantTypeID" Type="varchar" MaxLength="10" />
+          <Property Name="MerchantRegionID" Type="varchar" MaxLength="10" />
+          <Property Name="AgentID" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="MerchantRegion">
+          <Key>
+            <PropertyRef Name="MerchantRegionID" />
+          </Key>
+          <Property Name="MerchantRegionID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MerchantRegionName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="MerchantType">
+          <Key>
+            <PropertyRef Name="MerchantTypeID" />
+          </Key>
+          <Property Name="MerchantTypeID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MerchantTypeName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="MonthlyReport">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MerchantID" Type="varchar" MaxLength="10" />
+          <Property Name="MerchantTypeID" Type="varchar" MaxLength="10" />
+          <Property Name="MerchantRegionID" Type="varchar" MaxLength="10" />
+          <Property Name="SaleAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ReturnAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SaleCount" Type="int" />
+          <Property Name="ReturnCount" Type="int" />
+          <Property Name="DebitCardSaleAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardSaleAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardSaleAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DebitCardReturnAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardReturnAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardReturnAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DebitCardSaleCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardSaleCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardSaleCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DebitCardReturnCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardReturnCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardReturnCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="NetAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="NetCount" Type="int" />
+          <Property Name="Date" Type="date" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="NotiID" />
+          </Key>
+          <Property Name="NotiID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Detail" Type="nvarchar" MaxLength="255" />
+          <Property Name="Summary" Type="nvarchar" MaxLength="255" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="SenderID" Type="varchar" MaxLength="10" />
+          <Property Name="ReceiverID" Type="varchar" MaxLength="10" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Parameter">
+          <Key>
+            <PropertyRef Name="ParaID" />
+          </Key>
+          <Property Name="ParaID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Value" Type="nvarchar" MaxLength="255" />
+          <Property Name="Type" Type="nvarchar" MaxLength="255" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="RegistrationForm">
+          <Key>
+            <PropertyRef Name="RegID" />
+          </Key>
+          <Property Name="RegID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="Phone" Type="varchar" MaxLength="255" />
+          <Property Name="Detail" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TransactionDetail">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer" Type="nvarchar" MaxLength="255" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ProductNumber" Type="int" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TransactionType" Type="varchar" MaxLength="255" />
+          <Property Name="CreditCardID" Type="varchar" MaxLength="255" />
+          <Property Name="CreditCardType" Type="varchar" MaxLength="255" />
+          <Property Name="MerchantID" Type="varchar" MaxLength="10" />
+          <Property Name="MerchantRegionID" Type="varchar" MaxLength="10" />
+          <Property Name="MerchantTypeID" Type="varchar" MaxLength="10" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TransactionDetail_Temp">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer" Type="nvarchar" MaxLength="255" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ProductNumber" Type="int" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TransactionType" Type="varchar" MaxLength="255" />
+          <Property Name="CreditCardID" Type="varchar" MaxLength="255" />
+          <Property Name="CreditCardType" Type="varchar" MaxLength="255" />
+          <Property Name="MerchantID" Type="varchar" MaxLength="10" />
+          <Property Name="MerchantRegionID" Type="varchar" MaxLength="10" />
+          <Property Name="MerchantTypeID" Type="varchar" MaxLength="10" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="YearlyReport">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MerchantID" Type="varchar" MaxLength="10" />
+          <Property Name="MerchantTypeID" Type="varchar" MaxLength="10" />
+          <Property Name="MerchantRegionID" Type="varchar" MaxLength="10" />
+          <Property Name="SaleAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ReturnAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SaleCount" Type="int" />
+          <Property Name="ReturnCount" Type="int" />
+          <Property Name="DebitCardSaleAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardSaleAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardSaleAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DebitCardReturnAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardReturnAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardReturnAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DebitCardSaleCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardSaleCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardSaleCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DebitCardReturnCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardReturnCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardReturnCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="NetAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="NetCount" Type="int" />
+          <Property Name="Date" Type="date" />
+        </EntityType>
+        <EntityContainer Name="CardProcessingModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Agent" EntityType="Self.Agent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DailyReport" EntityType="Self.DailyReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Master" EntityType="Self.Master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Merchant" EntityType="Self.Merchant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MerchantRegion" EntityType="Self.MerchantRegion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MerchantType" EntityType="Self.MerchantType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MonthlyReport" EntityType="Self.MonthlyReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parameter" EntityType="Self.Parameter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegistrationForm" EntityType="Self.RegistrationForm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionDetail" EntityType="Self.TransactionDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionDetail_Temp" EntityType="Self.TransactionDetail_Temp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YearlyReport" EntityType="Self.YearlyReport" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CardProcessingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Agent" Relationship="CardProcessingModel.AgentAccount" FromRole="Account" ToRole="Agent" />
+          <NavigationProperty Name="Merchant" Relationship="CardProcessingModel.MerchantAccount" FromRole="Account" ToRole="Merchant" />
+          <NavigationProperty Name="Master" Relationship="CardProcessingModel.MasterAccount" FromRole="Account" ToRole="Master" />
+        </EntityType>
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="AgentID" />
+          </Key>
+          <Property Name="AgentID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AgentName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="MasterID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="CardProcessingModel.AgentAccount" FromRole="Agent" ToRole="Account" />
+          <NavigationProperty Name="Master" Relationship="CardProcessingModel.MasterAgent" FromRole="Agent" ToRole="Master" />
+          <NavigationProperty Name="Merchants" Relationship="CardProcessingModel.AgentMerchant" FromRole="Agent" ToRole="Merchant" />
+        </EntityType>
+        <EntityType Name="DailyReport">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MerchantID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MerchantTypeID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MerchantRegionID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SaleAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ReturnAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SaleCount" Type="Int32" />
+          <Property Name="ReturnCount" Type="Int32" />
+          <Property Name="DebitCardSaleAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardSaleAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardSaleAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DebitCardReturnAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardReturnAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardReturnAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DebitCardSaleCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardSaleCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardSaleCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DebitCardReturnCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardReturnCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardReturnCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NetAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NetCount" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Master">
+          <Key>
+            <PropertyRef Name="MasterID" />
+          </Key>
+          <Property Name="MasterID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MasterName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Accounts" Relationship="CardProcessingModel.MasterAccount" FromRole="Master" ToRole="Account" />
+          <NavigationProperty Name="Agents" Relationship="CardProcessingModel.MasterAgent" FromRole="Master" ToRole="Agent" />
+        </EntityType>
+        <EntityType Name="Merchant">
+          <Key>
+            <PropertyRef Name="MerchantID" />
+          </Key>
+          <Property Name="MerchantID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MerchantName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="MerchantTypeID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MerchantRegionID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AgentID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="CardProcessingModel.MerchantAccount" FromRole="Merchant" ToRole="Account" />
+          <NavigationProperty Name="MerchantRegion" Relationship="CardProcessingModel.MerchantRegionMerchant" FromRole="Merchant" ToRole="MerchantRegion" />
+          <NavigationProperty Name="MerchantType" Relationship="CardProcessingModel.MerchantTypeMerchant" FromRole="Merchant" ToRole="MerchantType" />
+          <NavigationProperty Name="Agent" Relationship="CardProcessingModel.AgentMerchant" FromRole="Merchant" ToRole="Agent" />
+          <NavigationProperty Name="TransactionDetails" Relationship="CardProcessingModel.MerchantTransactionDetail" FromRole="Merchant" ToRole="TransactionDetail" />
+        </EntityType>
+        <EntityType Name="MerchantRegion">
+          <Key>
+            <PropertyRef Name="MerchantRegionID" />
+          </Key>
+          <Property Name="MerchantRegionID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MerchantRegionName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Merchants" Relationship="CardProcessingModel.MerchantRegionMerchant" FromRole="MerchantRegion" ToRole="Merchant" />
+          <NavigationProperty Name="TransactionDetails" Relationship="CardProcessingModel.MerchantRegionTransactionDetail" FromRole="MerchantRegion" ToRole="TransactionDetail" />
+        </EntityType>
+        <EntityType Name="MerchantType">
+          <Key>
+            <PropertyRef Name="MerchantTypeID" />
+          </Key>
+          <Property Name="MerchantTypeID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MerchantTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Merchants" Relationship="CardProcessingModel.MerchantTypeMerchant" FromRole="MerchantType" ToRole="Merchant" />
+          <NavigationProperty Name="TransactionDetails" Relationship="CardProcessingModel.MerchantTypeTransactionDetail" FromRole="MerchantType" ToRole="TransactionDetail" />
+        </EntityType>
+        <EntityType Name="MonthlyReport">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MerchantID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MerchantTypeID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MerchantRegionID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SaleAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ReturnAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SaleCount" Type="Int32" />
+          <Property Name="ReturnCount" Type="Int32" />
+          <Property Name="DebitCardSaleAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardSaleAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardSaleAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DebitCardReturnAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardReturnAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardReturnAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DebitCardSaleCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardSaleCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardSaleCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DebitCardReturnCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardReturnCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardReturnCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NetAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NetCount" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="NotiID" />
+          </Key>
+          <Property Name="NotiID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Detail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Summary" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="SenderID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ReceiverID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Parameter">
+          <Key>
+            <PropertyRef Name="ParaID" />
+          </Key>
+          <Property Name="ParaID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="RegistrationForm">
+          <Key>
+            <PropertyRef Name="RegID" />
+          </Key>
+          <Property Name="RegID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Detail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TransactionDetail">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ProductName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ProductNumber" Type="Int32" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TransactionType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CreditCardID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CreditCardType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MerchantID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MerchantRegionID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MerchantTypeID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="MerchantRegion" Relationship="CardProcessingModel.MerchantRegionTransactionDetail" FromRole="TransactionDetail" ToRole="MerchantRegion" />
+          <NavigationProperty Name="MerchantType" Relationship="CardProcessingModel.MerchantTypeTransactionDetail" FromRole="TransactionDetail" ToRole="MerchantType" />
+          <NavigationProperty Name="Merchant" Relationship="CardProcessingModel.MerchantTransactionDetail" FromRole="TransactionDetail" ToRole="Merchant" />
+        </EntityType>
+        <EntityType Name="TransactionDetail_Temp">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ProductName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ProductNumber" Type="Int32" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TransactionType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CreditCardID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CreditCardType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MerchantID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MerchantRegionID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MerchantTypeID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="YearlyReport">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MerchantID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MerchantTypeID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MerchantRegionID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SaleAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ReturnAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SaleCount" Type="Int32" />
+          <Property Name="ReturnCount" Type="Int32" />
+          <Property Name="DebitCardSaleAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardSaleAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardSaleAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DebitCardReturnAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardReturnAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardReturnAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DebitCardSaleCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardSaleCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardSaleCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DebitCardReturnCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MasterCardReturnCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="VisaCardReturnCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NetAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NetCount" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityContainer Name="CardProcessingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Agents" EntityType="Self.Agent" />
+          <EntitySet Name="DailyReports" EntityType="Self.DailyReport" />
+          <EntitySet Name="Masters" EntityType="Self.Master" />
+          <EntitySet Name="Merchants" EntityType="Self.Merchant" />
+          <EntitySet Name="MerchantRegions" EntityType="Self.MerchantRegion" />
+          <EntitySet Name="MerchantTypes" EntityType="Self.MerchantType" />
+          <EntitySet Name="MonthlyReports" EntityType="Self.MonthlyReport" />
+          <EntitySet Name="Notifications" EntityType="Self.Notification" />
+          <EntitySet Name="Parameters" EntityType="Self.Parameter" />
+          <EntitySet Name="RegistrationForms" EntityType="Self.RegistrationForm" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TransactionDetails" EntityType="Self.TransactionDetail" />
+          <EntitySet Name="TransactionDetail_Temp" EntityType="Self.TransactionDetail_Temp" />
+          <EntitySet Name="YearlyReports" EntityType="Self.YearlyReport" />
+          <AssociationSet Name="AgentAccount" Association="CardProcessingModel.AgentAccount">
+            <End Role="Agent" EntitySet="Agents" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantAccount" Association="CardProcessingModel.MerchantAccount">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="MasterAccount" Association="CardProcessingModel.MasterAccount">
+            <End Role="Master" EntitySet="Masters" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantRegionMerchant" Association="CardProcessingModel.MerchantRegionMerchant">
+            <End Role="MerchantRegion" EntitySet="MerchantRegions" />
+            <End Role="Merchant" EntitySet="Merchants" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantTypeMerchant" Association="CardProcessingModel.MerchantTypeMerchant">
+            <End Role="MerchantType" EntitySet="MerchantTypes" />
+            <End Role="Merchant" EntitySet="Merchants" />
+          </AssociationSet>
+          <AssociationSet Name="MasterAgent" Association="CardProcessingModel.MasterAgent">
+            <End Role="Master" EntitySet="Masters" />
+            <End Role="Agent" EntitySet="Agents" />
+          </AssociationSet>
+          <AssociationSet Name="AgentMerchant" Association="CardProcessingModel.AgentMerchant">
+            <End Role="Agent" EntitySet="Agents" />
+            <End Role="Merchant" EntitySet="Merchants" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantRegionTransactionDetail" Association="CardProcessingModel.MerchantRegionTransactionDetail">
+            <End Role="MerchantRegion" EntitySet="MerchantRegions" />
+            <End Role="TransactionDetail" EntitySet="TransactionDetails" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantTypeTransactionDetail" Association="CardProcessingModel.MerchantTypeTransactionDetail">
+            <End Role="MerchantType" EntitySet="MerchantTypes" />
+            <End Role="TransactionDetail" EntitySet="TransactionDetails" />
+          </AssociationSet>
+          <AssociationSet Name="MerchantTransactionDetail" Association="CardProcessingModel.MerchantTransactionDetail">
+            <End Role="Merchant" EntitySet="Merchants" />
+            <End Role="TransactionDetail" EntitySet="TransactionDetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="AgentAccount">
+          <End Type="CardProcessingModel.Agent" Role="Agent" Multiplicity="1" />
+          <End Type="CardProcessingModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantAccount">
+          <End Type="CardProcessingModel.Merchant" Role="Merchant" Multiplicity="1" />
+          <End Type="CardProcessingModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MasterAccount">
+          <End Type="CardProcessingModel.Master" Role="Master" Multiplicity="1" />
+          <End Type="CardProcessingModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Master">
+              <PropertyRef Name="MasterID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantRegionMerchant">
+          <End Type="CardProcessingModel.MerchantRegion" Role="MerchantRegion" Multiplicity="1" />
+          <End Type="CardProcessingModel.Merchant" Role="Merchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MerchantRegion">
+              <PropertyRef Name="MerchantRegionID" />
+            </Principal>
+            <Dependent Role="Merchant">
+              <PropertyRef Name="MerchantRegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantTypeMerchant">
+          <End Type="CardProcessingModel.MerchantType" Role="MerchantType" Multiplicity="1" />
+          <End Type="CardProcessingModel.Merchant" Role="Merchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MerchantType">
+              <PropertyRef Name="MerchantTypeID" />
+            </Principal>
+            <Dependent Role="Merchant">
+              <PropertyRef Name="MerchantTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MasterAgent">
+          <End Type="CardProcessingModel.Master" Role="Master" Multiplicity="1" />
+          <End Type="CardProcessingModel.Agent" Role="Agent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Master">
+              <PropertyRef Name="MasterID" />
+            </Principal>
+            <Dependent Role="Agent">
+              <PropertyRef Name="MasterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AgentMerchant">
+          <End Type="CardProcessingModel.Agent" Role="Agent" Multiplicity="1" />
+          <End Type="CardProcessingModel.Merchant" Role="Merchant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentID" />
+            </Principal>
+            <Dependent Role="Merchant">
+              <PropertyRef Name="AgentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantRegionTransactionDetail">
+          <End Type="CardProcessingModel.MerchantRegion" Role="MerchantRegion" Multiplicity="1" />
+          <End Type="CardProcessingModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MerchantRegion">
+              <PropertyRef Name="MerchantRegionID" />
+            </Principal>
+            <Dependent Role="TransactionDetail">
+              <PropertyRef Name="MerchantRegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantTypeTransactionDetail">
+          <End Type="CardProcessingModel.MerchantType" Role="MerchantType" Multiplicity="1" />
+          <End Type="CardProcessingModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MerchantType">
+              <PropertyRef Name="MerchantTypeID" />
+            </Principal>
+            <Dependent Role="TransactionDetail">
+              <PropertyRef Name="MerchantTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MerchantTransactionDetail">
+          <End Type="CardProcessingModel.Merchant" Role="Merchant" Multiplicity="1" />
+          <End Type="CardProcessingModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merchant">
+              <PropertyRef Name="MerchantID" />
+            </Principal>
+            <Dependent Role="TransactionDetail">
+              <PropertyRef Name="MerchantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CardProcessingModelStoreContainer" CdmEntityContainer="CardProcessingEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="CardProcessingModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Agents">
+            <EntityTypeMapping TypeName="CardProcessingModel.Agent">
+              <MappingFragment StoreEntitySet="Agent">
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+                <ScalarProperty Name="AgentName" ColumnName="AgentName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="MasterID" ColumnName="MasterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DailyReports">
+            <EntityTypeMapping TypeName="CardProcessingModel.DailyReport">
+              <MappingFragment StoreEntitySet="DailyReport">
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+                <ScalarProperty Name="MerchantTypeID" ColumnName="MerchantTypeID" />
+                <ScalarProperty Name="MerchantRegionID" ColumnName="MerchantRegionID" />
+                <ScalarProperty Name="SaleAmount" ColumnName="SaleAmount" />
+                <ScalarProperty Name="ReturnAmount" ColumnName="ReturnAmount" />
+                <ScalarProperty Name="SaleCount" ColumnName="SaleCount" />
+                <ScalarProperty Name="ReturnCount" ColumnName="ReturnCount" />
+                <ScalarProperty Name="DebitCardSaleAmount" ColumnName="DebitCardSaleAmount" />
+                <ScalarProperty Name="MasterCardSaleAmount" ColumnName="MasterCardSaleAmount" />
+                <ScalarProperty Name="VisaCardSaleAmount" ColumnName="VisaCardSaleAmount" />
+                <ScalarProperty Name="DebitCardReturnAmount" ColumnName="DebitCardReturnAmount" />
+                <ScalarProperty Name="MasterCardReturnAmount" ColumnName="MasterCardReturnAmount" />
+                <ScalarProperty Name="VisaCardReturnAmount" ColumnName="VisaCardReturnAmount" />
+                <ScalarProperty Name="DebitCardSaleCount" ColumnName="DebitCardSaleCount" />
+                <ScalarProperty Name="MasterCardSaleCount" ColumnName="MasterCardSaleCount" />
+                <ScalarProperty Name="VisaCardSaleCount" ColumnName="VisaCardSaleCount" />
+                <ScalarProperty Name="DebitCardReturnCount" ColumnName="DebitCardReturnCount" />
+                <ScalarProperty Name="MasterCardReturnCount" ColumnName="MasterCardReturnCount" />
+                <ScalarProperty Name="VisaCardReturnCount" ColumnName="VisaCardReturnCount" />
+                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+                <ScalarProperty Name="NetCount" ColumnName="NetCount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Masters">
+            <EntityTypeMapping TypeName="CardProcessingModel.Master">
+              <MappingFragment StoreEntitySet="Master">
+                <ScalarProperty Name="MasterID" ColumnName="MasterID" />
+                <ScalarProperty Name="MasterName" ColumnName="MasterName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Merchants">
+            <EntityTypeMapping TypeName="CardProcessingModel.Merchant">
+              <MappingFragment StoreEntitySet="Merchant">
+                <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+                <ScalarProperty Name="MerchantName" ColumnName="MerchantName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="MerchantTypeID" ColumnName="MerchantTypeID" />
+                <ScalarProperty Name="MerchantRegionID" ColumnName="MerchantRegionID" />
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MerchantRegions">
+            <EntityTypeMapping TypeName="CardProcessingModel.MerchantRegion">
+              <MappingFragment StoreEntitySet="MerchantRegion">
+                <ScalarProperty Name="MerchantRegionID" ColumnName="MerchantRegionID" />
+                <ScalarProperty Name="MerchantRegionName" ColumnName="MerchantRegionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MerchantTypes">
+            <EntityTypeMapping TypeName="CardProcessingModel.MerchantType">
+              <MappingFragment StoreEntitySet="MerchantType">
+                <ScalarProperty Name="MerchantTypeID" ColumnName="MerchantTypeID" />
+                <ScalarProperty Name="MerchantTypeName" ColumnName="MerchantTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MonthlyReports">
+            <EntityTypeMapping TypeName="CardProcessingModel.MonthlyReport">
+              <MappingFragment StoreEntitySet="MonthlyReport">
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+                <ScalarProperty Name="MerchantTypeID" ColumnName="MerchantTypeID" />
+                <ScalarProperty Name="MerchantRegionID" ColumnName="MerchantRegionID" />
+                <ScalarProperty Name="SaleAmount" ColumnName="SaleAmount" />
+                <ScalarProperty Name="ReturnAmount" ColumnName="ReturnAmount" />
+                <ScalarProperty Name="SaleCount" ColumnName="SaleCount" />
+                <ScalarProperty Name="ReturnCount" ColumnName="ReturnCount" />
+                <ScalarProperty Name="DebitCardSaleAmount" ColumnName="DebitCardSaleAmount" />
+                <ScalarProperty Name="MasterCardSaleAmount" ColumnName="MasterCardSaleAmount" />
+                <ScalarProperty Name="VisaCardSaleAmount" ColumnName="VisaCardSaleAmount" />
+                <ScalarProperty Name="DebitCardReturnAmount" ColumnName="DebitCardReturnAmount" />
+                <ScalarProperty Name="MasterCardReturnAmount" ColumnName="MasterCardReturnAmount" />
+                <ScalarProperty Name="VisaCardReturnAmount" ColumnName="VisaCardReturnAmount" />
+                <ScalarProperty Name="DebitCardSaleCount" ColumnName="DebitCardSaleCount" />
+                <ScalarProperty Name="MasterCardSaleCount" ColumnName="MasterCardSaleCount" />
+                <ScalarProperty Name="VisaCardSaleCount" ColumnName="VisaCardSaleCount" />
+                <ScalarProperty Name="DebitCardReturnCount" ColumnName="DebitCardReturnCount" />
+                <ScalarProperty Name="MasterCardReturnCount" ColumnName="MasterCardReturnCount" />
+                <ScalarProperty Name="VisaCardReturnCount" ColumnName="VisaCardReturnCount" />
+                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+                <ScalarProperty Name="NetCount" ColumnName="NetCount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="CardProcessingModel.Notification">
+              <MappingFragment StoreEntitySet="Notification">
+                <ScalarProperty Name="NotiID" ColumnName="NotiID" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="SenderID" ColumnName="SenderID" />
+                <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parameters">
+            <EntityTypeMapping TypeName="CardProcessingModel.Parameter">
+              <MappingFragment StoreEntitySet="Parameter">
+                <ScalarProperty Name="ParaID" ColumnName="ParaID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistrationForms">
+            <EntityTypeMapping TypeName="CardProcessingModel.RegistrationForm">
+              <MappingFragment StoreEntitySet="RegistrationForm">
+                <ScalarProperty Name="RegID" ColumnName="RegID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CardProcessingModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionDetails">
+            <EntityTypeMapping TypeName="CardProcessingModel.TransactionDetail">
+              <MappingFragment StoreEntitySet="TransactionDetail">
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ProductNumber" ColumnName="ProductNumber" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="CreditCardID" ColumnName="CreditCardID" />
+                <ScalarProperty Name="CreditCardType" ColumnName="CreditCardType" />
+                <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+                <ScalarProperty Name="MerchantRegionID" ColumnName="MerchantRegionID" />
+                <ScalarProperty Name="MerchantTypeID" ColumnName="MerchantTypeID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionDetail_Temp">
+            <EntityTypeMapping TypeName="CardProcessingModel.TransactionDetail_Temp">
+              <MappingFragment StoreEntitySet="TransactionDetail_Temp">
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ProductNumber" ColumnName="ProductNumber" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="CreditCardID" ColumnName="CreditCardID" />
+                <ScalarProperty Name="CreditCardType" ColumnName="CreditCardType" />
+                <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+                <ScalarProperty Name="MerchantRegionID" ColumnName="MerchantRegionID" />
+                <ScalarProperty Name="MerchantTypeID" ColumnName="MerchantTypeID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YearlyReports">
+            <EntityTypeMapping TypeName="CardProcessingModel.YearlyReport">
+              <MappingFragment StoreEntitySet="YearlyReport">
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+                <ScalarProperty Name="MerchantTypeID" ColumnName="MerchantTypeID" />
+                <ScalarProperty Name="MerchantRegionID" ColumnName="MerchantRegionID" />
+                <ScalarProperty Name="SaleAmount" ColumnName="SaleAmount" />
+                <ScalarProperty Name="ReturnAmount" ColumnName="ReturnAmount" />
+                <ScalarProperty Name="SaleCount" ColumnName="SaleCount" />
+                <ScalarProperty Name="ReturnCount" ColumnName="ReturnCount" />
+                <ScalarProperty Name="DebitCardSaleAmount" ColumnName="DebitCardSaleAmount" />
+                <ScalarProperty Name="MasterCardSaleAmount" ColumnName="MasterCardSaleAmount" />
+                <ScalarProperty Name="VisaCardSaleAmount" ColumnName="VisaCardSaleAmount" />
+                <ScalarProperty Name="DebitCardReturnAmount" ColumnName="DebitCardReturnAmount" />
+                <ScalarProperty Name="MasterCardReturnAmount" ColumnName="MasterCardReturnAmount" />
+                <ScalarProperty Name="VisaCardReturnAmount" ColumnName="VisaCardReturnAmount" />
+                <ScalarProperty Name="DebitCardSaleCount" ColumnName="DebitCardSaleCount" />
+                <ScalarProperty Name="MasterCardSaleCount" ColumnName="MasterCardSaleCount" />
+                <ScalarProperty Name="VisaCardSaleCount" ColumnName="VisaCardSaleCount" />
+                <ScalarProperty Name="DebitCardReturnCount" ColumnName="DebitCardReturnCount" />
+                <ScalarProperty Name="MasterCardReturnCount" ColumnName="MasterCardReturnCount" />
+                <ScalarProperty Name="VisaCardReturnCount" ColumnName="VisaCardReturnCount" />
+                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+                <ScalarProperty Name="NetCount" ColumnName="NetCount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

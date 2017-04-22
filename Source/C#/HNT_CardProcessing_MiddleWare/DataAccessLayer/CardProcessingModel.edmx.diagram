@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7665fc2cff554328b525a6c187cafed7" Name="Diagram1">
+        <EntityTypeShape EntityType="CardProcessingModel.Account" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CardProcessingModel.Agent" Width="1.5" PointX="3.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CardProcessingModel.DailyReport" Width="1.5" PointX="6.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CardProcessingModel.Master" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CardProcessingModel.Merchant" Width="1.5" PointX="4" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="CardProcessingModel.MerchantRegion" Width="2" PointX="0.5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CardProcessingModel.MerchantType" Width="1.5" PointX="5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="CardProcessingModel.MonthlyReport" Width="1.5" PointX="9.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CardProcessingModel.Notification" Width="1.5" PointX="6.875" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CardProcessingModel.Parameter" Width="1.5" PointX="9.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CardProcessingModel.RegistrationForm" Width="1.75" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CardProcessingModel.sysdiagram" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CardProcessingModel.TransactionDetail" Width="2" PointX="1" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CardProcessingModel.TransactionDetail_Temp" Width="1.75" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CardProcessingModel.YearlyReport" Width="1.5" PointX="11.75" PointY="4.5" IsExpanded="true" />
+        <AssociationConnector Association="CardProcessingModel.AgentAccount" />
+        <AssociationConnector Association="CardProcessingModel.MerchantAccount" />
+        <AssociationConnector Association="CardProcessingModel.MasterAccount" />
+        <AssociationConnector Association="CardProcessingModel.MerchantRegionMerchant" />
+        <AssociationConnector Association="CardProcessingModel.MerchantTypeMerchant" />
+        <AssociationConnector Association="CardProcessingModel.MasterAgent" />
+        <AssociationConnector Association="CardProcessingModel.AgentMerchant" />
+        <AssociationConnector Association="CardProcessingModel.MerchantRegionTransactionDetail" />
+        <AssociationConnector Association="CardProcessingModel.MerchantTypeTransactionDetail" />
+        <AssociationConnector Association="CardProcessingModel.MerchantTransactionDetail" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

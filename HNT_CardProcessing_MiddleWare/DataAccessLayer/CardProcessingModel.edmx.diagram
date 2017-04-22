@@ -5,10 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="0b6b75d8d34c4ac9b0162db4cbe67d0e" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="CardProcessingModel.Account" Width="1.5" PointX="1.125" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CardProcessingModel.Account" Width="1.5" PointX="12.25" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CardProcessingModel.Agent" Width="1.5" PointX="1.125" PointY="22.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CardProcessingModel.DailyReport" Width="1.5" PointX="5.625" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CardProcessingModel.Master" Width="1.5" PointX="3.375" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CardProcessingModel.Master" Width="1.5" PointX="8.5" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CardProcessingModel.Merchant" Width="1.5" PointX="3.375" PointY="14.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CardProcessingModel.MerchantRegion" Width="1.875" PointX="0.75" PointY="19" IsExpanded="true" />
         <EntityTypeShape EntityType="CardProcessingModel.MerchantType" Width="1.5" PointX="1.125" PointY="15.375" IsExpanded="true" />
@@ -19,8 +19,6 @@
         <EntityTypeShape EntityType="CardProcessingModel.sysdiagram" Width="1.5" PointX="1.125" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CardProcessingModel.TransactionDetail" Width="1.75" PointX="5.625" PointY="19.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CardProcessingModel.YearlyReport" Width="1.5" PointX="11.625" PointY="13.625" IsExpanded="true" />
-        <AssociationConnector Association="CardProcessingModel.AccountAgent" />
-        <AssociationConnector Association="CardProcessingModel.AccountMerchant" />
         <AssociationConnector Association="CardProcessingModel.AccountMaster" />
         <AssociationConnector Association="CardProcessingModel.MerchantRegionMerchant" />
         <AssociationConnector Association="CardProcessingModel.MerchantTypeMerchant" />
@@ -43,6 +41,8 @@
         <AssociationConnector Association="CardProcessingModel.MerchantRegionMonthlyReport" />
         <AssociationConnector Association="CardProcessingModel.MerchantRegionDailyReport" />
         <AssociationConnector Association="CardProcessingModel.MerchantRegionYearlyReport" />
+        <AssociationConnector Association="CardProcessingModel.MerchantAccount" />
+        <AssociationConnector Association="CardProcessingModel.AgentAccount" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
