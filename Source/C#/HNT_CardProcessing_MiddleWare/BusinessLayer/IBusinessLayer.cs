@@ -22,6 +22,9 @@ namespace BusinessLayer
         void AddAccount(Account account);
         void UpdateAccount(Account account);
         void RemoveAccount(Account account);
+        string ChangePassword(Account account);
+
+
     }
 }
 
