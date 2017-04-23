@@ -61,7 +61,7 @@ namespace UnitTestProject
         public void Test_generateMerchantID_Success()
         {
             string merID = bus.generateMerchantID();
-            Assert.AreEqual(merID, "MERCH00011");
+            Assert.AreEqual("MERCH00011", merID);
         }
 
         [TestMethod]
@@ -70,6 +70,37 @@ namespace UnitTestProject
             IList<Merchant> list = bus.getAllMerchant();
             Assert.IsNotNull(list);
             Assert.AreNotEqual(0, list.Count);
+        }
+
+        [TestMethod]
+        public void Test_getMerchantByMerchantID_Success()
+        {
+            Merchant _mer = bus.getMerchantByMerchantID("MERCH00010");
+            Assert.IsNotNull(_mer);
+            Assert.AreEqual("merchant10@gmail.com", _mer.Email);
+        }
+
+        [TestMethod]
+        public void Test_addMerchant_Success()
+        {
+            string id = bus.generateMerchantID();
+            Merchant mer = new Merchant()
+            {
+                MerchantID = id,
+                MerchantName = "Nhà hàng Thủy Tạ",
+                Address = "3, Hòa Bình, Phường 3, Quận 11, TP Hồ Chí Minh",
+                Phone = "090.686.3336",
+                Email = "merchantTest@gmail.com",
+                Status = true,
+                MerchantTypeID = "MCT00004",
+                MerchantRegionID = "MCR00001",
+                AgentID = "AGENT00004"
+            };
+
+            bus.addMerchant(mer);
+            Merchant merTest = bus.getMerchantByMerchantID(id);
+            Assert.IsNotNull(merTest);
+            Assert.AreEqual("MERCH00011", merTest.MerchantID);
         }
     }
 }
