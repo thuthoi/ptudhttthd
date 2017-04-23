@@ -23,7 +23,7 @@ namespace BusinessLayer
         void UpdateAccount(Account account);
         void RemoveAccount(Account account);
         string ChangePassword(Account account);
-
+        Account GetAccountBy_Username_Password(String username, String passs);
 
     }
 }

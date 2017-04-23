@@ -51,6 +51,8 @@ namespace BusinessLayer
             _agentRepository.Remove(agent);
         }
 
+
+        // Account
         public void AddAccount(Account account)
         {
             /* Validation and error handling omitted */
@@ -67,6 +69,14 @@ namespace BusinessLayer
         {
             /* Validation and error handling omitted */
             _accountRepository.Remove(account);
+        }
+
+        public Account GetAccountBy_Username_Password(String username, String pass)
+        {
+
+            return _accountRepository.GetSingle(
+                            a => a.Username.Equals(username) &&
+                            a.Password.Equals(pass)); //include related agent
         }
     }
 }

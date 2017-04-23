@@ -39,5 +39,20 @@ namespace UnitTestProject
 
             Assert.AreEqual("Đổi mật khẩu thành công!", result);
         }
+
+        [TestMethod]
+        public void Test_Login_NotNull()
+        {
+            BusinessLayerClass bus = new BusinessLayerClass();
+            Account ac = bus.GetAccountBy_Username_Password("tuantai", "123456");
+            Assert.IsNotNull(ac);
+        }
+        [TestMethod]
+        public void Test_Login_CorrectData()
+        {
+            BusinessLayerClass bus = new BusinessLayerClass();
+            Account ac = bus.GetAccountBy_Username_Password("tuantai", "123456");
+            Assert.AreEqual("tuantai", ac.Username);
+        }
     }
 }

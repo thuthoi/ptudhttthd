@@ -28,5 +28,22 @@ namespace WebServices.Controllers
 
             return Ok(result);
         }
+        [HttpPost]
+        [Route("api/account/login")]
+        public HttpResponseMessage login([FromBody]Account ac)
+        {
+            Account _ac = bus.GetAccountBy_Username_Password(ac.Username, ac.Password);
+                if (_ac != null)
+                {
+                    return Request.CreateResponse(
+                         HttpStatusCode.OK,
+                           _ac
+                             );
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+        }
     }
 }

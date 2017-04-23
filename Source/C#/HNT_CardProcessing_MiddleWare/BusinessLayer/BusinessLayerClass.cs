@@ -91,5 +91,13 @@ namespace BusinessLayer
                 return "Đổi mật khẩu thành công!";
             }
         }
+
+        public Account GetAccountBy_Username_Password(String username, String pass)
+        {
+
+            return _accountRepository.GetSingle(
+                            a => a.Username.Equals(username) &&
+                            a.Password.Equals(pass)); //include related agent
+        }
     }
 }
