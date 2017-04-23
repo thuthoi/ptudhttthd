@@ -32,8 +32,8 @@ namespace WebServices.Controllers
         [Route("api/merchant/update")]
         public HttpResponseMessage updateMerchant([FromBody] Merchant merchant)
         {
-            bus.updateMerchant(merchant);
-            return Request.CreateResponse(HttpStatusCode.OK);
+            string result = bus.updateMerchant(merchant);
+            return Request.CreateResponse(HttpStatusCode.OK, result);
         }
     }
 }
