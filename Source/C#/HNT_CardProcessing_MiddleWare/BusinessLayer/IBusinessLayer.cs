@@ -25,6 +25,9 @@ namespace BusinessLayer
         string ChangePassword(Account account);
         Account GetAccountBy_Username_Password(String username, String passs);
 
+
+        //Merchant
+        void addMerchant(Merchant _merchant);
     }
 }
 

@@ -12,6 +12,7 @@ namespace BusinessLayer
     {
         private readonly IAgentRepository _agentRepository;
         private readonly IAccountRepository _accountRepository;
+        private readonly IMerchantRepository _merchantRepository;
 
         public BusinessLayerClass()
         {
@@ -80,7 +81,7 @@ namespace BusinessLayer
         public string ChangePassword(Account account)
         {
             Account acc = _accountRepository.GetSingle(a => a.Username == account.Username);
-            if(acc.Password != account.OldPassword)
+            if (acc.Password != account.OldPassword)
             {
                 return "Mật khẩu cũ không trùng khớp!";
             }
@@ -98,6 +99,12 @@ namespace BusinessLayer
             return _accountRepository.GetSingle(
                             a => a.Username.Equals(username) &&
                             a.Password.Equals(pass)); //include related agent
+        }
+
+        //Merchant
+        public void addMerchant(Merchant merchant)
+        {
+            _merchantRepository.Add(merchant);
         }
     }
 }
