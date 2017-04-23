@@ -102,5 +102,47 @@ namespace UnitTestProject
             Assert.IsNotNull(merTest);
             Assert.AreEqual("MERCH00011", merTest.MerchantID);
         }
+
+        [TestMethod]
+        public void Test_updateMerchant_UnSuccess()
+        {
+            string id = "MERCH00011";
+            Merchant mer = new Merchant()
+            {
+                MerchantID = id,
+                MerchantName = "Nhà hàng Thủy Tạ",
+                Address = "3, Hòa Bình, Phường 3, Quận 11, TP Hồ Chí Minh",
+                Phone = "090.686.3336",
+                Email = "merchantTest@gmail.com",
+                Status = true,
+                MerchantTypeID = "MCT00004",
+                MerchantRegionID = "MCR00001",
+                AgentID = "AGENT00004"
+            };
+
+            string result = bus.updateMerchant(mer);
+            Assert.AreEqual("Không có dữ liệu Merchant!", result);
+        }
+
+        [TestMethod]
+        public void Test_updateMerchant_Success()
+        {
+            string id = "MERCH00010";
+            Merchant mer = new Merchant()
+            {
+                MerchantID = id,
+                MerchantName = "Nhà hàng Thủy Tạ",
+                Address = "3, Hòa Bình, Phường 3, Quận 11, TP Hồ Chí Minh",
+                Phone = "090.686.3336",
+                Email = "merchantTest@gmail.com",
+                Status = true,
+                MerchantTypeID = "MCT00004",
+                MerchantRegionID = "MCR00001",
+                AgentID = "AGENT00004"
+            };
+
+            string result = bus.updateMerchant(mer);
+            Assert.AreEqual("Cập nhật Merchant thành công!", result);
+        }
     }
 }

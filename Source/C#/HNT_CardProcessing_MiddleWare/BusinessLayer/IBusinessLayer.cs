@@ -31,6 +31,7 @@ namespace BusinessLayer
         Merchant getMerchantByMerchantID(string id);
         IList<Merchant> getAllMerchant();
         string generateMerchantID();
+        string updateMerchant(Merchant merchant);
     }
 }
 

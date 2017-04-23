@@ -133,5 +133,28 @@ namespace BusinessLayer
             }
             return res;
         }
+
+        public string updateMerchant(Merchant merchant)
+        {
+            Merchant _merchant = getMerchantByMerchantID(merchant.MerchantID);
+            if (_merchant == null)
+            {
+                return "Không có dữ liệu Merchant!";
+            }
+            else
+            {
+                _merchant.MerchantName = merchant.MerchantName;         
+                _merchant.Address = merchant.Address;
+                _merchant.Phone = merchant.Phone;
+                _merchant.Email = merchant.Email;
+                _merchant.Status = merchant.Status;
+                _merchant.MerchantTypeID = merchant.MerchantTypeID;
+                _merchant.MerchantRegionID = merchant.MerchantRegionID;
+                _merchant.AgentID = merchant.AgentID;
+
+                _merchantRepository.Update(merchant);
+                return "Cập nhật Merchant thành công!";
+            }            
+        }
     }
 }
