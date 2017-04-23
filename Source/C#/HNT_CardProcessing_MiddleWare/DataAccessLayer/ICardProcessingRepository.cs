@@ -15,7 +15,8 @@ namespace DataAccessLayer
     {
     }
 
-    public interface IMerchantRepository : IGenericDataRepository<Merchant> { }
+    public interface IMerchantRepository : IGenericDataRepository<Merchant>
+    { }
 
     public class AgentRepository : GenericDataRepository<Agent>, IAgentRepository
     {

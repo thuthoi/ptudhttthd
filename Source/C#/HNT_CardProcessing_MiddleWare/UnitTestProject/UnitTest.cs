@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BusinessLayer;
 using DomainModel;
+using System.Collections.Generic;
 
 namespace UnitTestProject
 {
@@ -22,7 +23,7 @@ namespace UnitTestProject
 
             string result = bus.ChangePassword(acc);
 
-            Assert.AreEqual("Mật khẩu cũ không trùng khớp!", result); 
+            Assert.AreEqual("Mật khẩu cũ không trùng khớp!", result);
         }
 
         [TestMethod]
@@ -47,12 +48,28 @@ namespace UnitTestProject
             Account ac = bus.GetAccountBy_Username_Password("tuantai", "123456");
             Assert.IsNotNull(ac);
         }
+
         [TestMethod]
         public void Test_Login_CorrectData()
         {
             BusinessLayerClass bus = new BusinessLayerClass();
             Account ac = bus.GetAccountBy_Username_Password("tuantai", "123456");
             Assert.AreEqual("tuantai", ac.Username);
+        }
+
+        [TestMethod]
+        public void Test_generateMerchantID_Success()
+        {
+            string merID = bus.generateMerchantID();
+            Assert.AreEqual(merID, "MERCH00011");
+        }
+
+        [TestMethod]
+        public void Test_getAllMerchant_Success()
+        {
+            IList<Merchant> list = bus.getAllMerchant();
+            Assert.IsNotNull(list);
+            Assert.AreNotEqual(0, list.Count);
         }
     }
 }

@@ -20,5 +20,12 @@ namespace WebServices.Controllers
             bus.addMerchant(merchant);
             return Request.CreateResponse(HttpStatusCode.Created);
         }
+
+        [HttpGet]
+        [Route("api/merchant/getNewID")]
+        public HttpResponseMessage getNewID()
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, bus.generateMerchantID());
+        }
     }
 }

@@ -18,13 +18,15 @@ namespace BusinessLayer
         {
             _agentRepository = new AgentRepository();
             _accountRepository = new AccountRepository();
+            _merchantRepository = new MerchantRepository();
         }
 
         public BusinessLayerClass(IAgentRepository agentRepository,
-            IAccountRepository accountRepository)
+            IAccountRepository accountRepository, IMerchantRepository merchantRepository)
         {
             _agentRepository = agentRepository;
             _accountRepository = accountRepository;
+            _merchantRepository = merchantRepository;
         }
 
         //Định nghĩa các hàm đã khai báo bên !BusinessLayer
@@ -40,7 +42,6 @@ namespace BusinessLayer
                 a => a.Username.Equals(username),
                 a => a.Agent).Agent; //include related agent
         }
-
 
         public void AddAgent(Agent agent)
         {
@@ -105,6 +106,32 @@ namespace BusinessLayer
         public void addMerchant(Merchant merchant)
         {
             _merchantRepository.Add(merchant);
+        }
+
+        public Merchant getMerchantByMerchantID(string id)
+        {
+            return _merchantRepository.GetSingle(
+                m => m.MerchantID.Equals(id));
+        }
+
+        public IList<Merchant> getAllMerchant()
+        {
+            return _merchantRepository.GetAll();
+        }
+
+        public string generateMerchantID()
+        {
+            string res = "";
+            string oldMerchantID = getAllMerchant().OrderByDescending(m => m.MerchantID).FirstOrDefault().MerchantID.ToString();
+            if (oldMerchantID != "")
+            {
+                res = "MERCH" + Convert.ToString((Convert.ToInt32(oldMerchantID.Substring(5)) + 1)).PadLeft(5, '0');
+            }
+            else
+            {
+                res = "MERCH00001";
+            }
+            return res;
         }
     }
 }

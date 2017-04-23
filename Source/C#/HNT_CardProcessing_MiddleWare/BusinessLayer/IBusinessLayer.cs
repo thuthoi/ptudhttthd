@@ -28,6 +28,9 @@ namespace BusinessLayer
 
         //Merchant
         void addMerchant(Merchant _merchant);
+        Merchant getMerchantByMerchantID(string id);
+        IList<Merchant> getAllMerchant();
+        string generateMerchantID();
     }
 }
 
