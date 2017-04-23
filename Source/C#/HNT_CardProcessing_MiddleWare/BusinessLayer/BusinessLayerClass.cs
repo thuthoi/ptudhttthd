@@ -13,20 +13,23 @@ namespace BusinessLayer
         private readonly IAgentRepository _agentRepository;
         private readonly IAccountRepository _accountRepository;
         private readonly IMerchantRepository _merchantRepository;
+        private readonly IRegistrationFormRepository _registrationFormRepository;
 
         public BusinessLayerClass()
         {
             _agentRepository = new AgentRepository();
             _accountRepository = new AccountRepository();
             _merchantRepository = new MerchantRepository();
+            _registrationFormRepository = new RegistrationFormRepository();
         }
 
         public BusinessLayerClass(IAgentRepository agentRepository,
-            IAccountRepository accountRepository, IMerchantRepository merchantRepository)
+            IAccountRepository accountRepository, IMerchantRepository merchantRepository, IRegistrationFormRepository registrationFormRepository)
         {
             _agentRepository = agentRepository;
             _accountRepository = accountRepository;
             _merchantRepository = merchantRepository;
+            _registrationFormRepository = registrationFormRepository;
         }
 
         //Định nghĩa các hàm đã khai báo bên !BusinessLayer
@@ -155,6 +158,35 @@ namespace BusinessLayer
                 _merchantRepository.Update(merchant);
                 return "Cập nhật Merchant thành công!";
             }            
+        }
+
+        //RegistrationForm
+        public void addRegistrationForm(RegistrationForm registrationForm)
+        {
+            _registrationFormRepository.Add(registrationForm);
+        }
+        public IList<RegistrationForm> getAllRegistionForm()
+        {
+            return _registrationFormRepository.GetAll();
+        }
+        public string generateRegID()
+        {
+            string res = "";
+            string oldRegID = getAllRegistionForm().OrderByDescending(m => m.RegID).FirstOrDefault().RegID.ToString();
+            if (oldRegID != "")
+            {
+                res = "REG" + Convert.ToString((Convert.ToInt32(oldRegID.Substring(3)) + 1)).PadLeft(5, '0');
+            }
+            else
+            {
+                res = "REG00001";
+            }
+            return res;
+        }
+        public RegistrationForm getAllRegistrationFormByRegID(string id)
+        {
+            return _registrationFormRepository.GetSingle(
+                m => m.RegID.Equals(id));
         }
     }
 }

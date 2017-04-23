@@ -18,6 +18,9 @@ namespace DataAccessLayer
     public interface IMerchantRepository : IGenericDataRepository<Merchant>
     { }
 
+    public interface IRegistrationFormRepository : IGenericDataRepository<RegistrationForm>
+    { }
+
     public class AgentRepository : GenericDataRepository<Agent>, IAgentRepository
     {
     }
@@ -27,4 +30,6 @@ namespace DataAccessLayer
     }
 
     public class MerchantRepository : GenericDataRepository<Merchant>, IMerchantRepository { }
+
+    public class RegistrationFormRepository : GenericDataRepository<RegistrationForm>, IRegistrationFormRepository { }
 }

@@ -144,5 +144,30 @@ namespace UnitTestProject
             string result = bus.updateMerchant(mer);
             Assert.AreEqual("Cập nhật Merchant thành công!", result);
         }
+
+        [TestMethod]
+        public void Test_generateRegID_Success()
+        {
+            string regID = bus.generateRegID();
+            Assert.AreEqual("REG00002", regID);
+        }
+
+        [TestMethod]
+        public void Test_addRegistrationForm_Success()
+        {
+            string id = bus.generateRegID();
+            RegistrationForm reg = new RegistrationForm()
+            {
+                RegID = id,
+                Name = "Nhan",
+                Email = "nhan@gmail.com",
+                Phone = "0901111222",
+                Detail = "abc"
+            };
+            bus.addRegistrationForm(reg);
+            RegistrationForm regTest = bus.getAllRegistrationFormByRegID(id);
+            Assert.IsNotNull(regTest);
+            Assert.AreEqual("REG00002", regTest.RegID);
+        }
     }
 }

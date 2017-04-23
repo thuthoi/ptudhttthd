@@ -32,6 +32,12 @@ namespace BusinessLayer
         IList<Merchant> getAllMerchant();
         string generateMerchantID();
         string updateMerchant(Merchant merchant);
+
+        //RegistrationForm
+        void addRegistrationForm(RegistrationForm _registrationForm);
+        string generateRegID();
+        IList<RegistrationForm> getAllRegistionForm();
+        RegistrationForm getAllRegistrationFormByRegID(string id);
     }
 }
 
