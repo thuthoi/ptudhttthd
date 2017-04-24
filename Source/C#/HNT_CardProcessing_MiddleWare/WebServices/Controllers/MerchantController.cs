@@ -35,5 +35,24 @@ namespace WebServices.Controllers
             string result = bus.updateMerchant(merchant);
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
+
+        [HttpGet]
+        [Route("api/merchant/getProfileMerchant/{merID}")]
+        public HttpResponseMessage getProfileMerchant(string merID)
+        {
+            var list = bus.getMerchantByMerchantIDtoList(merID).Select(c => new
+            {
+                c.MerchantID,
+                c.MerchantName,
+                c.Address,
+                c.Phone,
+                c.Email,
+                c.Status,
+                c.MerchantTypeID,
+                c.MerchantRegionID,
+                c.AgentID
+            });
+            return Request.CreateResponse(HttpStatusCode.OK, list);
+        }
     }
 }

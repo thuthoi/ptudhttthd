@@ -81,6 +81,15 @@ namespace UnitTestProject
         }
 
         [TestMethod]
+        public void Test_getMerchantByMerchantIDtoList_Success()
+        {
+            IList<Merchant> list = bus.getMerchantByMerchantIDtoList("MERCH00010");
+            Assert.IsNotNull(list);
+            Assert.AreNotEqual(0, list.Count);
+            Assert.AreEqual("merchant10@gmail.com", list[0].Email);
+        }
+
+        [TestMethod]
         public void Test_addMerchant_Success()
         {
             string id = bus.generateMerchantID();

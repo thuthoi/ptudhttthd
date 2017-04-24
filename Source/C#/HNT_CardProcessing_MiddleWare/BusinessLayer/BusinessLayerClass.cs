@@ -34,54 +34,49 @@ namespace BusinessLayer
 
         //Định nghĩa các hàm đã khai báo bên !BusinessLayer
 
+        //Agent
         public IList<Agent> GetAllAgent()
         {
             return _agentRepository.GetAll();
         }
-
         public Agent GetAgentByUsername(string username)
         {
             return _accountRepository.GetSingle(
                 a => a.Username.Equals(username),
                 a => a.Agent).Agent; //include related agent
         }
-
         public void AddAgent(Agent agent)
         {
             /* Validation and error handling omitted */
             _agentRepository.Add(agent);
         }
-
         public void UpdateAgent(Agent agent)
         {
             /* Validation and error handling omitted */
             _agentRepository.Update(agent);
         }
-
         public void RemoveAgent(Agent agent)
         {
             /* Validation and error handling omitted */
             _agentRepository.Remove(agent);
         }
 
+        //Account
         public void AddAccount(Account account)
         {
             /* Validation and error handling omitted */
             _accountRepository.Add(account);
         }
-
         public void UpdateAccount(Account account)
         {
             /* Validation and error handling omitted */
             _accountRepository.Update(account);
         }
-
         public void RemoveAccount(Account account)
         {
             /* Validation and error handling omitted */
             _accountRepository.Remove(account);
         }
-
         public string ChangePassword(Account account)
         {
             Account acc = _accountRepository.GetSingle(a => a.Username == account.Username);
@@ -96,7 +91,6 @@ namespace BusinessLayer
                 return "Đổi mật khẩu thành công!";
             }
         }
-
         public Account GetAccountBy_Username_Password(String username, String pass)
         {
 
@@ -110,18 +104,19 @@ namespace BusinessLayer
         {
             _merchantRepository.Add(merchant);
         }
-
         public Merchant getMerchantByMerchantID(string id)
         {
             return _merchantRepository.GetSingle(
                 m => m.MerchantID.Equals(id));
         }
-
+        public IList<Merchant> getMerchantByMerchantIDtoList(string id)
+        {
+            return _merchantRepository.GetAll().Where(m => m.MerchantID == id).Take(1).ToList();
+        }
         public IList<Merchant> getAllMerchant()
         {
             return _merchantRepository.GetAll();
         }
-
         public string generateMerchantID()
         {
             string res = "";
@@ -136,7 +131,6 @@ namespace BusinessLayer
             }
             return res;
         }
-
         public string updateMerchant(Merchant merchant)
         {
             Merchant _merchant = getMerchantByMerchantID(merchant.MerchantID);
@@ -146,7 +140,7 @@ namespace BusinessLayer
             }
             else
             {
-                _merchant.MerchantName = merchant.MerchantName;         
+                _merchant.MerchantName = merchant.MerchantName;
                 _merchant.Address = merchant.Address;
                 _merchant.Phone = merchant.Phone;
                 _merchant.Email = merchant.Email;
@@ -157,7 +151,7 @@ namespace BusinessLayer
 
                 _merchantRepository.Update(merchant);
                 return "Cập nhật Merchant thành công!";
-            }            
+            }
         }
 
         //RegistrationForm

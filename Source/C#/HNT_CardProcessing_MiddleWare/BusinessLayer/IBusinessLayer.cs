@@ -30,6 +30,7 @@ namespace BusinessLayer
         void addMerchant(Merchant _merchant);
         Merchant getMerchantByMerchantID(string id);
         IList<Merchant> getAllMerchant();
+        IList<Merchant> getMerchantByMerchantIDtoList(string id);
         string generateMerchantID();
         string updateMerchant(Merchant merchant);
 
