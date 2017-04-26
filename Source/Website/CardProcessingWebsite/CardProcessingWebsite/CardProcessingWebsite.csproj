@@ -215,6 +215,7 @@
     <Content Include="assets\vendor\font-awesome\scss\_spinning.scss" />
     <Content Include="assets\vendor\font-awesome\scss\_stacked.scss" />
     <Content Include="assets\vendor\font-awesome\scss\_variables.scss" />
+    <Content Include="merchant\profileMerchant.aspx" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -258,11 +259,17 @@
     <Compile Include="master\merchantList.aspx.designer.cs">
       <DependentUpon>merchantList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="merchant\profileMerchant.aspx.cs">
+      <DependentUpon>profileMerchant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="merchant\profileMerchant.aspx.designer.cs">
+      <DependentUpon>profileMerchant.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="agent\" />
-    <Folder Include="merchant\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
