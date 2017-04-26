@@ -15,9 +15,11 @@
     <link href="assets/dist/css/sb-admin-2.css" rel="stylesheet" />
     <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 
-    <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
+    <title>
+        <asp:ContentPlaceHolder ID="head" runat="server">
+        </asp:ContentPlaceHolder>
+    </title>
+
 </head>
 <body>
     <div id="wrapper">
@@ -251,22 +253,25 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Blank</h1>
-
-                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                        </asp:ContentPlaceHolder>
+                        <h1 class="page-header">
+                            <asp:ContentPlaceHolder ID="pageheader" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
             </div>
+            <asp:ContentPlaceHolder ID="main" runat="server">
+            </asp:ContentPlaceHolder>
             <!-- /.container-fluid -->
         </div>
         <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
-
+    <asp:ContentPlaceHolder ID="scriptFile" runat="server">
+    </asp:ContentPlaceHolder>
     <script src="assets/vendor/jquery/jquery.min.js"></script>
     <script src="assets/vendor/metisMenu/metisMenu.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>

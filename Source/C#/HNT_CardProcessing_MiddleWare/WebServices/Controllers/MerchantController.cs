@@ -37,6 +37,24 @@ namespace WebServices.Controllers
         }
 
         [HttpGet]
+        [Route("api/merchant/getAll")]
+        public HttpResponseMessage getAllMerchant()
+        {
+            var list = bus.getAllMerchant().Select(c => new {
+                c.MerchantID,
+                c.MerchantName,
+                c.Address,
+                c.Phone,
+                c.Email,
+                c.Status,
+                c.MerchantTypeID,
+                c.MerchantRegionID,
+                c.AgentID
+            }) ;
+            return Request.CreateResponse(HttpStatusCode.OK, list);
+        }
+
+        [HttpGet]
         [Route("api/merchant/getProfileMerchant/{merID}")]
         public HttpResponseMessage getProfileMerchant(string merID)
         {
