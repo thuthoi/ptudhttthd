@@ -67,8 +67,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="index.aspx" />
-    <Content Include="login.aspx" />
+    <Content Include="homepage\index.aspx" />
+    <Content Include="login\login.aspx" />
     <Content Include="assets\data\flot-data.js" />
     <Content Include="assets\data\morris-data.js" />
     <Content Include="assets\dist\css\sb-admin-2.css" />
@@ -165,7 +165,7 @@
     <Content Include="assets\vendor\morrisjs\morris.min.js" />
     <Content Include="assets\vendor\raphael\raphael.js" />
     <Content Include="assets\vendor\raphael\raphael.min.js" />
-    <Content Include="masterPage.Master" />
+    <Content Include="masterPage\masterPage.Master" />
     <Content Include="assets\less\mixins.less" />
     <Content Include="assets\less\sb-admin-2.less" />
     <Content Include="assets\less\variables.less" />
@@ -224,43 +224,46 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="merchantList.aspx" />
+    <Content Include="master\merchantList.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="class_DTO\Merchant.cs" />
     <Compile Include="helpers\localhost.cs" />
-    <Compile Include="index.aspx.cs">
+    <Compile Include="homepage\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="index.aspx.designer.cs">
+    <Compile Include="homepage\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="login.aspx.cs">
+    <Compile Include="login\login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="login.aspx.designer.cs">
+    <Compile Include="login\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="masterPage.Master.cs">
+    <Compile Include="masterPage\masterPage.Master.cs">
       <DependentUpon>masterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="masterPage.Master.designer.cs">
+    <Compile Include="masterPage\masterPage.Master.designer.cs">
       <DependentUpon>masterPage.Master</DependentUpon>
     </Compile>
-    <Compile Include="merchantList.aspx.cs">
+    <Compile Include="master\merchantList.aspx.cs">
       <DependentUpon>merchantList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="merchantList.aspx.designer.cs">
+    <Compile Include="master\merchantList.aspx.designer.cs">
       <DependentUpon>merchantList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="agent\" />
+    <Folder Include="merchant\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage.Master" AutoEventWireup="true" CodeBehind="merchantList.aspx.cs" Inherits="CardProcessingWebsite.merchantList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage/masterPage.Master" AutoEventWireup="true" CodeBehind="merchantList.aspx.cs" Inherits="CardProcessingWebsite.merchantList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     Merchant
