@@ -89,6 +89,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AgentController.cs" />
     <Compile Include="Controllers\MerchantController.cs" />
+    <Compile Include="Controllers\MerchantRegionController.cs" />
+    <Compile Include="Controllers\MerchantTypeController.cs" />
     <Compile Include="Controllers\RegistrationFormController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

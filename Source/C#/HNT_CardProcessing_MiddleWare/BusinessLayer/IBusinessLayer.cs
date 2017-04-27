@@ -39,6 +39,12 @@ namespace BusinessLayer
         string generateRegID();
         IList<RegistrationForm> getAllRegistionForm();
         RegistrationForm getAllRegistrationFormByRegID(string id);
+
+        //MerchantType 
+        IList<MerchantType> getAllMerchantType();
+
+        //MerchantRegion
+        IList<MerchantRegion> getAllMerchantRegion();
     }
 }
 

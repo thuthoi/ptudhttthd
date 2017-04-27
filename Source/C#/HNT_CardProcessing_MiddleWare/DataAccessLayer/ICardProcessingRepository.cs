@@ -7,29 +7,27 @@ using DomainModel;
 
 namespace DataAccessLayer
 {
-    public interface IAgentRepository : IGenericDataRepository<Agent>
-    {
-    }
+    public interface IAgentRepository : IGenericDataRepository<Agent> { }
 
-    public interface IAccountRepository : IGenericDataRepository<Account>
-    {
-    }
+    public interface IAccountRepository : IGenericDataRepository<Account> { }
 
-    public interface IMerchantRepository : IGenericDataRepository<Merchant>
-    { }
+    public interface IMerchantRepository : IGenericDataRepository<Merchant> { }
 
-    public interface IRegistrationFormRepository : IGenericDataRepository<RegistrationForm>
-    { }
+    public interface IRegistrationFormRepository : IGenericDataRepository<RegistrationForm> { }
 
-    public class AgentRepository : GenericDataRepository<Agent>, IAgentRepository
-    {
-    }
+    public interface IMerchantTypeRepository : IGenericDataRepository<MerchantType> { }
 
-    public class AccountRepository : GenericDataRepository<Account>, IAccountRepository
-    {
-    }
+    public interface IMerchantRegionRepository : IGenericDataRepository<MerchantRegion> { }
+
+    public class AgentRepository : GenericDataRepository<Agent>, IAgentRepository { }
+
+    public class AccountRepository : GenericDataRepository<Account>, IAccountRepository { }
 
     public class MerchantRepository : GenericDataRepository<Merchant>, IMerchantRepository { }
 
     public class RegistrationFormRepository : GenericDataRepository<RegistrationForm>, IRegistrationFormRepository { }
+
+    public class MerchantTypeRepository : GenericDataRepository<MerchantType>, IMerchantTypeRepository { }
+
+    public class MerchantRegionRepository : GenericDataRepository<MerchantRegion>, IMerchantRegionRepository { }
 }

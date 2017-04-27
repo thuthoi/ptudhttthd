@@ -14,6 +14,8 @@ namespace BusinessLayer
         private readonly IAccountRepository _accountRepository;
         private readonly IMerchantRepository _merchantRepository;
         private readonly IRegistrationFormRepository _registrationFormRepository;
+        private readonly IMerchantTypeRepository _merchantTypeRepository;
+        private readonly IMerchantRegionRepository _merchantRegionRepository;
 
         public BusinessLayerClass()
         {
@@ -21,15 +23,20 @@ namespace BusinessLayer
             _accountRepository = new AccountRepository();
             _merchantRepository = new MerchantRepository();
             _registrationFormRepository = new RegistrationFormRepository();
+            _merchantRegionRepository = new MerchantRegionRepository();
+            _merchantTypeRepository = new MerchantTypeRepository();
         }
 
         public BusinessLayerClass(IAgentRepository agentRepository,
-            IAccountRepository accountRepository, IMerchantRepository merchantRepository, IRegistrationFormRepository registrationFormRepository)
+            IAccountRepository accountRepository, IMerchantRepository merchantRepository, IRegistrationFormRepository registrationFormRepository,
+            IMerchantTypeRepository merchantTypeRepository, IMerchantRegionRepository merchantRegionRepository)
         {
             _agentRepository = agentRepository;
             _accountRepository = accountRepository;
             _merchantRepository = merchantRepository;
             _registrationFormRepository = registrationFormRepository;
+            _merchantTypeRepository = merchantTypeRepository;
+            _merchantRegionRepository = merchantRegionRepository;
         }
 
         //Định nghĩa các hàm đã khai báo bên !BusinessLayer
@@ -181,6 +188,18 @@ namespace BusinessLayer
         {
             return _registrationFormRepository.GetSingle(
                 m => m.RegID.Equals(id));
+        }
+
+        //MerchantType
+        public IList<MerchantType> getAllMerchantType()
+        {
+            return _merchantTypeRepository.GetAll();
+        }
+        
+        //MerchantRegion
+        public IList<MerchantRegion> getAllMerchantRegion()
+        {
+            return _merchantRegionRepository.GetAll();
         }
     }
 }
