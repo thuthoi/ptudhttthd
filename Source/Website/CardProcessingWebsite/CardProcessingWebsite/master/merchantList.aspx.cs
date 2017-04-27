@@ -19,6 +19,65 @@ namespace CardProcessingWebsite
             if (IsPostBack == false)
             {
                 loadListMerchant();
+                loadMerchantTypeforAdding();
+                loadMerchantRegionforAdding();
+                loadAgentforAdding();
+            }
+        }
+        private void loadMerchantTypeforAdding()
+        {
+            using (var c = new HttpClient())
+            {
+                c.DefaultRequestHeaders.Accept.Clear();
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                string url = localhost.hostname() + "api/merchantType/getAll";
+                var response = c.GetAsync(url).Result;
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var list = response.Content.ReadAsAsync<MerchantType[]>().Result;
+                    cboMerchantType.DataSource = list;
+                    cboMerchantType.DataTextField = "MerchantTypeName";
+                    cboMerchantType.DataValueField = "MerchantTypeID";
+                    cboMerchantType.DataBind();
+                }
+            }
+        }
+
+        private void loadMerchantRegionforAdding()
+        {
+            using (var c = new HttpClient())
+            {
+                c.DefaultRequestHeaders.Accept.Clear();
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                string url = localhost.hostname() + "api/merchantRegion/getAll";
+                var response = c.GetAsync(url).Result;
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var list = response.Content.ReadAsAsync<MerchantRegion[]>().Result;
+                    cboMerchantRegion.DataSource = list;
+                    cboMerchantRegion.DataTextField = "MerchantRegionName";
+                    cboMerchantRegion.DataValueField = "MerchantRegionID";
+                    cboMerchantRegion.DataBind();
+                }
+            }
+        }
+
+        private void loadAgentforAdding()
+        {
+            using (var c = new HttpClient())
+            {
+                c.DefaultRequestHeaders.Accept.Clear();
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                string url = localhost.hostname() + "api/agent/getAll";
+                var response = c.GetAsync(url).Result;
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var list = response.Content.ReadAsAsync<Agent[]>().Result;
+                    cboAgent.DataSource = list;
+                    cboAgent.DataTextField = "AgentName";
+                    cboAgent.DataValueField = "AgentID";
+                    cboAgent.DataBind();
+                }
             }
         }
 
@@ -36,6 +95,62 @@ namespace CardProcessingWebsite
                     listMerchant.DataSource = list;
                     listMerchant.DataBind();
                 }
+            }
+        }
+
+        private void clearAll()
+        {
+            txtAddress.Text = txtPhone.Text = txtEmail.Text = txtMerchantName.Text = string.Empty;
+        }
+
+        protected void btnAddMerchant_Click(object sender, EventArgs e)
+        {
+            string _merID = string.Empty;
+            using (var c = new HttpClient())
+            {
+                c.DefaultRequestHeaders.Accept.Clear();
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                string url = localhost.hostname() + "api/merchant/getNewID";
+                var response = c.GetAsync(url).Result;
+                //Tạo MerchantID 
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    _merID = response.Content.ReadAsStringAsync().Result;
+                }
+            }
+            if (AddMerchant(_merID))
+            {
+                clearAll();
+                loadListMerchant();
+            }
+        }
+
+        bool AddMerchant(string id)
+        {
+            bool res = false;
+            using (var c = new HttpClient())
+            {
+                c.DefaultRequestHeaders.Accept.Clear();
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                //Lưu database
+                string url = localhost.hostname() + "api/merchant/add";
+                var response = c.PostAsJsonAsync(url, new
+                {
+                    MerchantID = id.Substring(1, 10),
+                    MerchantName = txtMerchantName.Text.Trim(),
+                    Address = txtAddress.Text.Trim(),
+                    Phone = txtPhone.Text.Trim(),
+                    Email = txtEmail.Text.Trim(),
+                    Status = true,
+                    MerchantTypeID = cboMerchantType.SelectedItem.Value,
+                    MerchantRegionID = cboMerchantRegion.SelectedItem.Value,
+                    AgentID = cboAgent.SelectedItem.Value
+                }).Result;
+                if (response.StatusCode == HttpStatusCode.Created)
+                {
+                    res = true;
+                }
+                return res;
             }
         }
     }

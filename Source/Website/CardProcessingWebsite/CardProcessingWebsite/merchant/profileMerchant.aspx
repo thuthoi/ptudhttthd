@@ -7,30 +7,28 @@
     Thông tin của Merchant: MERCH00001
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="main" runat="server">
-    <form runat="server">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Thông tin
-                    </div>
-                    <div class="panel-body">
-                        - Tên Merchant:
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Thông tin
+                </div>
+                <div class="panel-body">
+                    - Tên Merchant:
                         <asp:Label runat="server" Font-Bold="true" ID="lblName"></asp:Label><br />
-                        - Địa chỉ: 
+                    - Địa chỉ: 
                         <asp:Label runat="server" Font-Bold="true" ID="lblAddress"></asp:Label><br />
-                        - Điện thoại: 
+                    - Điện thoại: 
                         <asp:Label runat="server" Font-Bold="true" ID="lblPhone"></asp:Label><br />
-                        - Email: 
+                    - Email: 
                         <asp:Label runat="server" Font-Bold="true" ID="lblEmail"></asp:Label><br />
-                        <br />
-                        <asp:Button runat="server" CssClass="btn btn-primary" Text="Cập nhật thông tin" ID="btnUpdateProfile" />
-                        <asp:HiddenField ID="hdMerchantID" runat="server" Value="MERCH00001" />
-                    </div>
+                    <br />
+                    <asp:Button runat="server" CssClass="btn btn-primary" Text="Cập nhật thông tin" ID="btnUpdateProfile" />
+                    <asp:HiddenField ID="hdMerchantID" runat="server" Value="MERCH00001" />
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="scriptFile" runat="server">
 </asp:Content>

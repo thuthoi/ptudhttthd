@@ -67,6 +67,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\jquery-3.2.1.min.js" />
     <Content Include="homepage\index.aspx" />
     <Content Include="login\login.aspx" />
     <Content Include="assets\data\flot-data.js" />
@@ -229,7 +230,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="class_DTO\Agent.cs" />
     <Compile Include="class_DTO\Merchant.cs" />
+    <Compile Include="class_DTO\MerchantRegion.cs" />
+    <Compile Include="class_DTO\MerchantType.cs" />
     <Compile Include="helpers\localhost.cs" />
     <Compile Include="homepage\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
