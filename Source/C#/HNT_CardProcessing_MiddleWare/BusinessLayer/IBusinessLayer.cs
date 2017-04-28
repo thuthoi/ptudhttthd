@@ -47,6 +47,9 @@ namespace BusinessLayer
 
         //MerchantRegion
         IList<MerchantRegion> getAllMerchantRegion();
+
+        // Master
+        IList<Master> getAllMaster();
     }
 }
 

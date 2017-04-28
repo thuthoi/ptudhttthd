@@ -16,6 +16,7 @@ namespace BusinessLayer
         private readonly IRegistrationFormRepository _registrationFormRepository;
         private readonly IMerchantTypeRepository _merchantTypeRepository;
         private readonly IMerchantRegionRepository _merchantRegionRepository;
+        private readonly IMasterRepository _masterRepository;
 
         public BusinessLayerClass()
         {
@@ -219,6 +220,12 @@ namespace BusinessLayer
         public IList<MerchantRegion> getAllMerchantRegion()
         {
             return _merchantRegionRepository.GetAll();
+        }
+
+        // Master
+        public IList<Master> getAllMaster()
+        {
+            return _masterRepository.GetAll();
         }
     }
 }

@@ -216,6 +216,7 @@
     <Content Include="assets\vendor\font-awesome\scss\_spinning.scss" />
     <Content Include="assets\vendor\font-awesome\scss\_stacked.scss" />
     <Content Include="assets\vendor\font-awesome\scss\_variables.scss" />
+    <Content Include="master\agentList.aspx" />
     <Content Include="merchant\profileMerchant.aspx" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
@@ -231,6 +232,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="class_DTO\Agent.cs" />
+    <Compile Include="class_DTO\Master.cs" />
     <Compile Include="class_DTO\Merchant.cs" />
     <Compile Include="class_DTO\MerchantRegion.cs" />
     <Compile Include="class_DTO\MerchantType.cs" />
@@ -262,6 +264,13 @@
     </Compile>
     <Compile Include="master\merchantList.aspx.designer.cs">
       <DependentUpon>merchantList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="master\agentList.aspx.cs">
+      <DependentUpon>agentList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="master\agentList.aspx.designer.cs">
+      <DependentUpon>agentList.aspx</DependentUpon>
     </Compile>
     <Compile Include="merchant\profileMerchant.aspx.cs">
       <DependentUpon>profileMerchant.aspx</DependentUpon>

@@ -16,7 +16,7 @@ namespace CardProcessingWebsite.helpers
             //Tài Nhân
 
             //Thanh Nhân
-
+            //return "http://localhost:20752/";
             //Tài
 
         }
