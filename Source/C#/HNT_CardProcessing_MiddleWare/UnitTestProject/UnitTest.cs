@@ -178,5 +178,49 @@ namespace UnitTestProject
             Assert.IsNotNull(regTest);
             Assert.AreEqual("REG00002", regTest.RegID);
         }
+
+        [TestMethod]
+        public void Test_generateAgentID_Success()
+        {
+            string ageID = bus.generateAgentID();
+            Assert.AreEqual("AGENT00008", ageID);
+        }
+
+        [TestMethod]
+        public void Test_getAllAgent_Success()
+        {
+            IList<Agent> list = bus.GetAllAgent();
+            Assert.IsNotNull(list);
+            Assert.AreNotEqual(0, list.Count);
+        }
+
+        [TestMethod]
+        public void Test_getAgentByAgentID_Success()
+        {
+            Agent agent = bus.getAgentByAgentID("AGENT00005");
+            Assert.IsNotNull(agent);
+            Assert.AreEqual("agent05@gmail.com", agent.Email);
+        }
+
+        [TestMethod]
+        public void Test_addAgent_Success()
+        {
+            string id = bus.generateAgentID();
+            Agent agent = new Agent()
+            {
+                AgentID = id,
+                AgentName = "Đại lý 8",
+                Address = "3, Hòa Bình, Phường 3, Quận 11, TP Hồ Chí Minh",
+                Phone = "090.686.3336",
+                Email = "agentTest@gmail.com",
+                Status = true,
+                MasterID = "MASTER0001"
+            };
+            
+            bus.AddAgent(agent);
+            Agent agentTest = bus.getAgentByAgentID("AGENT00008");
+            Assert.IsNotNull(agentTest);
+            Assert.AreEqual("AGENT00008", agentTest.AgentID);
+        }
     }
 }

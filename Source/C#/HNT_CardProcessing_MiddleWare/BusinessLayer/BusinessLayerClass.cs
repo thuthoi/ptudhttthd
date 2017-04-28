@@ -67,6 +67,25 @@ namespace BusinessLayer
             /* Validation and error handling omitted */
             _agentRepository.Remove(agent);
         }
+        public string generateAgentID()
+        {
+            string res = "";
+            string oldAgentID = GetAllAgent().OrderByDescending(a => a.AgentID).FirstOrDefault().AgentID.ToString();
+            if (oldAgentID != "")
+            {
+                res = "AGENT" + Convert.ToString((Convert.ToInt32(oldAgentID.Substring(5)) + 1)).PadLeft(5, '0');
+            }
+            else
+            {
+                res = "AGENT00001";
+            }
+            return res;
+        }
+
+        public Agent getAgentByAgentID(string id)
+        {
+            return _agentRepository.GetSingle(a => a.AgentID.Equals(id));
+        }
 
         //Account
         public void AddAccount(Account account)

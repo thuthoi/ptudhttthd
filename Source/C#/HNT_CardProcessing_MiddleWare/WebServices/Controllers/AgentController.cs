@@ -29,5 +29,20 @@ namespace WebServices.Controllers
             });
             return Request.CreateResponse(HttpStatusCode.OK, list);
         }
+
+        [HttpPost]
+        [Route("api/agent/add")]
+        public HttpResponseMessage addAgent([FromBody]Agent agent)
+        {
+            bus.AddAgent(agent);
+            return Request.CreateResponse(HttpStatusCode.Created);
+        }
+
+        [HttpGet]
+        [Route("api/agent/getNewID")]
+        public HttpResponseMessage getNewID()
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, bus.generateAgentID());
+        }
     }
 }
