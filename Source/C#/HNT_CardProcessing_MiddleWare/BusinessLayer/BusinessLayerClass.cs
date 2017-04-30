@@ -1,4 +1,5 @@
-﻿using DataAccessLayer;
+﻿using BusinessLayer.Helpers;
+using DataAccessLayer;
 using DomainModel;
 using System;
 using System.Collections.Generic;
@@ -118,14 +119,17 @@ namespace BusinessLayer
                 return "Đổi mật khẩu thành công!";
             }
         }
-        public Account GetAccountBy_Username_Password(String username, String pass)
+        public IList<Account> GetAccountBy_Username_Password(String username, String pass)
         {
-
-            return _accountRepository.GetSingle(
+            string en_pass = StringUtils.Md5(pass);
+            return _accountRepository.GetList(
                             a => a.Username.Equals(username) &&
-                            a.Password.Equals(pass)); //include related agent
+                            a.Password.Equals(en_pass)); //include related agent
         }
-
+        public IList<Account> getAllAccount()
+        {
+            return _accountRepository.GetAll();
+        }
         //Merchant
         public void addMerchant(Merchant merchant)
         {

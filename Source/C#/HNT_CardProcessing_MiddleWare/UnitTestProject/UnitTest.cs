@@ -10,7 +10,7 @@ namespace UnitTestProject
     public class UnitTest
     {
         BusinessLayerClass bus = new BusinessLayerClass();
-
+        //account
         [TestMethod]
         public void Test_ChangePassword_WrongOldPassword()
         {
@@ -45,18 +45,26 @@ namespace UnitTestProject
         public void Test_Login_NotNull()
         {
             BusinessLayerClass bus = new BusinessLayerClass();
-            Account ac = bus.GetAccountBy_Username_Password("tuantai", "123456");
-            Assert.IsNotNull(ac);
+            IList<Account> ac = bus.GetAccountBy_Username_Password("agent01", "12345");
+            Assert.IsNotNull(ac[0]);
         }
 
         [TestMethod]
         public void Test_Login_CorrectData()
         {
             BusinessLayerClass bus = new BusinessLayerClass();
-            Account ac = bus.GetAccountBy_Username_Password("tuantai", "123456");
-            Assert.AreEqual("tuantai", ac.Username);
+            IList<Account> ac = bus.GetAccountBy_Username_Password("tuantai", "123456");
+            Assert.AreEqual("tuantai", ac[0].Username);
         }
 
+        [TestMethod]
+        public void Test_GetAll_Account()
+        {
+            BusinessLayerClass bus = new BusinessLayerClass();
+            IList<Account> ac = bus.getAllAccount();
+            Assert.AreNotEqual(0, ac.Count);
+        }
+        // merchant
         [TestMethod]
         public void Test_generateMerchantID_Success()
         {

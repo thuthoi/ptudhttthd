@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLayerClass.cs" />
+    <Compile Include="Helpers\StringUtils.cs" />
     <Compile Include="IBusinessLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

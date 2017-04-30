@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using BusinessLayer;
+using WebServices.Helpers;
 
 namespace WebServices.Controllers
 {
@@ -32,18 +33,40 @@ namespace WebServices.Controllers
         [Route("api/account/login")]
         public HttpResponseMessage login([FromBody]Account ac)
         {
-            Account _ac = bus.GetAccountBy_Username_Password(ac.Username, ac.Password);
-                if (_ac != null)
+            var list = bus.GetAccountBy_Username_Password(ac.Username, ac.Password).Select(c => new
+            {
+                c.UserID,
+                c.Username,
+                c.Password,
+                c.OldPassword,
+                c.Role
+            });
+            //var _ac = bus.GetAccountBy_Username_Password(ac.Username, ac.Password);
+            if (list != null)
                 {
                     return Request.CreateResponse(
                          HttpStatusCode.OK,
-                           _ac
+                           list
                              );
                 }
                 else
                 {
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
+        }
+        [HttpGet]
+        [Route("api/account/getAll")]
+        public HttpResponseMessage getAllMerchant()
+        {
+            var list = bus.getAllAccount().Select(c => new
+            {
+                c.UserID,
+                c.Username,
+                c.Password,
+                c.OldPassword,
+                c.Role
+            });
+            return Request.CreateResponse(HttpStatusCode.OK, list);
         }
     }
 }
