@@ -44,5 +44,22 @@ namespace WebServices.Controllers
         {
             return Request.CreateResponse(HttpStatusCode.OK, bus.generateAgentID());
         }
+
+        [HttpGet]
+        [Route("api/agent/getAgent_NotHave_Account")]
+        public HttpResponseMessage getAgent_NotHave_Account()
+        {
+            var list = bus.getAgent_NotHave_Account().Select(a => new
+            {
+                a.AgentID,
+                a.AgentName,
+                a.Address,
+                a.Phone,
+                a.Email,
+                a.Status,
+                a.MasterID
+            });
+            return Request.CreateResponse(HttpStatusCode.OK, list);
+        }
     }
 }

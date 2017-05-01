@@ -35,7 +35,7 @@ namespace BusinessLayer
         IList<Merchant> getMerchantByMerchantIDtoList(string id);
         string generateMerchantID();
         string updateMerchant(Merchant merchant);
-
+        IList<Merchant> getMerchant_NotHave_Account();
         //RegistrationForm
         void addRegistrationForm(RegistrationForm _registrationForm);
         string generateRegID();
@@ -50,6 +50,10 @@ namespace BusinessLayer
 
         // Master
         IList<Master> getAllMaster();
+        IList<Master> getMaster_NotHave_Account();
+
+        // Agent
+        IList<Agent> getAgent_NotHave_Account();
     }
 }
 

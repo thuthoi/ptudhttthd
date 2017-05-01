@@ -27,6 +27,7 @@ namespace BusinessLayer
             _registrationFormRepository = new RegistrationFormRepository();
             _merchantRegionRepository = new MerchantRegionRepository();
             _merchantTypeRepository = new MerchantTypeRepository();
+            _masterRepository = new MasterRepository();
         }
 
         public BusinessLayerClass(IAgentRepository agentRepository,
@@ -93,6 +94,8 @@ namespace BusinessLayer
         public void AddAccount(Account account)
         {
             /* Validation and error handling omitted */
+            string en_pass = StringUtils.Md5(account.Password);
+            account.Password = en_pass;
             _accountRepository.Add(account);
         }
         public void UpdateAccount(Account account)
@@ -130,6 +133,21 @@ namespace BusinessLayer
         {
             return _accountRepository.GetAll();
         }
+        public bool Check_Account_UserName_Exist(string username)
+        {
+            IList<Account> ck = _accountRepository.GetList(
+                            a => a.Username.Equals(username));
+            if (ck.Count > 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+       
         //Merchant
         public void addMerchant(Merchant merchant)
         {
@@ -184,6 +202,18 @@ namespace BusinessLayer
                 return "Cập nhật Merchant thành công!";
             }
         }
+        public IList<Merchant> getMerchant_NotHave_Account()
+        {
+            //IList<Account> list_ac = _accountRepository.GetAll();
+            //List<String> list_userID = new List<string>();
+            //foreach (Account ac in list_ac)
+            //{
+            //    list_userID.Add(ac.UserID);
+            //}
+
+            //return _merchantRepository.GetAll().Where(m => !list_userID.Contains(m.MerchantID)).ToList();
+            return _merchantRepository.GetAll(c => c.Accounts).Where(m => m.Accounts.Count == 0).ToList();
+        }
 
         //RegistrationForm
         public void addRegistrationForm(RegistrationForm registrationForm)
@@ -231,5 +261,19 @@ namespace BusinessLayer
         {
             return _masterRepository.GetAll();
         }
+
+        public IList<Master> getMaster_NotHave_Account()
+        {
+           
+            return _masterRepository.GetAll(c => c.Accounts).Where(m => m.Accounts.Count == 0).ToList();
+        }
+
+        // Agent
+        public IList<Agent> getAgent_NotHave_Account()
+        {
+
+            return _agentRepository.GetAll(c => c.Accounts).Where(m => m.Accounts.Count == 0).ToList();
+        }
+
     }
 }

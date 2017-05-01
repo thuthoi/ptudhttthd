@@ -72,5 +72,25 @@ namespace WebServices.Controllers
             });
             return Request.CreateResponse(HttpStatusCode.OK, list);
         }
+
+
+        [HttpGet]
+        [Route("api/merchant/getAll_NotHave_Account")]
+        public HttpResponseMessage getMerchant_NotHave_Account()
+        {
+            var list = bus.getMerchant_NotHave_Account().Select(c => new
+            {
+                c.MerchantID,
+                c.MerchantName,
+                c.Address,
+                c.Phone,
+                c.Email,
+                c.Status,
+                c.MerchantTypeID,
+                c.MerchantRegionID,
+                c.AgentID
+            }) ;
+            return Request.CreateResponse(HttpStatusCode.OK, list);
+        }
     }
 }

@@ -67,6 +67,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\jquery-2.1.4.min.js" />
     <Content Include="assets\jquery-3.2.1.min.js" />
     <Content Include="homepage\index.aspx" />
     <Content Include="login\login.aspx" />

@@ -22,5 +22,17 @@ namespace WebServices.Controllers
             });
             return Request.CreateResponse(HttpStatusCode.OK, list);
         }
+
+        [HttpGet]
+        [Route("api/master/getMaster_NotHave_Account")]
+        public HttpResponseMessage getMaster_NotHave_Account()
+        {
+            var list = bus.getMaster_NotHave_Account().Select(m => new
+            {
+                m.MasterID,
+                m.MasterName
+            });
+            return Request.CreateResponse(HttpStatusCode.OK, list);
+        }
     }
 }

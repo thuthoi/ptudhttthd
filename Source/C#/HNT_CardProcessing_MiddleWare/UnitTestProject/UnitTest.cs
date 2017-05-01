@@ -64,6 +64,23 @@ namespace UnitTestProject
             IList<Account> ac = bus.getAllAccount();
             Assert.AreNotEqual(0, ac.Count);
         }
+
+        [TestMethod]
+        public void Test_GetMerchant_NotHave_Account()
+        {
+            BusinessLayerClass bus = new BusinessLayerClass();
+            IList<Merchant> ac = bus.getMerchant_NotHave_Account();
+            Assert.AreEqual(0, ac[0].Accounts.Count);
+        }
+
+        [TestMethod]
+        public void Test_GetMaster_NotHave_Account()
+        {
+            BusinessLayerClass bus = new BusinessLayerClass();
+            IList<Master> ac = bus.getMaster_NotHave_Account();
+            Assert.AreEqual(0, ac[0].Accounts.Count);
+        }
+
         // merchant
         [TestMethod]
         public void Test_generateMerchantID_Success()
