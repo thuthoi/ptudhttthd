@@ -27,7 +27,6 @@ namespace BusinessLayer
         string ChangePassword(Account account);
         IList<Account> GetAccountBy_Username_Password(String username, String passs);
         IList<Account> getAllAccount();
-      
 
         //Merchant
         void addMerchant(Merchant _merchant);
