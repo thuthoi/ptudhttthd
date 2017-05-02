@@ -91,10 +91,10 @@ namespace WebServices.Controllers
             return Request.CreateResponse(HttpStatusCode.Created);
         }
         [HttpGet]
-        [Route("api/account/getRoleByUsername")]
-        public HttpResponseMessage getRoleByUsername(string _username)
+        [Route("api/account/getRoleByUsername/{username}")]
+        public HttpResponseMessage getRoleByUsername(string username)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, bus.getRoleByUsername(_username));
+            return Request.CreateResponse(HttpStatusCode.OK, bus.getRoleByUsername(username));
         }
     }
 }

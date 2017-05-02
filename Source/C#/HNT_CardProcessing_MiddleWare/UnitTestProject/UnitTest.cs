@@ -247,5 +247,12 @@ namespace UnitTestProject
             Assert.IsNotNull(agentTest);
             Assert.AreEqual("AGENT00008", agentTest.AgentID);
         }
+
+        [TestMethod]
+        public void Test_getRoleByUsername()
+        {
+            string res = bus.getRoleByUsername("agent01");
+            Assert.AreEqual("agent", res);
+        }
     }
 }
