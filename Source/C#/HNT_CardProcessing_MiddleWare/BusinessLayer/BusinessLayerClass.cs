@@ -84,7 +84,6 @@ namespace BusinessLayer
             }
             return res;
         }
-
         public Agent getAgentByAgentID(string id)
         {
             return _agentRepository.GetSingle(a => a.AgentID.Equals(id));
@@ -146,7 +145,10 @@ namespace BusinessLayer
                 return true;
             }
         }
-
+        public string getRoleByUsername(string _username)
+        {
+            return _accountRepository.GetAll().Where(a => a.Username == _username).FirstOrDefault().Role.ToString();
+        }
        
         //Merchant
         public void addMerchant(Merchant merchant)
@@ -261,7 +263,6 @@ namespace BusinessLayer
         {
             return _masterRepository.GetAll();
         }
-
         public IList<Master> getMaster_NotHave_Account()
         {
            

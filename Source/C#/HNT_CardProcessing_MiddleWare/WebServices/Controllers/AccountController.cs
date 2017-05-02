@@ -22,7 +22,6 @@ namespace WebServices.Controllers
         {
             return Ok("hello");
         }
-
         [HttpPost]
         [Route("api/account/changepassword")]
         public IHttpActionResult ChangePassword([FromBody]Account acc)
@@ -90,6 +89,12 @@ namespace WebServices.Controllers
         {
             bus.AddAccount(account);
             return Request.CreateResponse(HttpStatusCode.Created);
+        }
+        [HttpGet]
+        [Route("api/account/getRoleByUsername")]
+        public HttpResponseMessage getRoleByUsername(string _username)
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, bus.getRoleByUsername(_username));
         }
     }
 }
