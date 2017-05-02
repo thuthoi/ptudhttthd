@@ -69,6 +69,8 @@
   <ItemGroup>
     <Content Include="assets\jquery-2.1.4.min.js" />
     <Content Include="assets\jquery-3.2.1.min.js" />
+    <Content Include="bin\CardProcessingWebsite.dll" />
+    <Content Include="bin\CardProcessingWebsite.pdb" />
     <Content Include="homepage\index.aspx" />
     <Content Include="login\login.aspx" />
     <Content Include="assets\data\flot-data.js" />
