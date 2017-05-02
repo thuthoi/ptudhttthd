@@ -145,10 +145,6 @@ namespace BusinessLayer
                 return true;
             }
         }
-        public string getRoleByUsername(string _username)
-        {
-            return _accountRepository.GetAll().Where(a => a.Username == _username).FirstOrDefault().Role.ToString();
-        }
        
         //Merchant
         public void addMerchant(Merchant merchant)

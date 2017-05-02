@@ -4,7 +4,7 @@
     Thông tin Merchant
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="pageheader" runat="server">
-    Thông tin của Merchant: MERCH00001
+    Thông tin của Merchant: <asp:Label ID="lblMerchantID" runat="server" Text=""></asp:Label>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="main" runat="server">
     <div class="row">

@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CardProcessingWebsite
+namespace CardProcessingWebsite.master
 {
 
 
-    public partial class index
+    public partial class reportPage
     {
     }
 }

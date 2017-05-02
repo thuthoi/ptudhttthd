@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -27,7 +28,7 @@ namespace CardProcessingWebsite.merchant
             {
                 c.DefaultRequestHeaders.Accept.Clear();
                 c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                string url = localhost.hostname() + "api/merchant/getProfileMerchant/" + hdMerchantID.Value.ToString();
+                string url = localhost.hostname() + "api/merchant/getProfileMerchant/" + CurrentContext.GetCurUser().UserID.ToString();
                 var response = c.GetAsync(url).Result;
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -36,6 +37,7 @@ namespace CardProcessingWebsite.merchant
                     lblAddress.Text = list[0].Address;
                     lblPhone.Text = list[0].Phone;
                     lblEmail.Text = list[0].Email;
+                    lblMerchantID.Text = list[0].MerchantID;
                 }
             }
         }

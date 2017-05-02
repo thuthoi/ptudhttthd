@@ -63,15 +63,15 @@ namespace CardProcessingWebsite
             }
             if (ac.Role == "master")
             {
-                ChuyenTrang("~/master/index.aspx");
+                ChuyenTrang("~/master/reportMaster.aspx");
             }
             else if (ac.Role == "agent")
             {
-                ChuyenTrang("~/agent/index.aspx");
+                ChuyenTrang("~/agent/reportAgent.aspx");
             }
             else if (ac.Role == "merchant")
             {
-                ChuyenTrang("~/merchant/index.aspx");
+                ChuyenTrang("~/merchant/reportMerchant.aspx");
             }
 
         }

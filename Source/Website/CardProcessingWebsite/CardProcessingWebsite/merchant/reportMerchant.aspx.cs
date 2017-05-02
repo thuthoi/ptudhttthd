@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CardProcessingWebsite
+namespace CardProcessingWebsite.merchant
 {
-    public partial class index : System.Web.UI.Page
+    public partial class reportMerchant : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

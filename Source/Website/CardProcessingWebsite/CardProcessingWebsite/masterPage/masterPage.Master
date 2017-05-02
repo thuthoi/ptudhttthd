@@ -33,7 +33,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                    <a class="navbar-brand" href="index.html">
+                        <asp:Label ID="lblNamePage" runat="server" Text=""></asp:Label></a>
                 </div>
                 <!-- /.navbar-header -->
 
@@ -79,130 +80,77 @@
                     <!-- /.dropdown -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-
-                            <i class="fa fa-user fa-fw"></i>ptcthu  &nbsp;<i class="fa fa-caret-down">    </i>
+                            <i class="fa fa-user fa-fw"></i>
+                            <asp:Label ID="lblUsername" runat="server" Text=""></asp:Label>
+                            &nbsp;<i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#"><i class="fa fa-user fa-fw"></i>User Profile</a>
+                            <li>
+                                <asp:LinkButton ID="btnProfile" runat="server" OnClick="btnProfile_Click"><i class="fa fa-user fa-fw"></i>User Profile</asp:LinkButton>
                             </li>
                             <li><a href="#"><i class="fa fa-gear fa-fw"></i>Change Password</a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                            <li>
+                                <asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click"><i class="fa fa-sign-out fa-fw"></i>Logout</asp:LinkButton>
                             </li>
                         </ul>
-                        <!-- /.dropdown-user -->
                     </li>
-                    <!-- /.dropdown -->
                 </ul>
-                <!-- /.navbar-top-links -->
 
-                <div class="navbar-default sidebar" role="navigation">
-                    <div class="sidebar-nav navbar-collapse">
-                        <ul class="nav" id="side-menu">
-                            <li class="sidebar-search">
-                                <div class="input-group custom-search-form">
-                                    <input type="text" class="form-control" placeholder="Search...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </span>
-                                </div>
-                                <!-- /input-group -->
-                            </li>
-                            <li>
-                                <a href="index.html"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Charts<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="flot.html">Flot Charts</a>
-                                    </li>
-                                    <li>
-                                        <a href="morris.html">Morris.js Charts</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
-                            <li>
-                                <a href="tables.html"><i class="fa fa-table fa-fw"></i>Tables</a>
-                            </li>
-                            <li>
-                                <a href="forms.html"><i class="fa fa-edit fa-fw"></i>Forms</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-wrench fa-fw"></i>UI Elements<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="panels-wells.html">Panels and Wells</a>
-                                    </li>
-                                    <li>
-                                        <a href="buttons.html">Buttons</a>
-                                    </li>
-                                    <li>
-                                        <a href="notifications.html">Notifications</a>
-                                    </li>
-                                    <li>
-                                        <a href="typography.html">Typography</a>
-                                    </li>
-                                    <li>
-                                        <a href="icons.html">Icons</a>
-                                    </li>
-                                    <li>
-                                        <a href="grid.html">Grid</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-sitemap fa-fw"></i>Multi-Level Dropdown<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="#">Second Level Item</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Second Level Item</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Third Level <span class="fa arrow"></span></a>
-                                        <ul class="nav nav-third-level">
-                                            <li>
-                                                <a href="#">Third Level Item</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Third Level Item</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Third Level Item</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Third Level Item</a>
-                                            </li>
-                                        </ul>
-                                        <!-- /.nav-third-level -->
-                                    </li>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
-                            <li class="active">
-                                <a href="#"><i class="fa fa-files-o fa-fw"></i>Sample Pages<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a class="active" href="blank.html">Blank Page</a>
-                                    </li>
-                                    <li>
-                                        <a href="login.html">Login Page</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
-                        </ul>
+                <asp:Panel ID="pnlMaster" runat="server">
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu">
+                                <li class="active">
+                                    <a href="chart.html"><i class="fa fa-bar-chart-o fa-fw"></i>Report</a>
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-search fa-fw"></i>Search<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li>
+                                            <a>Agent</a>
+                                        </li>
+                                        <li>
+                                            <a>Merchant</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <asp:LinkButton ID="lblMerchantManagementforMaster" runat="server" OnClick="lblMerchantManagementforMaster_Click"><i class="fa fa-table fa-fw"></i>Merchant Management</asp:LinkButton>
+                                </li>
+                                <li>
+                                    <a href="agent.html"><i class="fa fa-table fa-fw"></i>Agent Management</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <!-- /.sidebar-collapse -->
-                </div>
-                <!-- /.navbar-static-side -->
+                </asp:Panel>
+                <asp:Panel ID="pnlAgent" runat="server" Visible="false">
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu2">
+                                <li class="active">
+                                    <a href="chart.html"><i class="fa fa-bar-chart-o fa-fw"></i>Report</a>
+                                </li>
+                                <li>
+                                    <a href="search.html"><i class="fa fa-search fa-fw"></i>Search Merchant</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </asp:Panel>
+                <asp:Panel ID="pnlMerchant" runat="server" Visible="false">
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu3">
+                                <li class="active">
+                                    <a href="chart.html"><i class="fa fa-bar-chart-o fa-fw"></i>Report</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </asp:Panel>
             </nav>
 
             <!-- Page Content -->
@@ -235,5 +183,7 @@
     <script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/dist/js/sb-admin-2.js"></script>
     <script src="../assets/jquery-3.2.1.min.js"></script>
+    <script src="../assets/vendor/morrisjs/morris.min.js"></script>
+    <script src="../assets/data/morris-data.js"></script>
 </body>
 </html>
