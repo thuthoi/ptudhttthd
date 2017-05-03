@@ -21,6 +21,8 @@ namespace DataAccessLayer
 
     public interface IMasterRepository : IGenericDataRepository<Master> { }
 
+    public interface INotificationRepository : IGenericDataRepository<Notification> { }
+
     public class AgentRepository : GenericDataRepository<Agent>, IAgentRepository { }
 
     public class AccountRepository : GenericDataRepository<Account>, IAccountRepository { }
@@ -34,4 +36,6 @@ namespace DataAccessLayer
     public class MerchantRegionRepository : GenericDataRepository<MerchantRegion>, IMerchantRegionRepository { }
 
     public class MasterRepository : GenericDataRepository<Master>, IMasterRepository { }
+
+    public class NotificationRepository : GenericDataRepository<Notification>, INotificationRepository { }
 }

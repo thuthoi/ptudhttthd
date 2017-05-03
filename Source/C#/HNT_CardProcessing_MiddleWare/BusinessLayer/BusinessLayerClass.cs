@@ -18,6 +18,7 @@ namespace BusinessLayer
         private readonly IMerchantTypeRepository _merchantTypeRepository;
         private readonly IMerchantRegionRepository _merchantRegionRepository;
         private readonly IMasterRepository _masterRepository;
+        private readonly INotificationRepository _notificationRepository;
 
         public BusinessLayerClass()
         {
@@ -28,11 +29,12 @@ namespace BusinessLayer
             _merchantRegionRepository = new MerchantRegionRepository();
             _merchantTypeRepository = new MerchantTypeRepository();
             _masterRepository = new MasterRepository();
+            _notificationRepository = new NotificationRepository();
         }
 
         public BusinessLayerClass(IAgentRepository agentRepository,
             IAccountRepository accountRepository, IMerchantRepository merchantRepository, IRegistrationFormRepository registrationFormRepository,
-            IMerchantTypeRepository merchantTypeRepository, IMerchantRegionRepository merchantRegionRepository)
+            IMerchantTypeRepository merchantTypeRepository, IMerchantRegionRepository merchantRegionRepository, INotificationRepository notificationRepository)
         {
             _agentRepository = agentRepository;
             _accountRepository = accountRepository;
@@ -40,6 +42,7 @@ namespace BusinessLayer
             _registrationFormRepository = registrationFormRepository;
             _merchantTypeRepository = merchantTypeRepository;
             _merchantRegionRepository = merchantRegionRepository;
+            _notificationRepository = notificationRepository;
         }
 
         //Định nghĩa các hàm đã khai báo bên !BusinessLayer
@@ -88,6 +91,11 @@ namespace BusinessLayer
         {
             return _agentRepository.GetSingle(a => a.AgentID.Equals(id));
         }
+        public IList<Agent> getAgent_NotHave_Account()
+        {
+            return _agentRepository.GetAll(c => c.Accounts).Where(m => m.Accounts.Count == 0).ToList();
+        }
+
 
         //Account
         public void AddAccount(Account account)
@@ -145,7 +153,7 @@ namespace BusinessLayer
                 return true;
             }
         }
-       
+
         //Merchant
         public void addMerchant(Merchant merchant)
         {
@@ -247,7 +255,7 @@ namespace BusinessLayer
         {
             return _merchantTypeRepository.GetAll();
         }
-        
+
         //MerchantRegion
         public IList<MerchantRegion> getAllMerchantRegion()
         {
@@ -261,16 +269,17 @@ namespace BusinessLayer
         }
         public IList<Master> getMaster_NotHave_Account()
         {
-           
             return _masterRepository.GetAll(c => c.Accounts).Where(m => m.Accounts.Count == 0).ToList();
         }
 
-        // Agent
-        public IList<Agent> getAgent_NotHave_Account()
+        //Notification
+        public IList<Notification> getAllNotificationByReceiveID(string _receiveID)
         {
-
-            return _agentRepository.GetAll(c => c.Accounts).Where(m => m.Accounts.Count == 0).ToList();
+            return _notificationRepository.GetAll().Where(n => n.ReceiverID == _receiveID).OrderByDescending(n => n.Date).ToList();
         }
-
+        public IList<Notification> getLastThreeNotificationByReceiveID(string _receiveID)
+        {
+            return _notificationRepository.GetAll().Where(n => n.ReceiverID == _receiveID).OrderByDescending(n => n.Date).Take(3).ToList();
+        }
     }
 }

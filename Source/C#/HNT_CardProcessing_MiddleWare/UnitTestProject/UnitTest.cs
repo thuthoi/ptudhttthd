@@ -241,13 +241,29 @@ namespace UnitTestProject
                 Status = true,
                 MasterID = "MASTER0001"
             };
-            
+
             bus.AddAgent(agent);
             Agent agentTest = bus.getAgentByAgentID("AGENT00008");
             Assert.IsNotNull(agentTest);
             Assert.AreEqual("AGENT00008", agentTest.AgentID);
         }
 
-        
+        [TestMethod]
+        public void Test_getAllNotificationByReceiveID_Success()
+        {
+            IList<Notification> list = bus.getAllNotificationByReceiveID("MERCH00001");
+            Assert.IsNotNull(list);
+            Assert.AreNotEqual(0, list.Count);
+            Assert.AreEqual(4, list.Count);
+        }
+
+        [TestMethod]
+        public void Test_getLastThreeNotificationByReceiveID_Success()
+        {
+            IList<Notification> list = bus.getLastThreeNotificationByReceiveID("MERCH00001");
+            Assert.IsNotNull(list);
+            Assert.AreNotEqual(0, list.Count);
+            Assert.AreEqual(3, list.Count);
+        }
     }
 }

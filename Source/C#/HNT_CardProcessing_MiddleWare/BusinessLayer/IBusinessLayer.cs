@@ -19,6 +19,7 @@ namespace BusinessLayer
         IList<Agent> GetAllAgent();
         string generateAgentID();
         Agent getAgentByAgentID(string id);
+        IList<Agent> getAgent_NotHave_Account();
 
         //Account
         void AddAccount(Account account);
@@ -36,6 +37,7 @@ namespace BusinessLayer
         string generateMerchantID();
         string updateMerchant(Merchant merchant);
         IList<Merchant> getMerchant_NotHave_Account();
+
         //RegistrationForm
         void addRegistrationForm(RegistrationForm _registrationForm);
         string generateRegID();
@@ -52,8 +54,9 @@ namespace BusinessLayer
         IList<Master> getAllMaster();
         IList<Master> getMaster_NotHave_Account();
 
-        // Agent
-        IList<Agent> getAgent_NotHave_Account();
+        //Notification
+        IList<Notification> getAllNotificationByReceiveID(string _receiveID);
+        IList<Notification> getLastThreeNotificationByReceiveID(string _receiveID);
     }
 }
 
