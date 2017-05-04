@@ -220,6 +220,20 @@ namespace BusinessLayer
             //return _merchantRepository.GetAll().Where(m => !list_userID.Contains(m.MerchantID)).ToList();
             return _merchantRepository.GetAll(c => c.Accounts).Where(m => m.Accounts.Count == 0).ToList();
         }
+        public IList<Merchant> getMerchantByAgent(string _agentID)
+        {
+            return _merchantRepository.GetAll().Where(m => m.AgentID == _agentID).ToList();
+        }
+        public IList<Merchant> getMerchantNotHaveAgent()
+        {
+            return _merchantRepository.GetAll().Where(m => m.AgentID == string.Empty).ToList();
+        }
+        public void updateAgentforMerchant(string _merchantID, string _agentID)
+        {
+            Merchant mer = getMerchantByMerchantID(_merchantID);
+            mer.AgentID = _agentID;
+            _merchantRepository.Update(mer);
+        }
 
         //RegistrationForm
         public void addRegistrationForm(RegistrationForm registrationForm)

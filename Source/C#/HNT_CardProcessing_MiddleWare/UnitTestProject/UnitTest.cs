@@ -10,6 +10,7 @@ namespace UnitTestProject
     public class UnitTest
     {
         BusinessLayerClass bus = new BusinessLayerClass();
+
         //account
         [TestMethod]
         public void Test_ChangePassword_WrongOldPassword()
@@ -25,7 +26,6 @@ namespace UnitTestProject
 
             Assert.AreEqual("Mật khẩu cũ không trùng khớp!", result);
         }
-
         [TestMethod]
         public void Test_ChangePassword_CorrectData()
         {
@@ -40,7 +40,6 @@ namespace UnitTestProject
 
             Assert.AreEqual("Đổi mật khẩu thành công!", result);
         }
-
         [TestMethod]
         public void Test_Login_NotNull()
         {
@@ -48,7 +47,6 @@ namespace UnitTestProject
             IList<Account> ac = bus.GetAccountBy_Username_Password("agent01", "12345");
             Assert.IsNotNull(ac[0]);
         }
-
         [TestMethod]
         public void Test_Login_CorrectData()
         {
@@ -56,7 +54,6 @@ namespace UnitTestProject
             IList<Account> ac = bus.GetAccountBy_Username_Password("tuantai", "123456");
             Assert.AreEqual("tuantai", ac[0].Username);
         }
-
         [TestMethod]
         public void Test_GetAll_Account()
         {
@@ -64,7 +61,6 @@ namespace UnitTestProject
             IList<Account> ac = bus.getAllAccount();
             Assert.AreNotEqual(0, ac.Count);
         }
-
         [TestMethod]
         public void Test_GetMerchant_NotHave_Account()
         {
@@ -72,13 +68,54 @@ namespace UnitTestProject
             IList<Merchant> ac = bus.getMerchant_NotHave_Account();
             Assert.AreEqual(0, ac[0].Accounts.Count);
         }
-
         [TestMethod]
         public void Test_GetMaster_NotHave_Account()
         {
             BusinessLayerClass bus = new BusinessLayerClass();
             IList<Master> ac = bus.getMaster_NotHave_Account();
             Assert.AreEqual(0, ac[0].Accounts.Count);
+        }
+
+        //agent
+        [TestMethod]
+        public void Test_generateAgentID_Success()
+        {
+            string ageID = bus.generateAgentID();
+            Assert.AreEqual("AGENT00008", ageID);
+        }
+        [TestMethod]
+        public void Test_getAllAgent_Success()
+        {
+            IList<Agent> list = bus.GetAllAgent();
+            Assert.IsNotNull(list);
+            Assert.AreNotEqual(0, list.Count);
+        }
+        [TestMethod]
+        public void Test_getAgentByAgentID_Success()
+        {
+            Agent agent = bus.getAgentByAgentID("AGENT00005");
+            Assert.IsNotNull(agent);
+            Assert.AreEqual("agent05@gmail.com", agent.Email);
+        }
+        [TestMethod]
+        public void Test_addAgent_Success()
+        {
+            string id = bus.generateAgentID();
+            Agent agent = new Agent()
+            {
+                AgentID = id,
+                AgentName = "Đại lý 8",
+                Address = "3, Hòa Bình, Phường 3, Quận 11, TP Hồ Chí Minh",
+                Phone = "090.686.3336",
+                Email = "agentTest@gmail.com",
+                Status = true,
+                MasterID = "MASTER0001"
+            };
+
+            bus.AddAgent(agent);
+            Agent agentTest = bus.getAgentByAgentID("AGENT00008");
+            Assert.IsNotNull(agentTest);
+            Assert.AreEqual("AGENT00008", agentTest.AgentID);
         }
 
         // merchant
@@ -88,7 +125,6 @@ namespace UnitTestProject
             string merID = bus.generateMerchantID();
             Assert.AreEqual("MERCH00011", merID);
         }
-
         [TestMethod]
         public void Test_getAllMerchant_Success()
         {
@@ -96,7 +132,6 @@ namespace UnitTestProject
             Assert.IsNotNull(list);
             Assert.AreNotEqual(0, list.Count);
         }
-
         [TestMethod]
         public void Test_getMerchantByMerchantID_Success()
         {
@@ -104,7 +139,6 @@ namespace UnitTestProject
             Assert.IsNotNull(_mer);
             Assert.AreEqual("merchant10@gmail.com", _mer.Email);
         }
-
         [TestMethod]
         public void Test_getMerchantByMerchantIDtoList_Success()
         {
@@ -113,7 +147,6 @@ namespace UnitTestProject
             Assert.AreNotEqual(0, list.Count);
             Assert.AreEqual("merchant10@gmail.com", list[0].Email);
         }
-
         [TestMethod]
         public void Test_addMerchant_Success()
         {
@@ -136,7 +169,6 @@ namespace UnitTestProject
             Assert.IsNotNull(merTest);
             Assert.AreEqual("MERCH00011", merTest.MerchantID);
         }
-
         [TestMethod]
         public void Test_updateMerchant_UnSuccess()
         {
@@ -157,7 +189,6 @@ namespace UnitTestProject
             string result = bus.updateMerchant(mer);
             Assert.AreEqual("Không có dữ liệu Merchant!", result);
         }
-
         [TestMethod]
         public void Test_updateMerchant_Success()
         {
@@ -178,14 +209,48 @@ namespace UnitTestProject
             string result = bus.updateMerchant(mer);
             Assert.AreEqual("Cập nhật Merchant thành công!", result);
         }
+        [TestMethod]
+        public void Test_getMerchantByAgent_Success()
+        {
+            IList<Merchant> list = bus.getMerchantByAgent("AGENT00001");
+            Assert.IsNotNull(list);
+            Assert.AreNotEqual(0, list.Count);
+            Assert.AreEqual(2, list.Count);
+        }
+        [TestMethod]
+        public void Test_getMerchantNotHaveAgent_Success()
+        {
+            IList<Merchant> list = bus.getMerchantNotHaveAgent();
+            Assert.IsNotNull(list);
+            Assert.AreNotEqual(0, list.Count);
+            Assert.AreEqual(1, list.Count);
+        }
+        [TestMethod]
+        public void Test_updateAgentforMerchant_AddSuccess()
+        {
+            bus.updateAgentforMerchant("MERCH00010", "AGENT00005");
+            IList<Merchant> list = bus.getMerchantByAgent("AGENT00005");
+            Assert.IsNotNull(list);
+            Assert.AreNotEqual(0, list.Count);
+            Assert.AreEqual(2, list.Count);
+        }
+        [TestMethod]
+        public void Test_updateAgentforMerchant_UpdateSuccess()
+        {
+            bus.updateAgentforMerchant("MERCH00010", "AGENT00001");
+            IList<Merchant> list = bus.getMerchantByAgent("AGENT00001");
+            Assert.IsNotNull(list);
+            Assert.AreNotEqual(0, list.Count);
+            Assert.AreEqual(3, list.Count);
+        }
 
+        //registrationForm
         [TestMethod]
         public void Test_generateRegID_Success()
         {
             string regID = bus.generateRegID();
             Assert.AreEqual("REG00002", regID);
         }
-
         [TestMethod]
         public void Test_addRegistrationForm_Success()
         {
@@ -203,51 +268,8 @@ namespace UnitTestProject
             Assert.IsNotNull(regTest);
             Assert.AreEqual("REG00002", regTest.RegID);
         }
-
-        [TestMethod]
-        public void Test_generateAgentID_Success()
-        {
-            string ageID = bus.generateAgentID();
-            Assert.AreEqual("AGENT00008", ageID);
-        }
-
-        [TestMethod]
-        public void Test_getAllAgent_Success()
-        {
-            IList<Agent> list = bus.GetAllAgent();
-            Assert.IsNotNull(list);
-            Assert.AreNotEqual(0, list.Count);
-        }
-
-        [TestMethod]
-        public void Test_getAgentByAgentID_Success()
-        {
-            Agent agent = bus.getAgentByAgentID("AGENT00005");
-            Assert.IsNotNull(agent);
-            Assert.AreEqual("agent05@gmail.com", agent.Email);
-        }
-
-        [TestMethod]
-        public void Test_addAgent_Success()
-        {
-            string id = bus.generateAgentID();
-            Agent agent = new Agent()
-            {
-                AgentID = id,
-                AgentName = "Đại lý 8",
-                Address = "3, Hòa Bình, Phường 3, Quận 11, TP Hồ Chí Minh",
-                Phone = "090.686.3336",
-                Email = "agentTest@gmail.com",
-                Status = true,
-                MasterID = "MASTER0001"
-            };
-
-            bus.AddAgent(agent);
-            Agent agentTest = bus.getAgentByAgentID("AGENT00008");
-            Assert.IsNotNull(agentTest);
-            Assert.AreEqual("AGENT00008", agentTest.AgentID);
-        }
-
+        
+        //notification
         [TestMethod]
         public void Test_getAllNotificationByReceiveID_Success()
         {
@@ -256,7 +278,6 @@ namespace UnitTestProject
             Assert.AreNotEqual(0, list.Count);
             Assert.AreEqual(4, list.Count);
         }
-
         [TestMethod]
         public void Test_getLastThreeNotificationByReceiveID_Success()
         {

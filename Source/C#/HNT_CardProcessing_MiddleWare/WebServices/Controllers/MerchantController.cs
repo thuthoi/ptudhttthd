@@ -40,7 +40,8 @@ namespace WebServices.Controllers
         [Route("api/merchant/getAll")]
         public HttpResponseMessage getAllMerchant()
         {
-            var list = bus.getAllMerchant().Select(c => new {
+            var list = bus.getAllMerchant().Select(c => new
+            {
                 c.MerchantID,
                 c.MerchantName,
                 c.Address,
@@ -50,7 +51,7 @@ namespace WebServices.Controllers
                 c.MerchantTypeID,
                 c.MerchantRegionID,
                 c.AgentID
-            }) ;
+            });
             return Request.CreateResponse(HttpStatusCode.OK, list);
         }
 
@@ -73,7 +74,6 @@ namespace WebServices.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, list);
         }
 
-
         [HttpGet]
         [Route("api/merchant/getAll_NotHave_Account")]
         public HttpResponseMessage getMerchant_NotHave_Account()
@@ -89,8 +89,54 @@ namespace WebServices.Controllers
                 c.MerchantTypeID,
                 c.MerchantRegionID,
                 c.AgentID
-            }) ;
+            });
             return Request.CreateResponse(HttpStatusCode.OK, list);
+        }
+
+        [HttpGet]
+        [Route("api/merchant/getMerchantByAgent/{agentID}")]
+        public HttpResponseMessage getMerchantByAgent(string agentID)
+        {
+            var list = bus.getMerchantByAgent(agentID).Select(c => new
+            {
+                c.MerchantID,
+                c.MerchantName,
+                c.Address,
+                c.Phone,
+                c.Email,
+                c.Status,
+                c.MerchantTypeID,
+                c.MerchantRegionID,
+                c.AgentID
+            });
+            return Request.CreateResponse(HttpStatusCode.OK, list);
+        }
+
+        [HttpGet]
+        [Route("api/merchant/getMerchantNotHaveAgent")]
+        public HttpResponseMessage getMerchantNotHaveAgent()
+        {
+            var list = bus.getMerchantNotHaveAgent().Select(c => new
+            {
+                c.MerchantID,
+                c.MerchantName,
+                c.Address,
+                c.Phone,
+                c.Email,
+                c.Status,
+                c.MerchantTypeID,
+                c.MerchantRegionID,
+                c.AgentID
+            });
+            return Request.CreateResponse(HttpStatusCode.OK, list);
+        }
+        
+        [HttpPut]
+        [Route("api/merchant/updateAgentforMerchant/{merchantID}/{agentID}")]
+        public HttpResponseMessage updateAgentforMerchant(string merchantID, string agentID)
+        {
+            bus.updateAgentforMerchant(merchantID, agentID);
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }
