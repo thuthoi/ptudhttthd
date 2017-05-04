@@ -19,7 +19,7 @@ namespace DomainModel
         public string OldPassword { get; set; }
         public string UserID { get; set; }
         public string Role { get; set; }
-    
+        public string Master_Agent_Merchant_Name { get; set; }
         public virtual Agent Agent { get; set; }
         public virtual Merchant Merchant { get; set; }
         public virtual Master Master { get; set; }

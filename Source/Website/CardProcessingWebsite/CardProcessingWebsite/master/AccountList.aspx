@@ -30,7 +30,7 @@
                             <table style="width: 100%" class="table table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Mã người dùng</th>
+                                        <th>Tên người dùng</th>
                                         <th>Tên đăng nhập</th>
                                         <th>Phân loại người dùng</th>
                                         <th></th>
@@ -43,7 +43,7 @@
                         </LayoutTemplate>
                         <ItemTemplate>
                             <tr>
-                                <td><%#Eval("UserID") %></td>
+                                <td><%#Eval("Master_Agent_Merchant_Name") %></td>
                                 <td><%#Eval("Username") %></td>
                                 <td><%#Eval("Role") %></td>
                             </tr>

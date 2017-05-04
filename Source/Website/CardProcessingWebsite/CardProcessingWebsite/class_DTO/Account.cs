@@ -12,5 +12,6 @@ namespace CardProcessingWebsite.class_DTO
         public string Password { get; set; }
         public string OldPassword { get; set; }
         public string Role { get; set; }
+        public string Master_Agent_Merchant_Name { get; set; }
     }
 }

@@ -40,10 +40,12 @@ namespace WebServices.Controllers
                 c.Username,
                 c.Password,
                 c.OldPassword,
-                c.Role
+                c.Role,
+                c.Master_Agent_Merchant_Name
+
             });
             //var _ac = bus.GetAccountBy_Username_Password(ac.Username, ac.Password);
-            if (list != null)
+            if (list.Count() != 0)
                 {
                     return Request.CreateResponse(
                          HttpStatusCode.OK,
@@ -65,7 +67,8 @@ namespace WebServices.Controllers
                 c.Username,
                 c.Password,
                 c.OldPassword,
-                c.Role
+                c.Role,
+                c.Master_Agent_Merchant_Name
             });
             return Request.CreateResponse(HttpStatusCode.OK, list);
         }

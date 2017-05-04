@@ -134,11 +134,31 @@ namespace BusinessLayer
             string en_pass = StringUtils.Md5(pass);
             return _accountRepository.GetList(
                             a => a.Username.Equals(username) &&
-                            a.Password.Equals(en_pass)); //include related agent
+                            a.Password.Equals(en_pass));
         }
         public IList<Account> getAllAccount()
         {
-            return _accountRepository.GetAll();
+            IList<Account> lst = _accountRepository.GetAll(acc => acc.Agent, acc => acc.Merchant, acc => acc.Master);
+            if (lst.Count != 0)
+            {
+                for (int i = 0; i < lst.Count;i ++ )
+                {
+                    if (lst[i].Role == "master")
+                    {
+                        lst[i].Master_Agent_Merchant_Name = lst[i].Master.MasterName;
+                    }
+                    else if (lst[i].Role == "agent")
+                    {
+                        lst[i].Master_Agent_Merchant_Name = lst[i].Agent.AgentName;
+                    }
+                    else if (lst[i].Role == "merchant")
+                    {
+                        lst[i].Master_Agent_Merchant_Name = lst[i].Merchant.MerchantName;
+                    }
+                }
+                    
+            }
+            return lst;
         }
         public bool Check_Account_UserName_Exist(string username)
         {

@@ -72,6 +72,7 @@
     <Content Include="assets\jquery-3.2.1.min.js" />
     <Content Include="bin\CardProcessingWebsite.dll" />
     <Content Include="bin\CardProcessingWebsite.pdb" />
+    <Content Include="Global.asax" />
     <Content Include="login\login.aspx" />
     <Content Include="assets\data\flot-data.js" />
     <Content Include="assets\data\morris-data.js" />
@@ -250,6 +251,9 @@
     <Compile Include="class_DTO\Merchant.cs" />
     <Compile Include="class_DTO\MerchantRegion.cs" />
     <Compile Include="class_DTO\MerchantType.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="helpers\CurrentContext.cs" />
     <Compile Include="helpers\localhost.cs" />
     <Compile Include="login\login.aspx.cs">
