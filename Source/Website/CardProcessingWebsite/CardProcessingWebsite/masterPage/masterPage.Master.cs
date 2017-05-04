@@ -54,10 +54,13 @@ namespace CardProcessingWebsite.masterPage
 
         protected void lblMerchantManagementforMaster_Click(object sender, EventArgs e)
         {
-                ChuyenTrang("~/master/merchantList.aspx");
+            ChuyenTrang("~/master/merchantList.aspx");
+        }
+        protected void lblAgentManagementforMaster_Click(object sender, EventArgs e)
+        {
+            ChuyenTrang("~/master/agentList.aspx");
         }
 
-        
         private void ChuyenTrang(string url)
         {
             string retUrl = Request.QueryString["retUrl"];
