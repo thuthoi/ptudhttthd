@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Import"
   DTS:PackageType="5"
-  DTS:VersionBuild="44"
-  DTS:VersionGUID="{BC42A51B-842A-4332-9F4F-2B74F53921A5}">
+  DTS:VersionBuild="46"
+  DTS:VersionGUID="{B2E84840-7548-4C40-8BD9-32C9A35D4635}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -44,7 +44,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="65001"
-          DTS:ConnectionString="C:\Users\Win7\Desktop\SSIS_Package_CardProcessing\import.xlsx">
+          DTS:ConnectionString="D:\bai tap\Cac Mon cua Lien thong\Nam II\HK II\Do an\He thong thong tin hien dai\Source\Source\SSIS\File import\import.csv">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -53,7 +53,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Customer"
-              DTS:DTSID="{AC000CB3-6B65-45D7-B867-8B6743D71D08}"
+              DTS:DTSID="{7492ECFC-0393-4B75-AB91-02318141DC3A}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -62,7 +62,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="ProductName"
-              DTS:DTSID="{68F0EC88-E13D-4550-9DC7-2E0457079EA6}"
+              DTS:DTSID="{B99F88D4-E676-40D3-B9B1-0F119C0D3CF7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -71,7 +71,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Price"
-              DTS:DTSID="{CA9E6C47-0C02-4E5C-9FCF-71797E445651}"
+              DTS:DTSID="{7F9B394E-4A4B-40E8-B14D-71B08F1CBF9C}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -80,7 +80,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="ProductNumber"
-              DTS:DTSID="{9568ACE9-320D-47C9-8575-5C7CF5536273}"
+              DTS:DTSID="{9F307DE5-2319-4EC9-AABA-CC9EAEA96E55}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -89,7 +89,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Amount"
-              DTS:DTSID="{92FE353C-4026-4517-8168-902FD8856788}"
+              DTS:DTSID="{0BF1152C-F224-44B0-93AD-A017CA8A147F}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -98,7 +98,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="TransactionType"
-              DTS:DTSID="{522DBFE0-340E-4317-AF78-97FD81EF4CA8}"
+              DTS:DTSID="{1A13C411-8610-4B30-96C3-303A043C813E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -107,7 +107,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="CreditCardID"
-              DTS:DTSID="{79DDA17C-BCB0-49AD-8284-20617D35D7B4}"
+              DTS:DTSID="{C946AA14-B3C0-453C-B8CF-53767318E1E3}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -116,7 +116,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="CreditCardType"
-              DTS:DTSID="{18D3BFEF-ADA1-4D7B-B2C5-BB47AFAE197F}"
+              DTS:DTSID="{AF543924-4E8E-49EE-94BE-64A606458D2E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -125,7 +125,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="MerchantID"
-              DTS:DTSID="{A89BE4FA-2521-4A1A-ADCD-4C7932B808BB}"
+              DTS:DTSID="{CA84BD8F-C28F-45BD-8B7B-D1783F14126C}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -134,7 +134,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="MerchantRegionID"
-              DTS:DTSID="{B0C95C1D-4388-42EA-AC67-A3439EDBAF40}"
+              DTS:DTSID="{D6D0FA53-F390-4B71-B3D0-C28426AB21EC}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -143,7 +143,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="MerchantTypeID"
-              DTS:DTSID="{49FFE7A5-5C1A-4CEA-9D3F-46CB5D290729}"
+              DTS:DTSID="{2DA81ADA-BC89-4CD2-A874-CF8DEB92E362}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -152,7 +152,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Date"
-              DTS:DTSID="{31C131FF-D50A-4D31-8EB7-E239B2AF318E}"
+              DTS:DTSID="{59428843-CD1E-49BF-88D9-D657C8228D47}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -167,7 +167,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="file_path_import">
       <DTS:VariableValue
-        DTS:DataType="8">C:\Users\Win7\Desktop\SSIS_Package_CardProcessing\import.xlsx</DTS:VariableValue>
+        DTS:DataType="8">D:\bai tap\Cac Mon cua Lien thong\Nam II\HK II\Do an\He thong thong tin hien dai\Source\Source\SSIS\File import\import.csv</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -896,7 +896,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{AD2660DF-D666-425D-AAD1-A68E6A9F5DFD}"
-          SQLTask:SqlStatementSource="EXEC USP_Tao_DailyReport" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="EXEC USP_TinhToan_LuuDuLieu_BaoCao" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -1018,33 +1018,21 @@
         <NodeLayout
           Size="244,42"
           Id="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp"
-          TopLeft="186,186" />
+          TopLeft="167,176" />
         <EdgeLayout
           Id="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp.Paths[Flat File Source Output]"
-          TopLeft="293.5,59">
+          TopLeft="291.25,59">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="14.5,127"
+              EndConnector="0,117"
               Start="0,0"
-              End="14.5,119.5">
+              End="0,109.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,59.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,59.5"
-                    Point2="0,63.5"
-                    Point3="4,63.5" />
-                  <mssgle:LineSegment
-                    End="10.5,63.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="10.5,63.5"
-                    Point2="14.5,63.5"
-                    Point3="14.5,67.5" />
-                  <mssgle:LineSegment
-                    End="14.5,119.5" />
+                    End="0,109.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
