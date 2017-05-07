@@ -1,0 +1,1073 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/6/2017 2:37:35 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WIN7-PC"
+  DTS:CreatorName="Win7-PC\Win7"
+  DTS:DTSID="{5A23A827-E085-4512-B6EA-A4C7180B64A0}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.2430.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Import"
+  DTS:PackageType="5"
+  DTS:VersionBuild="44"
+  DTS:VersionGUID="{BC42A51B-842A-4332-9F4F-2B74F53921A5}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[database CardProcessing_HTTT_HNT]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{AD2660DF-D666-425D-AAD1-A68E6A9F5DFD}"
+      DTS:ObjectName="database CardProcessing_HTTT_HNT">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">"Data Source=" + @[User::ServerName] + ";Initial Catalog=" + @[User::InitiCatalog] + ";Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=WIN7-PC\SQLEXPRESS;Initial Catalog=CardProcessing_HTTT_HNT;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[File Import Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{9F11A8A7-8458-4B09-848E-0287FED4794E}"
+      DTS:ObjectName="File Import Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::file_path_import]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="65001"
+          DTS:ConnectionString="C:\Users\Win7\Desktop\SSIS_Package_CardProcessing\import.xlsx">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Customer"
+              DTS:DTSID="{AC000CB3-6B65-45D7-B867-8B6743D71D08}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ProductName"
+              DTS:DTSID="{68F0EC88-E13D-4550-9DC7-2E0457079EA6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Price"
+              DTS:DTSID="{CA9E6C47-0C02-4E5C-9FCF-71797E445651}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ProductNumber"
+              DTS:DTSID="{9568ACE9-320D-47C9-8575-5C7CF5536273}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Amount"
+              DTS:DTSID="{92FE353C-4026-4517-8168-902FD8856788}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TransactionType"
+              DTS:DTSID="{522DBFE0-340E-4317-AF78-97FD81EF4CA8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CreditCardID"
+              DTS:DTSID="{79DDA17C-BCB0-49AD-8284-20617D35D7B4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CreditCardType"
+              DTS:DTSID="{18D3BFEF-ADA1-4D7B-B2C5-BB47AFAE197F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="MerchantID"
+              DTS:DTSID="{A89BE4FA-2521-4A1A-ADCD-4C7932B808BB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="MerchantRegionID"
+              DTS:DTSID="{B0C95C1D-4388-42EA-AC67-A3439EDBAF40}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="MerchantTypeID"
+              DTS:DTSID="{49FFE7A5-5C1A-4CEA-9D3F-46CB5D290729}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Date"
+              DTS:DTSID="{31C131FF-D50A-4D31-8EB7-E239B2AF318E}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{38F8CC75-D410-4B76-B8DE-2AEB8630B0AD}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="file_path_import">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\Win7\Desktop\SSIS_Package_CardProcessing\import.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1279B982-1C25-4B80-AD6C-67A924469EBF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="InitiCatalog">
+      <DTS:VariableValue
+        DTS:DataType="8">CardProcessing_HTTT_HNT</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2EA6B976-6724-4C40-808C-221B7FEEFE45}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ServerName">
+      <DTS:VariableValue
+        DTS:DataType="8">WIN7-PC\SQLEXPRESS</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{8E10AA4E-7216-4A69-B0E8-6C86229A4573}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Lưu dữ liệu bảng tạm TransactionDetail_Temp"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Bảng tạm TransactionDetail_Temp"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[TransactionDetail_Temp]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">65001</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[database CardProcessing_HTTT_HNT]"
+                  connectionManagerRefId="Package.ConnectionManagers[database CardProcessing_HTTT_HNT]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].Columns[Price]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Price"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[Price]"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[Price]" />
+                    <inputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].Columns[ProductNumber]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ProductNumber"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[ProductNumber]"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[ProductNumber]" />
+                    <inputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].Columns[Amount]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Amount"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[Amount]"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[Amount]" />
+                    <inputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].Columns[Date]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Date"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[Date]" />
+                    <inputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].Columns[CreditCardID]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CreditCardID"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[CreditCardID]"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[CreditCardID]" />
+                    <inputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].Columns[CreditCardType]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CreditCardType"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[CreditCardType]"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[CreditCardType]" />
+                    <inputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].Columns[MerchantID]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="MerchantID"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[MerchantID]"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[MerchantID]" />
+                    <inputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].Columns[MerchantTypeID]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="MerchantTypeID"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[MerchantTypeID]"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[MerchantTypeID]" />
+                    <inputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].Columns[TransactionType]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TransactionType"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[TransactionType]"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[TransactionType]" />
+                    <inputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].Columns[MerchantRegionID]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="MerchantRegionID"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[MerchantRegionID]"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[MerchantRegionID]" />
+                    <inputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].Columns[Customer]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Customer"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[Customer]"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[Customer]" />
+                    <inputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].Columns[ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ProductName"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[ProductName]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[TransactionID]"
+                      dataType="i4"
+                      name="TransactionID" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[Customer]"
+                      dataType="wstr"
+                      length="255"
+                      name="Customer" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
+                      dataType="wstr"
+                      length="255"
+                      name="ProductName" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[Price]"
+                      dataType="numeric"
+                      name="Price"
+                      precision="18" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[ProductNumber]"
+                      dataType="i4"
+                      name="ProductNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[Amount]"
+                      dataType="numeric"
+                      name="Amount"
+                      precision="18" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[TransactionType]"
+                      codePage="65001"
+                      dataType="str"
+                      length="255"
+                      name="TransactionType" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[CreditCardID]"
+                      codePage="65001"
+                      dataType="str"
+                      length="255"
+                      name="CreditCardID" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[CreditCardType]"
+                      codePage="65001"
+                      dataType="str"
+                      length="255"
+                      name="CreditCardType" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[MerchantID]"
+                      codePage="65001"
+                      dataType="str"
+                      length="10"
+                      name="MerchantID" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[MerchantRegionID]"
+                      codePage="65001"
+                      dataType="str"
+                      length="10"
+                      name="MerchantRegionID" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[MerchantTypeID]"
+                      codePage="65001"
+                      dataType="str"
+                      length="10"
+                      name="MerchantTypeID" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
+                      dataType="dbTimeStamp"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input].ExternalColumns[Complete]"
+                      dataType="bool"
+                      name="Complete" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="File import"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[File Import Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[File Import Connection Manager]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[Customer]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[Customer]"
+                      length="255"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[Customer]"
+                      name="Customer"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[ProductName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[ProductName]"
+                      length="255"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[ProductName]"
+                      name="ProductName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[Price]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[Price]"
+                      length="50"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[Price]"
+                      name="Price"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[ProductNumber]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[ProductNumber]"
+                      length="50"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[ProductNumber]"
+                      name="ProductNumber"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[Amount]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[Amount]"
+                      length="50"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[Amount]"
+                      name="Amount"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[TransactionType]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[TransactionType]"
+                      length="50"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[TransactionType]"
+                      name="TransactionType"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[CreditCardID]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[CreditCardID]"
+                      length="50"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[CreditCardID]"
+                      name="CreditCardID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[CreditCardType]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[CreditCardType]"
+                      length="50"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[CreditCardType]"
+                      name="CreditCardType"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[MerchantID]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[MerchantID]"
+                      length="10"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[MerchantID]"
+                      name="MerchantID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[MerchantRegionID]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[MerchantRegionID]"
+                      length="10"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[MerchantRegionID]"
+                      name="MerchantRegionID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[MerchantTypeID]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[MerchantTypeID]"
+                      length="10"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[MerchantTypeID]"
+                      name="MerchantTypeID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[Date]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[Date]"
+                      length="50"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].Columns[Date]"
+                      name="Date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[Customer]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="Customer" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[ProductName]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="ProductName" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[Price]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="Price" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[ProductNumber]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="ProductNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[Amount]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="Amount" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[TransactionType]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="TransactionType" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[CreditCardID]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="CreditCardID" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[CreditCardType]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="CreditCardType" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[MerchantID]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="MerchantID" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[MerchantRegionID]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="MerchantRegionID" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[MerchantTypeID]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="MerchantTypeID" />
+                    <externalMetadataColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output].ExternalColumns[Date]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="Date" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="65001"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp.Paths[Flat File Source Output]"
+              endId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp.Inputs[OLE DB Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tính toán và lưu dữ liệu"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{4BD4DA9A-DEFB-4D0D-ADDD-5C5FAE11636A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tính toán và lưu dữ liệu"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AD2660DF-D666-425D-AAD1-A68E6A9F5DFD}"
+          SQLTask:SqlStatementSource="EXEC USP_Tao_DailyReport" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Xóa dữ liệu bảng TransactionDetail_Temp"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6D2F0BBF-85E6-460D-9623-78B91412528A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Xóa dữ liệu bảng TransactionDetail_Temp"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AD2660DF-D666-425D-AAD1-A68E6A9F5DFD}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE TransactionDetail_Temp" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{955CBE4C-0027-44BE-97C4-40136D11374F}"
+      DTS:From="Package\Xóa dữ liệu bảng TransactionDetail_Temp"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{25A2581C-5FFA-4A0F-9742-7AA9DCCEEAF8}"
+      DTS:From="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Tính toán và lưu dữ liệu" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="300,42"
+          Id="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp"
+          TopLeft="250,154" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Tính toán và lưu dữ liệu"
+          TopLeft="299,233" />
+        <NodeLayout
+          Size="278,42"
+          Id="Package\Xóa dữ liệu bảng TransactionDetail_Temp"
+          TopLeft="260,54" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="399.5,96">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="398,196">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37"
+              Start="0,0"
+              End="0,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="131,42"
+          Id="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\File import"
+          TopLeft="228,17" />
+        <NodeLayout
+          Size="244,42"
+          Id="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp"
+          TopLeft="186,186" />
+        <EdgeLayout
+          Id="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp.Paths[Flat File Source Output]"
+          TopLeft="293.5,59">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14.5,127"
+              Start="0,0"
+              End="14.5,119.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,59.5"
+                    Point2="0,63.5"
+                    Point3="4,63.5" />
+                  <mssgle:LineSegment
+                    End="10.5,63.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10.5,63.5"
+                    Point2="14.5,63.5"
+                    Point3="14.5,67.5" />
+                  <mssgle:LineSegment
+                    End="14.5,119.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Lưu dữ liệu bảng tạm TransactionDetail_Temp\Bảng tạm TransactionDetail_Temp">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
