@@ -122,14 +122,15 @@ namespace App_Import_SSIS_Package_CardProcessing
 
         private void Import_File(string Server_name, string Database_name, string Dir_path, string File_path)
         {
+            File_path = File_path.Replace(@"\", "\\");
+            File_path = "\"" + File_path + "\"";
             foreach (ListViewItem import_file_name in lv_sub_folder_import.Items)
             {
                 string file_import_path = Dir_path.Replace(@"\", "\\");
-                file_import_path = "\"" + file_import_path + "\"";
+                
                 file_import_path += string.Format("\\{0}", import_file_name.Text);
-
-                File_path = File_path.Replace(@"\", "\\");
-                File_path = "\"" + File_path + "\"";
+                file_import_path = "\"" + file_import_path + "\"";
+                
 
                 string lenh_comandline = string.Format(@"/C dtexec -f {0} /set \package.variables[file_path_import];{1} /set \package.variables[ServerName];{2}  /set \package.variables[InitiCatalog];{3}",
                                                         File_path, file_import_path,
