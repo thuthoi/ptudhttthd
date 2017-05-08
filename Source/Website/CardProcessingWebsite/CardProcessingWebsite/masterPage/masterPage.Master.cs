@@ -15,9 +15,6 @@ namespace CardProcessingWebsite.masterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "ShowPopup();", true);
-           // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
-           // ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
             if (CurrentContext.IsLogged())
             {
                 string role = CurrentContext.GetCurUser().Role.ToString();
@@ -55,6 +52,16 @@ namespace CardProcessingWebsite.masterPage
             if (CurrentContext.GetCurUser().Role.ToString() == "merchant")
             {
                 ChuyenTrang("~/merchant/profileMerchant.aspx");
+            }
+
+            if (CurrentContext.GetCurUser().Role.ToString() == "agent")
+            {
+                ChuyenTrang("~/agent/profileAgent.aspx");
+            }
+
+            if (CurrentContext.GetCurUser().Role.ToString() == "master")
+            {
+                ChuyenTrang("~/master/profileMaster.aspx");
             }
         }
 

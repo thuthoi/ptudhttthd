@@ -97,6 +97,11 @@ namespace BusinessLayer
         }
 
 
+        public IList<Agent> getAgentByAgentIDtoList(string id)
+        {
+            return _agentRepository.GetAll().Where(a => a.AgentID == id).Take(1).ToList();
+        }
+
         //Account
         public void AddAccount(Account account)
         {
@@ -306,6 +311,11 @@ namespace BusinessLayer
         public IList<Master> getMaster_NotHave_Account()
         {
             return _masterRepository.GetAll(c => c.Accounts).Where(m => m.Accounts.Count == 0).ToList();
+        }
+
+        public IList<Master> getMasterByMasterID(string id)
+        {
+            return _masterRepository.GetAll().Where(m => m.MasterID == id).Take(1).ToList();
         }
 
         //Notification

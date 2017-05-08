@@ -67,6 +67,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="agent\profileAgent.aspx" />
     <Content Include="agent\reportAgent.aspx" />
     <Content Include="assets\jquery-2.1.4.min.js" />
     <Content Include="assets\jquery-3.2.1.min.js" />
@@ -222,6 +223,7 @@
     <Content Include="assets\vendor\font-awesome\scss\_variables.scss" />
     <Content Include="master\AccountList.aspx" />
     <Content Include="master\agentList.aspx" />
+    <Content Include="master\profileMaster.aspx" />
     <Content Include="master\reportMaster.aspx" />
     <Content Include="merchant\profileMerchant.aspx" />
     <Content Include="merchant\reportMerchant.aspx" />
@@ -238,6 +240,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="agent\profileAgent.aspx.cs">
+      <DependentUpon>profileAgent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="agent\profileAgent.aspx.designer.cs">
+      <DependentUpon>profileAgent.aspx</DependentUpon>
+    </Compile>
     <Compile Include="agent\reportAgent.aspx.cs">
       <DependentUpon>reportAgent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -290,6 +299,13 @@
     </Compile>
     <Compile Include="master\agentList.aspx.designer.cs">
       <DependentUpon>agentList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="master\profileMaster.aspx.cs">
+      <DependentUpon>profileMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="master\profileMaster.aspx.designer.cs">
+      <DependentUpon>profileMaster.aspx</DependentUpon>
     </Compile>
     <Compile Include="master\reportMaster.aspx.cs">
       <DependentUpon>reportMaster.aspx</DependentUpon>

@@ -61,5 +61,22 @@ namespace WebServices.Controllers
             });
             return Request.CreateResponse(HttpStatusCode.OK, list);
         }
+
+        [HttpGet]
+        [Route("api/agent/getProfileAgent/{agentID}")]
+        public HttpResponseMessage getProfileAgent(string agentID)
+        {
+            //Lý do chọn thuộc tính để lấy, có những thuộc tính là object không đọc được
+            var list = bus.getAgentByAgentIDtoList(agentID).Select(a => new
+            {
+                a.Address,
+                a.AgentID,
+                a.AgentName,
+                a.Email,
+                a.Phone
+           
+            });
+            return Request.CreateResponse(HttpStatusCode.OK, list);
+        }
     }
 }

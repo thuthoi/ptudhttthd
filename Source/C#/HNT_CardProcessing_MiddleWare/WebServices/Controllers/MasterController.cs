@@ -34,5 +34,22 @@ namespace WebServices.Controllers
             });
             return Request.CreateResponse(HttpStatusCode.OK, list);
         }
+
+
+        [HttpGet]
+        [Route("api/master/getProfileMaster/{masterID}")]
+        public HttpResponseMessage getProfileMaster(string masterID)
+        {
+            //Lý do chọn thuộc tính để lấy, có những thuộc tính là object không đọc được
+            var list = bus.getMasterByMasterID(masterID).Select(m => new
+            {
+                m.Email,
+                m.MasterID,
+                m.MasterName,
+                m.Phone
+
+            });
+            return Request.CreateResponse(HttpStatusCode.OK, list);
+        }
     }
 }

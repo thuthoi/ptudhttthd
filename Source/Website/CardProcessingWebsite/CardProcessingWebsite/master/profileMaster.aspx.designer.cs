@@ -7,19 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CardProcessingWebsite.merchant {
+namespace CardProcessingWebsite.master {
     
     
-    public partial class profileMerchant {
+    public partial class profileMaster {
         
         /// <summary>
-        /// lblMerchantID control.
+        /// lblMasterID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMerchantID;
+        protected global::System.Web.UI.WebControls.Label lblMasterID;
         
         /// <summary>
         /// lblName control.
@@ -29,15 +29,6 @@ namespace CardProcessingWebsite.merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblName;
-        
-        /// <summary>
-        /// lblAddress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAddress;
         
         /// <summary>
         /// lblPhone control.
