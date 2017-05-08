@@ -118,13 +118,15 @@ namespace BusinessLayer
         public string ChangePassword(Account account)
         {
             Account acc = _accountRepository.GetSingle(a => a.Username == account.Username);
-            if (acc.Password != account.OldPassword)
+
+            string opw = StringUtils.Md5(account.OldPassword);
+            if (acc.Password != opw)
             {
                 return "Mật khẩu cũ không trùng khớp!";
             }
             else
             {
-                acc.Password = account.Password;
+                acc.Password = StringUtils.Md5(account.Password);
                 _accountRepository.Update(acc);
                 return "Đổi mật khẩu thành công!";
             }

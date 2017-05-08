@@ -21,6 +21,24 @@
         </asp:ContentPlaceHolder>
     </title>
 
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+        function openModal() {
+            $('#changePasswordModal').modal('show');
+        }
+
+        $(function () {
+            $('#changePasswordModal').on('hidden.bs.modal', function (e) {
+                document.getElementById("successDisplay").style["display"] = "none";
+                document.getElementById("failDisplay").style["display"] = "none";
+                $('#form').trigger("reset");
+            });
+        });
+    </script>  
+
 </head>
 <body>
     <form runat="server">
@@ -89,7 +107,7 @@
                             <li>
                                 <asp:LinkButton ID="btnProfile" runat="server" OnClick="btnProfile_Click"><i class="fa fa-user fa-fw"></i>User Profile</asp:LinkButton>
                             </li>
-                            <li><a href="#"><i class="fa fa-gear fa-fw"></i>Change Password</a>
+                            <li><a href="#" data-toggle="modal" data-target="#changePasswordModal" data-backdrop="static" data-keyboard="false"><i class="fa fa-gear fa-fw"></i>Change Password</a>
                             </li>
                             <li class="divider"></li>
                             <li>
@@ -176,11 +194,79 @@
 
         </div>
         <!-- /#wrapper -->
-    </form>
 
-    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+
+        <%-- Modal Add merchant--%>
+        <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Change Password</h4>
+                    </div>
+                    <div class="modal-body form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Old Password</label>
+                            <div class="col-sm-5">
+                                <asp:TextBox ID="txtOldPassword" TextMode="Password" runat="server" CssClass="form-control"></asp:TextBox>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorOPW" runat="server" ControlToValidate="txtOldPassword" ForeColor="Red" text-align="left" >* Required</asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">New Password</label>
+                            <div class="col-sm-5">
+                                <asp:TextBox ID="txtNewPassword" TextMode="Password" runat="server" CssClass="form-control"></asp:TextBox>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorNPW" runat="server" ControlToValidate="txtNewPassword" ForeColor="Red" text-align="left" >* Required</asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Confirm New Password</label>
+                            <div class="col-sm-5">
+                                <asp:TextBox ID="txtConfirmNewPassword" TextMode="Password" runat="server" CssClass="form-control"></asp:TextBox>
+                                
+                            </div>
+                            <div class="col-sm-3" >
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorCNPW" runat="server" ControlToValidate="txtConfirmNewPassword" ForeColor="Red" Display="dynamic" text-align="left">* Required</asp:RequiredFieldValidator>
+                                <asp:CompareValidator ID="CompareValidatorConfirmPW" runat="server"
+                                    ControlToValidate="txtConfirmNewPassword"
+                                    CssClass="ValidationError"
+                                    ControlToCompare="txtNewPassword"
+                                    ErrorMessage="* No Match"
+                                    ToolTip="Password must be the same" ForeColor="Red" Display="dynamic" text-align="left"></asp:CompareValidator>
+                            </div>
+                        </div>
+                   
+
+                        <div id="successDisplay" runat="server" class="alert alert-success" style="margin-bottom:0px; display: none;">
+                            <strong>Đổi mật khẩu thành công!</strong> Bạn đã đổi thành công mật khẩu mới.
+                        </div>
+
+                       
+                        <div id="failDisplay" runat="server" class="alert alert-danger" style="margin-bottom:0px; display: none;" >
+                            <strong>Đổi mật khẩu thất bại!</strong> Mật khấu cũ không trùng khớp.
+                        </div>
+            
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <asp:LinkButton ID="btnChangePassword" runat="server" CssClass="btn btn-primary" OnClick="btnChangePassword_Click">
+                        Change Password
+                        </asp:LinkButton>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form> 
+
+    <%--<script src="../assets/vendor/jquery/jquery.min.js"></script>--%>
     <script src="../assets/vendor/metisMenu/metisMenu.min.js"></script>
-    <script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <%--<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>--%>
     <script src="../assets/dist/js/sb-admin-2.js"></script>
     <script src="../assets/vendor/morrisjs/morris.min.js"></script>
     <script src="../assets/data/morris-data.js"></script>

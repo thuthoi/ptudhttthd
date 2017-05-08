@@ -2,6 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -12,6 +15,9 @@ namespace CardProcessingWebsite.masterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "ShowPopup();", true);
+           // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
+           // ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
             if (CurrentContext.IsLogged())
             {
                 string role = CurrentContext.GetCurUser().Role.ToString();
@@ -69,5 +75,47 @@ namespace CardProcessingWebsite.masterPage
 
             Response.Redirect(retUrl);
         }
+
+        protected void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            failDisplay.Style.Add("display", "none");
+            successDisplay.Style.Add("display", "none");
+
+            using (var c = new HttpClient())
+            {
+                c.DefaultRequestHeaders.Accept.Clear();
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                string url = localhost.hostname() + "api/account/changepassword";
+                var response = c.PostAsJsonAsync(url, new
+                {
+                    Username = CurrentContext.GetCurUser().Username.ToString(),
+                    Password = txtNewPassword.Text.Trim(),
+                    OldPassword = txtOldPassword.Text.Trim(),
+                }).Result;
+                string rest = "";
+                using (HttpContent content = response.Content)
+                {
+                    // ... Read the string.
+                    Task<string> result = content.ReadAsStringAsync();
+                    rest = result.Result;
+                }
+
+                if (rest == "\"Mật khẩu cũ không trùng khớp!\"")
+                {
+                    failDisplay.Style.Add("display", "block");
+                    
+                }
+                else
+                {
+                    successDisplay.Style.Add("display", "block");
+                }
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+      
+            }
+        
+        }
+
     }
 }
