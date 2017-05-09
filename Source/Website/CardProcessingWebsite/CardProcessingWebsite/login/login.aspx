@@ -15,6 +15,24 @@
     <link href="../assets/dist/css/sb-admin-2.css" rel="stylesheet" />
     <link href="../assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
+	<script src="../assets/vendor/jquery/jquery.min.js"></script>
+	<script type="text/javascript">
+        function doClick(btnLogin, e) {
+            var key;
+            if (window.event)
+                key = window.event.keyCode;
+            else
+                key = e.which;
+            if (key == 13) {
+                var btn = document.getElementById(btnLogin);
+                if (btn != null) {
+                    btn.click();
+                    event.keyCode = 0
+                }
+            }
+        }
+    </script>
+	
     <title></title>
 </head>
 <body>
@@ -59,7 +77,7 @@
             </div>
         </div>
     </form>
-    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+   
     <script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/vendor/metisMenu/metisMenu.min.js"></script>
     <script src="../assets/dist/js/sb-admin-2.js"></script>

@@ -18,7 +18,8 @@ namespace CardProcessingWebsite
         {
             if (IsPostBack == false)
             {
-                
+                txtPassWord.Attributes.Add("onKeyPress", "doClick('" + btnLogin.ClientID + "',event)");
+				txtUserName.Attributes.Add("onKeyPress", "doClick('" + btnLogin.ClientID + "',event)");
             }
         }
 
