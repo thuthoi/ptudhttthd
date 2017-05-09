@@ -160,7 +160,7 @@ namespace CardProcessingWebsite
         }
 
         protected void listMerchant_ItemCommand(object sender, ListViewCommandEventArgs e)
-        {                        
+        {
             if (e.CommandName.Equals("EditMerchant"))
             {
                 string merchantID = e.CommandArgument.ToString();
@@ -172,15 +172,15 @@ namespace CardProcessingWebsite
                     var response = c.GetAsync(url).Result;
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
-                        var merchant = response.Content.ReadAsAsync<Merchant>().Result;
-                        txtMerchantIDE.Text = merchant.MerchantID;
-                        txtMerchantNameE.Text = merchant.MerchantName;
-                        txtAddressE.Text = merchant.Address;
-                        txtPhoneE.Text = merchant.Phone;
-                        txtEmailE.Text = merchant.Email;
-                        cboAgentE.SelectedValue = merchant.AgentID;
-                        cboMerchantRegionE.SelectedValue = merchant.MerchantRegionID;
-                        cboMerchantTypeE.SelectedValue = merchant.MerchantTypeID;
+                        var merchant = response.Content.ReadAsAsync<Merchant[]>().Result;
+                        txtMerchantIDE.Text = merchant[0].MerchantID;
+                        txtMerchantNameE.Text = merchant[0].MerchantName;
+                        txtAddressE.Text = merchant[0].Address;
+                        txtPhoneE.Text = merchant[0].Phone;
+                        txtEmailE.Text = merchant[0].Email;
+                        cboAgentE.SelectedValue = merchant[0].AgentID;
+                        cboMerchantRegionE.SelectedValue = merchant[0].MerchantRegionID;
+                        cboMerchantTypeE.SelectedValue = merchant[0].MerchantTypeID;
                     }
 
                     string script = "$('#editMerchantModal').modal('show');";
@@ -205,15 +205,15 @@ namespace CardProcessingWebsite
                     var response = c.GetAsync(url).Result;
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
-                        var merchant = response.Content.ReadAsAsync<Merchant>().Result;
-                        txtMerchantIDE.Text = merchant.MerchantID;
-                        txtMerchantNameE.Text = merchant.MerchantName;
-                        txtAddressE.Text = merchant.Address;
-                        txtPhoneE.Text = merchant.Phone;
-                        txtEmailE.Text = merchant.Email;
-                        cboAgentE.SelectedValue = merchant.AgentID;
-                        cboMerchantRegionE.SelectedValue = merchant.MerchantRegionID;
-                        cboMerchantTypeE.SelectedValue = merchant.MerchantTypeID;
+                        var merchant = response.Content.ReadAsAsync<Merchant[]>().Result;
+                        txtMerchantIDE.Text = merchant[0].MerchantID;
+                        txtMerchantNameE.Text = merchant[0].MerchantName;
+                        txtAddressE.Text = merchant[0].Address;
+                        txtPhoneE.Text = merchant[0].Phone;
+                        txtEmailE.Text = merchant[0].Email;
+                        cboAgentE.SelectedValue = merchant[0].AgentID;
+                        cboMerchantRegionE.SelectedValue = merchant[0].MerchantRegionID;
+                        cboMerchantTypeE.SelectedValue = merchant[0].MerchantTypeID;
                     }
 
                     string script = "$('#editMerchantModal').modal('show');";

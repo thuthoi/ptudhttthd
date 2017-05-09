@@ -52,12 +52,12 @@
                                 <td><%#Eval("Phone") %></td>
                                 <td><%#Eval("Email") %></td>
                                 <td style="text-align: center">
-                                    <asp:LinkButton ID="btnEdit" runat="server" ToolTip="Chỉnh sửa" CssClass="btn btn-success btn-xs" CommandName="EditMerchant" CommandArgument='<%# Eval("MerchantID") %>'>
+                                    <asp:LinkButton ID="btnEdit" runat="server" CausesValidation="false" ToolTip="Chỉnh sửa" CssClass="btn btn-success btn-xs" CommandName="EditMerchant" CommandArgument='<%# Eval("MerchantID") %>'>
                                         <i class="fa fa-pencil"></i>
                                     </asp:LinkButton>                                    
                                 </td>
                                 <td style="text-align: center">
-                                    <asp:LinkButton ID="btnDelete" runat="server" ToolTip="Xóa" CommandName="Delete" CssClass="btn btn-danger btn-xs">
+                                    <asp:LinkButton ID="btnDelete" runat="server" CausesValidation="false" ToolTip="Xóa" CommandName="Delete" CssClass="btn btn-danger btn-xs">
                                         <i class="fa fa-remove"></i>
                                     </asp:LinkButton>
                                 </td>
