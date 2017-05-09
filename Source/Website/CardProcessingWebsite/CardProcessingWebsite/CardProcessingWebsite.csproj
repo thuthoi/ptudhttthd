@@ -74,6 +74,8 @@
     <Content Include="bin\CardProcessingWebsite.dll" />
     <Content Include="bin\CardProcessingWebsite.pdb" />
     <Content Include="Global.asax" />
+    <Content Include="images\edit.png" />
+    <Content Include="images\trash.png" />
     <Content Include="login\login.aspx" />
     <Content Include="assets\data\flot-data.js" />
     <Content Include="assets\data\morris-data.js" />

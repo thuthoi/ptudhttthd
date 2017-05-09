@@ -25,9 +25,9 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <asp:ListView runat="server" ID="listMerchant">
+                    <asp:ListView runat="server" ID="listMerchant" DataKeyNames="MerchantID" OnItemCommand="listMerchant_ItemCommand1">
                         <LayoutTemplate>
-                            <table style="width: 100%" class="table table-striped table-bordered table-hover">
+                            <table style="width: 100%" class="table table-striped table-bordered table-hover" id="tableMerchant">
                                 <thead>
                                     <tr>
                                         <th>Mã</th>
@@ -35,7 +35,8 @@
                                         <th>Địa chỉ</th>
                                         <th>SĐT</th>
                                         <th>Email</th>
-                                        <th></th>
+                                        <th>&nbsp;</th>
+                                        <th>&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -50,6 +51,16 @@
                                 <td><%#Eval("Address") %></td>
                                 <td><%#Eval("Phone") %></td>
                                 <td><%#Eval("Email") %></td>
+                                <td style="text-align: center">
+                                    <asp:LinkButton ID="btnEdit" runat="server" ToolTip="Chỉnh sửa" CssClass="btn btn-success btn-xs" CommandName="EditMerchant" CommandArgument='<%# Eval("MerchantID") %>'>
+                                        <i class="fa fa-pencil"></i>
+                                    </asp:LinkButton>                                    
+                                </td>
+                                <td style="text-align: center">
+                                    <asp:LinkButton ID="btnDelete" runat="server" ToolTip="Xóa" CommandName="Delete" CssClass="btn btn-danger btn-xs">
+                                        <i class="fa fa-remove"></i>
+                                    </asp:LinkButton>
+                                </td>
                             </tr>
                         </ItemTemplate>
                         <EmptyItemTemplate>
@@ -62,7 +73,7 @@
     </div>
 
     <%-- Modal Add merchant--%>
-    <div class="modal fade" id="addMerchantModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addMerchantModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -126,12 +137,83 @@
             </div>
         </div>
     </div>
+
+    <%-- Modal Update merchant--%>
+    <div class="modal fade" id="editMerchantModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabelE">Cập nhật Merchant</h4>
+                </div>
+                <div class="modal-body form-horizontal">
+                    <div class="form-group">
+                        <label for="<%=txtMerchantNameE.ClientID %>" class="col-sm-2 control-label">Tên Merchant:</label>
+                        <div class="col-sm-8">
+                            <asp:TextBox ID="txtMerchantIDE" runat="server" Visible="false"></asp:TextBox>
+                            <asp:TextBox ID="txtMerchantNameE" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                        <div class="col-sm-2">
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtMerchantName" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="<%=txtAddressE.ClientID %>" class="col-sm-2 control-label">Địa chỉ:</label>
+                        <div class="col-sm-8">
+                            <asp:TextBox ID="txtAddressE" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                        <div class="col-sm-2">
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtAddress" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="<%=txtPhoneE.ClientID %>" class="col-sm-2 control-label">SĐT:</label>
+                        <div class="col-sm-3">
+                            <asp:TextBox ID="txtPhoneE" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                        <label for="<%=txtEmailE.ClientID %>" class="col-sm-2 control-label">Email:</label>
+                        <div class="col-sm-5">
+                            <asp:TextBox ID="txtEmailE" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="<%=cboMerchantTypeE.ClientID %>" class="col-sm-2 control-label">Loại:</label>
+                        <div class="col-sm-3">
+                            <asp:DropDownList ID="cboMerchantTypeE" runat="server" CssClass="form-control selectpicker">
+                            </asp:DropDownList>
+                        </div>
+                        <label for="<%=cboMerchantRegionE.ClientID %>" class="col-sm-2 control-label">Khu vực:</label>
+                        <div class="col-sm-2">
+                            <asp:DropDownList ID="cboMerchantRegionE" runat="server" CssClass="form-control selectpicker">
+                            </asp:DropDownList>
+                        </div>
+                        <label for="<%=cboAgentE.ClientID %>" class="col-sm-1 control-label">Agent:</label>
+                        <div class="col-sm-2">
+                            <asp:DropDownList ID="cboAgentE" runat="server" CssClass="form-control selectpicker">
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <asp:LinkButton ID="btnUpdate" runat="server" CssClass="btn btn-primary" OnClick="btnUpdate_Click">
+                        <i class="fa fa-check"> Lưu</i>
+                    </asp:LinkButton>
+                </div>
+            </div>
+        </div>
+    </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="scriptFile" runat="server">
     <script>
+        $('.selectpicker').selectpicker();
         $('#addMerchantModal').on('shown.bs.modal', function (e) {
-            alert('a');
             $("#<%=txtMerchantName.ClientID%>").focus();
+        });
+        $('#editMerchantModal').on('shown.bs.modal', function (e) {
+            alert("a");
+            $("#<%=txtMerchantNameE.ClientID%>").focus();
         });
     </script>
     <script src="../assets/vendor/datatables/js/jquery.dataTables.min.js"></script>

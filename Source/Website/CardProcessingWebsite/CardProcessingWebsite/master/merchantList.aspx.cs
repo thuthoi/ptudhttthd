@@ -153,5 +153,76 @@ namespace CardProcessingWebsite
                 return res;
             }
         }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void listMerchant_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {                        
+            if (e.CommandName.Equals("EditMerchant"))
+            {
+                string merchantID = e.CommandArgument.ToString();
+                using (var c = new HttpClient())
+                {
+                    c.DefaultRequestHeaders.Accept.Clear();
+                    c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    string url = localhost.hostname() + "api/merchant/getProfileMerchant/" + merchantID;
+                    var response = c.GetAsync(url).Result;
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var merchant = response.Content.ReadAsAsync<Merchant>().Result;
+                        txtMerchantIDE.Text = merchant.MerchantID;
+                        txtMerchantNameE.Text = merchant.MerchantName;
+                        txtAddressE.Text = merchant.Address;
+                        txtPhoneE.Text = merchant.Phone;
+                        txtEmailE.Text = merchant.Email;
+                        cboAgentE.SelectedValue = merchant.AgentID;
+                        cboMerchantRegionE.SelectedValue = merchant.MerchantRegionID;
+                        cboMerchantTypeE.SelectedValue = merchant.MerchantTypeID;
+                    }
+
+                    string script = "$('#editMerchantModal').modal('show');";
+                    if (ClientScript.IsStartupScriptRegistered("editMerchantModal") == false)
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "editMerchantModal", script, true);
+                    }
+                }
+            }
+        }
+
+        protected void listMerchant_ItemCommand1(object sender, ListViewCommandEventArgs e)
+        {
+            if (e.CommandName == "EditMerchant")
+            {
+                string merchantID = e.CommandArgument.ToString();
+                using (var c = new HttpClient())
+                {
+                    c.DefaultRequestHeaders.Accept.Clear();
+                    c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    string url = localhost.hostname() + "api/merchant/getProfileMerchant/" + merchantID;
+                    var response = c.GetAsync(url).Result;
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var merchant = response.Content.ReadAsAsync<Merchant>().Result;
+                        txtMerchantIDE.Text = merchant.MerchantID;
+                        txtMerchantNameE.Text = merchant.MerchantName;
+                        txtAddressE.Text = merchant.Address;
+                        txtPhoneE.Text = merchant.Phone;
+                        txtEmailE.Text = merchant.Email;
+                        cboAgentE.SelectedValue = merchant.AgentID;
+                        cboMerchantRegionE.SelectedValue = merchant.MerchantRegionID;
+                        cboMerchantTypeE.SelectedValue = merchant.MerchantTypeID;
+                    }
+
+                    string script = "$('#editMerchantModal').modal('show');";
+                    if (ClientScript.IsStartupScriptRegistered("editMerchantModal") == false)
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "editMerchantModal", script, true);
+                    }
+                }
+            }
+        }
     }
 }

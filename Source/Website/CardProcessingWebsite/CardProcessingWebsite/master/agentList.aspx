@@ -120,7 +120,6 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="scriptFile" runat="server">
     <script>
         $('#addMerchantModal').on('shown.bs.modal', function (e) {
-            alert('a');
             $("#<%=txtAgentName.ClientID%>").focus();
         });
     </script>
