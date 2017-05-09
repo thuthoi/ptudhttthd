@@ -25,7 +25,7 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <asp:ListView runat="server" ID="listMerchant" DataKeyNames="MerchantID" OnItemCommand="listMerchant_ItemCommand1">
+                    <asp:ListView runat="server" ID="listMerchant" DataKeyNames="MerchantID" OnItemCommand="listMerchant_ItemCommand">
                         <LayoutTemplate>
                             <table style="width: 100%" class="table table-striped table-bordered table-hover" id="tableMerchant">
                                 <thead>
@@ -154,7 +154,7 @@
                             <asp:TextBox ID="txtMerchantNameE" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtMerchantName" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtMerchantNameE" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
                         </div>
                     </div>
 
@@ -164,7 +164,7 @@
                             <asp:TextBox ID="txtAddressE" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtAddress" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtAddressE" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-group">
@@ -197,7 +197,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <asp:LinkButton ID="btnUpdate" runat="server" CssClass="btn btn-primary" OnClick="btnUpdate_Click">
+                    <asp:LinkButton ID="btnUpdate" runat="server" CssClass="btn btn-primary" OnClick="btnUpdate_Click1">
                         <i class="fa fa-check"> Lưu</i>
                     </asp:LinkButton>
                 </div>
@@ -212,7 +212,6 @@
             $("#<%=txtMerchantName.ClientID%>").focus();
         });
         $('#editMerchantModal').on('shown.bs.modal', function (e) {
-            alert("a");
             $("#<%=txtMerchantNameE.ClientID%>").focus();
         });
     </script>

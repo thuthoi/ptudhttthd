@@ -22,6 +22,10 @@ namespace CardProcessingWebsite
                 loadMerchantTypeforAdding();
                 loadMerchantRegionforAdding();
                 loadAgentforAdding();
+
+                loadMerchantTypeforEditing();
+                loadMerchantRegionforEditing();
+                loadAgentforEditing();
             }
         }
         private void loadMerchantTypeforAdding()
@@ -77,6 +81,63 @@ namespace CardProcessingWebsite
                     cboAgent.DataTextField = "AgentName";
                     cboAgent.DataValueField = "AgentID";
                     cboAgent.DataBind();
+                }
+            }
+        }
+
+        private void loadMerchantTypeforEditing()
+        {
+            using (var c = new HttpClient())
+            {
+                c.DefaultRequestHeaders.Accept.Clear();
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                string url = localhost.hostname() + "api/merchantType/getAll";
+                var response = c.GetAsync(url).Result;
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var list = response.Content.ReadAsAsync<MerchantType[]>().Result;
+                    cboMerchantTypeE.DataSource = list;
+                    cboMerchantTypeE.DataTextField = "MerchantTypeName";
+                    cboMerchantTypeE.DataValueField = "MerchantTypeID";
+                    cboMerchantTypeE.DataBind();
+                }
+            }
+        }
+
+        private void loadMerchantRegionforEditing()
+        {
+            using (var c = new HttpClient())
+            {
+                c.DefaultRequestHeaders.Accept.Clear();
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                string url = localhost.hostname() + "api/merchantRegion/getAll";
+                var response = c.GetAsync(url).Result;
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var list = response.Content.ReadAsAsync<MerchantRegion[]>().Result;
+                    cboMerchantRegionE.DataSource = list;
+                    cboMerchantRegionE.DataTextField = "MerchantRegionName";
+                    cboMerchantRegionE.DataValueField = "MerchantRegionID";
+                    cboMerchantRegionE.DataBind();
+                }
+            }
+        }
+
+        private void loadAgentforEditing()
+        {
+            using (var c = new HttpClient())
+            {
+                c.DefaultRequestHeaders.Accept.Clear();
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                string url = localhost.hostname() + "api/agent/getAll";
+                var response = c.GetAsync(url).Result;
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var list = response.Content.ReadAsAsync<Agent[]>().Result;
+                    cboAgentE.DataSource = list;
+                    cboAgentE.DataTextField = "AgentName";
+                    cboAgentE.DataValueField = "AgentID";
+                    cboAgentE.DataBind();
                 }
             }
         }
@@ -156,7 +217,40 @@ namespace CardProcessingWebsite
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+            if (UpdateMerchant())
+            {
+                clearAll();
+                loadListMerchant();
+            }
+        }
 
+        private bool UpdateMerchant()
+        {
+            string _merID = txtMerchantIDE.Text.Trim();
+            using (var c = new HttpClient())
+            {
+                c.DefaultRequestHeaders.Accept.Clear();
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                //Lưu database
+                string url = localhost.hostname() + "api/merchant/update";
+                var response = c.PostAsJsonAsync(url, new
+                {
+                    MerchantID = _merID,
+                    MerchantName = txtMerchantNameE.Text.Trim(),
+                    Address = txtAddressE.Text.Trim(),
+                    Phone = txtPhoneE.Text.Trim(),
+                    Email = txtEmailE.Text.Trim(),
+                    Status = true,
+                    MerchantTypeID = cboMerchantTypeE.SelectedItem.Value,
+                    MerchantRegionID = cboMerchantRegionE.SelectedItem.Value,
+                    AgentID = cboAgentE.SelectedItem.Value
+                }).Result;
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    return true;
+                }
+                return false;
+            }
         }
 
         protected void listMerchant_ItemCommand(object sender, ListViewCommandEventArgs e)
@@ -192,36 +286,12 @@ namespace CardProcessingWebsite
             }
         }
 
-        protected void listMerchant_ItemCommand1(object sender, ListViewCommandEventArgs e)
+        protected void btnUpdate_Click1(object sender, EventArgs e)
         {
-            if (e.CommandName == "EditMerchant")
+            if (UpdateMerchant())
             {
-                string merchantID = e.CommandArgument.ToString();
-                using (var c = new HttpClient())
-                {
-                    c.DefaultRequestHeaders.Accept.Clear();
-                    c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    string url = localhost.hostname() + "api/merchant/getProfileMerchant/" + merchantID;
-                    var response = c.GetAsync(url).Result;
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        var merchant = response.Content.ReadAsAsync<Merchant[]>().Result;
-                        txtMerchantIDE.Text = merchant[0].MerchantID;
-                        txtMerchantNameE.Text = merchant[0].MerchantName;
-                        txtAddressE.Text = merchant[0].Address;
-                        txtPhoneE.Text = merchant[0].Phone;
-                        txtEmailE.Text = merchant[0].Email;
-                        cboAgentE.SelectedValue = merchant[0].AgentID;
-                        cboMerchantRegionE.SelectedValue = merchant[0].MerchantRegionID;
-                        cboMerchantTypeE.SelectedValue = merchant[0].MerchantTypeID;
-                    }
-
-                    string script = "$('#editMerchantModal').modal('show');";
-                    if (ClientScript.IsStartupScriptRegistered("editMerchantModal") == false)
-                    {
-                        ClientScript.RegisterStartupScript(this.GetType(), "editMerchantModal", script, true);
-                    }
-                }
+                clearAll();
+                loadListMerchant();
             }
         }
     }
