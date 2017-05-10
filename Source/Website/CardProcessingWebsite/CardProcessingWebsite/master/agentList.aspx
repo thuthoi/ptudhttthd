@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage/masterPage.Master" AutoEventWireup="true" CodeBehind="agentList.aspx.cs" Inherits="CardProcessingWebsite.master.WebForm1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     Agent
 </asp:Content>
@@ -34,7 +35,10 @@
                                         <th>Địa chỉ</th>
                                         <th>SĐT</th>
                                         <th>Email</th>
-                                        <th></th>
+                                        <th>&nbsp;</th>
+                                        <th>&nbsp;</th>
+                                        <th>&nbsp;</th>
+                                        <th>&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,6 +53,9 @@
                                 <td><%#Eval("Address") %></td>
                                 <td><%#Eval("Phone") %></td>
                                 <td><%#Eval("Email") %></td>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                                 <th></th>
                             </tr>
                         </ItemTemplate>
@@ -104,7 +111,7 @@
                         <div class="col-sm-10">
                             <asp:DropDownList ID="cboMaster" runat="server" CssClass="form-control selectpicker">
                             </asp:DropDownList>
-                        </div>                        
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -126,5 +133,5 @@
     <script src="../assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="../assets/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="../assets/vendor/datatables-responsive/dataTables.responsive.js"></script>
-    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+
 </asp:Content>

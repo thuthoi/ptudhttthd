@@ -54,7 +54,7 @@
                                 <td style="text-align: center">
                                     <asp:LinkButton ID="btnEdit" runat="server" CausesValidation="false" ToolTip="Chỉnh sửa" CssClass="btn btn-success btn-xs" CommandName="EditMerchant" CommandArgument='<%# Eval("MerchantID") %>'>
                                         <i class="fa fa-pencil"></i>
-                                    </asp:LinkButton>                                    
+                                    </asp:LinkButton>
                                 </td>
                                 <td style="text-align: center">
                                     <asp:LinkButton ID="btnDelete" runat="server" CausesValidation="false" ToolTip="Xóa" CommandName="Delete" CssClass="btn btn-danger btn-xs">
@@ -207,10 +207,12 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="scriptFile" runat="server">
     <script>
-        $('.selectpicker').selectpicker();
         $('#addMerchantModal').on('shown.bs.modal', function (e) {
             $("#<%=txtMerchantName.ClientID%>").focus();
         });
+    </script>
+    <script>
+        $('.selectpicker').selectpicker();
         $('#editMerchantModal').on('shown.bs.modal', function (e) {
             $("#<%=txtMerchantNameE.ClientID%>").focus();
         });
@@ -218,7 +220,6 @@
     <script src="../assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="../assets/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="../assets/vendor/datatables-responsive/dataTables.responsive.js"></script>
-    <script src="../assets/vendor/jquery/jquery.min.js"></script>
 
 </asp:Content>
 
