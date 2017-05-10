@@ -41,7 +41,7 @@ namespace BusinessLayer
         IList<Merchant> getMerchant_NotHave_Account();
         IList<Merchant> getMerchantByAgent(string _agentID);
         IList<Merchant> getMerchantNotHaveAgent();
-        void updateAgentforMerchant(string _merchantID, string _agentID);
+        void updateAgentforMerchant(Merchant merchant);
 
 
         //RegistrationForm

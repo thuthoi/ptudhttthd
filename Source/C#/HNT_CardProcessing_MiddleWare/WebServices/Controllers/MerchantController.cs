@@ -132,10 +132,10 @@ namespace WebServices.Controllers
         }
         
         [HttpPut]
-        [Route("api/merchant/updateAgentforMerchant/{merchantID}/{agentID}")]
-        public HttpResponseMessage updateAgentforMerchant(string merchantID, string agentID)
+        [Route("api/merchant/updateAgentforMerchant")]
+        public HttpResponseMessage updateAgentforMerchant([FromBody] Merchant merchant)
         {
-            bus.updateAgentforMerchant(merchantID, agentID);
+            bus.updateAgentforMerchant(merchant);
             return Request.CreateResponse(HttpStatusCode.OK);
         }
     }

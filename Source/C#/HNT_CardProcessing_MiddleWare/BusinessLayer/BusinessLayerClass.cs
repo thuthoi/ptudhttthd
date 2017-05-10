@@ -258,10 +258,10 @@ namespace BusinessLayer
         {
             return _merchantRepository.GetAll().Where(m => m.AgentID == string.Empty).ToList();
         }
-        public void updateAgentforMerchant(string _merchantID, string _agentID)
+        public void updateAgentforMerchant(Merchant merchant)
         {
-            Merchant mer = getMerchantByMerchantID(_merchantID);
-            mer.AgentID = _agentID;
+            Merchant mer = _merchantRepository.GetSingle(m => m.MerchantID == merchant.MerchantID);
+            mer.AgentID = merchant.AgentID;
             _merchantRepository.Update(mer);
         }
 

@@ -225,25 +225,8 @@ namespace UnitTestProject
             Assert.AreNotEqual(0, list.Count);
             Assert.AreEqual(1, list.Count);
         }
-        [TestMethod]
-        public void Test_updateAgentforMerchant_AddSuccess()
-        {
-            bus.updateAgentforMerchant("MERCH00010", "AGENT00005");
-            IList<Merchant> list = bus.getMerchantByAgent("AGENT00005");
-            Assert.IsNotNull(list);
-            Assert.AreNotEqual(0, list.Count);
-            Assert.AreEqual(2, list.Count);
-        }
-        [TestMethod]
-        public void Test_updateAgentforMerchant_UpdateSuccess()
-        {
-            bus.updateAgentforMerchant("MERCH00010", "AGENT00001");
-            IList<Merchant> list = bus.getMerchantByAgent("AGENT00001");
-            Assert.IsNotNull(list);
-            Assert.AreNotEqual(0, list.Count);
-            Assert.AreEqual(3, list.Count);
-        }
-
+       
+       
         //registrationForm
         [TestMethod]
         public void Test_generateRegID_Success()

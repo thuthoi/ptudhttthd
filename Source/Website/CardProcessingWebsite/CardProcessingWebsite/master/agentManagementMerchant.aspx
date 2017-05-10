@@ -39,9 +39,9 @@
                                             <thead>
                                                 <tr>
                                                     <th style="text-align: center">Mã</th>
-                                                    <th style="text-align: center">>Tên</th>
-                                                    <th style="text-align: center">>Địa chỉ</th>
-                                                    <th style="text-align: center">>Chọn</th>
+                                                    <th style="text-align: center">Tên</th>
+                                                    <th style="text-align: center">Địa chỉ</th>
+                                                    <th style="text-align: center">Chọn</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -54,9 +54,8 @@
                                             <td><%#Eval("MerchantID") %></td>
                                             <td><%#Eval("MerchantName") %></td>
                                             <td><%#Eval("Address") %></td>
-                                            <td style="vertical-align: central; text-align: center">
-                                                <asp:CheckBox ID="chkPick" CausesValidation="false" CssClass="checkbox-inline" runat="server" />
-
+                                            <td style="vertical-align: middle; text-align: center">
+                                                <asp:CheckBox ID="chkPick" Key='<%# Eval("MerchantID")%>' AutoPostBack="false" CausesValidation="false" CssClass="center-block" runat="server" />
                                             </td>
                                         </tr>
                                     </ItemTemplate>
@@ -67,8 +66,15 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-12">
+                        <div class="col-sm-2">&nbsp;</div>
+                        <div class="col-sm-3">
+                            <asp:LinkButton ID="btnSave" CausesValidation="false" OnClick="btnSave_Click" CssClass="btn btn-primary" runat="server"><i class="fa fa-plus"></i>&nbsp;Lưu</asp:LinkButton>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <asp:Label ID="tempLabel" runat="server" Text=""></asp:Label>
         </asp:Panel>
         <asp:Panel runat="server" ID="pnlChuyenQuyen" Visible="false">
             <div class="col-lg-12">
