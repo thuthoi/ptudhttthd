@@ -21,6 +21,66 @@ namespace CardProcessingWebsite.master
                 rbtnGanQuyen.Checked = true;
                 loadMerchantListForGanQuyen();
                 loadAgentForGanQuyen();
+                loadAgentForChuyenQuyen();
+                loadAgentForChuyenQuyenSang();
+                loadMerchantListForChuyenQuyen(cboAgentforPrevious.SelectedValue);
+                btnSave.Enabled = false;
+                btnSaveUpdate.Enabled = false;
+            }
+        }
+
+        private void loadMerchantListForChuyenQuyen(string id)
+        {
+            using (var c = new HttpClient())
+            {
+                c.DefaultRequestHeaders.Accept.Clear();
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                string url = localhost.hostname() + "api/merchant/getMerchantByAgent/" + id;
+                var response = c.GetAsync(url).Result;
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var list = response.Content.ReadAsAsync<Merchant[]>().Result;
+                    listMerchantUpdate.DataSource = list;
+                    listMerchantUpdate.DataBind();
+                }
+            }
+        }
+
+        private void loadAgentForChuyenQuyenSang()
+        {
+            using (var c = new HttpClient())
+            {
+                string url = localhost.hostname() + "api/agent/getAgentbyMaster/" + CurrentContext.GetCurUser().UserID.ToString();
+                var response = c.GetAsync(url).Result;
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var list = response.Content.ReadAsAsync<Agent[]>().Result;
+                    cboAgentforNext.DataSource = list;
+                    cboAgentforNext.DataTextField = "AgentName";
+                    cboAgentforNext.DataValueField = "AgentID";
+                    cboAgentforNext.DataBind();
+                }
+                ListItem removeItem = cboAgentforNext.Items.FindByValue(cboAgentforPrevious.SelectedValue);
+                cboAgentforNext.Items.Remove(removeItem);
+            }
+        }
+
+        private void loadAgentForChuyenQuyen()
+        {
+            using (var c = new HttpClient())
+            {
+                c.DefaultRequestHeaders.Accept.Clear();
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                string url = localhost.hostname() + "api/agent/getAgentbyMaster/" + CurrentContext.GetCurUser().UserID.ToString();
+                var response = c.GetAsync(url).Result;
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var list = response.Content.ReadAsAsync<Agent[]>().Result;
+                    cboAgentforPrevious.DataSource = list;
+                    cboAgentforPrevious.DataTextField = "AgentName";
+                    cboAgentforPrevious.DataValueField = "AgentID";
+                    cboAgentforPrevious.DataBind();
+                }
             }
         }
 
@@ -65,7 +125,9 @@ namespace CardProcessingWebsite.master
             rbtnGanQuyen.Checked = false;
             pnlChuyenQuyen.Visible = true;
             pnlGanQuyen.Visible = false;
-
+            loadAgentForChuyenQuyen();
+            loadAgentForChuyenQuyenSang();
+            loadMerchantListForChuyenQuyen(cboAgentforPrevious.SelectedValue);
         }
 
         protected void rbtnGanQuyen_CheckedChanged(object sender, EventArgs e)
@@ -76,7 +138,6 @@ namespace CardProcessingWebsite.master
             loadMerchantListForGanQuyen();
             loadAgentForGanQuyen();
         }
-
 
         bool AddAgent(string id)
         {
@@ -117,7 +178,7 @@ namespace CardProcessingWebsite.master
                     Status = true,
                     MerchantTypeID = mer.MerchantTypeID,
                     MerchantRegionID = mer.MerchantRegionID,
-                    AgentID = cboAgentforAdd.SelectedItem.Value
+                    AgentID = cboAgentforNext.SelectedItem.Value
                 }).Result;
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
@@ -143,5 +204,31 @@ namespace CardProcessingWebsite.master
             loadAgentForGanQuyen();
             loadMerchantListForGanQuyen();
         }
+
+        protected void btnSaveUpdate_Click(object sender, EventArgs e)
+        {
+            string id = null;
+            foreach (var item in listMerchantUpdate.Items)
+            {
+                CheckBox chkbox = item.FindControl("chkPick2") as CheckBox;
+                if (chkbox.Checked == true)
+                {
+                    id = string.Empty;
+                    id = chkbox.Attributes["Key"].ToString();
+                    AddAgent(id);
+                }
+            }
+            loadAgentForChuyenQuyen();
+            loadAgentForChuyenQuyenSang();
+            loadMerchantListForChuyenQuyen(cboAgentforPrevious.SelectedValue);
+        }
+
+        protected void cboAgentforPrevious_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadMerchantListForChuyenQuyen(cboAgentforPrevious.SelectedValue);
+            loadAgentForChuyenQuyenSang();
+        }
+
+       
     }
 }
