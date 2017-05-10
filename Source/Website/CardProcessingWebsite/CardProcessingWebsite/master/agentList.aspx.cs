@@ -113,5 +113,19 @@ namespace CardProcessingWebsite.master
         {
             txtAddress.Text = txtPhone.Text = txtEmail.Text = txtAgentName.Text = string.Empty;
         }
+
+        private void ChuyenTrang(string url)
+        {
+            string retUrl = Request.QueryString["retUrl"];
+            if (string.IsNullOrEmpty(retUrl))
+                retUrl = url;
+
+            Response.Redirect(retUrl);
+        }
+
+        protected void btnPhanQuyen_Click(object sender, EventArgs e)
+        {
+            ChuyenTrang("~/master/agentManagementMerchant.aspx");
+        }
     }
 }

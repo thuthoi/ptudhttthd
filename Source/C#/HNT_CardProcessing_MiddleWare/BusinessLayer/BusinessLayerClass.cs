@@ -95,7 +95,10 @@ namespace BusinessLayer
         {
             return _agentRepository.GetAll(c => c.Accounts).Where(m => m.Accounts.Count == 0).ToList();
         }
-
+        public IList<Agent> getAgentbyMasterID(string id)
+        {
+            return _agentRepository.GetAll().Where(a => a.MasterID == id && a.Status == true).ToList();
+        }
 
         public IList<Agent> getAgentByAgentIDtoList(string id)
         {
@@ -148,7 +151,7 @@ namespace BusinessLayer
             IList<Account> lst = _accountRepository.GetAll(acc => acc.Agent, acc => acc.Merchant, acc => acc.Master);
             if (lst.Count != 0)
             {
-                for (int i = 0; i < lst.Count;i ++ )
+                for (int i = 0; i < lst.Count; i++)
                 {
                     if (lst[i].Role == "master")
                     {
@@ -163,7 +166,7 @@ namespace BusinessLayer
                         lst[i].Master_Agent_Merchant_Name = lst[i].Merchant.MerchantName;
                     }
                 }
-                    
+
             }
             return lst;
         }

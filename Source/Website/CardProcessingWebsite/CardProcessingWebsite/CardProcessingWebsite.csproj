@@ -225,6 +225,7 @@
     <Content Include="assets\vendor\font-awesome\scss\_variables.scss" />
     <Content Include="master\AccountList.aspx" />
     <Content Include="master\agentList.aspx" />
+    <Content Include="master\agentManagementMerchant.aspx" />
     <Content Include="master\profileMaster.aspx" />
     <Content Include="master\reportMaster.aspx" />
     <Content Include="merchant\profileMerchant.aspx" />
@@ -287,6 +288,13 @@
     </Compile>
     <Compile Include="master\AccountList.aspx.designer.cs">
       <DependentUpon>AccountList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="master\agentManagementMerchant.aspx.cs">
+      <DependentUpon>agentManagementMerchant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="master\agentManagementMerchant.aspx.designer.cs">
+      <DependentUpon>agentManagementMerchant.aspx</DependentUpon>
     </Compile>
     <Compile Include="master\merchantList.aspx.cs">
       <DependentUpon>merchantList.aspx</DependentUpon>

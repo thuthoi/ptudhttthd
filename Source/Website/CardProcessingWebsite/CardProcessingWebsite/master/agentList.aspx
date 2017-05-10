@@ -12,6 +12,8 @@
             <a href="javascript: " class="btn btn-primary" data-backdrop="false" data-toggle="modal" data-target="#addMerchantModal">
                 <i class="fa fa-plus"></i>&nbsp;Thêm
             </a>
+            <asp:LinkButton runat="server" CssClass="btn btn-info" CausesValidation="false" ID="btnPhanQuyen" OnClick="btnPhanQuyen_Click">
+                <i class="fa fa-pencil-square-o"></i>&nbsp;Phân quyền</asp:LinkButton>
         </div>
     </div>
     <div class="row">
@@ -37,8 +39,6 @@
                                         <th>Email</th>
                                         <th>&nbsp;</th>
                                         <th>&nbsp;</th>
-                                        <th>&nbsp;</th>
-                                        <th>&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,8 +53,6 @@
                                 <td><%#Eval("Address") %></td>
                                 <td><%#Eval("Phone") %></td>
                                 <td><%#Eval("Email") %></td>
-                                <th></th>
-                                <th></th>
                                 <th></th>
                                 <th></th>
                             </tr>

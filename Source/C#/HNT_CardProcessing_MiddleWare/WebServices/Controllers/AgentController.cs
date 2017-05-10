@@ -78,5 +78,22 @@ namespace WebServices.Controllers
             });
             return Request.CreateResponse(HttpStatusCode.OK, list);
         }
+
+        [HttpGet]
+        [Route("api/agent/getAgentbyMaster/{masterID}")]
+        public HttpResponseMessage getAgentbyMaster(string masterID)
+        {
+            var list = bus.getAgentbyMasterID(masterID).Select(a=>new {
+                a.AgentID,
+                a.AgentName,
+                a.Address,
+                a.Phone,
+                a.Email,
+                a.Status,
+                a.MasterID
+            });
+
+            return Request.CreateResponse(HttpStatusCode.OK, list);
+        }
     }
 }

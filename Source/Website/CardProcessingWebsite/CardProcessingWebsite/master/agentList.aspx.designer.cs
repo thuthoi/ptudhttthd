@@ -13,6 +13,15 @@ namespace CardProcessingWebsite.master {
     public partial class WebForm1 {
         
         /// <summary>
+        /// btnPhanQuyen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnPhanQuyen;
+        
+        /// <summary>
         /// listMerchant control.
         /// </summary>
         /// <remarks>

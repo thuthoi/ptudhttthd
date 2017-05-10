@@ -19,7 +19,7 @@ namespace BusinessLayer
         IList<Agent> GetAllAgent();
         string generateAgentID();
         Agent getAgentByAgentID(string id);
-
+        IList<Agent> getAgentbyMasterID(string id);
         IList<Agent> getAgentByAgentIDtoList(string id);
         IList<Agent> getAgent_NotHave_Account();
 
