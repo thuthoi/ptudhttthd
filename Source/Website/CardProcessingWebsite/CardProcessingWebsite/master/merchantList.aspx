@@ -1,7 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage/masterPage.Master" AutoEventWireup="true" CodeBehind="merchantList.aspx.cs" Inherits="CardProcessingWebsite.merchantList" %>
 
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     Merchant
+</asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="headcss" runat="server">
+    <style type="text/css">
+        .checkbox2 {
+            margin-left: 0px;
+            padding-left: 20px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="pageheader" runat="server">
     Danh sách Merchant
@@ -25,7 +34,7 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <asp:ListView runat="server" ID="listMerchant" DataKeyNames="MerchantID" OnItemCommand="listMerchant_ItemCommand">
+                    <asp:ListView runat="server" ID="listMerchant" DataKeyNames="MerchantID" OnItemDeleting="listMerchant_ItemDeleting" OnItemCommand="listMerchant_ItemCommand">
                         <LayoutTemplate>
                             <table style="width: 100%" class="table table-striped table-bordered table-hover" id="tableMerchant">
                                 <thead>
@@ -35,6 +44,7 @@
                                         <th>Địa chỉ</th>
                                         <th>SĐT</th>
                                         <th>Email</th>
+                                        <th>Active</th>
                                         <th>&nbsp;</th>
                                         <th>&nbsp;</th>
                                     </tr>
@@ -51,6 +61,8 @@
                                 <td><%#Eval("Address") %></td>
                                 <td><%#Eval("Phone") %></td>
                                 <td><%#Eval("Email") %></td>
+                                <td style="vertical-align: middle; text-align: center">
+                                    <asp:CheckBox ID="chkID" CssClass="center-block" runat="server" Enabled="false" Checked='<%#Eval("Status").ToString()=="True"?true:false %>' /></td>
                                 <td style="text-align: center">
                                     <asp:LinkButton ID="btnEdit" runat="server" CausesValidation="false" ToolTip="Chỉnh sửa" CssClass="btn btn-success btn-xs" CommandName="EditMerchant" CommandArgument='<%# Eval("MerchantID") %>'>
                                         <i class="fa fa-pencil"></i>
@@ -84,7 +96,7 @@
                     <div class="form-group">
                         <label for="<%=txtMerchantName.ClientID %>" class="col-sm-2 control-label">Tên Merchant:</label>
                         <div class="col-sm-8">
-                            <asp:TextBox ID="txtMerchantName" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtMerchantName" placeholder="Tên merchant" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
                             <asp:RequiredFieldValidator ID="rfv" runat="server" ControlToValidate="txtMerchantName" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
@@ -94,7 +106,7 @@
                     <div class="form-group">
                         <label for="<%=txtAddress.ClientID %>" class="col-sm-2 control-label">Địa chỉ:</label>
                         <div class="col-sm-8">
-                            <asp:TextBox ID="txtAddress" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtAddress" placeholder="Địa chỉ" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtAddress" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
@@ -103,11 +115,11 @@
                     <div class="form-group">
                         <label for="<%=txtPhone.ClientID %>" class="col-sm-2 control-label">SĐT:</label>
                         <div class="col-sm-3">
-                            <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtPhone" placeholder="Điện thoại" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <label for="<%=txtEmail.ClientID %>" class="col-sm-2 control-label">Email:</label>
                         <div class="col-sm-5">
-                            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtEmail" placeholder="Email" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                     </div>
                     <div class="form-group">
@@ -117,20 +129,26 @@
                             </asp:DropDownList>
                         </div>
                         <label for="<%=cboMerchantRegion.ClientID %>" class="col-sm-2 control-label">Khu vực:</label>
-                        <div class="col-sm-2">
+                        <div class="col-sm-3">
                             <asp:DropDownList ID="cboMerchantRegion" runat="server" CssClass="form-control selectpicker">
                             </asp:DropDownList>
                         </div>
-                        <label for="<%=cboAgent.ClientID %>" class="col-sm-1 control-label">Agent:</label>
-                        <div class="col-sm-2">
+                    </div>
+                    <div class="form-group">
+                        <label for="<%=cboAgent.ClientID %>" class="col-sm-2 control-label">Agent:</label>
+                        <div class="col-sm-3">
                             <asp:DropDownList ID="cboAgent" runat="server" CssClass="form-control selectpicker">
                             </asp:DropDownList>
+                        </div>
+                        <label for="<%=chbxActive.ClientID %>" class="col-sm-2 control-label">Active:</label>
+                        <div class="col-sm-4">
+                            <asp:CheckBox ID="chbxActive" Checked="true" CssClass="checkbox checkbox2" runat="server" />
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <asp:LinkButton ID="btnAddMerchant" runat="server" CssClass="btn btn-primary" OnClick="btnAddMerchant_Click">
+                    <asp:LinkButton ID="btnAddMerchant" CausesValidation="true" runat="server" CssClass="btn btn-primary" OnClick="btnAddMerchant_Click">
                         <i class="fa fa-check"> Lưu</i>
                     </asp:LinkButton>
                 </div>

@@ -264,6 +264,10 @@ namespace BusinessLayer
             mer.AgentID = merchant.AgentID;
             _merchantRepository.Update(mer);
         }
+        public void removeMerchant(Merchant merchant)
+        {
+            _merchantRepository.Remove(merchant);
+        }
 
         //RegistrationForm
         public void addRegistrationForm(RegistrationForm registrationForm)

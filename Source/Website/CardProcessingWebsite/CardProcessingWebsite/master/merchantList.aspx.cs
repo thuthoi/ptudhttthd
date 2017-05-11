@@ -72,7 +72,7 @@ namespace CardProcessingWebsite
             {
                 c.DefaultRequestHeaders.Accept.Clear();
                 c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                string url = localhost.hostname() + "api/agent/getAll";
+                string url = localhost.hostname() + "api/agent/getAgentbyMaster/" + CurrentContext.GetCurUser().UserID.ToString();
                 var response = c.GetAsync(url).Result;
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -81,6 +81,8 @@ namespace CardProcessingWebsite
                     cboAgent.DataTextField = "AgentName";
                     cboAgent.DataValueField = "AgentID";
                     cboAgent.DataBind();
+                    ListItem nullItem = new ListItem("Cập nhật sau", "");
+                    cboAgent.Items.Insert(0, nullItem);
                 }
             }
         }
@@ -292,6 +294,61 @@ namespace CardProcessingWebsite
             {
                 clearAll();
                 loadListMerchant();
+            }
+        }
+
+        protected void listMerchant_ItemDeleting(object sender, ListViewDeleteEventArgs e)
+        {
+            string id = e.Keys["MerchantID"].ToString();
+            if (deleteMerchant(id))
+            {
+                loadListMerchant();
+            }
+        }
+
+        private bool deleteMerchant(string id)
+        {
+            bool res = false;
+            Merchant mer = getProfileMerchantForDelete(id);
+            using (var c = new HttpClient())
+            {
+                c.DefaultRequestHeaders.Accept.Clear();
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                string url = localhost.hostname() + "api/merchant/delete";
+                var response = c.PutAsJsonAsync(url, new
+                {
+                    MerchantID = id,
+                    MerchantName = mer.MerchantName,
+                    Address = mer.Address,
+                    Phone = mer.Phone,
+                    Email = mer.Email,
+                    Status = mer.Status,
+                    MerchantTypeID = mer.MerchantTypeID,
+                    MerchantRegionID = mer.MerchantRegionID,
+                    AgentID = mer.MerchantRegionID
+                }).Result;
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    res = true;
+                }
+                return res;
+            }
+        }
+
+        private Merchant getProfileMerchantForDelete(string id)
+        {
+            Merchant mer = new Merchant();
+            using (var c = new HttpClient())
+            {
+                c.DefaultRequestHeaders.Accept.Clear();
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                string url = localhost.hostname() + "api/merchant/getProfileMerchant/" + id;
+                var response = c.GetAsync(url).Result;
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    mer = response.Content.ReadAsAsync<Merchant[]>().Result.FirstOrDefault();
+                }
+                return mer;
             }
         }
     }

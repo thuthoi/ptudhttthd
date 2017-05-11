@@ -21,6 +21,14 @@ namespace WebServices.Controllers
             return Request.CreateResponse(HttpStatusCode.Created);
         }
 
+        [HttpPut]
+        [Route("api/merchant/delete")]
+        public HttpResponseMessage deleteMerchant([FromBody]Merchant merchant)
+        {
+            bus.removeMerchant(merchant);
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
         [HttpGet]
         [Route("api/merchant/getNewID")]
         public HttpResponseMessage getNewID()
