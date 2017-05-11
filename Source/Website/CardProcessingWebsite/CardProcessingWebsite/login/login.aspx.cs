@@ -21,6 +21,22 @@ namespace CardProcessingWebsite
                 txtPassWord.Attributes.Add("onKeyPress", "doClick('" + btnLogin.ClientID + "',event)");
 				txtUserName.Attributes.Add("onKeyPress", "doClick('" + btnLogin.ClientID + "',event)");
             }
+            if (CurrentContext.IsLogged())
+            {
+                string role = CurrentContext.GetCurUser().Role.ToString();
+                if (role == "master")
+                {
+                    ChuyenTrang("~/master/reportMaster.aspx");
+                }
+                else if (role == "agent")
+                {
+                    ChuyenTrang("~/agent/reportAgent.aspx");
+                }
+                else if (role == "merchant")
+                {
+                    ChuyenTrang("~/merchant/reportMerchant.aspx");
+                }
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -29,7 +45,7 @@ namespace CardProcessingWebsite
             {
                 c.DefaultRequestHeaders.Accept.Clear();
                 c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                //Lưu database
+                
                 string url = localhost.hostname() + "api/account/login";
                 var response = c.PostAsJsonAsync(url, new
                 {

@@ -57,6 +57,34 @@ namespace WebServices.Controllers
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
         }
+
+        [HttpPost]
+        [Route("api/account/login_remember")]
+        public HttpResponseMessage login_remember([FromBody]Account ac)
+        {
+            var list = bus.GetAccountBy_Username(ac.Username).Select(c => new
+            {
+                c.UserID,
+                c.Username,
+                c.Password,
+                c.OldPassword,
+                c.Role,
+                c.Master_Agent_Merchant_Name
+
+            });
+            //var _ac = bus.GetAccountBy_Username_Password(ac.Username, ac.Password);
+            if (list.Count() != 0)
+            {
+                return Request.CreateResponse(
+                     HttpStatusCode.OK,
+                       list
+                         );
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+        }
         [HttpGet]
         [Route("api/account/getAll")]
         public HttpResponseMessage getAllAccount()

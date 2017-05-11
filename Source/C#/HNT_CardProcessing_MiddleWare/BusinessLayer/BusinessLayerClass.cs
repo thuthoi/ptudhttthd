@@ -146,6 +146,11 @@ namespace BusinessLayer
                             a => a.Username.Equals(username) &&
                             a.Password.Equals(en_pass));
         }
+        public IList<Account> GetAccountBy_Username(String username)
+        {
+            return _accountRepository.GetList(
+                            a => a.Username.Equals(username));
+        }
         public IList<Account> getAllAccount()
         {
             IList<Account> lst = _accountRepository.GetAll(acc => acc.Agent, acc => acc.Merchant, acc => acc.Master);
