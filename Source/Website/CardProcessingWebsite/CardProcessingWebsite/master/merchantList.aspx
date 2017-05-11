@@ -194,20 +194,26 @@
                             </asp:DropDownList>
                         </div>
                         <label for="<%=cboMerchantRegionE.ClientID %>" class="col-sm-2 control-label">Khu vực:</label>
-                        <div class="col-sm-2">
+                        <div class="col-sm-3">
                             <asp:DropDownList ID="cboMerchantRegionE" runat="server" CssClass="form-control selectpicker">
                             </asp:DropDownList>
-                        </div>
-                        <label for="<%=cboAgentE.ClientID %>" class="col-sm-1 control-label">Agent:</label>
-                        <div class="col-sm-2">
+                        </div>                        
+                    </div>
+                    <div class="form-group"> 
+                        <label for="<%=cboAgentE.ClientID %>" class="col-sm-2 control-label">Agent:</label>
+                        <div class="col-sm-3">
                             <asp:DropDownList ID="cboAgentE" runat="server" CssClass="form-control selectpicker">
                             </asp:DropDownList>
+                        </div>                       
+                        <label for="<%=chbxActiveE.ClientID %>" class="col-sm-2 control-label">Active:</label>
+                        <div class="col-sm-4">
+                            <asp:CheckBox ID="chbxActiveE" Style="padding-left: 20px;" Checked="true" CssClass="checkbox" runat="server" />
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <asp:LinkButton ID="btnUpdate" runat="server" CssClass="btn btn-primary" OnClick="btnUpdate_Click1">
+                    <asp:LinkButton ID="btnUpdate" CausesValidation="true" runat="server" CssClass="btn btn-primary" OnClick="btnUpdate_Click1">
                         <i class="fa fa-check"> Lưu</i>
                     </asp:LinkButton>
                 </div>

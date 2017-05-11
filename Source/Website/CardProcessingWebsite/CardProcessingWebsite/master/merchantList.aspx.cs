@@ -242,7 +242,7 @@ namespace CardProcessingWebsite
                     Address = txtAddressE.Text.Trim(),
                     Phone = txtPhoneE.Text.Trim(),
                     Email = txtEmailE.Text.Trim(),
-                    Status = true,
+                    Status = chbxActiveE.Checked == true ? true : false,
                     MerchantTypeID = cboMerchantTypeE.SelectedItem.Value,
                     MerchantRegionID = cboMerchantRegionE.SelectedItem.Value,
                     AgentID = cboAgentE.SelectedItem.Value
@@ -277,6 +277,7 @@ namespace CardProcessingWebsite
                         cboAgentE.SelectedValue = merchant[0].AgentID;
                         cboMerchantRegionE.SelectedValue = merchant[0].MerchantRegionID;
                         cboMerchantTypeE.SelectedValue = merchant[0].MerchantTypeID;
+                        chbxActiveE.Checked = merchant[0].Status;
                     }
 
                     string script = "$('#editMerchantModal').modal('show');";
