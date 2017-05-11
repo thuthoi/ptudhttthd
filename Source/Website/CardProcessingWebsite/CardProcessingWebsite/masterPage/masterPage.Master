@@ -20,14 +20,8 @@
         <asp:ContentPlaceHolder ID="head" runat="server">
         </asp:ContentPlaceHolder>
     </title>
-    <asp:ContentPlaceHolder ID="headcss" runat="server">
-    </asp:ContentPlaceHolder>
-
     <script src="../assets/vendor/jquery/jquery.min.js"></script>
     <script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <asp:ContentPlaceHolder ID="headscript" runat="server">
-    </asp:ContentPlaceHolder>
 
     <script type="text/javascript">
         function openModal() {

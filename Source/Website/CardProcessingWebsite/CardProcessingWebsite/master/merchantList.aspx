@@ -4,14 +4,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     Merchant
 </asp:Content>
-<asp:Content ID="Content5" ContentPlaceHolderID="headcss" runat="server">
-    <style type="text/css">
-        .checkbox2 {
-            margin-left: 0px;
-            padding-left: 20px;
-        }
-    </style>
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="pageheader" runat="server">
     Danh sách Merchant
 </asp:Content>
@@ -62,7 +54,7 @@
                                 <td><%#Eval("Phone") %></td>
                                 <td><%#Eval("Email") %></td>
                                 <td style="vertical-align: middle; text-align: center">
-                                    <asp:CheckBox ID="chkID" CssClass="center-block" runat="server" Enabled="false" Checked='<%#Eval("Status").ToString()=="True"?true:false %>' /></td>
+                                    <asp:CheckBox ID="chkID" CssClass="center-block" AutoPostBack="false" runat="server" Enabled="false" Checked='<%#Eval("Status").ToString()=="True"?true:false %>' /></td>
                                 <td style="text-align: center">
                                     <asp:LinkButton ID="btnEdit" runat="server" CausesValidation="false" ToolTip="Chỉnh sửa" CssClass="btn btn-success btn-xs" CommandName="EditMerchant" CommandArgument='<%# Eval("MerchantID") %>'>
                                         <i class="fa fa-pencil"></i>
@@ -142,7 +134,7 @@
                         </div>
                         <label for="<%=chbxActive.ClientID %>" class="col-sm-2 control-label">Active:</label>
                         <div class="col-sm-4">
-                            <asp:CheckBox ID="chbxActive" Checked="true" CssClass="checkbox checkbox2" runat="server" />
+                            <asp:CheckBox ID="chbxActive" Style="padding-left: 20px;" Checked="true" CssClass="checkbox" runat="server" />
                         </div>
                     </div>
                 </div>

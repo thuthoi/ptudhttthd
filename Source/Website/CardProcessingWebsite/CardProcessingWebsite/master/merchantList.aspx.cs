@@ -204,7 +204,7 @@ namespace CardProcessingWebsite
                     Address = txtAddress.Text.Trim(),
                     Phone = txtPhone.Text.Trim(),
                     Email = txtEmail.Text.Trim(),
-                    Status = true,
+                    Status = chbxActive.Checked == true ? true : false,
                     MerchantTypeID = cboMerchantType.SelectedItem.Value,
                     MerchantRegionID = cboMerchantRegion.SelectedItem.Value,
                     AgentID = cboAgent.SelectedItem.Value
