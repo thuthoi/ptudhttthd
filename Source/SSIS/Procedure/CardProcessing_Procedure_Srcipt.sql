@@ -1,6 +1,10 @@
-CREATE PROC [dbo].[USP_TinhToan_LuuDuLieu_BaoCao]
+ALTER PROC [dbo].[USP_TinhToan_LuuDuLieu_BaoCao]
 AS 
 BEGIN
+
+	UPDATE TransactionDetail_Temp 
+	SET CreditCardID = CONVERT(NVARCHAR(32),HashBytes('MD5', CreditCardID),2)
+	
 	-- Prevent duplicate data
 	DECLARE @Date DATE,@CreditCardID VARCHAR(255), @MerchantID VARCHAR(10)
 	SELECT TOP 1 @Date = Date , @MerchantID = MerchantID FROM TransactionDetail_Temp
