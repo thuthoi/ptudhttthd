@@ -20,6 +20,9 @@ namespace CardProcessingWebsite.master
             {
                 loadListMerchant();
                 loadListMasterForAdding();
+
+
+                loadListMasterForEditing();
             }
         }
 
@@ -127,5 +130,89 @@ namespace CardProcessingWebsite.master
         {
             ChuyenTrang("~/master/agentManagementMerchant.aspx");
         }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (UpdateAgent())
+            {
+                clearAll();
+                loadListMerchant();
+            }
+        }
+
+        private bool UpdateAgent()
+        {
+            string _merID = txtAgentIDE.Text.Trim();
+            using (var c = new HttpClient())
+            {
+                c.DefaultRequestHeaders.Accept.Clear();
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                //Lưu database
+                string url = localhost.hostname() + "api/agent/update";
+                var response = c.PostAsJsonAsync(url, new
+                {
+                    AgentID = _merID,
+                    AgentName = txtAgentNameE.Text.Trim(),
+                    Address = txtAddressE.Text.Trim(),
+                    Phone = txtPhoneE.Text.Trim(),
+                    Email = txtEmailE.Text.Trim(),
+                    MasterID = cboMasterE.SelectedItem.Value
+                }).Result;
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+        private void loadListMasterForEditing()
+        {
+            using (var c = new HttpClient())
+            {
+                c.DefaultRequestHeaders.Accept.Clear();
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                string url = localhost.hostname() + "api/master/getAll";
+                var response = c.GetAsync(url).Result;
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var list = response.Content.ReadAsAsync<Master[]>().Result;
+                    cboMasterE.DataSource = list;
+                    cboMasterE.DataTextField = "MasterName";
+                    cboMasterE.DataValueField = "MasterID";
+                    cboMasterE.DataBind();
+                }
+            }
+        }
+        protected void listMerchant_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            if (e.CommandName.Equals("EditAgent"))
+            {
+                string agentID = e.CommandArgument.ToString();
+                using (var c = new HttpClient())
+                {
+                    c.DefaultRequestHeaders.Accept.Clear();
+                    c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    string url = localhost.hostname() + "api/agent/getProfileAgent/" + agentID;
+                    var response = c.GetAsync(url).Result;
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var agent = response.Content.ReadAsAsync<Agent[]>().Result;
+                        txtAgentIDE.Text = agent[0].AgentID;
+                        txtAgentNameE.Text = agent[0].AgentName;
+                        txtAddressE.Text = agent[0].Address;
+                        txtPhoneE.Text = agent[0].Phone;
+                        txtEmailE.Text = agent[0].Email;
+                        cboMasterE.SelectedValue = agent[0].MasterID;
+                    }
+
+                    string script = "$('#editAgentModal').modal('show');";
+                    if (ClientScript.IsStartupScriptRegistered("editAgentModal") == false)
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "editAgentModal", script, true);
+                    }
+                }
+            }
+        }
+      
     }
 }

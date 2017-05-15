@@ -27,7 +27,7 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <asp:ListView runat="server" ID="listMerchant">
+                    <asp:ListView runat="server" ID="listMerchant" OnItemCommand="listMerchant_ItemCommand">
                         <LayoutTemplate>
                             <table style="width: 100%" class="table table-striped table-bordered table-hover">
                                 <thead>
@@ -53,8 +53,12 @@
                                 <td><%#Eval("Address") %></td>
                                 <td><%#Eval("Phone") %></td>
                                 <td><%#Eval("Email") %></td>
-                                <th></th>
-                                <th></th>
+                               <td style="text-align: center">
+                                    <asp:LinkButton ID="btnEdit" runat="server" CausesValidation="false" ToolTip="Chỉnh sửa" CssClass="btn btn-success btn-xs" CommandName="EditAgent" CommandArgument='<%# Eval("AgentID") %>'>
+                                        <i class="fa fa-pencil"></i>
+                                    </asp:LinkButton>
+                                </td>
+                              
                             </tr>
                         </ItemTemplate>
                         <EmptyItemTemplate>
@@ -121,11 +125,75 @@
             </div>
         </div>
     </div>
+
+        <%-- Modal Update agent--%>
+    <div class="modal fade" id="editAgentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabelE">Cập Nhật Agent</h4>
+                </div>
+                <div class="modal-body form-horizontal">
+                    <div class="form-group">
+                        <label for="<%=txtAgentNameE.ClientID %>" class="col-sm-2 control-label">Tên Agent:</label>
+                        <div class="col-sm-8">
+                             <asp:TextBox ID="txtAgentIDE" runat="server" Visible="false"></asp:TextBox>
+                            <asp:TextBox ID="txtAgentNameE" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                        <div class="col-sm-2">
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtAgentNameE" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="<%=txtAddressE.ClientID %>" class="col-sm-2 control-label">Địa chỉ:</label>
+                        <div class="col-sm-8">
+                            <asp:TextBox ID="txtAddressE" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                        <div class="col-sm-2">
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtAddressE" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="<%=txtPhoneE.ClientID %>" class="col-sm-2 control-label">SĐT:</label>
+                        <div class="col-sm-3">
+                            <asp:TextBox ID="txtPhoneE" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                        <label for="<%=txtEmailE.ClientID %>" class="col-sm-2 control-label">Email:</label>
+                        <div class="col-sm-5">
+                            <asp:TextBox ID="txtEmailE" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="<%=cboMasterE.ClientID %>" class="col-sm-2 control-label">Loại:</label>
+                        <div class="col-sm-10">
+                            <asp:DropDownList ID="cboMasterE" runat="server" CssClass="form-control selectpicker">
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary" OnClick="btnUpdate_Click">
+                        <i class="fa fa-check"> Lưu</i>
+                    </asp:LinkButton>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="scriptFile" runat="server">
     <script>
         $('#addMerchantModal').on('shown.bs.modal', function (e) {
             $("#<%=txtAgentName.ClientID%>").focus();
+        });
+    </script>
+    <script>
+        $('.selectpicker').selectpicker();
+        $('#editAgentModal').on('shown.bs.modal', function (e) {
+            $("#<%=txtAgentNameE.ClientID%>").focus();
         });
     </script>
     <script src="../assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
