@@ -63,10 +63,25 @@ namespace BusinessLayer
             /* Validation and error handling omitted */
             _agentRepository.Add(agent);
         }
-        public void UpdateAgent(Agent agent)
+        public string UpdateAgent(Agent agent)
         {
             /* Validation and error handling omitted */
-            _agentRepository.Update(agent);
+            Agent _agent = getAgentByAgentID(agent.AgentID);
+            if (_agent == null)
+            {
+                return "Không có dữ liệu Agent!";
+            }
+            else
+            {
+                _agent.AgentName = agent.AgentName;
+                _agent.Address = agent.Address;
+                _agent.Phone = agent.Phone;
+                _agent.Email = agent.Email;
+                _agent.Status = agent.Status;
+                _agent.MasterID = agent.AgentID;
+                _agentRepository.Update(agent);
+                return "Cập nhật Agent thành công!";
+            }
         }
         public void RemoveAgent(Agent agent)
         {

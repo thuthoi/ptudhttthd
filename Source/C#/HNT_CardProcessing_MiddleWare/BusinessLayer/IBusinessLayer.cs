@@ -14,7 +14,7 @@ namespace BusinessLayer
         //Agent
         Agent GetAgentByUsername(string username);
         void AddAgent(Agent agent);
-        void UpdateAgent(Agent agent);
+        string UpdateAgent(Agent agent);
         void RemoveAgent(Agent agent);
         IList<Agent> GetAllAgent();
         string generateAgentID();

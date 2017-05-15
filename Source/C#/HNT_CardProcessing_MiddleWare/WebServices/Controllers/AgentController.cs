@@ -38,6 +38,16 @@ namespace WebServices.Controllers
             return Request.CreateResponse(HttpStatusCode.Created);
         }
 
+        [HttpPut]
+        [Route("api/agent/update")]
+        public HttpResponseMessage updateAgent([FromBody] Agent agent)
+        {
+            string result = bus.UpdateAgent(agent);
+            return Request.CreateResponse(HttpStatusCode.OK, result);
+        }
+
+      
+
         [HttpGet]
         [Route("api/agent/getNewID")]
         public HttpResponseMessage getNewID()
