@@ -165,7 +165,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(361, 24);
             this.label6.TabIndex = 22;
-            this.label6.Text = "App import dữ liệu gaio dịch vào hệ thống";
+            this.label6.Text = "App import dữ liệu giao dịch vào hệ thống";
             // 
             // btnDefault
             // 
