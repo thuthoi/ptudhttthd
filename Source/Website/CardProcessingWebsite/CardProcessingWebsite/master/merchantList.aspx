@@ -38,7 +38,6 @@
                                         <th>Email</th>
                                         <th>Active</th>
                                         <th>&nbsp;</th>
-                                        <th>&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -58,11 +57,6 @@
                                 <td style="text-align: center">
                                     <asp:LinkButton ID="btnEdit" runat="server" CausesValidation="false" ToolTip="Chỉnh sửa" CssClass="btn btn-success btn-xs" CommandName="EditMerchant" CommandArgument='<%# Eval("MerchantID") %>'>
                                         <i class="fa fa-pencil"></i>
-                                    </asp:LinkButton>
-                                </td>
-                                <td style="text-align: center">
-                                    <asp:LinkButton ID="btnDelete" runat="server" CausesValidation="false" ToolTip="Xóa" CommandName="Delete" CssClass="btn btn-danger btn-xs">
-                                        <i class="fa fa-remove"></i>
                                     </asp:LinkButton>
                                 </td>
                             </tr>
