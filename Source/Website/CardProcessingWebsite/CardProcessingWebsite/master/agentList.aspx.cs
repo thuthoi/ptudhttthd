@@ -149,14 +149,17 @@ namespace CardProcessingWebsite.master
                 c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 //Lưu database
                 string url = localhost.hostname() + "api/agent/update";
-                var response = c.PostAsJsonAsync(url, new
+                var response = c.PutAsJsonAsync(url, new
                 {
                     AgentID = _merID,
                     AgentName = txtAgentNameE.Text.Trim(),
                     Address = txtAddressE.Text.Trim(),
                     Phone = txtPhoneE.Text.Trim(),
                     Email = txtEmailE.Text.Trim(),
-                    MasterID = cboMasterE.SelectedItem.Value
+                    MasterID = cboMasterE.SelectedItem.Value,
+                    //T gắn mặc định, ông thêm cái in/active thì sửa lại
+                    Status = true
+                    
                 }).Result;
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
@@ -213,6 +216,6 @@ namespace CardProcessingWebsite.master
                 }
             }
         }
-      
+
     }
 }
