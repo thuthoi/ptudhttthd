@@ -20,6 +20,9 @@ namespace BusinessLayer
         private readonly IMasterRepository _masterRepository;
         private readonly INotificationRepository _notificationRepository;
 
+        private readonly IDailyReportRepository _dailyReportRepository;
+        private readonly IMonthlyReportRepository _monthlyReportRepository;
+        private readonly IYearlyReportRepository _yearlyReportRepository;
         public BusinessLayerClass()
         {
             _agentRepository = new AgentRepository();
@@ -30,6 +33,10 @@ namespace BusinessLayer
             _merchantTypeRepository = new MerchantTypeRepository();
             _masterRepository = new MasterRepository();
             _notificationRepository = new NotificationRepository();
+
+            _dailyReportRepository = new DailyReportRepository();
+            _monthlyReportRepository = new MonthlyReportRepository();
+            _yearlyReportRepository = new YearlyReportRepository();
         }
 
         public BusinessLayerClass(IAgentRepository agentRepository,
@@ -353,6 +360,111 @@ namespace BusinessLayer
         public IList<Notification> getLastThreeNotificationByReceiveID(string _receiveID)
         {
             return _notificationRepository.GetAll().Where(n => n.ReceiverID == _receiveID).OrderByDescending(n => n.Date).Take(3).ToList();
+        }
+
+
+
+        // Report Merchant
+        public IList<DailyReport> GetDailyReport_By_MerID_Date(String MerID)
+        {
+            DateTime dt = DateTime.Now.AddDays(-1);
+            return _dailyReportRepository.GetList(
+                            d => d.MerchantID.Equals(MerID) &&
+                            d.Date.Equals(dt));
+        }
+
+        public IList<MonthlyReport> GetMonthlyReport_By_MerID_Date(String MerID)
+        {
+            DateTime dt = DateTime.Now.AddMonths(-1);
+            return _monthlyReportRepository.GetList(
+                            d => d.MerchantID.Equals(MerID) &&
+                            d.Date.Value.Month.Equals(dt.Month));
+        }
+
+        public IList<YearlyReport> GetYearlyReport_By_MerID_Date(String MerID)
+        {
+            DateTime dt = DateTime.Now.AddYears(-1);
+            return _yearlyReportRepository.GetList(
+                            d => d.MerchantID.Equals(MerID) &&
+                            d.Date.Value.Year.Equals(dt.Year));
+        }
+
+        public IList<MonthlyReport> GetMonthlyReport_By_MerID_Date(String MerID)
+        {
+            IList<MonthlyReport> lst;
+            DateTime dt = DateTime.Now;
+            int quarter = GetQuarter(dt);
+            if(quarter == 1)
+            {
+                lst = Caculate_QuarterReport(MerID, dt, 10, 12,dt.AddYears(-1).Year);
+            }
+            else
+            {
+                int quarter_previous = quarter - 1;
+                if (quarter_previous == 1)
+                {
+                    lst = Caculate_QuarterReport(MerID, dt, 1, 3, dt.Year);
+                }
+                else if (quarter_previous == 2)
+                {
+                    lst = Caculate_QuarterReport(MerID, dt, 4, 6, dt.Year);
+                }
+                else if (quarter_previous == 3)
+                {
+                    lst = Caculate_QuarterReport(MerID, dt, 7, 9, dt.Year);
+                }
+                else if (quarter_previous == 4)
+                {
+                    lst = Caculate_QuarterReport(MerID, dt, 11, 12, dt.Year);
+                }
+            }
+            return lst;
+        }
+        private IList<MonthlyReport> Caculate_QuarterReport(String MerID, DateTime dt, int fromMonth, int toMonth, int year)
+        {
+            return _monthlyReportRepository.GetList(
+                         d => d.MerchantID.Equals(MerID) && ((
+                         d.Date.Value.Month >= fromMonth) || d.Date.Value.Month <= toMonth)
+                         || d.Date.Value.Year.Equals(year))
+                         .GroupBy(d => new { d.MerchantID, d.MerchantTypeID, d.MerchantRegionID })
+                         .Select(s => new MonthlyReport
+                         {
+                             MerchantID = s.Key.MerchantID,
+                             MerchantTypeID = s.Key.MerchantTypeID,
+                             MerchantRegionID = s.Key.MerchantRegionID,
+                             SaleAmount = s.Sum(w => w.SaleAmount),
+                             ReturnAmount = s.Sum(w => w.ReturnAmount),
+                             SaleCount = s.Sum(w => w.SaleCount),
+                             ReturnCount = s.Sum(w => w.ReturnCount),
+                             DebitCardSaleAmount = s.Sum(w => w.DebitCardSaleAmount),
+                             MasterCardSaleAmount = s.Sum(w => w.MasterCardSaleAmount),
+                             VisaCardSaleAmount = s.Sum(w => w.VisaCardSaleAmount),
+                             DebitCardReturnAmount = s.Sum(w => w.DebitCardReturnAmount),
+                             MasterCardReturnAmount = s.Sum(w => w.MasterCardReturnAmount),
+                             VisaCardReturnAmount = s.Sum(w => w.VisaCardReturnAmount),
+                             DebitCardSaleCount = s.Sum(w => w.DebitCardSaleCount),
+                             MasterCardSaleCount = s.Sum(w => w.MasterCardSaleCount),
+                             VisaCardSaleCount = s.Sum(w => w.VisaCardSaleCount),
+                             DebitCardReturnCount = s.Sum(w => w.DebitCardReturnCount),
+                             MasterCardReturnCount = s.Sum(w => w.MasterCardReturnCount),
+                             VisaCardReturnCount = s.Sum(w => w.VisaCardReturnCount),
+                             NetAmount = s.Sum(w => w.NetAmount),
+                             NetCount = s.Sum(w => w.NetCount),
+                             Date = dt
+                         }).ToList();
+        }
+
+        public static int GetQuarter(DateTime date)
+        {
+            if (date.Month >= 4 && date.Month <= 6)
+                return 1;
+            else if (date.Month >= 7 && date.Month <= 9)
+                return 2;
+            else if (date.Month >= 10 && date.Month <= 12)
+                return 3;
+            else
+                return 4;
+
         }
     }
 }

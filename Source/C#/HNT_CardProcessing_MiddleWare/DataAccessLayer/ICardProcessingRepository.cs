@@ -23,6 +23,12 @@ namespace DataAccessLayer
 
     public interface INotificationRepository : IGenericDataRepository<Notification> { }
 
+    public interface IDailyReportRepository : IGenericDataRepository<DailyReport> { }
+
+    public interface IMonthlyReportRepository : IGenericDataRepository<MonthlyReport> { }
+
+    public interface IYearlyReportRepository : IGenericDataRepository<YearlyReport> { }
+
     public class AgentRepository : GenericDataRepository<Agent>, IAgentRepository { }
 
     public class AccountRepository : GenericDataRepository<Account>, IAccountRepository { }
@@ -38,4 +44,10 @@ namespace DataAccessLayer
     public class MasterRepository : GenericDataRepository<Master>, IMasterRepository { }
 
     public class NotificationRepository : GenericDataRepository<Notification>, INotificationRepository { }
+
+    public class DailyReportRepository : GenericDataRepository<DailyReport>, IDailyReportRepository { }
+
+    public class MonthlyReportRepository : GenericDataRepository<MonthlyReport>, IMonthlyReportRepository { }
+
+    public class YearlyReportRepository : GenericDataRepository<YearlyReport>, IYearlyReportRepository { }
 }

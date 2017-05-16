@@ -40,7 +40,7 @@ namespace App_Import_SSIS_Package_CardProcessing
             if (fbd.ShowDialog() == DialogResult.OK)
             {
                 txtImport_File_Patch.Text = fbd.SelectedPath;
-                lv_sub_folder_import.Items.Clear();
+                
                 Check_Dir(txtImport_File_Patch.Text);
             }
             else
@@ -52,7 +52,7 @@ namespace App_Import_SSIS_Package_CardProcessing
 
         private void Check_Dir(string path)
         {
-
+            lv_sub_folder_import.Items.Clear();
             DirectoryInfo dir = new DirectoryInfo(path);
             FileInfo[] TXTFiles = dir.GetFiles("*.csv");
             if (TXTFiles.Length == 0)
@@ -123,7 +123,7 @@ namespace App_Import_SSIS_Package_CardProcessing
         private void Import_File(string Server_name, string Database_name, string Dir_path, string File_path)
         {
             File_path = File_path.Replace(@"\", "\\");
-            File_path = "\"" + File_path + "\"";
+            string _File_path = "\"" + File_path + "\"";
             foreach (ListViewItem import_file_name in lv_sub_folder_import.Items)
             {
                 string file_import_path = Dir_path.Replace(@"\", "\\");
@@ -133,7 +133,7 @@ namespace App_Import_SSIS_Package_CardProcessing
                 
 
                 string lenh_comandline = string.Format(@"/C dtexec -f {0} /set \package.variables[file_path_import];{1} /set \package.variables[ServerName];{2}  /set \package.variables[InitiCatalog];{3}",
-                                                        File_path, file_import_path,
+                                                        _File_path, file_import_path,
                                                         Server_name, Database_name);
 
                 System.Diagnostics.Process process = new System.Diagnostics.Process();
