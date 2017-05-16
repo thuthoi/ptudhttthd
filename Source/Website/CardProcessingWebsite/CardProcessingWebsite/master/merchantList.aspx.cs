@@ -81,7 +81,7 @@ namespace CardProcessingWebsite
                     cboAgent.DataTextField = "AgentName";
                     cboAgent.DataValueField = "AgentID";
                     cboAgent.DataBind();
-                    ListItem nullItem = new ListItem("Cập nhật sau", "");
+                    ListItem nullItem = new ListItem("Trống", "");
                     cboAgent.Items.Insert(0, nullItem);
                 }
             }
@@ -140,6 +140,8 @@ namespace CardProcessingWebsite
                     cboAgentE.DataTextField = "AgentName";
                     cboAgentE.DataValueField = "AgentID";
                     cboAgentE.DataBind();
+                    ListItem nullItem = new ListItem("Trống", "");
+                    cboAgentE.Items.Insert(0, nullItem);
                 }
             }
         }
@@ -274,7 +276,15 @@ namespace CardProcessingWebsite
                         txtAddressE.Text = merchant[0].Address;
                         txtPhoneE.Text = merchant[0].Phone;
                         txtEmailE.Text = merchant[0].Email;
-                        cboAgentE.SelectedValue = merchant[0].AgentID;
+                        if (merchant[0].AgentID == "")
+                        {
+                            cboAgentE.SelectedIndex = 0;
+
+                        }
+                        else
+                        {
+                            cboAgentE.SelectedValue = merchant[0].AgentID;
+                        }
                         cboMerchantRegionE.SelectedValue = merchant[0].MerchantRegionID;
                         cboMerchantTypeE.SelectedValue = merchant[0].MerchantTypeID;
                         chbxActiveE.Checked = merchant[0].Status;
