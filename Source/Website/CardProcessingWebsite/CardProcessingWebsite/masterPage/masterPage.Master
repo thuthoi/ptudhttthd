@@ -103,14 +103,14 @@
                         </a>
                         <ul class="dropdown-menu dropdown-user">
                             <li>
-                                <asp:LinkButton ID="btnProfile" runat="server" OnClick="btnProfile_Click" CausesValidation="false"><i class="fa fa-user fa-fw"></i>User Profile</asp:LinkButton>
+                                <asp:LinkButton ID="btnProfile" runat="server" OnClick="btnProfile_Click"><i class="fa fa-user fa-fw"></i>User Profile</asp:LinkButton>
                             </li>
                             <li>
                                 <a href="#" data-toggle="modal" data-target="#changePasswordModal" data-backdrop="static" data-keyboard="false"><i class="fa fa-gear fa-fw"></i>Change Password</a>
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <asp:LinkButton ID="btnLogout" CausesValidation="false" runat="server" OnClick="btnLogout_Click"><i class="fa fa-sign-out fa-fw"></i>Logout</asp:LinkButton>
+                                <asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click"><i class="fa fa-sign-out fa-fw"></i>Logout</asp:LinkButton>
                             </li>
                         </ul>
                     </li>
@@ -134,10 +134,10 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="lblMerchantManagementforMaster" runat="server" CausesValidation="false" OnClick="lblMerchantManagementforMaster_Click"><i class="fa fa-user fa-fw"></i>&nbsp;Merchant Management</asp:LinkButton>
+                                    <asp:LinkButton ID="lblMerchantManagementforMaster" runat="server" OnClick="lblMerchantManagementforMaster_Click"><i class="fa fa-user fa-fw"></i>&nbsp;Merchant Management</asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="lblAgentManagementforMaster" runat="server" CausesValidation="false" OnClick="lblAgentManagementforMaster_Click"><i class="fa fa-users fa-fw"></i>&nbsp;Agent Management</asp:LinkButton>
+                                    <asp:LinkButton ID="lblAgentManagementforMaster" runat="server" OnClick="lblAgentManagementforMaster_Click"><i class="fa fa-users fa-fw"></i>&nbsp;Agent Management</asp:LinkButton>
                                 </li>
 
                                 <li>
@@ -222,7 +222,7 @@
                                 <asp:TextBox ID="txtOldPassword" TextMode="Password" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                             <div class="col-sm-3">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorOPW" runat="server" ControlToValidate="txtOldPassword" ForeColor="Red" text-align="left">* Required</asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ValidationGroup="ChangePasswordGroup" ID="RequiredFieldValidatorOPW" runat="server" ControlToValidate="txtOldPassword" ForeColor="Red" text-align="left">* Required</asp:RequiredFieldValidator>
                             </div>
                         </div>
                         <div class="form-group">
@@ -231,7 +231,7 @@
                                 <asp:TextBox ID="txtNewPassword" TextMode="Password" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                             <div class="col-sm-3">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorNPW" runat="server" ControlToValidate="txtNewPassword" ForeColor="Red" text-align="left">* Required</asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ValidationGroup="ChangePasswordGroup" ID="RequiredFieldValidatorNPW" runat="server" ControlToValidate="txtNewPassword" ForeColor="Red" text-align="left">* Required</asp:RequiredFieldValidator>
                             </div>
                         </div>
                         <div class="form-group">
@@ -241,7 +241,7 @@
 
                             </div>
                             <div class="col-sm-3">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorCNPW" runat="server" ControlToValidate="txtConfirmNewPassword" ForeColor="Red" Display="dynamic" text-align="left">* Required</asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ValidationGroup="ChangePasswordGroup" ID="RequiredFieldValidatorCNPW" runat="server" ControlToValidate="txtConfirmNewPassword" ForeColor="Red" Display="dynamic" text-align="left">* Required</asp:RequiredFieldValidator>
                                 <asp:CompareValidator ID="CompareValidatorConfirmPW" runat="server"
                                     ControlToValidate="txtConfirmNewPassword"
                                     CssClass="ValidationError"
@@ -264,7 +264,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <asp:LinkButton ID="btnChangePassword" runat="server" CssClass="btn btn-primary" OnClick="btnChangePassword_Click">
+                        <asp:LinkButton ValidationGroup="ChangePasswordGroup" ID="btnChangePassword" runat="server" CssClass="btn btn-primary" OnClick="btnChangePassword_Click">
                         Change Password
                         </asp:LinkButton>
                     </div>

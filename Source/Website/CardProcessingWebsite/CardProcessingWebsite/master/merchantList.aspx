@@ -55,7 +55,7 @@
                                 <td style="vertical-align: middle; text-align: center">
                                     <asp:CheckBox ID="chkID" CssClass="center-block" AutoPostBack="false" runat="server" Enabled="false" Checked='<%#Eval("Status").ToString()=="True"?true:false %>' /></td>
                                 <td style="text-align: center">
-                                    <asp:LinkButton ID="btnEdit" runat="server" CausesValidation="false" ToolTip="Chỉnh sửa" CssClass="btn btn-success btn-xs" CommandName="EditMerchant" CommandArgument='<%# Eval("MerchantID") %>'>
+                                    <asp:LinkButton ID="btnEdit" runat="server" ToolTip="Chỉnh sửa" CssClass="btn btn-success btn-xs" CommandName="EditMerchant" CommandArgument='<%# Eval("MerchantID") %>'>
                                         <i class="fa fa-pencil"></i>
                                     </asp:LinkButton>
                                 </td>
@@ -85,7 +85,7 @@
                             <asp:TextBox ID="txtMerchantName" placeholder="Tên merchant" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
-                            <asp:RequiredFieldValidator ID="rfv" runat="server" ControlToValidate="txtMerchantName" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ValidationGroup="AddMerchantGroup" ID="rfv" runat="server" ControlToValidate="txtMerchantName" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
                         </div>
                     </div>
 
@@ -95,7 +95,7 @@
                             <asp:TextBox ID="txtAddress" placeholder="Địa chỉ" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtAddress" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ValidationGroup="AddMerchantGroup" ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtAddress" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-group">
@@ -134,8 +134,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <asp:LinkButton ID="btnAddMerchant" CausesValidation="true" runat="server" CssClass="btn btn-primary" OnClick="btnAddMerchant_Click">
-                        <i class="fa fa-check"> Lưu</i>
+                    <asp:LinkButton ValidationGroup="AddMerchantGroup"  ID="btnAddMerchant" runat="server" CssClass="btn btn-primary" OnClick="btnAddMerchant_Click">
+                        Lưu
                     </asp:LinkButton>
                 </div>
             </div>
@@ -158,7 +158,7 @@
                             <asp:TextBox ID="txtMerchantNameE" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtMerchantNameE" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ValidationGroup="UpdateMerchantGroup" ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtMerchantNameE" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
                         </div>
                     </div>
 
@@ -168,7 +168,7 @@
                             <asp:TextBox ID="txtAddressE" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtAddressE" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ValidationGroup="UpdateMerchantGroup" ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtAddressE" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-group">
@@ -207,8 +207,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <asp:LinkButton ID="btnUpdate" CausesValidation="true" runat="server" CssClass="btn btn-primary" OnClick="btnUpdate_Click1">
-                        <i class="fa fa-check"> Lưu</i>
+                    <asp:LinkButton ID="btnUpdate" ValidationGroup="UpdateMerchantGroup" runat="server" CssClass="btn btn-primary" OnClick="btnUpdate_Click">
+                         Lưu
                     </asp:LinkButton>
                 </div>
             </div>

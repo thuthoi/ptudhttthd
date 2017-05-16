@@ -235,7 +235,7 @@ namespace CardProcessingWebsite
                 c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 //Lưu database
                 string url = localhost.hostname() + "api/merchant/update";
-                var response = c.PostAsJsonAsync(url, new
+                var response = c.PutAsJsonAsync(url, new
                 {
                     MerchantID = _merID,
                     MerchantName = txtMerchantNameE.Text.Trim(),
@@ -286,15 +286,6 @@ namespace CardProcessingWebsite
                         ClientScript.RegisterStartupScript(this.GetType(), "editMerchantModal", script, true);
                     }
                 }
-            }
-        }
-
-        protected void btnUpdate_Click1(object sender, EventArgs e)
-        {
-            if (UpdateMerchant())
-            {
-                clearAll();
-                loadListMerchant();
             }
         }
 

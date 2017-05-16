@@ -12,7 +12,7 @@
             <a href="javascript: " class="btn btn-primary" data-backdrop="false" data-toggle="modal" data-target="#addMerchantModal">
                 <i class="fa fa-plus"></i>&nbsp;Thêm
             </a>
-            <asp:LinkButton runat="server" CssClass="btn btn-info" CausesValidation="false" ID="btnPhanQuyen" OnClick="btnPhanQuyen_Click">
+            <asp:LinkButton runat="server" CssClass="btn btn-info" ID="btnPhanQuyen" OnClick="btnPhanQuyen_Click">
                 <i class="fa fa-pencil-square-o"></i>&nbsp;Phân quyền</asp:LinkButton>
         </div>
     </div>
@@ -54,7 +54,7 @@
                                 <td><%#Eval("Phone") %></td>
                                 <td><%#Eval("Email") %></td>
                                <td style="text-align: center">
-                                    <asp:LinkButton ID="btnEdit" runat="server" CausesValidation="false" ToolTip="Chỉnh sửa" CssClass="btn btn-success btn-xs" CommandName="EditAgent" CommandArgument='<%# Eval("AgentID") %>'>
+                                    <asp:LinkButton ID="btnEdit" runat="server" ToolTip="Chỉnh sửa" CssClass="btn btn-success btn-xs" CommandName="EditAgent" CommandArgument='<%# Eval("AgentID") %>'>
                                         <i class="fa fa-pencil"></i>
                                     </asp:LinkButton>
                                 </td>
@@ -85,7 +85,7 @@
                             <asp:TextBox ID="txtAgentName" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
-                            <asp:RequiredFieldValidator ID="rfv" runat="server" ControlToValidate="txtAgentName" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ValidationGroup="AddAgentGroup" ID="rfv" runat="server" ControlToValidate="txtAgentName" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
                         </div>
                     </div>
 
@@ -95,7 +95,7 @@
                             <asp:TextBox ID="txtAddress" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtAddress" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ValidationGroup="AddAgentGroup" ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtAddress" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-group">
@@ -118,7 +118,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <asp:LinkButton ID="btnAddAgent" runat="server" CssClass="btn btn-primary" OnClick="btnAddAgent_Click">
+                    <asp:LinkButton ID="btnAddAgent" ValidationGroup="AddAgentGroup" runat="server" CssClass="btn btn-primary" OnClick="btnAddAgent_Click">
                         <i class="fa fa-check"> Lưu</i>
                     </asp:LinkButton>
                 </div>
@@ -142,7 +142,7 @@
                             <asp:TextBox ID="txtAgentNameE" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtAgentNameE" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ValidationGroup="UpdateAgentGroup" ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtAgentNameE" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
                         </div>
                     </div>
 
@@ -152,7 +152,7 @@
                             <asp:TextBox ID="txtAddressE" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtAddressE" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ValidationGroup="UpdateAgentGroup" ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtAddressE" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-group">
@@ -175,7 +175,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary" OnClick="btnUpdate_Click">
+                    <asp:LinkButton ID="LinkButton1" ValidationGroup="UpdateAgentGroup" runat="server" CssClass="btn btn-primary" OnClick="btnUpdate_Click">
                         <i class="fa fa-check"> Lưu</i>
                     </asp:LinkButton>
                 </div>
