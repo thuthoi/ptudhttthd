@@ -32,13 +32,12 @@
                             <table style="width: 100%" class="table table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Mã</th>
-                                        <th>Tên</th>
-                                        <th>Địa chỉ</th>
-                                        <th>SĐT</th>
-                                        <th>Email</th>
-                                        <th>&nbsp;</th>
-                                        <th>&nbsp;</th>
+                                        <th class="text-center">Mã</th>
+                                        <th class="text-center">Tên</th>
+                                        <th class="text-center">Địa chỉ</th>
+                                        <th class="text-center">SĐT</th>
+                                        <th class="text-center">Email</th>
+                                        <th class="text-center">Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -119,7 +118,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                     <asp:LinkButton ID="btnAddAgent" ValidationGroup="AddAgentGroup" runat="server" CssClass="btn btn-primary" OnClick="btnAddAgent_Click">
-                        <i class="fa fa-check"> Lưu</i>
+                        Thêm
                     </asp:LinkButton>
                 </div>
             </div>
@@ -176,7 +175,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                     <asp:LinkButton ID="LinkButton1" ValidationGroup="UpdateAgentGroup" runat="server" CssClass="btn btn-primary" OnClick="btnUpdate_Click">
-                        <i class="fa fa-check"> Lưu</i>
+                        Cập nhật
                     </asp:LinkButton>
                 </div>
             </div>

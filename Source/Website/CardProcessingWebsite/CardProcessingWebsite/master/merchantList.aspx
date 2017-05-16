@@ -2,6 +2,11 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+
+
+   
+
     Merchant
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="pageheader" runat="server">
@@ -31,13 +36,13 @@
                             <table style="width: 100%" class="table table-striped table-bordered table-hover" id="tableMerchant">
                                 <thead>
                                     <tr>
-                                        <th>Mã</th>
-                                        <th>Tên</th>
-                                        <th>Địa chỉ</th>
-                                        <th>SĐT</th>
-                                        <th>Email</th>
-                                        <th>Active</th>
-                                        <th>&nbsp;</th>
+                                        <th class="text-center">Mã</th>
+                                        <th class="text-center">Tên</th>
+                                        <th class="text-center">Địa chỉ</th>
+                                        <th class="text-center">SĐT</th>
+                                        <th class="text-center">Email</th>
+                                        <th class="text-center">Active</th>
+                                        <th class="text-center">Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -54,7 +59,7 @@
                                 <td><%#Eval("Email") %></td>
                                 <td style="vertical-align: middle; text-align: center">
                                     <asp:CheckBox ID="chkID" CssClass="center-block" AutoPostBack="false" runat="server" Enabled="false" Checked='<%#Eval("Status").ToString()=="True"?true:false %>' /></td>
-                                <td style="text-align: center">
+                                <td style="vertical-align: middle;text-align: center">
                                     <asp:LinkButton ID="btnEdit" runat="server" ToolTip="Chỉnh sửa" CssClass="btn btn-success btn-xs" CommandName="EditMerchant" CommandArgument='<%# Eval("MerchantID") %>'>
                                         <i class="fa fa-pencil"></i>
                                     </asp:LinkButton>
@@ -135,7 +140,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                     <asp:LinkButton ValidationGroup="AddMerchantGroup"  ID="btnAddMerchant" runat="server" CssClass="btn btn-primary" OnClick="btnAddMerchant_Click">
-                        Lưu
+                        Thêm
                     </asp:LinkButton>
                 </div>
             </div>
@@ -208,7 +213,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                     <asp:LinkButton ID="btnUpdate" ValidationGroup="UpdateMerchantGroup" runat="server" CssClass="btn btn-primary" OnClick="btnUpdate_Click">
-                         Lưu
+                         Cập nhật
                     </asp:LinkButton>
                 </div>
             </div>
