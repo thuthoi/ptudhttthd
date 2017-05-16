@@ -134,11 +134,16 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="lblMerchantManagementforMaster" runat="server" CausesValidation="false" OnClick="lblMerchantManagementforMaster_Click"><i class="fa fa-table fa-fw"></i>&nbsp;Merchant Management</asp:LinkButton>
+                                    <asp:LinkButton ID="lblMerchantManagementforMaster" runat="server" CausesValidation="false" OnClick="lblMerchantManagementforMaster_Click"><i class="fa fa-user fa-fw"></i>&nbsp;Merchant Management</asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="lblAgentManagementforMaster" runat="server" CausesValidation="false" OnClick="lblAgentManagementforMaster_Click"><i class="fa fa-table fa-fw"></i>&nbsp;Agent Management</asp:LinkButton>
+                                    <asp:LinkButton ID="lblAgentManagementforMaster" runat="server" CausesValidation="false" OnClick="lblAgentManagementforMaster_Click"><i class="fa fa-users fa-fw"></i>&nbsp;Agent Management</asp:LinkButton>
                                 </li>
+
+                                <li>
+                                    <a href="Notification.html"><i class="fa fa-envelope-o fa-fw"></i>&nbsp;Notification</a>
+                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -153,6 +158,11 @@
                                 <li>
                                     <a href="search.html"><i class="fa fa-search fa-fw"></i>&nbsp;Search Merchant</a>
                                 </li>
+
+                                <li>
+                                    <a href="Notification.html"><i class="fa fa-envelope-o fa-fw"></i>&nbsp;Notification</a>
+                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -163,6 +173,9 @@
                             <ul class="nav" id="side-menu3">
                                 <li class="active">
                                     <a href="chart.html"><i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;Report</a>
+                                </li>
+                                <li>
+                                    <a href="Notification.html"><i class="fa fa-envelope-o fa-fw"></i>&nbsp;Notification</a>
                                 </li>
                             </ul>
                         </div>
