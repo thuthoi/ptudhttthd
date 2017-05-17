@@ -58,44 +58,7 @@
                 <!-- /.navbar-header -->
 
                 <ul class="nav navbar-top-links navbar-right">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-envelope fa-fw"></i><i class="fa fa-caret-down"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-messages">
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <strong>John Smith</strong>
-                                        <span class="pull-right text-muted">
-                                            <em>Yesterday</em>
-                                        </span>
-                                    </div>
-                                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <strong>John Smith</strong>
-                                        <span class="pull-right text-muted">
-                                            <em>Yesterday</em>
-                                        </span>
-                                    </div>
-                                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a class="text-center" href="#">
-                                    <strong>Read All Messages</strong>
-                                    <i class="fa fa-angle-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                        <!-- /.dropdown-messages -->
-                    </li>
+                  
                     <!-- /.dropdown -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -142,9 +105,7 @@
                                     <asp:LinkButton ID="lblAgentManagementforMaster" runat="server" OnClick="lblAgentManagementforMaster_Click"><i class="fa fa-users fa-fw"></i>&nbsp;Agent Management</asp:LinkButton>
                                 </li>
 
-                                <li>
-                                    <a href="Notification.html"><i class="fa fa-envelope-o fa-fw"></i>&nbsp;Notification</a>
-                                </li>
+                              
 
                             </ul>
                         </div>
@@ -161,9 +122,7 @@
                                     <a href="search.html"><i class="fa fa-search fa-fw"></i>&nbsp;Search Merchant</a>
                                 </li>
 
-                                <li>
-                                    <a href="Notification.html"><i class="fa fa-envelope-o fa-fw"></i>&nbsp;Notification</a>
-                                </li>
+                            
 
                             </ul>
                         </div>
@@ -176,9 +135,7 @@
                                 <li class="active">
                                     <a href="chart.html"><i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;Report</a>
                                 </li>
-                                <li>
-                                    <a href="Notification.html"><i class="fa fa-envelope-o fa-fw"></i>&nbsp;Notification</a>
-                                </li>
+                            
                             </ul>
                         </div>
                     </div>
