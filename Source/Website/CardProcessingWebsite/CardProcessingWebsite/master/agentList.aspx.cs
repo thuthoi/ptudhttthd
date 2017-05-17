@@ -157,8 +157,8 @@ namespace CardProcessingWebsite.master
                     Phone = txtPhoneE.Text.Trim(),
                     Email = txtEmailE.Text.Trim(),
                     MasterID = cboMasterE.SelectedItem.Value,
-                    //T gắn mặc định, ông thêm cái in/active thì sửa lại
-                    Status = true
+                    Status = chbxActiveE.Checked == true ? true : false,
+                    
                     
                 }).Result;
                 if (response.StatusCode == HttpStatusCode.OK)

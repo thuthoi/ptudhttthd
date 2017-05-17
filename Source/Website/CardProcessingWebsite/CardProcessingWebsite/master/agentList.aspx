@@ -37,6 +37,7 @@
                                         <th class="text-center">Địa chỉ</th>
                                         <th class="text-center">SĐT</th>
                                         <th class="text-center">Email</th>
+                                        <th class="text-center">Active</th>
                                         <th class="text-center">Edit</th>
                                     </tr>
                                 </thead>
@@ -52,7 +53,9 @@
                                 <td><%#Eval("Address") %></td>
                                 <td><%#Eval("Phone") %></td>
                                 <td><%#Eval("Email") %></td>
-                               <td style="text-align: center">
+                                <td style="vertical-align: middle; text-align: center">
+                                    <asp:CheckBox ID="chkID" CssClass="center-block" AutoPostBack="false" runat="server" Enabled="false" Checked='<%#Eval("Status").ToString()=="True"?true:false %>' /></td>
+                                <td style="text-align: center">
                                     <asp:LinkButton ID="btnEdit" runat="server" ToolTip="Chỉnh sửa" CssClass="btn btn-success btn-xs" CommandName="EditAgent" CommandArgument='<%# Eval("AgentID") %>'>
                                         <i class="fa fa-pencil"></i>
                                     </asp:LinkButton>
@@ -166,9 +169,13 @@
                     </div>
                     <div class="form-group">
                         <label for="<%=cboMasterE.ClientID %>" class="col-sm-2 control-label">Loại:</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-3">
                             <asp:DropDownList ID="cboMasterE" runat="server" CssClass="form-control selectpicker">
                             </asp:DropDownList>
+                        </div>
+                         <label for="<%=chbxActiveE.ClientID %>" class="col-sm-2 control-label">Active:</label>
+                        <div class="col-sm-5">
+                            <asp:CheckBox ID="chbxActiveE" Style="padding-left: 20px;" Checked="true" CssClass="checkbox" runat="server" />
                         </div>
                     </div>
                 </div>
