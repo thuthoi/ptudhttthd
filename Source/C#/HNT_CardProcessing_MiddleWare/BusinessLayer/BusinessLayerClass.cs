@@ -365,70 +365,70 @@ namespace BusinessLayer
 
 
         // Report Merchant
-        public IList<DailyReport> GetDailyReport_By_MerID_Date(String MerID)
+        public DailyReport GetDailyReport_By_MerID(String MerID)
         {
             DateTime dt = DateTime.Now.AddDays(-1);
-            return _dailyReportRepository.GetList(
+            return _dailyReportRepository.GetSingle(
                             d => d.MerchantID.Equals(MerID) &&
                             d.Date.Equals(dt));
         }
 
-        public IList<MonthlyReport> GetMonthlyReport_By_MerID_Date(String MerID)
+        public MonthlyReport GetMonthlyReport_By_MerID(String MerID)
         {
             DateTime dt = DateTime.Now.AddMonths(-1);
-            return _monthlyReportRepository.GetList(
+            return _monthlyReportRepository.GetSingle(
                             d => d.MerchantID.Equals(MerID) &&
                             d.Date.Value.Month.Equals(dt.Month));
         }
 
-        public IList<YearlyReport> GetYearlyReport_By_MerID_Date(String MerID)
+        public YearlyReport GetYearlyReport_By_MerID(String MerID)
         {
             DateTime dt = DateTime.Now.AddYears(-1);
-            return _yearlyReportRepository.GetList(
+            return _yearlyReportRepository.GetSingle(
                             d => d.MerchantID.Equals(MerID) &&
                             d.Date.Value.Year.Equals(dt.Year));
         }
 
-        //Tui thêm cái chữ Quarter vô tên hàm vì nó trùng phía trên, thêm đại chứ t ko biết cái hàm nó làm gì, ông ẩu quá ông Tài, làm ko build hả mà ko thấy lỗi
-        public IList<MonthlyReport> GetMonthlyQuarterReport_By_MerID_Date(String MerID)
+
+        public DailyReport GetMonthlyQuarterReport_By_MerID(String MerID)
         {
-            IList<MonthlyReport> lst = new List<MonthlyReport>();
+            DailyReport lst = new DailyReport();
             DateTime dt = DateTime.Now;
             int quarter = GetQuarter(dt);
             if(quarter == 1)
             {
-                lst = Caculate_QuarterReport(MerID, dt, 10, 12,dt.AddYears(-1).Year);
+                lst = Caculate_fromMonth_toMonth_Report(MerID, dt, 10, 12, dt.AddYears(-1).Year);
             }
             else
             {
                 int quarter_previous = quarter - 1;
                 if (quarter_previous == 1)
                 {
-                    lst = Caculate_QuarterReport(MerID, dt, 1, 3, dt.Year);
+                    lst = Caculate_fromMonth_toMonth_Report(MerID, dt, 1, 3, dt.Year);
                 }
                 else if (quarter_previous == 2)
                 {
-                    lst = Caculate_QuarterReport(MerID, dt, 4, 6, dt.Year);
+                    lst = Caculate_fromMonth_toMonth_Report(MerID, dt, 4, 6, dt.Year);
                 }
                 else if (quarter_previous == 3)
                 {
-                    lst = Caculate_QuarterReport(MerID, dt, 7, 9, dt.Year);
+                    lst = Caculate_fromMonth_toMonth_Report(MerID, dt, 7, 9, dt.Year);
                 }
                 else if (quarter_previous == 4)
                 {
-                    lst = Caculate_QuarterReport(MerID, dt, 11, 12, dt.Year);
+                    lst = Caculate_fromMonth_toMonth_Report(MerID, dt, 11, 12, dt.Year);
                 }
             }
             return lst;
         }
-        private IList<MonthlyReport> Caculate_QuarterReport(String MerID, DateTime dt, int fromMonth, int toMonth, int year)
+        private DailyReport Caculate_fromMonth_toMonth_Report(String MerID, DateTime dt, int fromMonth, int toMonth, int year)
         {
             return _monthlyReportRepository.GetList(
                          d => d.MerchantID.Equals(MerID) && ((
-                         d.Date.Value.Month >= fromMonth) || d.Date.Value.Month <= toMonth)
-                         || d.Date.Value.Year.Equals(year))
+                         d.Date.Value.Month >= fromMonth) && d.Date.Value.Month <= toMonth)
+                         && d.Date.Value.Year.Equals(year))
                          .GroupBy(d => new { d.MerchantID, d.MerchantTypeID, d.MerchantRegionID })
-                         .Select(s => new MonthlyReport
+                         .Select(s => new DailyReport
                          {
                              MerchantID = s.Key.MerchantID,
                              MerchantTypeID = s.Key.MerchantTypeID,
@@ -452,7 +452,7 @@ namespace BusinessLayer
                              NetAmount = s.Sum(w => w.NetAmount),
                              NetCount = s.Sum(w => w.NetCount),
                              Date = dt
-                         }).ToList();
+                         }).FirstOrDefault();
         }
 
         public static int GetQuarter(DateTime date)
@@ -466,6 +466,87 @@ namespace BusinessLayer
             else
                 return 4;
 
+        }
+
+        public DailyReport Get_MonthtoDate_Report_By_MerID_Date(String MerID, DateTime custom_Day)
+        {
+            DateTime now = DateTime.Now;
+            DateTime firstDayOfMonth = new DateTime(now.Year, now.Month, 1);
+            return Caculate_MonthtoDate_Report(MerID, now, firstDayOfMonth, custom_Day);
+        }
+
+        private DailyReport Caculate_MonthtoDate_Report(String MerID, DateTime dt, DateTime fromDate, DateTime toDate)
+        {
+            return _dailyReportRepository.GetList(
+                         d => d.MerchantID.Equals(MerID) && ((
+                         d.Date.Value >= fromDate) && d.Date.Value <= toDate)
+                         )
+                         .GroupBy(d => new { d.MerchantID, d.MerchantTypeID, d.MerchantRegionID })
+                         .Select(s => new DailyReport
+                         {
+                             MerchantID = s.Key.MerchantID,
+                             MerchantTypeID = s.Key.MerchantTypeID,
+                             MerchantRegionID = s.Key.MerchantRegionID,
+                             SaleAmount = s.Sum(w => w.SaleAmount),
+                             ReturnAmount = s.Sum(w => w.ReturnAmount),
+                             SaleCount = s.Sum(w => w.SaleCount),
+                             ReturnCount = s.Sum(w => w.ReturnCount),
+                             DebitCardSaleAmount = s.Sum(w => w.DebitCardSaleAmount),
+                             MasterCardSaleAmount = s.Sum(w => w.MasterCardSaleAmount),
+                             VisaCardSaleAmount = s.Sum(w => w.VisaCardSaleAmount),
+                             DebitCardReturnAmount = s.Sum(w => w.DebitCardReturnAmount),
+                             MasterCardReturnAmount = s.Sum(w => w.MasterCardReturnAmount),
+                             VisaCardReturnAmount = s.Sum(w => w.VisaCardReturnAmount),
+                             DebitCardSaleCount = s.Sum(w => w.DebitCardSaleCount),
+                             MasterCardSaleCount = s.Sum(w => w.MasterCardSaleCount),
+                             VisaCardSaleCount = s.Sum(w => w.VisaCardSaleCount),
+                             DebitCardReturnCount = s.Sum(w => w.DebitCardReturnCount),
+                             MasterCardReturnCount = s.Sum(w => w.MasterCardReturnCount),
+                             VisaCardReturnCount = s.Sum(w => w.VisaCardReturnCount),
+                             NetAmount = s.Sum(w => w.NetAmount),
+                             NetCount = s.Sum(w => w.NetCount),
+                             Date = dt
+                         }).FirstOrDefault();
+        }
+
+
+        public DailyReport Get_YeartoDate_Report_By_MerID_Date(String MerID, DateTime custom_Day)
+        {
+            DateTime now = DateTime.Now;
+            DateTime firstDayOfYear = new DateTime(now.Year, 1, 1);
+            int previous_month = now.AddMonths(-1).Month;
+            DailyReport dl_1_pre_month = Caculate_fromMonth_toMonth_Report(MerID, now, 1, previous_month, now.Year);
+            DailyReport dl_FDOM_CD = Get_MonthtoDate_Report_By_MerID_Date(MerID, custom_Day);
+            DailyReport dl_YeartoDate = Sum_2_DailyReport(dl_1_pre_month, dl_FDOM_CD);
+            return dl_YeartoDate;
+        }
+
+        private static DailyReport Sum_2_DailyReport(DailyReport dl_1, DailyReport dl_2)
+        {
+            DailyReport dl = new DailyReport();
+            dl.MerchantID = dl_1.MerchantID;
+            dl.MerchantTypeID = dl_1.MerchantTypeID;
+            dl.MerchantRegionID = dl_1.MerchantRegionID;
+            dl.SaleAmount = dl_1.SaleAmount + dl_1.SaleAmount;
+            dl.ReturnAmount = dl_1.SaleAmount + dl_1.SaleAmount;
+            dl.SaleCount = dl_1.SaleCount + dl_1.SaleCount;
+            dl.ReturnCount = dl_1.ReturnCount + dl_1.ReturnCount;
+            dl.DebitCardSaleAmount = dl_1.DebitCardSaleAmount + dl_1.DebitCardSaleAmount;
+            dl.MasterCardSaleAmount = dl_1.MasterCardSaleAmount + dl_1.MasterCardSaleAmount;
+            dl.VisaCardSaleAmount = dl_1.VisaCardSaleAmount + dl_1.VisaCardSaleAmount;
+            dl.DebitCardReturnAmount = dl_1.DebitCardReturnAmount + dl_1.DebitCardReturnAmount;
+            dl.MasterCardReturnAmount = dl_1.MasterCardReturnAmount + dl_1.MasterCardReturnAmount;
+            dl.VisaCardReturnAmount = dl_1.VisaCardReturnAmount + dl_1.VisaCardReturnAmount;
+            dl.DebitCardSaleCount = dl_1.DebitCardSaleCount + dl_1.DebitCardSaleCount;
+            dl.MasterCardSaleCount = dl_1.MasterCardSaleCount + dl_1.MasterCardSaleCount;
+            dl.VisaCardSaleCount = dl_1.VisaCardSaleCount + dl_1.VisaCardSaleCount;
+            dl.DebitCardReturnCount = dl_1.DebitCardReturnCount + dl_1.DebitCardReturnCount;
+            dl.MasterCardReturnCount = dl_1.MasterCardReturnCount + dl_1.MasterCardReturnCount;
+            dl.VisaCardReturnCount = dl_1.VisaCardReturnCount + dl_1.VisaCardReturnCount;
+            dl.NetAmount = dl_1.NetAmount + dl_1.NetAmount;
+            dl.NetCount = dl_1.NetCount + dl_1.NetCount;
+            dl.Date = DateTime.Now;
+            return dl;
         }
     }
 }
