@@ -389,9 +389,10 @@ namespace BusinessLayer
                             d.Date.Value.Year.Equals(dt.Year));
         }
 
-        public IList<MonthlyReport> GetMonthlyReport_By_MerID_Date(String MerID)
+        //Tui thêm cái chữ Quarter vô tên hàm vì nó trùng phía trên, thêm đại chứ t ko biết cái hàm nó làm gì, ông ẩu quá ông Tài, làm ko build hả mà ko thấy lỗi
+        public IList<MonthlyReport> GetMonthlyQuarterReport_By_MerID_Date(String MerID)
         {
-            IList<MonthlyReport> lst;
+            IList<MonthlyReport> lst = new List<MonthlyReport>();
             DateTime dt = DateTime.Now;
             int quarter = GetQuarter(dt);
             if(quarter == 1)
