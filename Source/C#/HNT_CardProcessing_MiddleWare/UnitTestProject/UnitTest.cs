@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BusinessLayer;
 using DomainModel;
 using System.Collections.Generic;
+using BusinessLayer.Helpers;
 
 namespace UnitTestProject
 {
@@ -44,15 +45,15 @@ namespace UnitTestProject
         public void Test_Login_NotNull()
         {
             BusinessLayerClass bus = new BusinessLayerClass();
-            IList<Account> ac = bus.GetAccountBy_Username_Password("agent01", "12345");
+            IList<Account> ac = bus.GetAccountBy_Username_Password("agent01", "123456789");
             Assert.IsNotNull(ac[0]);
         }
         [TestMethod]
         public void Test_Login_CorrectData()
         {
             BusinessLayerClass bus = new BusinessLayerClass();
-            IList<Account> ac = bus.GetAccountBy_Username_Password("tuantai", "123456");
-            Assert.AreEqual("tuantai", ac[0].Username);
+            IList<Account> ac = bus.GetAccountBy_Username_Password("merchant01", "12345");
+            Assert.AreEqual("merchant01", ac[0].Username);
         }
         [TestMethod]
         public void Test_GetAll_Account()
@@ -61,6 +62,45 @@ namespace UnitTestProject
             IList<Account> ac = bus.getAllAccount();
             Assert.AreNotEqual(0, ac.Count);
         }
+
+        [TestMethod]
+        public void Test_GetAccountBy_Username()
+        {
+            BusinessLayerClass bus = new BusinessLayerClass();
+            IList<Account> ac = bus.GetAccountBy_Username("merchant01");
+            Assert.AreEqual("merchant01", ac[0].Username);
+        }
+
+        [TestMethod]
+        public void Test_Check_Account_UserName_Exist()
+        {
+            BusinessLayerClass bus = new BusinessLayerClass();
+            bool ac = bus.Check_Account_UserName_Exist("merchant01");
+            Assert.AreEqual(false, ac);
+        }
+
+        [TestMethod]
+        public void Test_addAccount()
+        {
+            BusinessLayerClass bus = new BusinessLayerClass();
+            Account ac = new Account();
+            ac.Username = "b";
+            ac.Password = "12345";
+            ac.Role = "merchant";
+            ac.UserID = "MERCH00001";
+            bus.AddAccount(ac);
+            IList<Account> tmp = bus.GetAccountBy_Username("b");
+            Assert.AreEqual("merchant", tmp[0].Role);
+            Assert.AreEqual("b", tmp[0].Username);
+            Assert.AreEqual("MERCH00001", tmp[0].UserID);
+
+            string en_pass = StringUtils.Md5("12345");
+            Assert.AreEqual(en_pass, tmp[0].Password);
+            bus.RemoveAccount(ac);
+            
+        }
+
+
         [TestMethod]
         public void Test_GetMerchant_NotHave_Account()
         {
