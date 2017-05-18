@@ -24,7 +24,6 @@
     <properties>
         <springframework.version>4.3.6.RELEASE</springframework.version>
         <hibernate.version>4.1.7.Final</hibernate.version>
-        <sql.connector.version>4.0</sql.connector.version>
         <joda-time.version>2.3</joda-time.version>
         <testng.version>6.9.4</testng.version>
     </properties>
@@ -90,12 +89,6 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.5.2</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/sqljdbc4 -->
-        <dependency>
-            <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>sqljdbc4</artifactId>
-            <version>${sql.connector.version}</version>
         </dependency>
         <!-- Joda-Time -->
         <dependency>

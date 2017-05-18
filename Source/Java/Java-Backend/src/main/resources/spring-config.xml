@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Account -->
+    <!-- Agent -->
+    <!-- DailyReport -->
+    <!-- Master -->
+    <!-- Merchant -->
+    <!-- MerchantRegion -->
+    <!-- MerchantType -->
+    <!-- MonthlyReport -->
+    <!-- Notification -->
+    <!-- Parameter -->
+    <!-- RegistrationForm -->
+    <!-- TransactionDetail_Temp -->
+    <!-- TransactionDetail -->
+    <!-- YearlyReport -->
+
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="annotatedClasses">
+            <list>
+                <value>hnt_15hcb2.entity.AccountEntity</value>
+                <value>hnt_15hcb2.entity.AgentEntity</value>
+                <value>hnt_15hcb2.entity.DailyReportEntity</value>
+                <value>hnt_15hcb2.entity.MasterEntity</value>
+                <value>hnt_15hcb2.entity.MerchantEntity</value>
+                <value>hnt_15hcb2.entity.MerchantRegionEntity</value>
+                <value>hnt_15hcb2.entity.MerchantTypeEntity</value>
+                <value>hnt_15hcb2.entity.MonthlyReportEntity</value>
+                <value>hnt_15hcb2.entity.NotificationEntity</value>
+                <value>hnt_15hcb2.entity.ParameterEntity</value>
+                <value>hnt_15hcb2.entity.RegistrationFormEntity</value>
+                <value>hnt_15hcb2.entity.TransactionDetail_TempEntity</value>
+                <value>hnt_15hcb2.entity.TransactionDetailEntity</value>
+                <value>hnt_15hcb2.entity.YearlyReportEntity</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+                <prop key="hibernate.current_session_context_class">thread</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+        <property name="url" value="jdbc:sqlserver://localhost\\SQLEXPRESS;databasename=CardProcessing_HTTT_HNT"/>
+        <property name="username" value=""/>
+        <property name="password" value=""/>
+    </bean>
+</beans>

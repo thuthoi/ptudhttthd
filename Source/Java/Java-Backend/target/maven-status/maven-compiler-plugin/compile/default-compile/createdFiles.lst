@@ -1,0 +1,14 @@
+hnt_15hcb2\entity\RegistrationFormEntity.class
+hnt_15hcb2\entity\DailyReportEntity.class
+hnt_15hcb2\entity\MasterEntity.class
+hnt_15hcb2\entity\TransactionDetailEntity.class
+hnt_15hcb2\entity\TransactionDetail_TempEntity.class
+hnt_15hcb2\entity\MonthlyReportEntity.class
+hnt_15hcb2\entity\MerchantEntity.class
+hnt_15hcb2\entity\NotificationEntity.class
+hnt_15hcb2\entity\MerchantRegionEntity.class
+hnt_15hcb2\entity\AgentEntity.class
+hnt_15hcb2\entity\AccountEntity.class
+hnt_15hcb2\entity\YearlyReportEntity.class
+hnt_15hcb2\entity\MerchantTypeEntity.class
+hnt_15hcb2\entity\ParameterEntity.class
