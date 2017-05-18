@@ -309,5 +309,73 @@ namespace UnitTestProject
             Assert.AreNotEqual(0, list.Count);
             Assert.AreEqual(3, list.Count);
         }
+
+        // Report Merchant
+        [TestMethod]
+        public void Test_GetDailyReport_By_MerID_Date()
+        {
+            DateTime dt = new DateTime(2017,5,7);
+            DailyReport dl = bus.GetDailyReport_By_MerID_Date("MERCH00001", dt);
+            Assert.IsNotNull(dl);
+            Assert.AreEqual("MERCH00001", dl.MerchantID);
+            Assert.AreEqual(dt.AddDays(-1), dl.Date);
+        }
+
+        [TestMethod]
+        public void Test_GetMonthlyReport_By_MerID_Date()
+        {
+            DateTime dt = new DateTime(2017, 6, 7);
+            MonthlyReport dl = bus.GetMonthlyReport_By_MerID_Date("MERCH00001", dt);
+            Assert.IsNotNull(dl);
+            Assert.AreEqual("MERCH00001", dl.MerchantID);
+            Assert.AreEqual(dt.AddMonths(-1).Month, dl.Date.Value.Month);
+        }
+
+        [TestMethod]
+        public void Test_GetYearlyReport_By_MerID_Date()
+        {
+            DateTime dt = new DateTime(2017, 6, 7);
+            YearlyReport dl = bus.GetYearlyReport_By_MerID_Date("MERCH00001", dt);
+            Assert.IsNotNull(dl);
+            Assert.AreEqual("MERCH00001", dl.MerchantID);
+            Assert.AreEqual(dt.AddYears(-1).Year, dl.Date.Value.Year);
+        }
+
+        [TestMethod]
+        public void Test_GetMonthlyQuarterReport_By_MerID_Date()
+        {
+            DateTime dt = new DateTime(2017, 7, 7);
+            DailyReport dl = bus.GetMonthlyQuarterReport_By_MerID_Date("MERCH00001", dt);
+            Assert.IsNotNull(dl);
+            Assert.AreEqual("MERCH00001", dl.MerchantID);
+            Assert.AreEqual(4, dl.Date.Value.Month);
+            Assert.AreEqual(203000*3 + 185000*2, dl.NetAmount);
+        }
+
+        [TestMethod]
+        public void Test_Get_MonthtoDate_Report_By_MerID_Date()
+        {
+            DateTime dt = new DateTime(2017, 5, 10);
+            DailyReport dl = bus.Get_MonthtoDate_Report_By_MerID_Date("MERCH00001", dt);
+            Assert.IsNotNull(dl);
+            Assert.AreEqual("MERCH00001", dl.MerchantID);
+            Assert.AreEqual(1, dl.Date.Value.Day);
+            Assert.AreEqual(5, dl.Date.Value.Month);
+            Assert.AreEqual(2017, dl.Date.Value.Year);
+            Assert.AreEqual(203000 * 3 + 185000, dl.NetAmount);
+        }
+
+        [TestMethod]
+        public void Test_Get_YeartoDate_Report_By_MerID_Date()
+        {
+            DateTime dt = new DateTime(2017, 5, 7);
+            DailyReport dl = bus.Get_YeartoDate_Report_By_MerID_Date("MERCH00001", dt);
+            Assert.IsNotNull(dl);
+            Assert.AreEqual("MERCH00001", dl.MerchantID);
+            Assert.AreEqual(2017, dl.Date.Value.Year);
+            Assert.AreEqual(203000 * 2 + 185000* 3, dl.NetAmount);
+        }
+
+
     }
 }

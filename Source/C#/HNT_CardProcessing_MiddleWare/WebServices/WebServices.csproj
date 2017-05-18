@@ -101,6 +101,7 @@
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\MerchantController.cs" />
     <Compile Include="Controllers\MerchantRegionController.cs" />
+    <Compile Include="Controllers\MerchantReportController.cs" />
     <Compile Include="Controllers\MerchantTypeController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\RegistrationFormController.cs" />
