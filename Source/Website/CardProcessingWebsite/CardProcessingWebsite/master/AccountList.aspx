@@ -143,7 +143,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="scriptFile" runat="server">
     <script>
         $('#addAccountModal').on('shown.bs.modal', function (e) {
-            alert('a');
+            //alert('a');
             $("#<%=txtUserName.ClientID%>").focus();
         });
 
