@@ -98,9 +98,19 @@ namespace App_Import_SSIS_Package_CardProcessing
             }
             else
             {
-                MessageBox.Show("Tiến hành import toàn bộ file trong thư mục" + txtImport_File_Patch.Text);
+                DialogResult result3 = MessageBox.Show("Bạn muốn tiến hành import toàn bộ file trong thư mục" + txtImport_File_Patch.Text,
+                                                   "Thông báo",
+                                                   MessageBoxButtons.OKCancel,
+                                                   MessageBoxIcon.Question,
+                                                   MessageBoxDefaultButton.Button2);
+                if (result3 == DialogResult.OK)
+                {
+                    Import_File(txtSerVerName.Text, txtDatabase.Text, txtImport_File_Patch.Text, txtPackage_Patch.Text);
 
-                Import_File(txtSerVerName.Text, txtDatabase.Text, txtImport_File_Patch.Text, txtPackage_Patch.Text);
+                }
+                //MessageBox.Show("Tiến hành import toàn bộ file trong thư mục" + txtImport_File_Patch.Text);
+
+               
             }
         }
 
@@ -111,13 +121,25 @@ namespace App_Import_SSIS_Package_CardProcessing
 
         private void btnDefault_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Tiến hành import toàn bộ file trong thư mục" + txtImport_File_Patch.Text);
+            //MessageBox.Show("Tiến hành import toàn bộ file trong thư mục" + txtImport_File_Patch.Text);
             string Server_name = ConfigurationManager.AppSettings["Server_name"];
             string Database_name = ConfigurationManager.AppSettings["Database_name"];
             string Dir_path = ConfigurationManager.AppSettings["Dir_path"];
             string File_path = ConfigurationManager.AppSettings["File_path"];
-            Check_Dir(Dir_path);
-            Import_File(Server_name, Database_name, Dir_path, File_path);
+            DialogResult result3 = MessageBox.Show("Bạn muốn tiến hành import toàn bộ file trong thư mục" + txtImport_File_Patch.Text,
+                                                   "Thông báo",
+                                                   MessageBoxButtons.OKCancel,
+                                                   MessageBoxIcon.Question,
+                                                   MessageBoxDefaultButton.Button2);
+            if (result3 == DialogResult.OK)
+            {
+                Check_Dir(Dir_path);
+                Import_File(Server_name, Database_name, Dir_path, File_path);
+               
+            }
+
+            //Check_Dir(Dir_path);
+            //Import_File(Server_name, Database_name, Dir_path, File_path);
         }
 
         private void Import_File(string Server_name, string Database_name, string Dir_path, string File_path)
