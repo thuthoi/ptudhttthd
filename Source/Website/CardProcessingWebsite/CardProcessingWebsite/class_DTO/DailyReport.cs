@@ -30,5 +30,7 @@ namespace CardProcessingWebsite.class_DTO
         public decimal NetAmount { get; set; }
         public int NetCount { get; set; }
         public System.DateTime Date { get; set; }
+
+        public String CardName { get; set; }
     }
 }

@@ -31,13 +31,76 @@ namespace CardProcessingWebsite.merchant {
         protected global::System.Web.UI.WebControls.DropDownList dpnReportType;
         
         /// <summary>
-        /// listAccount control.
+        /// lbReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView listAccount;
+        protected global::System.Web.UI.WebControls.Label lbReport;
+        
+        /// <summary>
+        /// list_Report_general control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView list_Report_general;
+        
+        /// <summary>
+        /// lbReport_Debit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbReport_Debit;
+        
+        /// <summary>
+        /// list_Report_Debit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView list_Report_Debit;
+        
+        /// <summary>
+        /// lbReport_Visa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbReport_Visa;
+        
+        /// <summary>
+        /// list_Report_Visa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView list_Report_Visa;
+        
+        /// <summary>
+        /// lbReport_Master control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbReport_Master;
+        
+        /// <summary>
+        /// list_Report_Master control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView list_Report_Master;
         
         /// <summary>
         /// txtCustomDay control.
