@@ -375,7 +375,5 @@ namespace UnitTestProject
             Assert.AreEqual(2017, dl.Date.Value.Year);
             Assert.AreEqual(203000 * 2 + 185000* 3, dl.NetAmount);
         }
-
-
     }
 }

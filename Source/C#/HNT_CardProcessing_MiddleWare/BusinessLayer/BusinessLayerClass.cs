@@ -365,65 +365,116 @@ namespace BusinessLayer
 
 
         // Report Merchant
+        /// <summary>
+        /// Lấy thống kê hàng ngày dựa theo merID và dt.
+        /// thống kê hàng ngày nhưng lấy dữ liệu của ngày hôm qua, ko phải ngày hiện tại của dt. 
+        /// VD: dt là ngày 19 thì dữ liệu lấy là ngày 18
+        /// </summary>
+        /// <param name="MerID">mã số merchant</param>
+        /// <param name="dt">ngày muốn lấy thống kê</param>
+        /// <returns></returns>
+
         public DailyReport GetDailyReport_By_MerID_Date(String MerID, DateTime dt)
         {
+            // AddDays(-1) để có được ngày hôm trước
             DateTime previous =  dt.AddDays(-1);
             return _dailyReportRepository.GetSingle(
                             d => d.MerchantID.Equals(MerID) &&
                             d.Date.Equals(previous));
         }
-
+        /// <summary>
+        /// Lấy thống kê tháng dựa theo merID và dt.
+        /// thống kê tháng nhưng lấy dữ liệu của tháng trước ko phải tháng hiện tại của dt. 
+        /// VD: dt là ngày 19/5/2017 thì dữ liệu lấy là của tháng 4
+        /// </summary>
+        /// <param name="MerID"></param>
+        /// <param name="dt"></param>
+        /// <returns></returns>
         public MonthlyReport GetMonthlyReport_By_MerID_Date(String MerID, DateTime dt)
         {
+            // AddMonths(-1) để có được tháng trước
             DateTime previous = dt.AddMonths(-1);
             return _monthlyReportRepository.GetSingle(
                             d => d.MerchantID.Equals(MerID) &&
-                            d.Date.Value.Month.Equals(previous.Month));
+                            d.Date.Value.Month.Equals(previous.Month)
+                            && d.Date.Value.Year.Equals(previous.Year));
         }
-
+        /// <summary>
+        /// Lấy thống kê năm dựa theo merID và dt.
+        /// thống kê năm nhưng lấy dữ liệu của năm trước ko phải năm hiện tại của dt. 
+        /// VD: dt là ngày 19/5/2017 thì dữ liệu lấy là của năm 2016
+        /// </summary>
+        /// <param name="MerID"></param>
+        /// <param name="dt"></param>
+        /// <returns></returns>
         public YearlyReport GetYearlyReport_By_MerID_Date(String MerID, DateTime dt)
         {
+            // AddYears(-1) để có được năm trước
             DateTime previous = dt.AddYears(-1);
             return _yearlyReportRepository.GetSingle(
                             d => d.MerchantID.Equals(MerID) &&
                             d.Date.Value.Year.Equals(previous.Year));
         }
-
+        /// <summary>
+        /// Lấy thống kê quý dựa theo merID và dt.
+        /// thống kê quý nhưng lấy dữ liệu của quý trước ko phải quý hiện tại của dt. 
+        /// VD: dt là ngày 19/5/2017 là quý 2 nên dữ liệu sẽ lấy là của tháng 1
+        /// nếu rơi vào quý 1 thì lấy quý 4 của năm trước
+        /// quý 1: 1,2,3
+        /// quý 2: 4,5,6
+        /// quý 3: 7,8,9
+        /// quý 4: 10,11,12
+        /// </summary>
+        /// <param name="MerID"></param>
+        /// <param name="dt"></param>
+        /// <returns></returns>
 
         public DailyReport GetMonthlyQuarterReport_By_MerID_Date(String MerID, DateTime dt)
         {
             DailyReport lst = new DailyReport();
             //DateTime dt = DateTime.Now;
+
+            // tính xem hiện tại đang ở quý nào
             int quarter = GetQuarter(dt);
+            // rơi quý 1 nên lấy thống kê của quý 4 năm trước 
             if(quarter == 1)
             {
-                lst = Caculate_fromMonth_toMonth_Report(MerID, dt, 10, 12, dt.AddYears(-1).Year);
+                lst = Caculate_fromMonth_toMonth_Report(MerID, 10, 12, dt.AddYears(-1).Year);
             }
             else
             {
+                // tính quý cần lấy dữ liệu 
                 int quarter_previous = quarter - 1;
                 if (quarter_previous == 1)
                 {
-                    lst = Caculate_fromMonth_toMonth_Report(MerID, dt, 1, 3, dt.Year);
+                    lst = Caculate_fromMonth_toMonth_Report(MerID, 1, 3, dt.Year);
                 }
                 else if (quarter_previous == 2)
                 {
-                    lst = Caculate_fromMonth_toMonth_Report(MerID, dt, 4, 6, dt.Year);
+                    lst = Caculate_fromMonth_toMonth_Report(MerID, 4, 6, dt.Year);
                 }
                 else if (quarter_previous == 3)
                 {
-                    lst = Caculate_fromMonth_toMonth_Report(MerID, dt, 7, 9, dt.Year);
+                    lst = Caculate_fromMonth_toMonth_Report(MerID, 7, 9, dt.Year);
                 }
-                //else if (quarter_previous == 4)
-                //{
-                //    lst = Caculate_fromMonth_toMonth_Report(MerID, dt, 10, 12, dt.Year);
-                //}
+                
             }
             return lst;
         }
-        private DailyReport Caculate_fromMonth_toMonth_Report(String MerID, DateTime dt, int fromMonth, int toMonth, int year)
+        /// <summary>
+        /// Hàm lấy thống kê báo cáo từ tháng bắt đầu (fromMonth) đến tháng kết thúc (toMonth)
+        /// Chọn DailyReport để trả về do 3 cái Daily, Monthly, Yearly có thuộc tính giống nhau nên chọn đại 1 cái
+        /// </summary>
+        /// <param name="MerID">mã số merchant</param>
+        /// <param name="fromMonth">tháng bắt đầu</param>
+        /// <param name="toMonth">tháng kết thúc</param>
+        /// <param name="year">nănm</param>
+        /// <returns></returns>
+        private DailyReport Caculate_fromMonth_toMonth_Report(String MerID, int fromMonth, int toMonth, int year)
         {
-            DateTime tmp_dt = new DateTime(dt.Year, fromMonth, 1);
+            // do thống kê được tạo từ nhiều tháng nên thuộc tính Date trong DailyReport
+            // nên tạo đại 1 ngày là ngày bắt đầu của tháng bắt đầu(fromMonth) để gắn vào
+            DateTime tmp_dt = new DateTime(year, fromMonth, 1);
             return _monthlyReportRepository.GetList(
                          d => d.MerchantID.Equals(MerID) && ((
                          d.Date.Value.Month >= fromMonth) && d.Date.Value.Month <= toMonth)
@@ -455,19 +506,38 @@ namespace BusinessLayer
                              Date = tmp_dt
                          }).FirstOrDefault();
         }
-
+        /// <summary>
+        /// Hàm tính quý dựa trên hàm truyền vào
+        /// </summary>
+        /// <param name="date">ngày muốn tính quý</param>
+        /// <returns></returns>
         public static int GetQuarter(DateTime date)
         {
             return (date.Month + 2) / 3;
         }
-
+        /// <summary>
+        /// hàm tính thống kê từ đầu tháng của ngày truyền vào (custom_Day) đến sau ngày truyền vào 1 ngày
+        /// VD: ngày truyền vào là 19/5/2017 thì hàm sẽ tính từ ngày 1/5/2017 đến 18/5/2017
+        /// Chọn DailyReport để trả về do 3 cái Daily, Monthly, Yearly có thuộc tính giống nhau nên chọn đại 1 cái
+        /// </summary>
+        /// <param name="MerID"></param>
+        /// <param name="custom_Day">ngày truyền vào</param>
+        /// <returns></returns>
         public DailyReport Get_MonthtoDate_Report_By_MerID_Date(String MerID, DateTime custom_Day)
         {
             //DateTime now = DateTime.Now;
+            // Tạo ngày đầu của tháng
             DateTime firstDayOfMonth = new DateTime(custom_Day.Year, custom_Day.Month, 1);
             return Caculate_MonthtoDate_Report(MerID, firstDayOfMonth, custom_Day);
         }
-
+        /// <summary>
+        /// hàm tính thống kê từ ngày bắt đầu (fromDate) đến ngày kết thúc (toDate)
+        /// 
+        /// </summary>
+        /// <param name="MerID"></param>
+        /// <param name="fromDate">ngày bắt đầu</param>
+        /// <param name="toDate">ngày kết thúc</param>
+        /// <returns></returns>
         private DailyReport Caculate_MonthtoDate_Report(String MerID, DateTime fromDate, DateTime toDate)
         {
             return _dailyReportRepository.GetList(
@@ -502,31 +572,52 @@ namespace BusinessLayer
                          }).FirstOrDefault();
         }
 
-
+        /// <summary>
+        /// hàm tính thống kê từ đầu năm của ngày truyền vào (custom_Day) đến sau ngày truyền vào 1 ngày
+        /// VD: ngày truyền vào là 19/5/2017 thì hàm sẽ tính từ ngày 1/1/2017 đến 18/5/2017
+        /// Cách tính là tính thống kê từ ngày ngầy đâu tiên của năm (1/1/2017 ) tới tháng trước của ngày truyền vào (custom_Day) (30/4/2017 )
+        /// sau đó tính thống kê từ ngày đâu tháng (1/5/2017 ) tới ngày truyền vào  (18/5/2017)
+        /// cộng 2 cái lại được kết quả
+        /// 1/1/2017 - 30/4/2017 => dl_1_pre_month
+        /// 1/5/2017 - 18/5/2017 => dl_FDOM_CD
+        /// dl_YeartoDate = dl_1_pre_month + dl_FDOM_CD
+        /// Chọn DailyReport để trả về do 3 cái Daily, Monthly, Yearly có thuộc tính giống nhau nên chọn đại 1 cái
+        /// </summary>
+        /// <param name="MerID"></param>
+        /// <param name="custom_Day">ngày truyền vào</param>
+        /// <returns></returns>
         public DailyReport Get_YeartoDate_Report_By_MerID_Date(String MerID, DateTime custom_Day)
         {
             // DateTime now = DateTime.Now;
             DateTime firstDayOfYear = new DateTime(custom_Day.Year, 1, 1);
+            // tính xem tháng trước đó là tháng mấy
             int previous_month = custom_Day.AddMonths(-1).Month;
 
             DailyReport dl_1_pre_month = null;
-
+            // nếu tháng trước là tháng 12 thì ko cần tính thống kê từ đầu năm tới tháng trước của ngày truyền vào
+            // do đó dl_1_pre_month chỉ được tính khi tháng trước ko phải là tháng 12
             if(previous_month != 12)
             {
-                dl_1_pre_month = Caculate_fromMonth_toMonth_Report(MerID, firstDayOfYear, 1, previous_month, custom_Day.Year);
+                dl_1_pre_month = Caculate_fromMonth_toMonth_Report(MerID, 1, previous_month, custom_Day.Year);
             }
            
             DailyReport dl_FDOM_CD = Get_MonthtoDate_Report_By_MerID_Date(MerID, custom_Day);
-
-
-
             DailyReport dl_YeartoDate = Sum_2_DailyReport(dl_1_pre_month, dl_FDOM_CD, firstDayOfYear);
             return dl_YeartoDate;
         }
-
+        /// <summary>
+        /// Hàm cộng dữ liệu của 2 DailyReport
+        /// </summary>
+        /// <param name="dl_1">DailyReport1</param>
+        /// <param name="dl_2">DailyReport2</param>
+        /// <param name="firstDayOfYear"> ngày đầu của năm</param>
+        /// <returns></returns>
         private static DailyReport Sum_2_DailyReport(DailyReport dl_1, DailyReport dl_2, DateTime firstDayOfYear)
         {
+            // do thống kê được tạo từ nhiều tháng nên thuộc tính Date trong DailyReport
+            // nên tạo đại 1 ngày là ngày bắt đầu của năm (firstDayOfYear) để gắn vào
             DailyReport dl = null;
+            // nếu dl_1, dl_2 dều khác null thì mới cộng lại
             if(dl_1 != null && dl_2 != null)
             {
                 dl = new DailyReport();
@@ -553,16 +644,14 @@ namespace BusinessLayer
                 dl.NetCount = dl_1.NetCount + dl_2.NetCount;
                 dl.Date = firstDayOfYear;
             }
-            else if (dl_1 == null)
+            else if (dl_1 == null) // nếu dl_1 == null thì chỉ cần trả về dl_2
             {
-                
                 return dl_2;
             }
-            else if (dl_2 == null)
+            else if (dl_2 == null) // nếu dl_2 == null thì chỉ cần trả về dl_1
             {
                 return dl_1;
             }
-            
             return dl;
         }
     }
