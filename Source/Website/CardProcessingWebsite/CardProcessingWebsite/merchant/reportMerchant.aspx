@@ -56,7 +56,7 @@
                                 <td><%#Eval("ReturnAmount","{0:#,##0.00}") %></td>
                                 <td><%#Eval("SaleCount") %></td>
                                 <td><%#Eval("ReturnCount") %></td>
-                                <td><%#Eval("NetAmount") %></td>
+                                <td><%#Eval("NetAmount","{0:#,##0.00}") %></td>
                             </tr>
                         </ItemTemplate>
                         <EmptyDataTemplate>
@@ -231,12 +231,12 @@
                                 <div class="panel-body">
 
                                     <label class="radio-inline">
-                                        <asp:RadioButton ID="rdMerchant" runat="server" GroupName="Role" />
+                                        <asp:RadioButton ID="rdMonthToDate" runat="server" GroupName="Role" Checked ="true"/>
                                         Đầu tháng cho tới sau ngày được chọn 1 ngày
                                     </label>
                                     <br />
                                     <label class="radio-inline">
-                                        <asp:RadioButton ID="RadioButton3" runat="server" GroupName="Role" />
+                                        <asp:RadioButton ID="rdYearToDate" runat="server" GroupName="Role"/>
                                         Đầu năm cho tới sau ngày được chọn 1 ngày
                                     </label>
                                 </div>
@@ -245,10 +245,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <asp:LinkButton ID="btnViewReport_customDay" runat="server" CssClass="btn btn-info" OnClick="btnViewReport_customDay_Click">
+                        <i class="fa fa-check"> Xem Thống Kê</i>
+                    </asp:LinkButton>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <%--<asp:LinkButton ID="btnAddAccount" runat="server" CssClass="btn btn-primary" OnClick="btnAddAccount_Click" OnClientClick="a();">
-                        <i class="fa fa-check"> Lưu</i>
-                    </asp:LinkButton>--%>
                 </div>
             </div>
         </div>
@@ -264,15 +264,29 @@
         $(function () {
             $('#datetimepicker1').datetimepicker({
                 format: 'DD/MM/YYYY',
-                keepOpen: true,
-                minDate: "5/18/2017"
+                keepOpen: true
+               
             });
-
+            handleClick();
         });
+        function handleClick() {
+            var rates = document.getElementById('<%=rdMonthToDate.ClientID %>').checked;
+            if (rates == true) {
+                var date = new Date();
+                var pre_date = new Date(date.setDate(date.getDate() - 1));
+                var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+                $('#datetimepicker1').data("DateTimePicker").minDate(firstDay);
+                $('#datetimepicker1').data("DateTimePicker").maxDate(pre_date);
+            }
+            else {
+                var date = new Date();
+                var pre_date = new Date(date.setDate(date.getDate() - 1));
+                var firstDay = new Date(date.getFullYear(), 0, 1);
+                $('#datetimepicker1').data("DateTimePicker").minDate(firstDay);
+                $('#datetimepicker1').data("DateTimePicker").maxDate(pre_date);
+            }
 
-
-
-
+        }
 
     </script>
     <script src="../assets/vendor/datatables/js/jquery.dataTables.min.js"></script>

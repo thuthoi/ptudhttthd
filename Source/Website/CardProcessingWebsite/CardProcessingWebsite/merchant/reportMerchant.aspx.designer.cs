@@ -112,21 +112,30 @@ namespace CardProcessingWebsite.merchant {
         protected global::System.Web.UI.WebControls.TextBox txtCustomDay;
         
         /// <summary>
-        /// rdMerchant control.
+        /// rdMonthToDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdMerchant;
+        protected global::System.Web.UI.WebControls.RadioButton rdMonthToDate;
         
         /// <summary>
-        /// RadioButton3 control.
+        /// rdYearToDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton3;
+        protected global::System.Web.UI.WebControls.RadioButton rdYearToDate;
+        
+        /// <summary>
+        /// btnViewReport_customDay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnViewReport_customDay;
     }
 }

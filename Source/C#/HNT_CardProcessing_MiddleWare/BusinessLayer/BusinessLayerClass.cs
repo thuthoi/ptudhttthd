@@ -423,7 +423,7 @@ namespace BusinessLayer
         }
         private DailyReport Caculate_fromMonth_toMonth_Report(String MerID, DateTime dt, int fromMonth, int toMonth, int year)
         {
-            DateTime tmp_dt = new DateTime(dt.Year, fromMonth, dt.Day);
+            DateTime tmp_dt = new DateTime(dt.Year, fromMonth, 1);
             return _monthlyReportRepository.GetList(
                          d => d.MerchantID.Equals(MerID) && ((
                          d.Date.Value.Month >= fromMonth) && d.Date.Value.Month <= toMonth)
@@ -505,40 +505,64 @@ namespace BusinessLayer
 
         public DailyReport Get_YeartoDate_Report_By_MerID_Date(String MerID, DateTime custom_Day)
         {
-            DateTime now = DateTime.Now;
-            DateTime firstDayOfYear = new DateTime(now.Year, 1, 1);
-            int previous_month = now.AddMonths(-1).Month;
-            DailyReport dl_1_pre_month = Caculate_fromMonth_toMonth_Report(MerID, now, 1, previous_month, now.Year);
+            // DateTime now = DateTime.Now;
+            DateTime firstDayOfYear = new DateTime(custom_Day.Year, 1, 1);
+            int previous_month = custom_Day.AddMonths(-1).Month;
+
+            DailyReport dl_1_pre_month = null;
+
+            if(previous_month != 12)
+            {
+                dl_1_pre_month = Caculate_fromMonth_toMonth_Report(MerID, firstDayOfYear, 1, previous_month, custom_Day.Year);
+            }
+           
             DailyReport dl_FDOM_CD = Get_MonthtoDate_Report_By_MerID_Date(MerID, custom_Day);
-            DailyReport dl_YeartoDate = Sum_2_DailyReport(dl_1_pre_month, dl_FDOM_CD);
+
+
+
+            DailyReport dl_YeartoDate = Sum_2_DailyReport(dl_1_pre_month, dl_FDOM_CD, firstDayOfYear);
             return dl_YeartoDate;
         }
 
-        private static DailyReport Sum_2_DailyReport(DailyReport dl_1, DailyReport dl_2)
+        private static DailyReport Sum_2_DailyReport(DailyReport dl_1, DailyReport dl_2, DateTime firstDayOfYear)
         {
-            DailyReport dl = new DailyReport();
-            dl.MerchantID = dl_1.MerchantID;
-            dl.MerchantTypeID = dl_1.MerchantTypeID;
-            dl.MerchantRegionID = dl_1.MerchantRegionID;
-            dl.SaleAmount = dl_1.SaleAmount + dl_2.SaleAmount;
-            dl.ReturnAmount = dl_1.SaleAmount + dl_2.SaleAmount;
-            dl.SaleCount = dl_1.SaleCount + dl_2.SaleCount;
-            dl.ReturnCount = dl_1.ReturnCount + dl_2.ReturnCount;
-            dl.DebitCardSaleAmount = dl_1.DebitCardSaleAmount + dl_2.DebitCardSaleAmount;
-            dl.MasterCardSaleAmount = dl_1.MasterCardSaleAmount + dl_2.MasterCardSaleAmount;
-            dl.VisaCardSaleAmount = dl_1.VisaCardSaleAmount + dl_2.VisaCardSaleAmount;
-            dl.DebitCardReturnAmount = dl_1.DebitCardReturnAmount + dl_2.DebitCardReturnAmount;
-            dl.MasterCardReturnAmount = dl_1.MasterCardReturnAmount + dl_2.MasterCardReturnAmount;
-            dl.VisaCardReturnAmount = dl_1.VisaCardReturnAmount + dl_2.VisaCardReturnAmount;
-            dl.DebitCardSaleCount = dl_1.DebitCardSaleCount + dl_2.DebitCardSaleCount;
-            dl.MasterCardSaleCount = dl_1.MasterCardSaleCount + dl_2.MasterCardSaleCount;
-            dl.VisaCardSaleCount = dl_1.VisaCardSaleCount + dl_2.VisaCardSaleCount;
-            dl.DebitCardReturnCount = dl_1.DebitCardReturnCount + dl_2.DebitCardReturnCount;
-            dl.MasterCardReturnCount = dl_1.MasterCardReturnCount + dl_2.MasterCardReturnCount;
-            dl.VisaCardReturnCount = dl_1.VisaCardReturnCount + dl_2.VisaCardReturnCount;
-            dl.NetAmount = dl_1.NetAmount + dl_2.NetAmount;
-            dl.NetCount = dl_1.NetCount + dl_2.NetCount;
-            dl.Date = DateTime.Now;
+            DailyReport dl = null;
+            if(dl_1 != null && dl_2 != null)
+            {
+                dl = new DailyReport();
+                dl.MerchantID = dl_1.MerchantID;
+                dl.MerchantTypeID = dl_1.MerchantTypeID;
+                dl.MerchantRegionID = dl_1.MerchantRegionID;
+                dl.SaleAmount = dl_1.SaleAmount + dl_2.SaleAmount;
+                dl.ReturnAmount = dl_1.SaleAmount + dl_2.SaleAmount;
+                dl.SaleCount = dl_1.SaleCount + dl_2.SaleCount;
+                dl.ReturnCount = dl_1.ReturnCount + dl_2.ReturnCount;
+                dl.DebitCardSaleAmount = dl_1.DebitCardSaleAmount + dl_2.DebitCardSaleAmount;
+                dl.MasterCardSaleAmount = dl_1.MasterCardSaleAmount + dl_2.MasterCardSaleAmount;
+                dl.VisaCardSaleAmount = dl_1.VisaCardSaleAmount + dl_2.VisaCardSaleAmount;
+                dl.DebitCardReturnAmount = dl_1.DebitCardReturnAmount + dl_2.DebitCardReturnAmount;
+                dl.MasterCardReturnAmount = dl_1.MasterCardReturnAmount + dl_2.MasterCardReturnAmount;
+                dl.VisaCardReturnAmount = dl_1.VisaCardReturnAmount + dl_2.VisaCardReturnAmount;
+                dl.DebitCardSaleCount = dl_1.DebitCardSaleCount + dl_2.DebitCardSaleCount;
+                dl.MasterCardSaleCount = dl_1.MasterCardSaleCount + dl_2.MasterCardSaleCount;
+                dl.VisaCardSaleCount = dl_1.VisaCardSaleCount + dl_2.VisaCardSaleCount;
+                dl.DebitCardReturnCount = dl_1.DebitCardReturnCount + dl_2.DebitCardReturnCount;
+                dl.MasterCardReturnCount = dl_1.MasterCardReturnCount + dl_2.MasterCardReturnCount;
+                dl.VisaCardReturnCount = dl_1.VisaCardReturnCount + dl_2.VisaCardReturnCount;
+                dl.NetAmount = dl_1.NetAmount + dl_2.NetAmount;
+                dl.NetCount = dl_1.NetCount + dl_2.NetCount;
+                dl.Date = firstDayOfYear;
+            }
+            else if (dl_1 == null)
+            {
+                
+                return dl_2;
+            }
+            else if (dl_2 == null)
+            {
+                return dl_1;
+            }
+            
             return dl;
         }
     }
