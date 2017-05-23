@@ -2,11 +2,6 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
-
-
-   
-
     Merchant
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="pageheader" runat="server">
@@ -36,13 +31,13 @@
                             <table style="width: 100%" class="table table-striped table-bordered table-hover" id="tableMerchant">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">Mã</th>
+                                        <%-- <th class="text-center">Mã</th>--%>
                                         <th class="text-center">Tên</th>
-                                        <th class="text-center">Địa chỉ</th>
+                                        <th class="text-center" >Địa chỉ</th>
                                         <th class="text-center">SĐT</th>
                                         <th class="text-center">Email</th>
-                                        <th class="text-center">Active</th>
-                                        <th class="text-center">Edit</th>
+                                        <th class="text-center" style="width: 9%">Active</th>
+                                        <th class="text-center" style="width: 8%">Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -52,14 +47,14 @@
                         </LayoutTemplate>
                         <ItemTemplate>
                             <tr>
-                                <td><%#Eval("MerchantID") %></td>
+                                <%--<td><%#Eval("MerchantID") %></td>--%>
                                 <td><%#Eval("MerchantName") %></td>
                                 <td><%#Eval("Address") %></td>
                                 <td><%#Eval("Phone") %></td>
                                 <td><%#Eval("Email") %></td>
-                                <td style="vertical-align: middle; text-align: center">
+                                <td style="vertical-align: middle; width: 60px; text-align: center">
                                     <asp:CheckBox ID="chkID" CssClass="center-block" AutoPostBack="false" runat="server" Enabled="false" Checked='<%#Eval("Status").ToString()=="True"?true:false %>' /></td>
-                                <td style="vertical-align: middle;text-align: center">
+                                <td style="vertical-align: middle; text-align: center">
                                     <asp:LinkButton ID="btnEdit" runat="server" ToolTip="Chỉnh sửa" CssClass="btn btn-success btn-xs" CommandName="EditMerchant" CommandArgument='<%# Eval("MerchantID") %>'>
                                         <i class="fa fa-pencil"></i>
                                     </asp:LinkButton>
@@ -139,7 +134,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    <asp:LinkButton ValidationGroup="AddMerchantGroup"  ID="btnAddMerchant" runat="server" CssClass="btn btn-primary" OnClick="btnAddMerchant_Click">
+                    <asp:LinkButton ValidationGroup="AddMerchantGroup" ID="btnAddMerchant" runat="server" CssClass="btn btn-primary" OnClick="btnAddMerchant_Click">
                         Thêm
                     </asp:LinkButton>
                 </div>
@@ -196,14 +191,14 @@
                         <div class="col-sm-3">
                             <asp:DropDownList ID="cboMerchantRegionE" runat="server" CssClass="form-control selectpicker">
                             </asp:DropDownList>
-                        </div>                        
+                        </div>
                     </div>
-                    <div class="form-group"> 
+                    <div class="form-group">
                         <label for="<%=cboAgentE.ClientID %>" class="col-sm-2 control-label">Agent:</label>
                         <div class="col-sm-3">
                             <asp:DropDownList ID="cboAgentE" runat="server" CssClass="form-control selectpicker">
                             </asp:DropDownList>
-                        </div>                       
+                        </div>
                         <label for="<%=chbxActiveE.ClientID %>" class="col-sm-2 control-label">Active:</label>
                         <div class="col-sm-4">
                             <asp:CheckBox ID="chbxActiveE" Style="padding-left: 20px;" Checked="true" CssClass="checkbox" runat="server" />
@@ -235,6 +230,10 @@
     <script src="../assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="../assets/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="../assets/vendor/datatables-responsive/dataTables.responsive.js"></script>
-
+    <script>
+        $(document).ready(function () {
+            $('#tableMerchant').DataTable();
+        });
+    </script>
 </asp:Content>
 
