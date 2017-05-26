@@ -10,6 +10,8 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
+    <link rel="shortcut icon" href="../images/letterc.png" type="image/x-icon"/>
+
     <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
     <link href="../assets/vendor/metisMenu/metisMenu.min.css" rel="stylesheet" />
     <link href="../assets/dist/css/sb-admin-2.css" rel="stylesheet" />
@@ -99,10 +101,14 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="lblMerchantManagementforMaster" runat="server" OnClick="lblMerchantManagementforMaster_Click"><i class="fa fa-user fa-fw"></i>&nbsp;Merchant Management</asp:LinkButton>
+                                    <asp:LinkButton ID="lblMerchantManagementforMaster" runat="server" OnClick="lblMerchantManagementforMaster_Click"><i class="fa fa-home fa-fw"></i>&nbsp;Merchant Management</asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="lblAgentManagementforMaster" runat="server" OnClick="lblAgentManagementforMaster_Click"><i class="fa fa-users fa-fw"></i>&nbsp;Agent Management</asp:LinkButton>
+                                    <asp:LinkButton ID="lblAgentManagementforMaster" runat="server" OnClick="lblAgentManagementforMaster_Click"><i class="fa fa-building fa-fw"></i>&nbsp;Agent Management</asp:LinkButton>
+                                </li>
+
+                                <li>
+                                    <asp:LinkButton ID="lbAccountManager" runat="server" OnClick="lbAccountManager_Click"><i class="fa fa-users fa-fw"></i>&nbsp;Account Management</asp:LinkButton>
                                 </li>
 
                               

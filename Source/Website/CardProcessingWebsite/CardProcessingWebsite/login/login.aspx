@@ -33,7 +33,7 @@
         }
     </script>
 	
-    <title></title>
+    <title>Login</title>
 </head>
 <body>
     <form runat="server">

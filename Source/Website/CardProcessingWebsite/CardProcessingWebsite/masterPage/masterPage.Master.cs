@@ -80,6 +80,12 @@ namespace CardProcessingWebsite.masterPage
             ChuyenTrang("~/master/agentList.aspx");
         }
 
+        protected void lbAccountManager_Click(object sender, EventArgs e)
+        {
+            ChuyenTrang("~/master/AccountList.aspx");
+        }
+
+        
         private void ChuyenTrang(string url)
         {
             string retUrl = Request.QueryString["retUrl"];
