@@ -58,64 +58,75 @@ namespace CardProcessingWebsite.merchant
             {
                 // test
                 DateTime dt = new DateTime(2017, 5, 11);
-                string api_url = String.Format("api/merchant_report/getDaily/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
+                //string api_url = String.Format("api/merchant_report/getDaily/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
                 // correct code
-                //string api_url = String.Format("api/merchant_report/getDaily/{0}/{1}", merID, now.ToString("yyyy-MM-dd"));
+                dt = now;
+                string api_url = String.Format("api/merchant_report/getDaily/{0}/{1}", merID, now.ToString("yyyy-MM-dd"));
                 lst = Get_Report(api_url);
-
                 DateTime previous = dt.AddDays(-1);
-                string strDay = "ngày " + lst[0].Date.ToString("dd/MM/yyyy");
-                SetHeader(lst, strDay);
+                //string strDay = "ngày " + lst[0].Date.ToString("dd/MM/yyyy");
+                string strDay = "ngày " + previous.Date.ToString("dd/MM/yyyy");
+                SetHeader(strDay);
 
             }
             else if (dpnReportType.Text == "Tháng trước")
             {
                 // test
                 DateTime dt = new DateTime(2017, 5, 1);
-                string api_url = String.Format("api/merchant_report/getMonthly/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
+                //string api_url = String.Format("api/merchant_report/getMonthly/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
                 // correct code
-                // string api_url = String.Format("api/merchant_report/getMonthly/{0}/{1}", merID, now.ToString("yyyy-MM-dd"));
+                dt = now;
+                 string api_url = String.Format("api/merchant_report/getMonthly/{0}/{1}", merID, now.ToString("yyyy-MM-dd"));
 
                 lst = Get_Report(api_url);
 
                 DateTime previous = dt.AddMonths(-1);
                 string strDay = "tháng " + previous.Month;
-                SetHeader(lst, strDay);
+                SetHeader( strDay);
 
             }
             else if (dpnReportType.Text == "Năm trước")
             {
                 // test
                 DateTime dt = new DateTime(2017, 5, 1);
-                string api_url = String.Format("api/merchant_report/getYearly/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
+                //string api_url = String.Format("api/merchant_report/getYearly/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
                 // correct code
-                //  string api_url = String.Format("api/merchant_report/getYearly/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
+                dt = now;
+                  string api_url = String.Format("api/merchant_report/getYearly/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
                 lst = Get_Report(api_url);
 
                 int pre_year = dt.Date.Year - 1;
                 string strDay = "năm " + pre_year;
-                SetHeader(lst, strDay);
+                SetHeader( strDay);
 
             }
             else
             {
                 // test
-                DateTime dt = new DateTime(2017, 7, 1);
-                string api_url = String.Format("api/merchant_report/getQuarter/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
+                DateTime dt = new DateTime(2017, 1, 1);
+                //string api_url = String.Format("api/merchant_report/getQuarter/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
                 // correct code
-                //string api_url = String.Format("api/merchant_report/getQuarter/{0}/{1}", merID, now.ToString("yyyy-MM-dd"));
+                dt = now;
+                string api_url = String.Format("api/merchant_report/getQuarter/{0}/{1}", merID, now.ToString("yyyy-MM-dd"));
                 lst = Get_Report(api_url);
 
                 int cur_quarter = (dt.Date.Month + 2) / 3;
                 int pre_quarter = cur_quarter - 1;
-                string strDay = "quý " + pre_quarter + " năm " + lst[0].Date.Year.ToString();
-                SetHeader(lst, strDay);
+                int year = dt.Date.Year;
+                if (pre_quarter == 0)
+                {
+                    pre_quarter = 4;
+                    year = (dt.Date.AddYears(-1)).Date.Year;
+                }
+                //string strDay = "quý " + pre_quarter + " năm " + lst[0].Date.Year.ToString();
+                string strDay = "quý " + pre_quarter + " năm " + year;
+                SetHeader( strDay);
 
             }
             SetListView(lst);
         }
 
-        private void SetHeader(List<DailyReport> lst, string dt)
+        private void SetHeader(string dt)
         {
             lbReport.Text = " Thống kê chung " + dt;
             lbReport_Debit.Text = "Thống kê theo Card DEBIT " + dt;
@@ -183,7 +194,7 @@ namespace CardProcessingWebsite.merchant
 
                 DateTime firstDayOfMonth = new DateTime(myDate.Year, myDate.Month, 1);
                 string strDay = "từ ngày " + firstDayOfMonth.ToString("dd/MM/yyyy") + " tới ngày " + customDay;
-                SetHeader(lst, strDay);
+                SetHeader( strDay);
 
             }
             else
@@ -201,7 +212,7 @@ namespace CardProcessingWebsite.merchant
 
                 DateTime firstDayOfYear = new DateTime(myDate.Year, 1, 1);
                 string strDay = "từ ngày " + firstDayOfYear.Date.ToString("dd/MM/yyyy") + " tới ngày " + customDay;
-                SetHeader(lst, strDay);
+                SetHeader( strDay);
 
 
             }

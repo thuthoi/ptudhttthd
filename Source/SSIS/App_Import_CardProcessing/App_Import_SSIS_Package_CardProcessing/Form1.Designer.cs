@@ -50,9 +50,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(10, 199);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(121, 26);
+            this.label3.Size = new System.Drawing.Size(132, 26);
             this.label3.TabIndex = 17;
-            this.label3.Text = "Danh sách các file .txt\" \r\n trong thư mục import";
+            this.label3.Text = "Danh sách các file \".csv\" \r\n trong thư mục import";
             // 
             // lv_sub_folder_import
             // 
@@ -199,7 +199,6 @@
             this.Controls.Add(this.btnImport);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

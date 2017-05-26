@@ -39,11 +39,12 @@ namespace CardProcessingWebsite.masterPage
                     lblNamePage.Text = "CardProcessing Master";
                 }
             }
-            //else
-            //{
-            //    Response.Redirect("~/login/login.aspx");
+                // 
+            else
+            {
+                Response.Redirect("~/login/login.aspx");
 
-            //}
+            }
         }
 
         protected void btnLogout_Click(object sender, EventArgs e)
