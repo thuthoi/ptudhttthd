@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage/masterPage.Master" AutoEventWireup="true" CodeBehind="reportMerchant.aspx.cs" Inherits="CardProcessingWebsite.merchant.reportMerchant" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    Báo cáo MERCHANT
+    Báo cáo Merchant
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="pageheader" runat="server">
     Báo cáo của Merchant:
@@ -198,32 +198,20 @@
     </div>
     <%-- Modal Add merchant--%>
     <div class="modal fade" id="addAccountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Xem thống kê</h4>
                 </div>
                 <div class="modal-body form-horizontal">
-                    <div class="form-group">
-                        <label for="<%=txtCustomDay.ClientID %>" class="col-sm-2 control-label">Tên đăng nhập:</label>
-                        <div class="col-sm-10">
-                            <div class='input-group date' id='datetimepicker1'>
-                                <asp:TextBox ID="txtCustomDay" runat="server" CssClass="form-control"></asp:TextBox>
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
 
-                            <%-- <asp:RequiredFieldValidator ID="rfv" runat="server" ControlToValidate="txtUserName" ForeColor="Red" ErrorMessage="Chưa nhập" Display="Dynamic">Bắt buộc</asp:RequiredFieldValidator>
-                            <asp:CustomValidator ID="validatorUID" runat="server" ControlToValidate="txtUserName" ErrorMessage="Tên đăng nhập đã tồn tại" ForeColor="Red" Display="Dynamic" ClientValidationFunction="check_user_exist" SetFocusOnError="True">Tên đăng nhập đã tồn tại</asp:CustomValidator>--%>
-                        </div>
+                     <div class="form-group">
+                       
 
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-2">
-                        </div>
-                        <div class="col-sm-10">
+                        
+
+                        <div class="col-sm-12">
                             <div class="panel panel-green">
                                 <div class="panel-heading">
                                     Chọn loại thống kê
@@ -242,11 +230,28 @@
                                 </div>
                             </div>
                         </div>
+
+          <div class="col-sm-12">
+                            <div class='input-group date' id='datetimepicker1'>
+                                <asp:TextBox ID="txtCustomDay" runat="server" CssClass="form-control"></asp:TextBox>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+
+                     
+                        </div>
+                       
+
                     </div>
+
+
+
+                   
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton ID="btnViewReport_customDay" runat="server" CssClass="btn btn-info" OnClick="btnViewReport_customDay_Click">
-                        <i class="fa fa-check"> Xem Thống Kê</i>
+                    <asp:LinkButton ID="btnViewReport_customDay" runat="server" CssClass="btn btn-primary" OnClick="btnViewReport_customDay_Click">
+                        Xem Thống Kê
                     </asp:LinkButton>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                 </div>
@@ -258,7 +263,7 @@
     <script>
         $('#addAccountModal').on('shown.bs.modal', function (e) {
             //alert('a');
-            $("#<%=txtCustomDay.ClientID%>").focus();
+           // $("#<%=txtCustomDay.ClientID%>").focus();
         });
 
         $(function () {
