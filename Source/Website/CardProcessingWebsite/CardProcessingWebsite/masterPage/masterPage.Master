@@ -17,7 +17,7 @@
     <link href="../assets/dist/css/sb-admin-2.css" rel="stylesheet" />
     <link href="../assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="../assets/vendor/morrisjs/morris.css" rel="stylesheet" />
-
+    <link href="../assets/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet" />
   
 
     <title>

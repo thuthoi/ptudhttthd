@@ -36,7 +36,7 @@
                                         <th class="text-center" >Địa chỉ</th>
                                         <th class="text-center">SĐT</th>
                                         <th class="text-center">Email</th>
-                                        <th class="text-center" style="width: 9%">Active</th>
+                                        <th class="text-center" style="width: 10%">Active</th>
                                         <th class="text-center" style="width: 8%">Edit</th>
                                     </tr>
                                 </thead>

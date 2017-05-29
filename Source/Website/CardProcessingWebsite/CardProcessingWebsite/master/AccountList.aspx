@@ -27,7 +27,7 @@
                 <div class="panel-body">
                     <asp:ListView runat="server" ID="listAccount">
                         <LayoutTemplate>
-                            <table style="width: 100%" class="table table-striped table-bordered table-hover">
+                            <table style="width: 100%" class="table table-striped table-bordered table-hover" id="tableAccount">
                                 <thead>
                                     <tr>
                                         <th class="text-center">Tên người dùng</th>
@@ -202,4 +202,14 @@
     <script src="../assets/vendor/datatables-responsive/dataTables.responsive.js"></script>
     <script src="../assets/vendor/jquery/jquery.min.js"></script>
     <script src="../assets/jquery-2.1.4.min.js"></script>--%>
+
+     <script src="../assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../assets/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="../assets/vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#tableAccount').DataTable();
+        });
+    </script>
 </asp:Content>

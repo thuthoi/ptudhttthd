@@ -29,16 +29,16 @@
                 <div class="panel-body">
                     <asp:ListView runat="server" ID="listMerchant" OnItemCommand="listMerchant_ItemCommand">
                         <LayoutTemplate>
-                            <table style="width: 100%" class="table table-striped table-bordered table-hover">
+                            <table style="width: 100%" class="table table-striped table-bordered table-hover" id="tableAgent">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">Mã</th>
-                                        <th class="text-center">Tên</th>
+                                        <%--<th class="text-center">Mã</th>--%>
+                                        <th class="text-center" style="width: 10%">Tên</th>
                                         <th class="text-center">Địa chỉ</th>
                                         <th class="text-center">SĐT</th>
                                         <th class="text-center">Email</th>
-                                        <th class="text-center">Active</th>
-                                        <th class="text-center">Edit</th>
+                                        <th class="text-center" style="width: 10%">Active</th>
+                                        <th class="text-center" style="width: 8%">Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -48,7 +48,7 @@
                         </LayoutTemplate>
                         <ItemTemplate>
                             <tr>
-                                <td><%#Eval("AgentID") %></td>
+                                <%--<td><%#Eval("AgentID") %></td>--%>
                                 <td><%#Eval("AgentName") %></td>
                                 <td><%#Eval("Address") %></td>
                                 <td><%#Eval("Phone") %></td>
@@ -205,5 +205,9 @@
     <script src="../assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="../assets/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="../assets/vendor/datatables-responsive/dataTables.responsive.js"></script>
-
+    <script>
+        $(document).ready(function () {
+            $('#tableAgent').DataTable();
+        });
+    </script>
 </asp:Content>
