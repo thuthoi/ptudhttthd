@@ -2,16 +2,16 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    Merchant
+    Merchant Management
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="pageheader" runat="server">
-    Danh sách Merchant
+    Merchant Management
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
     <div class="row">
         <div class="col-lg-12">
             <a href="javascript: " class="btn btn-primary" data-backdrop="false" data-toggle="modal" data-target="#addMerchantModal">
-                <i class="fa fa-plus"></i>&nbsp;Thêm
+                <i class="fa fa-plus"></i>&nbsp;Add
             </a>
         </div>
     </div>
@@ -22,7 +22,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Danh sách các Merchant
+                    Merchant List
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -32,9 +32,9 @@
                                 <thead>
                                     <tr>
                                         <%-- <th class="text-center">Mã</th>--%>
-                                        <th class="text-center">Tên</th>
-                                        <th class="text-center" >Địa chỉ</th>
-                                        <th class="text-center">SĐT</th>
+                                        <th class="text-center">Name</th>
+                                        <th class="text-center" >Address</th>
+                                        <th class="text-center">Phone</th>
                                         <th class="text-center">Email</th>
                                         <th class="text-center" style="width: 10%">Active</th>
                                         <th class="text-center" style="width: 8%">Edit</th>
@@ -62,7 +62,7 @@
                             </tr>
                         </ItemTemplate>
                         <EmptyItemTemplate>
-                            Không có dữ liệu
+                            No Record
                         </EmptyItemTemplate>
                     </asp:ListView>
                 </div>
@@ -76,32 +76,32 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Thêm Merchant</h4>
+                    <h4 class="modal-title" id="myModalLabel">Add Merchant</h4>
                 </div>
                 <div class="modal-body form-horizontal">
                     <div class="form-group">
-                        <label for="<%=txtMerchantName.ClientID %>" class="col-sm-2 control-label">Tên Merchant:</label>
+                        <label for="<%=txtMerchantName.ClientID %>" class="col-sm-2 control-label">Merchant Name:</label>
                         <div class="col-sm-8">
-                            <asp:TextBox ID="txtMerchantName" placeholder="Tên merchant" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtMerchantName" placeholder="Merchant Name" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
-                            <asp:RequiredFieldValidator ValidationGroup="AddMerchantGroup" ID="rfv" runat="server" ControlToValidate="txtMerchantName" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ValidationGroup="AddMerchantGroup" ID="rfv" runat="server" ControlToValidate="txtMerchantName" ForeColor="Red" ErrorMessage="Required">Required</asp:RequiredFieldValidator>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="<%=txtAddress.ClientID %>" class="col-sm-2 control-label">Địa chỉ:</label>
+                        <label for="<%=txtAddress.ClientID %>" class="col-sm-2 control-label">Address:</label>
                         <div class="col-sm-8">
-                            <asp:TextBox ID="txtAddress" placeholder="Địa chỉ" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtAddress" placeholder="Address" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
-                            <asp:RequiredFieldValidator ValidationGroup="AddMerchantGroup" ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtAddress" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ValidationGroup="AddMerchantGroup" ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtAddress" ForeColor="Red" ErrorMessage="Required">Required</asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="<%=txtPhone.ClientID %>" class="col-sm-2 control-label">SĐT:</label>
+                        <label for="<%=txtPhone.ClientID %>" class="col-sm-2 control-label">Phone:</label>
                         <div class="col-sm-3">
-                            <asp:TextBox ID="txtPhone" placeholder="Điện thoại" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtPhone" placeholder="Phone" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <label for="<%=txtEmail.ClientID %>" class="col-sm-2 control-label">Email:</label>
                         <div class="col-sm-5">
@@ -109,12 +109,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="<%=cboMerchantType.ClientID %>" class="col-sm-2 control-label">Loại:</label>
+                        <label for="<%=cboMerchantType.ClientID %>" class="col-sm-2 control-label">Type:</label>
                         <div class="col-sm-3">
                             <asp:DropDownList ID="cboMerchantType" runat="server" CssClass="form-control selectpicker">
                             </asp:DropDownList>
                         </div>
-                        <label for="<%=cboMerchantRegion.ClientID %>" class="col-sm-2 control-label">Khu vực:</label>
+                        <label for="<%=cboMerchantRegion.ClientID %>" class="col-sm-2 control-label">Region:</label>
                         <div class="col-sm-3">
                             <asp:DropDownList ID="cboMerchantRegion" runat="server" CssClass="form-control selectpicker">
                             </asp:DropDownList>
@@ -133,9 +133,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <asp:LinkButton ValidationGroup="AddMerchantGroup" ID="btnAddMerchant" runat="server" CssClass="btn btn-primary" OnClick="btnAddMerchant_Click">
-                        Thêm
+                        Add
                     </asp:LinkButton>
                 </div>
             </div>
@@ -148,31 +148,31 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabelE">Cập nhật Merchant</h4>
+                    <h4 class="modal-title" id="myModalLabelE">Update Merchant</h4>
                 </div>
                 <div class="modal-body form-horizontal">
                     <div class="form-group">
-                        <label for="<%=txtMerchantNameE.ClientID %>" class="col-sm-2 control-label">Tên Merchant:</label>
+                        <label for="<%=txtMerchantNameE.ClientID %>" class="col-sm-2 control-label">Merchant Name:</label>
                         <div class="col-sm-8">
                             <asp:TextBox ID="txtMerchantIDE" runat="server" Visible="false"></asp:TextBox>
                             <asp:TextBox ID="txtMerchantNameE" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
-                            <asp:RequiredFieldValidator ValidationGroup="UpdateMerchantGroup" ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtMerchantNameE" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ValidationGroup="UpdateMerchantGroup" ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtMerchantNameE" ForeColor="Red" ErrorMessage="Required">Required</asp:RequiredFieldValidator>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="<%=txtAddressE.ClientID %>" class="col-sm-2 control-label">Địa chỉ:</label>
+                        <label for="<%=txtAddressE.ClientID %>" class="col-sm-2 control-label">Address:</label>
                         <div class="col-sm-8">
                             <asp:TextBox ID="txtAddressE" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
-                            <asp:RequiredFieldValidator ValidationGroup="UpdateMerchantGroup" ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtAddressE" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ValidationGroup="UpdateMerchantGroup" ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtAddressE" ForeColor="Red" ErrorMessage="Required">Required</asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="<%=txtPhoneE.ClientID %>" class="col-sm-2 control-label">SĐT:</label>
+                        <label for="<%=txtPhoneE.ClientID %>" class="col-sm-2 control-label">Phone:</label>
                         <div class="col-sm-3">
                             <asp:TextBox ID="txtPhoneE" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
@@ -182,12 +182,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="<%=cboMerchantTypeE.ClientID %>" class="col-sm-2 control-label">Loại:</label>
+                        <label for="<%=cboMerchantTypeE.ClientID %>" class="col-sm-2 control-label">Type:</label>
                         <div class="col-sm-3">
                             <asp:DropDownList ID="cboMerchantTypeE" runat="server" CssClass="form-control selectpicker">
                             </asp:DropDownList>
                         </div>
-                        <label for="<%=cboMerchantRegionE.ClientID %>" class="col-sm-2 control-label">Khu vực:</label>
+                        <label for="<%=cboMerchantRegionE.ClientID %>" class="col-sm-2 control-label">Region:</label>
                         <div class="col-sm-3">
                             <asp:DropDownList ID="cboMerchantRegionE" runat="server" CssClass="form-control selectpicker">
                             </asp:DropDownList>
@@ -206,9 +206,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <asp:LinkButton ID="btnUpdate" ValidationGroup="UpdateMerchantGroup" runat="server" CssClass="btn btn-primary" OnClick="btnUpdate_Click">
-                         Cập nhật
+                         Update
                     </asp:LinkButton>
                 </div>
             </div>

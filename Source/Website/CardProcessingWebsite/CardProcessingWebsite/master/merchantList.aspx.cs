@@ -27,7 +27,9 @@ namespace CardProcessingWebsite
                 loadMerchantRegionforEditing();
                 loadAgentforEditing();
             }
+
         }
+
         private void loadMerchantTypeforAdding()
         {
             using (var c = new HttpClient())
@@ -81,7 +83,7 @@ namespace CardProcessingWebsite
                     cboAgent.DataTextField = "AgentName";
                     cboAgent.DataValueField = "AgentID";
                     cboAgent.DataBind();
-                    ListItem nullItem = new ListItem("Trống", "");
+                    ListItem nullItem = new ListItem("Select later", "");
                     cboAgent.Items.Insert(0, nullItem);
                 }
             }

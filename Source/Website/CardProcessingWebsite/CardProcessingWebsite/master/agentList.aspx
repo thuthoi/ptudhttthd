@@ -1,19 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage/masterPage.Master" AutoEventWireup="true" CodeBehind="agentList.aspx.cs" Inherits="CardProcessingWebsite.master.WebForm1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    Agent
+    Agent Management
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="pageheader" runat="server">
-    Danh sách Agent
+    Agent Management
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="main" runat="server">
     <div class="row">
         <div class="col-lg-12">
             <a href="javascript: " class="btn btn-primary" data-backdrop="false" data-toggle="modal" data-target="#addMerchantModal">
-                <i class="fa fa-plus"></i>&nbsp;Thêm
+                <i class="fa fa-plus"></i>&nbsp;Add
             </a>
             <asp:LinkButton runat="server" CssClass="btn btn-info" ID="btnPhanQuyen" OnClick="btnPhanQuyen_Click">
-                <i class="fa fa-pencil-square-o"></i>&nbsp;Phân quyền</asp:LinkButton>
+                <i class="fa fa-pencil-square-o"></i>&nbsp;Decentralization</asp:LinkButton>
         </div>
     </div>
     <div class="row">
@@ -23,7 +23,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Danh sách các Agent
+                    Agent List
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -33,9 +33,9 @@
                                 <thead>
                                     <tr>
                                         <%--<th class="text-center">Mã</th>--%>
-                                        <th class="text-center" style="width: 10%">Tên</th>
-                                        <th class="text-center">Địa chỉ</th>
-                                        <th class="text-center">SĐT</th>
+                                        <th class="text-center" style="width: 10%">Name</th>
+                                        <th class="text-center">Address</th>
+                                        <th class="text-center">Phone</th>
                                         <th class="text-center">Email</th>
                                         <th class="text-center" style="width: 10%">Active</th>
                                         <th class="text-center" style="width: 8%">Edit</th>
@@ -64,7 +64,7 @@
                             </tr>
                         </ItemTemplate>
                         <EmptyItemTemplate>
-                            Không có dữ liệu
+                            No Record
                         </EmptyItemTemplate>
                     </asp:ListView>
                 </div>
@@ -78,30 +78,30 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Thêm Agent</h4>
+                    <h4 class="modal-title" id="myModalLabel">Add Agent</h4>
                 </div>
                 <div class="modal-body form-horizontal">
                     <div class="form-group">
-                        <label for="<%=txtAgentName.ClientID %>" class="col-sm-2 control-label">Tên Agent:</label>
+                        <label for="<%=txtAgentName.ClientID %>" class="col-sm-2 control-label">Agent Name:</label>
                         <div class="col-sm-8">
                             <asp:TextBox ID="txtAgentName" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
-                            <asp:RequiredFieldValidator ValidationGroup="AddAgentGroup" ID="rfv" runat="server" ControlToValidate="txtAgentName" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ValidationGroup="AddAgentGroup" ID="rfv" runat="server" ControlToValidate="txtAgentName" ForeColor="Red" ErrorMessage="Required">Required</asp:RequiredFieldValidator>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="<%=txtAddress.ClientID %>" class="col-sm-2 control-label">Địa chỉ:</label>
+                        <label for="<%=txtAddress.ClientID %>" class="col-sm-2 control-label">Address:</label>
                         <div class="col-sm-8">
                             <asp:TextBox ID="txtAddress" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
-                            <asp:RequiredFieldValidator ValidationGroup="AddAgentGroup" ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtAddress" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ValidationGroup="AddAgentGroup" ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtAddress" ForeColor="Red" ErrorMessage="Required">Required</asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="<%=txtPhone.ClientID %>" class="col-sm-2 control-label">SĐT:</label>
+                        <label for="<%=txtPhone.ClientID %>" class="col-sm-2 control-label">Phone:</label>
                         <div class="col-sm-3">
                             <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
@@ -111,7 +111,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="<%=cboMaster.ClientID %>" class="col-sm-2 control-label">Loại:</label>
+                        <label for="<%=cboMaster.ClientID %>" class="col-sm-2 control-label">Master:</label>
                         <div class="col-sm-10">
                             <asp:DropDownList ID="cboMaster" runat="server" CssClass="form-control selectpicker">
                             </asp:DropDownList>
@@ -119,9 +119,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <asp:LinkButton ID="btnAddAgent" ValidationGroup="AddAgentGroup" runat="server" CssClass="btn btn-primary" OnClick="btnAddAgent_Click">
-                        Thêm
+                        Add
                     </asp:LinkButton>
                 </div>
             </div>
@@ -134,31 +134,31 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabelE">Cập Nhật Agent</h4>
+                    <h4 class="modal-title" id="myModalLabelE">Update Agent</h4>
                 </div>
                 <div class="modal-body form-horizontal">
                     <div class="form-group">
-                        <label for="<%=txtAgentNameE.ClientID %>" class="col-sm-2 control-label">Tên Agent:</label>
+                        <label for="<%=txtAgentNameE.ClientID %>" class="col-sm-2 control-label">Agent Name:</label>
                         <div class="col-sm-8">
                              <asp:TextBox ID="txtAgentIDE" runat="server" Visible="false"></asp:TextBox>
                             <asp:TextBox ID="txtAgentNameE" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
-                            <asp:RequiredFieldValidator ValidationGroup="UpdateAgentGroup" ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtAgentNameE" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ValidationGroup="UpdateAgentGroup" ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtAgentNameE" ForeColor="Red" ErrorMessage="Required">Required</asp:RequiredFieldValidator>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="<%=txtAddressE.ClientID %>" class="col-sm-2 control-label">Địa chỉ:</label>
+                        <label for="<%=txtAddressE.ClientID %>" class="col-sm-2 control-label">Address</label>
                         <div class="col-sm-8">
                             <asp:TextBox ID="txtAddressE" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
-                            <asp:RequiredFieldValidator ValidationGroup="UpdateAgentGroup" ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtAddressE" ForeColor="Red" ErrorMessage="Chưa nhập">Bắt buộc</asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ValidationGroup="UpdateAgentGroup" ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtAddressE" ForeColor="Red" ErrorMessage="Required">Required</asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="<%=txtPhoneE.ClientID %>" class="col-sm-2 control-label">SĐT:</label>
+                        <label for="<%=txtPhoneE.ClientID %>" class="col-sm-2 control-label">Phone:</label>
                         <div class="col-sm-3">
                             <asp:TextBox ID="txtPhoneE" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
@@ -168,7 +168,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="<%=cboMasterE.ClientID %>" class="col-sm-2 control-label">Loại:</label>
+                        <label for="<%=cboMasterE.ClientID %>" class="col-sm-2 control-label">Master:</label>
                         <div class="col-sm-3">
                             <asp:DropDownList ID="cboMasterE" runat="server" CssClass="form-control selectpicker">
                             </asp:DropDownList>
@@ -180,9 +180,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <asp:LinkButton ID="LinkButton1" ValidationGroup="UpdateAgentGroup" runat="server" CssClass="btn btn-primary" OnClick="btnUpdate_Click">
-                        Cập nhật
+                        Update
                     </asp:LinkButton>
                 </div>
             </div>
