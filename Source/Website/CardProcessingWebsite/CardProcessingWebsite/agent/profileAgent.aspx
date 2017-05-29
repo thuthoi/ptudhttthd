@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage/masterPage.Master" AutoEventWireup="true" CodeBehind="profileAgent.aspx.cs" Inherits="CardProcessingWebsite.agent.profileAgent" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    Thông tin Agent
+    Agent Profile
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="pageheader" runat="server">
-     Thông tin của Agent: <asp:Label ID="lblAgentID" runat="server" Text=""></asp:Label>
+     Agent ID: <asp:Label ID="lblAgentID" runat="server" Text=""></asp:Label>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="main" runat="server">
 
@@ -11,14 +11,14 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Thông tin
+                    Profile
                 </div>
                 <div class="panel-body">
-                    - Tên Agent:
+                    - Agent Name:
                         <asp:Label runat="server" Font-Bold="true" ID="lblName"></asp:Label><br />
-                    - Địa chỉ: 
+                    - Address: 
                         <asp:Label runat="server" Font-Bold="true" ID="lblAddress"></asp:Label><br />
-                    - Điện thoại: 
+                    - Phone: 
                         <asp:Label runat="server" Font-Bold="true" ID="lblPhone"></asp:Label><br />
                     - Email: 
                         <asp:Label runat="server" Font-Bold="true" ID="lblEmail"></asp:Label><br />

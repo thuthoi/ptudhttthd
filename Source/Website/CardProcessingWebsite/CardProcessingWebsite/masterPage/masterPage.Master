@@ -218,12 +218,12 @@
 
 
                         <div id="successDisplay" runat="server" class="alert alert-success" style="margin-bottom: 0px; display: none;">
-                            <strong>Đổi mật khẩu thành công!</strong> Bạn đã đổi thành công mật khẩu mới.
+                            <strong>Successful!</strong> Password changed.
                         </div>
 
 
                         <div id="failDisplay" runat="server" class="alert alert-danger" style="margin-bottom: 0px; display: none;">
-                            <strong>Đổi mật khẩu thất bại!</strong> Mật khấu cũ không trùng khớp.
+                            <strong>Failure!</strong> Old password does not match .
                         </div>
 
                     </div>

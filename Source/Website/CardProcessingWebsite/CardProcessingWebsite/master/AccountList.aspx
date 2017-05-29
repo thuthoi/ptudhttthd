@@ -1,16 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage/masterPage.Master" AutoEventWireup="true" CodeBehind="AccountList.aspx.cs" Inherits="CardProcessingWebsite.master.AccountList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    Account
+    Account Management
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="pageheader" runat="server">
-    Danh sách Account
+    Account Management
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="main" runat="server">
     <div class="row">
         <div class="col-lg-12">
             <a href="javascript: " class="btn btn-primary" data-backdrop="false" data-toggle="modal" data-target="#addAccountModal">
-                <i class="fa fa-plus"></i>&nbsp;Thêm
+                <i class="fa fa-plus"></i>&nbsp;Add
             </a>
         </div>
     </div>
@@ -21,7 +21,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Danh sách các Account
+                    Account List
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -30,9 +30,9 @@
                             <table style="width: 100%" class="table table-striped table-bordered table-hover" id="tableAccount">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">Tên người dùng</th>
-                                        <th class="text-center">Tên đăng nhập</th>
-                                        <th class="text-center">Loại người dùng</th>
+                                        <th class="text-center">User</th>
+                                        <th class="text-center">Username</th>
+                                        <th class="text-center">Role</th>
                               
                                     </tr>
                                 </thead>
@@ -49,7 +49,7 @@
                             </tr>
                         </ItemTemplate>
                         <EmptyItemTemplate>
-                            Không có dữ liệu
+                            No record
                         </EmptyItemTemplate>
                     </asp:ListView>
                 </div>
@@ -63,36 +63,36 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Thêm Account</h4>
+                    <h4 class="modal-title" id="myModalLabel">Add Account</h4>
                 </div>
                 <div class="modal-body form-horizontal">
                     <div class="form-group">
-                        <label for="<%=txtUserName.ClientID %>" class="col-sm-2 control-label">Tên đăng nhập:</label>
+                        <label for="<%=txtUserName.ClientID %>" class="col-sm-2 control-label">Username:</label>
                         <div class="col-sm-10">
                             <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control"></asp:TextBox>
-                            <asp:RequiredFieldValidator ValidationGroup="AddAccountGroup" ID="rfv" runat="server" ControlToValidate="txtUserName" ForeColor="Red" ErrorMessage="Chưa nhập" Display="Dynamic">Bắt buộc</asp:RequiredFieldValidator>
-                            <asp:CustomValidator ID="validatorUID" runat="server" ControlToValidate="txtUserName" ErrorMessage="Tên đăng nhập đã tồn tại" ForeColor="Red" Display="Dynamic"  ClientValidationFunction="check_user_exist" SetFocusOnError="True">Tên đăng nhập đã tồn tại</asp:CustomValidator>
+                            <asp:RequiredFieldValidator ValidationGroup="AddAccountGroup" ID="rfv" runat="server" ControlToValidate="txtUserName" ForeColor="Red" ErrorMessage="Required" Display="Dynamic">Required</asp:RequiredFieldValidator>
+                            <asp:CustomValidator ID="validatorUID" runat="server" ControlToValidate="txtUserName" ErrorMessage="Username exists" ForeColor="Red" Display="Dynamic"  ClientValidationFunction="check_user_exist" SetFocusOnError="True">Username exists</asp:CustomValidator>
                         </div>
 
                     </div>
 
                     <div class="form-group">
-                        <label for="<%=txtPassword.ClientID %>" class="col-sm-2 control-label">Mật khẩu:</label>
+                        <label for="<%=txtPassword.ClientID %>" class="col-sm-2 control-label">Password:</label>
                         <div class="col-sm-10">
                             <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
-                            <asp:RequiredFieldValidator ValidationGroup="AddAccountGroup" ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtPassword" ForeColor="Red" ErrorMessage="Chưa nhập" Display="Dynamic">Bắt buộc<br /></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ValidationGroup="AddAccountGroup" ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtPassword" ForeColor="Red" ErrorMessage="Required" Display="Dynamic">Required<br /></asp:RequiredFieldValidator>
                         </div>
 
                     </div>
                     <div class="form-group">
-                        <label for="confirm" class="col-sm-2 control-label">Nhập lại mật khẩu:</label>
+                        <label for="confirm" class="col-sm-2 control-label">Confirm Password:</label>
 
                         <div class="col-sm-10">
                             <asp:TextBox ID="txtNLMK" runat="server" CssClass="form-control" TextMode="Password">
 
                             </asp:TextBox>
-                            <asp:RequiredFieldValidator ValidationGroup="AddAccountGroup" ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtNLMK" ForeColor="Red" ErrorMessage="Chưa nhập" Display="Dynamic">Bắt buộc<br /></asp:RequiredFieldValidator>
-                            <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Mật khẩu nhập lại chưa đúng" ControlToCompare="txtPassword" ControlToValidate="txtNLMK" Font-Bold="False" ForeColor="Red" SetFocusOnError="True" Display="Dynamic">Mật khẩu nhập lại chưa đúng</asp:CompareValidator>
+                            <asp:RequiredFieldValidator ValidationGroup="AddAccountGroup" ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtNLMK" ForeColor="Red" ErrorMessage="Required" Display="Dynamic">Required<br /></asp:RequiredFieldValidator>
+                            <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="No match" ControlToCompare="txtPassword" ControlToValidate="txtNLMK" Font-Bold="False" ForeColor="Red" SetFocusOnError="True" Display="Dynamic">No match</asp:CompareValidator>
                         </div>
 
                     </div>
@@ -133,9 +133,9 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <asp:LinkButton ValidationGroup="AddAccountGroup" ID="btnAddAccount" runat="server" CssClass="btn btn-primary" OnClick="btnAddAccount_Click" OnClientClick="a();">
-                         Thêm
+                         Add
                     </asp:LinkButton>
                 </div>
             </div>

@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage/masterPage.Master" AutoEventWireup="true" CodeBehind="profileMaster.aspx.cs" Inherits="CardProcessingWebsite.master.profileMaster" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    Thông tin Master
+    Master Profile
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="pageheader" runat="server">
-     Thông tin của Master: <asp:Label ID="lblMasterID" runat="server" Text=""></asp:Label>
+     Master ID: <asp:Label ID="lblMasterID" runat="server" Text=""></asp:Label>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="main" runat="server">
 
@@ -11,12 +11,12 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Thông tin
+                    Profile
                 </div>
                 <div class="panel-body">
-                    - Tên Master:
+                    - Master Name:
                         <asp:Label runat="server" Font-Bold="true" ID="lblName"></asp:Label><br />
-                    - Điện thoại: 
+                    - Phone: 
                         <asp:Label runat="server" Font-Bold="true" ID="lblPhone"></asp:Label><br />
                     - Email: 
                         <asp:Label runat="server" Font-Bold="true" ID="lblEmail"></asp:Label><br />

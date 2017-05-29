@@ -1,24 +1,24 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage/masterPage.Master" AutoEventWireup="true" CodeBehind="profileMerchant.aspx.cs" Inherits="CardProcessingWebsite.merchant.profileMerchant" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    Thông tin Merchant
+    Merchant Profile
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="pageheader" runat="server">
-    Thông tin của Merchant: <asp:Label ID="lblMerchantID" runat="server" Text=""></asp:Label>
+    Merchant ID: <asp:Label ID="lblMerchantID" runat="server" Text=""></asp:Label>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="main" runat="server">
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Thông tin
+                    Profile
                 </div>
                 <div class="panel-body">
-                    - Tên Merchant:
+                    - Merchant Name:
                         <asp:Label runat="server" Font-Bold="true" ID="lblName"></asp:Label><br />
-                    - Địa chỉ: 
+                    - Address: 
                         <asp:Label runat="server" Font-Bold="true" ID="lblAddress"></asp:Label><br />
-                    - Điện thoại: 
+                    - Phone: 
                         <asp:Label runat="server" Font-Bold="true" ID="lblPhone"></asp:Label><br />
                     - Email: 
                         <asp:Label runat="server" Font-Bold="true" ID="lblEmail"></asp:Label><br />

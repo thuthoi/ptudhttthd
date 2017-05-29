@@ -8,8 +8,8 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="main" runat="server">
     <div class="col-lg-12">
-        <asp:RadioButton ID="rbtnGanQuyen" Text="Gán quyền" AutoPostBack="true" OnCheckedChanged="rbtnGanQuyen_CheckedChanged" CssClass="radio-inline" runat="server" />
-        <asp:RadioButton ID="rbtnChuyenQuyen" Text="Chuyển quyền" AutoPostBack="true" OnCheckedChanged="rbtnChuyenQuyen_CheckedChanged" CssClass="radio-inline" runat="server" />
+        <asp:RadioButton ID="rbtnGanQuyen" Text="Add Authorization" AutoPostBack="true" OnCheckedChanged="rbtnGanQuyen_CheckedChanged" CssClass="radio-inline" runat="server" />
+        <asp:RadioButton ID="rbtnChuyenQuyen" Text="Transfer Authorization" AutoPostBack="true" OnCheckedChanged="rbtnChuyenQuyen_CheckedChanged" CssClass="radio-inline" runat="server" />
     </div>
     <div class="row">
         <div class="col-lg-12">&nbsp;</div>
@@ -21,7 +21,7 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label for="<%=cboAgentforAdd.ClientID %>" class="col-sm-2">Agent:</label>
-                            <div class="col-sm-2">
+                            <div class="col-sm-3">
                                 <asp:DropDownList ID="cboAgentforAdd" CssClass="form-control selecpicker" runat="server"></asp:DropDownList>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                                         </tr>
                                     </ItemTemplate>
                                     <EmptyItemTemplate>
-                                       <label>No Record</label> 
+                                       No Record
                                     </EmptyItemTemplate>
                                 </asp:ListView>
                             </div>
