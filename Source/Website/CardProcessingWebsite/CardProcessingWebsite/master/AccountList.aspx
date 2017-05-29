@@ -48,9 +48,9 @@
                                 <td><%#Eval("Role") %></td>
                             </tr>
                         </ItemTemplate>
-                        <EmptyItemTemplate>
+                        <EmptyDataTemplate>
                             No record
-                        </EmptyItemTemplate>
+                        </EmptyDataTemplate>
                     </asp:ListView>
                 </div>
             </div>

@@ -59,9 +59,9 @@
                                             </td>
                                         </tr>
                                     </ItemTemplate>
-                                    <EmptyItemTemplate>
-                                       No Record
-                                    </EmptyItemTemplate>
+                                   <EmptyDataTemplate>
+                                    <p>There is no merchant without agent.</p>
+                                    </EmptyDataTemplate>
                                 </asp:ListView>
                             </div>
                         </div>
@@ -123,9 +123,9 @@
                                             </td>
                                         </tr>
                                     </ItemTemplate>
-                                    <EmptyItemTemplate>
+                                    <EmptyDataTemplate>
                                         No Record
-                                    </EmptyItemTemplate>
+                                    </EmptyDataTemplate>
                                 </asp:ListView>
                             </div>
                         </div>

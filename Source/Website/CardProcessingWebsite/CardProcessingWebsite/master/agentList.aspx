@@ -63,9 +63,9 @@
                               
                             </tr>
                         </ItemTemplate>
-                        <EmptyItemTemplate>
+                        <EmptyDataTemplate>
                             No Record
-                        </EmptyItemTemplate>
+                        </EmptyDataTemplate>
                     </asp:ListView>
                 </div>
             </div>

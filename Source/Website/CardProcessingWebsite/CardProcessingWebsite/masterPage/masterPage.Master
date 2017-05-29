@@ -223,7 +223,7 @@
 
 
                         <div id="failDisplay" runat="server" class="alert alert-danger" style="margin-bottom: 0px; display: none;">
-                            <strong>Failure!</strong> Old password does not match .
+                            <strong>Failure!</strong> Old password does not match.
                         </div>
 
                     </div>
