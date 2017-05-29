@@ -88,6 +88,16 @@ namespace CardProcessingWebsite.masterPage
             ChuyenTrang("~/master/AccountList.aspx");
         }
 
+        protected void lbSearchMerchant_Click(object sender, EventArgs e)
+        {
+            ChuyenTrang("~/master/merchantSearch.aspx");
+        }
+
+        protected void lbSearchAgent_Click(object sender, EventArgs e)
+        {
+            ChuyenTrang("~/master/agentSearch.aspx");
+        }
+
         
         private void ChuyenTrang(string url)
         {

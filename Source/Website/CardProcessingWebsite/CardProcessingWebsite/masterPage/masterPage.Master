@@ -54,7 +54,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="http://localhost:30502/login/login.aspx">
                         <asp:Label ID="lblNamePage" runat="server" Text=""></asp:Label></a>
                 </div>
                 <!-- /.navbar-header -->
@@ -93,10 +93,10 @@
                                     <a href="#"><i class="fa fa-search fa-fw"></i>&nbsp;Search<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li>
-                                            <a href="#">Agent</a>
+                                            <asp:LinkButton ID="LinkButton1" runat="server" OnClick="lbSearchMerchant_Click">Merchant</asp:LinkButton>
                                         </li>
                                         <li>
-                                            <a href="#">Merchant</a>
+                                            <asp:LinkButton ID="LinkButton2" runat="server" OnClick="lbSearchAgent_Click">Agent</asp:LinkButton>
                                         </li>
                                     </ul>
                                 </li>
