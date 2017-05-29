@@ -15,6 +15,9 @@ namespace CardProcessingWebsite.masterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+        }
+        protected void Page_Init(object sender, EventArgs e) {
             if (CurrentContext.IsLogged())
             {
                 string role = CurrentContext.GetCurUser().Role.ToString();
@@ -39,7 +42,7 @@ namespace CardProcessingWebsite.masterPage
                     lblNamePage.Text = "CardProcessing Master";
                 }
             }
-                // 
+            // 
             else
             {
                 Response.Redirect("~/login/login.aspx");
