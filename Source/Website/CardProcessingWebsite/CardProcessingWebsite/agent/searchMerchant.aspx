@@ -3,13 +3,18 @@
     Search Merchant
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="css" runat="server">
+    <style>
+input[type=radio] + label{
+  margin-right:39px
+}
+    </style>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="pageheader" runat="server">
     Search Merchant
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="main" runat="server">
 
-    <div class="form-group input-group col-md-8" style="padding-left: 18px">
+    <div class="form-group input-group col-md-10" style="padding-left: 18px">
         
 
          <asp:TextBox ID="txtKeyword" onkeypress="return EnterEvent(event)" placeholder="Keywords" runat="server" class="form-control" autofocus="true"></asp:TextBox>
@@ -26,22 +31,46 @@
     <div style="padding-left: 18px !important;">
 
 
-        <div class="form-horizontal col-md-8" style="padding-left: 0 !important; padding-right: 0 !important;">
+        <div class="form-horizontal col-md-10" style="padding-left: 0 !important; padding-right: 0 !important;">
             <div class="form-group " style="padding-left: 13px;">
 
 
-                <label class="col-md-1 control-label" style="padding-left: 0 !important; padding-right: 0 !important; padding-top: 7px; text-align: left; width: 6%;">Type</label>
-                <div class="col-md-4" style="padding-left: 0 !important; text-align: left;">
+                <label class="col-md-1 control-label" style="padding-left: 0 !important; padding-right: 0 !important; padding-top: 7px; text-align: left; width: 6%; margin-right:-10px">Type</label>
+                <div class="col-md-3" style="padding-left: 0 !important; text-align: left;">
                     <asp:DropDownList ID="cboMerchantType" runat="server" CssClass="form-control selectpicker">
                     </asp:DropDownList>
                 </div>
 
 
-                <label class="col-md-1 control-label" style="margin-left: 31px">Region</label>
-                <div class="col-md-5">
+                <label class="col-md-1 control-label" style="margin-left: 31px; margin-right:-10px">Region</label>
+                <div class="col-md-3">
                     <asp:DropDownList ID="cboMerchantRegion" runat="server" CssClass="form-control selectpicker">
                     </asp:DropDownList>
                 </div>
+
+                <%-- <div class="col-md-1" style="margin-right: -6px; margin-left: 36px">
+                    <asp:CheckBox CssClass="checkbox" Checked="true" ID="cbActive" runat="server" />
+                </div>
+
+                <div class="col-md-1" style="padding-top: 7px; margin-left: -66px">
+                    <label for="<%=cbActive.ClientID %>">Active</label>
+                </div>
+
+                <div class="col-md-1" style="margin-right: -6px; margin-left: 36px">
+                    <asp:CheckBox CssClass="checkbox" Checked="true" ID="cbInactive" runat="server" />
+                </div>
+
+                <div class="col-md-1" style="padding-top: 7px; margin-left: -66px">
+                    <label for="<%=cbInactive.ClientID %>">Inactive</label>
+                </div>--%>
+                <div class="col-md-4">
+
+                <asp:RadioButtonList ID="rbActive" CssClass="radio-inline"  runat="server" RepeatDirection="Horizontal">
+                        <asp:ListItem Text="Active" Value="1"  />
+                        <asp:ListItem Text="Inactive" Value="0" />
+                        <asp:ListItem Text="Both" Value="2" Selected="True"/>
+                </asp:RadioButtonList>
+                    </div>
             </div>
 
 

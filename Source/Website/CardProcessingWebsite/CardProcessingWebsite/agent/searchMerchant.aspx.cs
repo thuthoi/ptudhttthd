@@ -223,7 +223,8 @@ namespace CardProcessingWebsite.agent
                     Keyword = txtKeyword.Text,
                     AgentID = CurrentContext.GetCurUser().UserID.ToString(),
                     MerchantRegion = cboMerchantRegion.SelectedValue.ToString(),
-                    MerchantType = cboMerchantType.SelectedValue.ToString()
+                    MerchantType = cboMerchantType.SelectedValue.ToString(),
+                    Active = rbActive.SelectedValue
                 }).Result;
 
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)

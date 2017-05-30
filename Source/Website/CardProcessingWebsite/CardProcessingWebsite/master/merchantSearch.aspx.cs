@@ -267,7 +267,7 @@ namespace CardProcessingWebsite.master
                     AgentID = cboAgentList.SelectedValue.ToString(),
                     MerchantRegion = cboMerchantRegion.SelectedValue.ToString(),
                     MerchantType = cboMerchantType.SelectedValue.ToString(),
-                    Active = cbActive.Checked
+                    Active = rbActive.SelectedValue
                 }).Result;
 
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)

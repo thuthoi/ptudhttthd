@@ -12,6 +12,6 @@ namespace DomainModel
         public string MerchantType { get; set; }
         public string MerchantRegion { get; set; }
         public string AgentID { get; set; }
-        public bool Active { get; set; }
+        public int Active { get; set; }
     }
 }

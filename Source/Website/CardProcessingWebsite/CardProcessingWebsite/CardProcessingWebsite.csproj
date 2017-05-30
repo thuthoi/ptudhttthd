@@ -298,7 +298,6 @@
     <Compile Include="class_DTO\Merchant.cs" />
     <Compile Include="class_DTO\MerchantRegion.cs" />
     <Compile Include="class_DTO\MerchantType.cs" />
-    <Compile Include="class_DTO\SearchKeyword.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

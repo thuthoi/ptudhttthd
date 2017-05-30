@@ -299,7 +299,27 @@ namespace BusinessLayer
         public IList<Merchant> searchMerchant(SearchKeyword keyword)
         {
             string key = keyword.Keyword.ToLower();
-            return _merchantRepository.GetList(m => m.AgentID.Contains(keyword.AgentID) &&
+            bool active = true;
+            if(keyword.Active == 2)
+            {
+                return _merchantRepository.GetList(m => m.AgentID.Contains(keyword.AgentID) &&
+                                                   (m.MerchantID.ToLower().Contains(key) ||
+                                                    m.MerchantName.ToLower().Contains(key) ||
+                                                    m.Phone.ToLower().Contains(key) ||
+                                                    m.Address.ToLower().Contains(key) ||
+                                                    m.Email.ToLower().Contains(key)) &&
+                                                    m.MerchantRegionID.Contains(keyword.MerchantRegion) &&
+                                                    m.MerchantTypeID.Contains(keyword.MerchantType)
+                                                    ).ToList();
+            }
+            else
+            {
+                if(keyword.Active == 0)
+                {
+                    active = false;
+                }
+
+                return _merchantRepository.GetList(m => m.AgentID.Contains(keyword.AgentID) &&
                                                    (m.MerchantID.ToLower().Contains(key) ||
                                                     m.MerchantName.ToLower().Contains(key) ||
                                                     m.Phone.ToLower().Contains(key) ||
@@ -307,9 +327,9 @@ namespace BusinessLayer
                                                     m.Email.ToLower().Contains(key)) &&
                                                     m.MerchantRegionID.Contains(keyword.MerchantRegion) &&
                                                     m.MerchantTypeID.Contains(keyword.MerchantType) &&
-                                                    m.Status == keyword.Active
+                                                    m.Status == active
                                                     ).ToList();
-
+            }
         }
 
         //RegistrationForm

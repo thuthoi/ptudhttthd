@@ -5,11 +5,10 @@
 </asp:Content>
 
 <asp:Content ID="Content5" ContentPlaceHolderID="css" runat="server">
-    <style>
-        /*.row-no-padding > [class*="col-"] {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-}*/
+     <style>
+input[type=radio] + label{
+  margin-right:39px
+}
     </style>
 </asp:Content>
 
@@ -40,14 +39,14 @@
 
 
                 <label class="col-md-1 control-label" style="padding-left: 0 !important; padding-right: 0 !important; padding-top: 7px; text-align: left; width: 6%; margin-right: -20px">Type</label>
-                <div class="col-md-3" style="padding-left: 0 !important; text-align: left;">
+                <div class="col-md-2" style="padding-left: 0 !important; text-align: left;">
                     <asp:DropDownList ID="cboMerchantType" runat="server" CssClass="form-control selectpicker">
                     </asp:DropDownList>
                 </div>
 
 
                 <label class="col-md-1 control-label" style="margin-right: -20px;">Region</label>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <asp:DropDownList ID="cboMerchantRegion" runat="server" CssClass="form-control selectpicker">
                     </asp:DropDownList>
                 </div>
@@ -58,13 +57,23 @@
                     </asp:DropDownList>
                 </div>
 
-                <div class="col-md-1" style="margin-right: -18px; margin-left: 36px">
+                <%--<div class="col-md-1" style="margin-right: -18px; margin-left: 36px">
                     <asp:CheckBox CssClass="checkbox" Checked="true" ID="cbActive" runat="server" />
                 </div>
 
                 <div class="col-md-1" style="padding-top: 7px; margin-left: -66px">
                     <label for="<%=cbActive.ClientID %>">Active</label>
-                </div>
+                </div>--%>
+
+
+                <div class="col-md-4">
+
+                <asp:RadioButtonList ID="rbActive" CssClass="radio-inline"  runat="server" RepeatDirection="Horizontal">
+                        <asp:ListItem Text="Active" Value="1"  />
+                        <asp:ListItem Text="Inactive" Value="0" />
+                        <asp:ListItem Text="Both" Value="2" Selected="True"/>
+                </asp:RadioButtonList>
+                    </div>
 
             </div>
 
