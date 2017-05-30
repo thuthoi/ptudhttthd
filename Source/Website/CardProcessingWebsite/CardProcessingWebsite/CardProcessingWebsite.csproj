@@ -233,6 +233,7 @@
     <Content Include="master\agentList.aspx" />
     <Content Include="master\agentManagementMerchant.aspx" />
     <Content Include="master\agentSearch.aspx" />
+    <Content Include="master\merchantOfAgent.aspx" />
     <Content Include="master\merchantSearch.aspx" />
     <Content Include="master\profileMaster.aspx" />
     <Content Include="master\reportMaster.aspx" />
@@ -351,6 +352,13 @@
     </Compile>
     <Compile Include="master\agentList.aspx.designer.cs">
       <DependentUpon>agentList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="master\merchantOfAgent.aspx.cs">
+      <DependentUpon>merchantOfAgent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="master\merchantOfAgent.aspx.designer.cs">
+      <DependentUpon>merchantOfAgent.aspx</DependentUpon>
     </Compile>
     <Compile Include="master\merchantSearch.aspx.cs">
       <DependentUpon>merchantSearch.aspx</DependentUpon>

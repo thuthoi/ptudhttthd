@@ -12,90 +12,57 @@ using System.Web.UI.WebControls;
 
 namespace CardProcessingWebsite.master
 {
-    public partial class merchantSearch : System.Web.UI.Page
+    public partial class merchantOfAgent : System.Web.UI.Page
     {
+        public string agentID = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
 
-                loadMerchantType();
-                loadMerchantRegion();
+                agentID = Request.QueryString["AgentID"].ToString();
+                loadListMerchant(agentID);
+                loadProfileAgent(agentID);
 
                 loadMerchantTypeforEditing();
                 loadMerchantRegionforEditing();
                 loadAgentforEditing();
 
-                this.Form.DefaultButton = btnSearch.UniqueID;
-
             }
-                
-        
         }
 
-        private void loadMerchantType()
+        private void loadProfileAgent(string agentID)
         {
             using (var c = new HttpClient())
             {
                 c.DefaultRequestHeaders.Accept.Clear();
                 c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                string url = localhost.hostname() + "api/merchantType/getAll";
+                string url = localhost.hostname() + "api/agent/getProfileAgent/" + agentID;
                 var response = c.GetAsync(url).Result;
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-                    var list = response.Content.ReadAsAsync<MerchantType[]>().Result;
-                    cboMerchantType.DataSource = list;
-                    cboMerchantType.DataTextField = "MerchantTypeName";
-                    cboMerchantType.DataValueField = "MerchantTypeID";
-                    cboMerchantType.DataBind();
-                    ListItem nullItem = new ListItem("Select type", "");
-                    cboMerchantType.Items.Insert(0, nullItem);
+                    var list = response.Content.ReadAsAsync<Agent[]>().Result;
+                    lblAgentName.Text = list[0].AgentName;
                 }
             }
         }
 
-        private void loadMerchantRegion()
+        private void loadListMerchant(string agentID)
         {
             using (var c = new HttpClient())
             {
                 c.DefaultRequestHeaders.Accept.Clear();
                 c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                string url = localhost.hostname() + "api/merchantRegion/getAll";
-                var response = c.GetAsync(url).Result;
-                if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                {
-                    var list = response.Content.ReadAsAsync<MerchantRegion[]>().Result;
-                    cboMerchantRegion.DataSource = list;
-                    cboMerchantRegion.DataTextField = "MerchantRegionName";
-                    cboMerchantRegion.DataValueField = "MerchantRegionID";
-                    cboMerchantRegion.DataBind();
-                    ListItem nullItem = new ListItem("Select region", "");
-                    cboMerchantRegion.Items.Insert(0, nullItem);
-
-                }
-            }
-        }
-
-
-        private void loadListMerchant()
-        {
-            using (var c = new HttpClient())
-            {
-                c.DefaultRequestHeaders.Accept.Clear();
-                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                string url = localhost.hostname() + "api/merchant/getAll";
+                string url = localhost.hostname() + "api/merchant/getMerchantByAgent/" + agentID;
                 var response = c.GetAsync(url).Result;
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     var list = response.Content.ReadAsAsync<Merchant[]>().Result;
-                    //list = null;
                     listMerchant.DataSource = list;
                     listMerchant.DataBind();
-                    
                 }
             }
         }
-
 
         private void loadMerchantTypeforEditing()
         {
@@ -134,7 +101,7 @@ namespace CardProcessingWebsite.master
                 }
             }
         }
-   
+
 
         private void loadAgentforEditing()
         {
@@ -151,14 +118,9 @@ namespace CardProcessingWebsite.master
                     cboAgentE.DataTextField = "AgentName";
                     cboAgentE.DataValueField = "AgentID";
                     cboAgentE.DataBind();
-                    cboAgentList.DataSource = list;
-                    cboAgentList.DataTextField = "AgentName";
-                    cboAgentList.DataValueField = "AgentID";
-                    cboAgentList.DataBind();
+ 
                     ListItem nullItem = new ListItem("Select later", "");
                     cboAgentE.Items.Insert(0, nullItem);
-                    ListItem nullItemSearch = new ListItem("Select agent", "");
-                    cboAgentList.Items.Insert(0, nullItemSearch);
 
                 }
             }
@@ -169,7 +131,7 @@ namespace CardProcessingWebsite.master
         {
             if (UpdateMerchant())
             {
-                btnSearch_Click(null, null);
+                loadListMerchant(agentID);
             }
         }
 
@@ -249,34 +211,7 @@ namespace CardProcessingWebsite.master
                 Response.Write("<script>alert('Hello');</script>");
 
             }
-            
-        }
 
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            using (var c = new HttpClient())
-            {
-                c.DefaultRequestHeaders.Accept.Clear();
-                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                string url = localhost.hostname() + "api/merchant/searchMerchant";
-                var response = c.PostAsJsonAsync(url, new
-                {
-                    Keyword = txtKeyword.Text,
-                    AgentID = cboAgentList.SelectedValue.ToString(),
-                    MerchantRegion = cboMerchantRegion.SelectedValue.ToString(),
-                    MerchantType = cboMerchantType.SelectedValue.ToString(),
-                    Active = rbActive.SelectedValue
-                }).Result;
-
-                if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                {
-                    var list = response.Content.ReadAsAsync<Merchant[]>().Result;
-                    listMerchant.DataSource = list;
-                    listMerchant.DataBind();
-                    resultTable.Style.Add("display", "block");
-                }
-            } 
         }
     }
 }
