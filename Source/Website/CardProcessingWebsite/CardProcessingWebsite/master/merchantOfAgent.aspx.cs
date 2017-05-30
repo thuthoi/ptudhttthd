@@ -17,18 +17,27 @@ namespace CardProcessingWebsite.master
         public string agentID = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            agentID = Request.QueryString["AgentID"].ToString();
+            if (CurrentContext.IsLogged() == false)
+            {
+                Response.Redirect("~/login/login.aspx?retUrl=~/master/merchantOfAgent.aspx?AgentID=" + agentID);
+            }
+            else
             {
 
-                agentID = Request.QueryString["AgentID"].ToString();
-                loadListMerchant(agentID);
-                loadProfileAgent(agentID);
+                if (!Page.IsPostBack)
+                {
+                    loadListMerchant(agentID);
+                    loadProfileAgent(agentID);
 
-                loadMerchantTypeforEditing();
-                loadMerchantRegionforEditing();
-                loadAgentforEditing();
+                    loadMerchantTypeforEditing();
+                    loadMerchantRegionforEditing();
+                    loadAgentforEditing();
 
+                }
             }
+
+           
         }
 
         private void loadProfileAgent(string agentID)

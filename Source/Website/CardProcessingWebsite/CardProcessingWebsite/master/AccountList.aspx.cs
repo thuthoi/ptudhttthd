@@ -19,13 +19,23 @@ namespace CardProcessingWebsite.master
         List<Master> list_ma = new List<Master>();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack == false)
+            if (CurrentContext.IsLogged() == false)
             {
-                loadListAccount();
-                Load_Role_Data();
-                check_add_button_enable_disable();
+                Response.Redirect("~/login/login.aspx?retUrl=~/master/AccountList.aspx");
             }
-            loadListAccount();
+            else
+            {
+
+                if (IsPostBack == false)
+                {
+                    loadListAccount();
+                    Load_Role_Data();
+                    check_add_button_enable_disable();
+                }
+                loadListAccount();
+            }
+
+           
         }
 
         private void check_add_button_enable_disable()

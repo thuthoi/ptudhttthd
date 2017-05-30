@@ -15,10 +15,19 @@ namespace CardProcessingWebsite.agent
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack == false)
+            if (CurrentContext.IsLogged() == false)
             {
-                loadProfileAgent();
+                Response.Redirect("~/login/login.aspx?retUrl=~/agent/profileAgent.aspx");
             }
+            else
+            {
+                if (IsPostBack == false)
+                {
+                    loadProfileAgent();
+                }
+
+            }
+           
         }
 
         private void loadProfileAgent()

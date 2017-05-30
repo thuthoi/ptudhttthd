@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CardProcessingWebsite.helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,15 @@ namespace CardProcessingWebsite.agent
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (CurrentContext.IsLogged() == false)
+            {
+                Response.Redirect("~/login/login.aspx?retUrl=~/agent/reportAgent.aspx");
+            }
+            else
+            {
+                
+
+            }
 
         }
     }

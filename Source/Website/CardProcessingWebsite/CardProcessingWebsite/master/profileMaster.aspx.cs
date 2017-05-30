@@ -15,10 +15,20 @@ namespace CardProcessingWebsite.master
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack == false)
+
+            if (CurrentContext.IsLogged() == false)
             {
-                loadProfileMaster();
+                Response.Redirect("~/login/login.aspx?retUrl=~/master/profileMaster.aspx");
             }
+            else
+            {
+
+                if (IsPostBack == false)
+                {
+                    loadProfileMaster();
+                }
+            }
+            
         }
 
         private void loadProfileMaster()

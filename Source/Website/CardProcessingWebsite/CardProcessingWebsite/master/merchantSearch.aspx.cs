@@ -16,19 +16,30 @@ namespace CardProcessingWebsite.master
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+
+            if (CurrentContext.IsLogged() == false)
+            {
+                Response.Redirect("~/login/login.aspx?retUrl=~/master/merchantSearch.aspx");
+            }
+            else
             {
 
-                loadMerchantType();
-                loadMerchantRegion();
+                if (!Page.IsPostBack)
+                {
 
-                loadMerchantTypeforEditing();
-                loadMerchantRegionforEditing();
-                loadAgentforEditing();
+                    loadMerchantType();
+                    loadMerchantRegion();
 
-                this.Form.DefaultButton = btnSearch.UniqueID;
+                    loadMerchantTypeforEditing();
+                    loadMerchantRegionforEditing();
+                    loadAgentforEditing();
 
+                    this.Form.DefaultButton = btnSearch.UniqueID;
+
+                }
             }
+
+            
                 
         
         }

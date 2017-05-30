@@ -45,7 +45,7 @@ namespace CardProcessingWebsite.masterPage
             // 
             else
             {
-                Response.Redirect("~/login/login.aspx");
+                //Response.Redirect("~/login/login.aspx");
 
             }
         }

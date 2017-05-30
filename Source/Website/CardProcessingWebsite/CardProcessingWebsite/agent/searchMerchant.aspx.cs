@@ -17,20 +17,30 @@ namespace CardProcessingWebsite.agent
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (!Page.IsPostBack)
+            if (CurrentContext.IsLogged() == false)
             {
+                Response.Redirect("~/login/login.aspx?retUrl=~/agent/searchMerchant.aspx");
+            }
+            else
+            {
+                if (!Page.IsPostBack)
+                {
 
-                //loadListMerchant();
-                loadMerchantType();
-                loadMerchantRegion();
+                    //loadListMerchant();
+                    loadMerchantType();
+                    loadMerchantRegion();
 
-                loadMerchantTypeforEditing();
-                loadMerchantRegionforEditing();
-                loadAgentforEditing();
+                    loadMerchantTypeforEditing();
+                    loadMerchantRegionforEditing();
+                    loadAgentforEditing();
 
-                //this.Form.DefaultButton = btnSearch.UniqueID;
+                    //this.Form.DefaultButton = btnSearch.UniqueID;
+
+                }
 
             }
+
+            
 
 
         }

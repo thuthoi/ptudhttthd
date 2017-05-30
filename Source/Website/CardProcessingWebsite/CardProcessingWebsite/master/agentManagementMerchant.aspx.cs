@@ -16,17 +16,27 @@ namespace CardProcessingWebsite.master
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack == false)
+            if (CurrentContext.IsLogged() == false)
             {
-                rbtnGanQuyen.Checked = true;
-                loadMerchantListForGanQuyen();
-                loadAgentForGanQuyen();
-                loadAgentForChuyenQuyen();
-                loadAgentForChuyenQuyenSang();
-                loadMerchantListForChuyenQuyen(cboAgentforPrevious.SelectedValue);
-                btnSave.Enabled = false;
-                btnSaveUpdate.Enabled = false;
+                Response.Redirect("~/login/login.aspx?retUrl=~/master/agentManagementMerchant.aspx");
             }
+            else
+            {
+
+                if (IsPostBack == false)
+                {
+                    rbtnGanQuyen.Checked = true;
+                    loadMerchantListForGanQuyen();
+                    loadAgentForGanQuyen();
+                    loadAgentForChuyenQuyen();
+                    loadAgentForChuyenQuyenSang();
+                    loadMerchantListForChuyenQuyen(cboAgentforPrevious.SelectedValue);
+                    btnSave.Enabled = false;
+                    btnSaveUpdate.Enabled = false;
+                }
+            }
+
+            
         }
 
         private void loadMerchantListForChuyenQuyen(string id)

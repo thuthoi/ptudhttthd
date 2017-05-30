@@ -16,10 +16,20 @@ namespace CardProcessingWebsite.merchant
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack == false)
+            if (CurrentContext.IsLogged() == false)
             {
-                loadProfileMerchant();
+                Response.Redirect("~/login/login.aspx?retUrl=~/merchant/profileMerchant.aspx");
             }
+            else
+            {
+
+                if (IsPostBack == false)
+                {
+                    loadProfileMerchant();
+                }
+            }
+
+            
         }
 
         private void loadProfileMerchant()

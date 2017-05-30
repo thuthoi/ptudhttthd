@@ -16,17 +16,27 @@ namespace CardProcessingWebsite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack == false)
+            if (CurrentContext.IsLogged() == false)
             {
-                loadListMerchant();
-                loadMerchantTypeforAdding();
-                loadMerchantRegionforAdding();
-                loadAgentforAdding();
-
-                loadMerchantTypeforEditing();
-                loadMerchantRegionforEditing();
-                loadAgentforEditing();
+                Response.Redirect("~/login/login.aspx?retUrl=~/master/merchantList.aspx");
             }
+            else
+            {
+
+                if (IsPostBack == false)
+                {
+                    loadListMerchant();
+                    loadMerchantTypeforAdding();
+                    loadMerchantRegionforAdding();
+                    loadAgentforAdding();
+
+                    loadMerchantTypeforEditing();
+                    loadMerchantRegionforEditing();
+                    loadAgentforEditing();
+                }
+            }
+
+            
 
         }
 

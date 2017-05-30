@@ -16,14 +16,24 @@ namespace CardProcessingWebsite.master
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack == false)
+
+            if (CurrentContext.IsLogged() == false)
             {
-                loadListMerchant();
-                loadListMasterForAdding();
-
-
-                loadListMasterForEditing();
+                Response.Redirect("~/login/login.aspx?retUrl=~/master/agentList.aspx");
             }
+            else
+            {
+
+                if (IsPostBack == false)
+                {
+                    loadListMerchant();
+                    loadListMasterForAdding();
+
+
+                    loadListMasterForEditing();
+                }
+            }
+            
         }
 
         private void loadListMasterForAdding()

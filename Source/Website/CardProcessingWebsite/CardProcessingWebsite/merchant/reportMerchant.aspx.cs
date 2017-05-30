@@ -17,27 +17,37 @@ namespace CardProcessingWebsite.merchant
         Merchant mr_current = new Merchant();
         protected void Page_Load(object sender, EventArgs e)
         {
-            // test chuc năng MERCH00001
-            if (CurrentContext.IsLogged() == true)
+            if (CurrentContext.IsLogged() == false)
             {
-                string userID = CurrentContext.GetCurUser().UserID.ToString();
-                loadProfileMerchant(userID);
+                Response.Redirect("~/login/login.aspx?retUrl=~/merchant/reportMerchant.aspx");
             }
             else
             {
-                loadProfileMerchant("MERCH00001");
+
+                // test chuc năng MERCH00001
+                if (CurrentContext.IsLogged() == true)
+                {
+                    string userID = CurrentContext.GetCurUser().UserID.ToString();
+                    loadProfileMerchant(userID);
+                }
+                else
+                {
+                    loadProfileMerchant("MERCH00001");
+                }
+
+
+                if (IsPostBack == false)
+                {
+                    loadReportType();
+
+
+                    dpnReportType_TextChanged(null, null);
+                    rdMonthToDate.Attributes.Add("onClick", "return handleClick();");
+                    rdYearToDate.Attributes.Add("onClick", "return handleClick();");
+                }
             }
 
-
-            if (IsPostBack == false)
-            {
-                loadReportType();
-
-
-                dpnReportType_TextChanged(null, null);
-                rdMonthToDate.Attributes.Add("onClick", "return handleClick();");
-                rdYearToDate.Attributes.Add("onClick", "return handleClick();");
-            }
+            
 
         }
 
