@@ -150,7 +150,7 @@ namespace WebServices.Controllers
 
         [HttpPost]
         [Route("api/merchant/searchMerchant")]
-        public HttpResponseMessage searchMerchantOnAgent([FromBody]SearchKeyword keyword)
+        public HttpResponseMessage searchMerchant([FromBody]SearchKeyword keyword)
         {
             var list = bus.searchMerchant(keyword).Select(c => new
             {

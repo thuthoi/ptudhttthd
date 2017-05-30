@@ -23,6 +23,8 @@ namespace BusinessLayer
         IList<Agent> getAgentByAgentIDtoList(string id);
         IList<Agent> getAgent_NotHave_Account();
 
+        IList<Agent> searchAgent(SearchKeyword keyword);
+
 
 
         //Account

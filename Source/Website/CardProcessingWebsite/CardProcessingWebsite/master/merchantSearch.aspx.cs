@@ -170,7 +170,7 @@ namespace CardProcessingWebsite.master
         {
             if (UpdateMerchant())
             {
-                loadListMerchant();
+                btnSearch_Click(null, null);
             }
         }
 

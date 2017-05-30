@@ -83,7 +83,8 @@ namespace WebServices.Controllers
                 a.AgentID,
                 a.AgentName,
                 a.Email,
-                a.Phone
+                a.Phone,
+                a.MasterID
            
             });
             return Request.CreateResponse(HttpStatusCode.OK, list);
@@ -103,6 +104,24 @@ namespace WebServices.Controllers
                 a.MasterID
             });
 
+            return Request.CreateResponse(HttpStatusCode.OK, list);
+        }
+
+
+        [HttpPost]
+        [Route("api/agent/searchAgent")]
+        public HttpResponseMessage searchAgent([FromBody]SearchKeyword keyword)
+        {
+            var list = bus.searchAgent(keyword).Select(a => new
+            {
+                a.AgentID,
+                a.AgentName,
+                a.Address,
+                a.Phone,
+                a.Email,
+                a.Status,
+                a.MasterID
+            });
             return Request.CreateResponse(HttpStatusCode.OK, list);
         }
 

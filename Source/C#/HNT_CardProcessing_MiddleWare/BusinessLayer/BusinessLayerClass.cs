@@ -127,6 +127,35 @@ namespace BusinessLayer
             return _agentRepository.GetAll().Where(a => a.AgentID == id).Take(1).ToList();
         }
 
+        public IList<Agent> searchAgent(SearchKeyword keyword)
+        {
+            string key = keyword.Keyword.ToLower();
+            bool active = true;
+            if (keyword.Active == 2)
+            {
+                return _agentRepository.GetList(a => a.AgentID.ToLower().Contains(key) ||
+                                                     a.AgentName.ToLower().Contains(key) ||
+                                                     a.Email.ToLower().Contains(key) ||
+                                                     a.Phone.ToLower().Contains(key) ||
+                                                     a.Address.ToLower().Contains(key)).ToList();
+            }
+            else
+            {
+                if (keyword.Active == 0)
+                {
+                    active = false;
+                }
+
+                return _agentRepository.GetList(a => (a.AgentID.ToLower().Contains(key) ||
+                                                      a.AgentName.ToLower().Contains(key) ||
+                                                      a.Email.ToLower().Contains(key) ||
+                                                      a.Phone.ToLower().Contains(key) ||
+                                                      a.Address.ToLower().Contains(key)) &&
+                                                      a.Status == active).ToList();
+            }
+        }
+
+
         //Account
         public void AddAccount(Account account)
         {

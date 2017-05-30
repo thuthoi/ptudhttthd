@@ -56,7 +56,7 @@
                                 <td style="vertical-align: middle; text-align: center">
                                     <asp:CheckBox ID="chkID" CssClass="center-block" AutoPostBack="false" runat="server" Enabled="false" Checked='<%#Eval("Status").ToString()=="True"?true:false %>' /></td>
                                 <td style="text-align: center">
-                                    <asp:LinkButton ID="btnEdit" runat="server" ToolTip="Chỉnh sửa" CssClass="btn btn-success btn-xs" CommandName="EditAgent" CommandArgument='<%# Eval("AgentID") %>'>
+                                    <asp:LinkButton ID="btnEdit" runat="server" ToolTip="Update" CssClass="btn btn-success btn-xs" CommandName="EditAgent" CommandArgument='<%# Eval("AgentID") %>'>
                                         <i class="fa fa-pencil"></i>
                                     </asp:LinkButton>
                                 </td>
@@ -106,7 +106,7 @@
                             <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <label for="<%=txtEmail.ClientID %>" class="col-sm-2 control-label">Email:</label>
-                        <div class="col-sm-5">
+                        <div class="col-sm-3">
                             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                     </div>
@@ -163,7 +163,7 @@
                             <asp:TextBox ID="txtPhoneE" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <label for="<%=txtEmailE.ClientID %>" class="col-sm-2 control-label">Email:</label>
-                        <div class="col-sm-5">
+                        <div class="col-sm-3">
                             <asp:TextBox ID="txtEmailE" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                     </div>
@@ -175,7 +175,7 @@
                         </div>
                          <label for="<%=chbxActiveE.ClientID %>" class="col-sm-2 control-label">Active:</label>
                         <div class="col-sm-5">
-                            <asp:CheckBox ID="chbxActiveE" Style="padding-left: 20px;" Checked="true" CssClass="checkbox" runat="server" />
+                            <asp:CheckBox ID="chbxActiveE" Style="padding-left: 20px;" CssClass="checkbox" runat="server" />
                         </div>
                     </div>
                 </div>
