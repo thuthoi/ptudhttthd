@@ -12,7 +12,7 @@
     <div class="form-group input-group col-md-8" style="padding-left: 18px">
         
 
-         <asp:TextBox ID="txtKeyword" placeholder="Keywords" runat="server" class="form-control" autofocus="true"></asp:TextBox>
+         <asp:TextBox ID="txtKeyword" onkeypress="return EnterEvent(event)" placeholder="Keywords" runat="server" class="form-control" autofocus="true"></asp:TextBox>
 
         <span class="input-group-btn">
           
@@ -198,6 +198,13 @@
                 });
 
         });
+
+        function EnterEvent(e) {
+            if (e.keyCode == 13) {
+                __doPostBack('<%=btnSearch.UniqueID%>', "");
+            }
+        }
+
     </script>
 
 </asp:Content>

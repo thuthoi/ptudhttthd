@@ -149,10 +149,10 @@ namespace WebServices.Controllers
 
 
         [HttpPost]
-        [Route("api/merchant/searchMerchantOnAgent")]
+        [Route("api/merchant/searchMerchant")]
         public HttpResponseMessage searchMerchantOnAgent([FromBody]SearchKeyword keyword)
         {
-            var list = bus.searchMerchantOnAgent(keyword).Select(c => new
+            var list = bus.searchMerchant(keyword).Select(c => new
             {
                 c.MerchantID,
                 c.MerchantName,

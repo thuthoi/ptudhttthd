@@ -27,6 +27,8 @@ namespace CardProcessingWebsite.master
                 loadMerchantRegionforEditing();
                 loadAgentforEditing();
 
+                this.Form.DefaultButton = btnSearch.UniqueID;
+
             }
                 
         
@@ -150,8 +152,15 @@ namespace CardProcessingWebsite.master
                     cboAgentE.DataTextField = "AgentName";
                     cboAgentE.DataValueField = "AgentID";
                     cboAgentE.DataBind();
+                    cboAgentList.DataSource = list;
+                    cboAgentList.DataTextField = "AgentName";
+                    cboAgentList.DataValueField = "AgentID";
+                    cboAgentList.DataBind();
                     ListItem nullItem = new ListItem("Select later", "");
                     cboAgentE.Items.Insert(0, nullItem);
+                    ListItem nullItemSearch = new ListItem("Select agent", "");
+                    cboAgentList.Items.Insert(0, nullItemSearch);
+
                 }
             }
         }
@@ -246,9 +255,29 @@ namespace CardProcessingWebsite.master
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            using (var c = new HttpClient())
+            {
+                c.DefaultRequestHeaders.Accept.Clear();
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                resultTable.Style.Add("display", "block");
-            
+                string url = localhost.hostname() + "api/merchant/searchMerchant";
+                var response = c.PostAsJsonAsync(url, new
+                {
+                    Keyword = txtKeyword.Text,
+                    AgentID = cboAgentList.SelectedValue.ToString(),
+                    MerchantRegion = cboMerchantRegion.SelectedValue.ToString(),
+                    MerchantType = cboMerchantType.SelectedValue.ToString(),
+                    Active = cbActive.Checked
+                }).Result;
+
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var list = response.Content.ReadAsAsync<Merchant[]>().Result;
+                    listMerchant.DataSource = list;
+                    listMerchant.DataBind();
+                    resultTable.Style.Add("display", "block");
+                }
+            } 
         }
     }
 }

@@ -18,16 +18,16 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="main" runat="server">
 
-    <div class="form-group input-group col-md-8" style="padding-left: 18px">
-        
+    <div class="form-group input-group col-md-12" style="padding-left: 18px">
 
-         <asp:TextBox ID="txtKeyword" placeholder="Keywords" runat="server" class="form-control" autofocus="true"></asp:TextBox>
+
+        <asp:TextBox ID="txtKeyword" placeholder="Keywords" runat="server" class="form-control" autofocus="true"></asp:TextBox>
 
         <span class="input-group-btn">
-          
-                <asp:LinkButton ID="btnSearch" runat="server" class="btn btn-default" OnClick="btnSearch_Click">
+
+            <asp:LinkButton ID="btnSearch" runat="server" class="btn btn-default" OnClick="btnSearch_Click">
                     <i class="fa fa-search"></i>
-                </asp:LinkButton>
+            </asp:LinkButton>
 
         </span>
     </div>
@@ -35,22 +35,37 @@
     <div style="padding-left: 18px !important;">
 
 
-        <div class="form-horizontal col-md-8" style="padding-left: 0 !important; padding-right: 0 !important;">
+        <div class="form-horizontal col-md-12" style="padding-left: 0 !important; padding-right: 0 !important;">
             <div class="form-group " style="padding-left: 13px;">
 
 
-                <label class="col-md-1 control-label" style="padding-left: 0 !important; padding-right: 0 !important; padding-top: 7px; text-align: left; width: 6%;">Type</label>
-                <div class="col-md-4" style="padding-left: 0 !important; text-align: left;">
+                <label class="col-md-1 control-label" style="padding-left: 0 !important; padding-right: 0 !important; padding-top: 7px; text-align: left; width: 6%; margin-right: -20px">Type</label>
+                <div class="col-md-3" style="padding-left: 0 !important; text-align: left;">
                     <asp:DropDownList ID="cboMerchantType" runat="server" CssClass="form-control selectpicker">
                     </asp:DropDownList>
                 </div>
 
 
-                <label class="col-md-1 control-label" style="margin-left: 31px">Region</label>
-                <div class="col-md-5">
+                <label class="col-md-1 control-label" style="margin-right: -20px;">Region</label>
+                <div class="col-md-3">
                     <asp:DropDownList ID="cboMerchantRegion" runat="server" CssClass="form-control selectpicker">
                     </asp:DropDownList>
                 </div>
+
+                <label class="col-md-1 control-label" style="margin-left: -12px; margin-right: -20px">Agent</label>
+                <div class="col-md-2">
+                    <asp:DropDownList ID="cboAgentList" runat="server" CssClass="form-control selectpicker">
+                    </asp:DropDownList>
+                </div>
+
+                <div class="col-md-1" style="margin-right: -18px; margin-left: 36px">
+                    <asp:CheckBox CssClass="checkbox" Checked="true" ID="cbActive" runat="server" />
+                </div>
+
+                <div class="col-md-1" style="padding-top: 7px; margin-left: -66px">
+                    <label for="<%=cbActive.ClientID %>">Active</label>
+                </div>
+
             </div>
 
 
@@ -58,7 +73,7 @@
     </div>
 
 
-     <div class="row" id="resultTable" runat="server" style="display: none;">
+    <div class="row" id="resultTable" runat="server" style="display: none;">
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -90,7 +105,7 @@
                                 <td><%#Eval("Address") %></td>
                                 <td><%#Eval("Phone") %></td>
                                 <td><%#Eval("Email") %></td>
-                                
+
                                 <td style="vertical-align: middle; text-align: center">
                                     <asp:LinkButton ID="btnEdit" runat="server" ToolTip="Detail & Edit" CssClass="btn btn-success btn-xs" CommandName="EditMerchant" CommandArgument='<%# Eval("MerchantID") %>'>
                                         <i class="fa fa-pencil"></i>
@@ -106,9 +121,9 @@
                         </ItemTemplate>
                         <EmptyDataTemplate>
                             <div class="alert alert-warning">
-                               Did not match any merchants.
+                                Did not match any merchants.
                             </div>
-                            
+
                         </EmptyDataTemplate>
                     </asp:ListView>
                 </div>
@@ -117,7 +132,7 @@
     </div>
 
 
-     <%-- Modal Update merchant--%>
+    <%-- Modal Update merchant--%>
     <div class="modal fade" id="editMerchantModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -197,10 +212,10 @@
     <script src="../assets/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="../assets/vendor/datatables-responsive/dataTables.responsive.js"></script>
 
-     <script>
-         $('.selectpicker').selectpicker();
-         $('#editMerchantModal').on('shown.bs.modal', function (e) {
-             $("#<%=txtMerchantNameE.ClientID%>").focus();
+    <script>
+        $('.selectpicker').selectpicker();
+        $('#editMerchantModal').on('shown.bs.modal', function (e) {
+            $("#<%=txtMerchantNameE.ClientID%>").focus();
         });
     </script>
 
@@ -211,9 +226,9 @@
                     "searching": false,
                     "lengthChange": false,
                     "order": []
-                    
+
                 });
-            
+
         });
     </script>
 

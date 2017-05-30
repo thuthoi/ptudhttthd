@@ -46,7 +46,7 @@ namespace BusinessLayer
         void updateAgentforMerchant(Merchant merchant);
         void removeMerchant(Merchant merchant);
 
-        IList<Merchant> searchMerchantOnAgent(SearchKeyword keyword);
+        IList<Merchant> searchMerchant(SearchKeyword keyword);
 
 
         //RegistrationForm

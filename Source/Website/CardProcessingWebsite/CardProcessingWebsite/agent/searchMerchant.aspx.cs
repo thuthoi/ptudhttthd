@@ -28,6 +28,8 @@ namespace CardProcessingWebsite.agent
                 loadMerchantRegionforEditing();
                 loadAgentforEditing();
 
+                //this.Form.DefaultButton = btnSearch.UniqueID;
+
             }
 
 
@@ -215,7 +217,7 @@ namespace CardProcessingWebsite.agent
                 c.DefaultRequestHeaders.Accept.Clear();
                 c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                string url = localhost.hostname() + "api/merchant/searchMerchantOnAgent";
+                string url = localhost.hostname() + "api/merchant/searchMerchant";
                 var response = c.PostAsJsonAsync(url, new
                 {
                     Keyword = txtKeyword.Text,

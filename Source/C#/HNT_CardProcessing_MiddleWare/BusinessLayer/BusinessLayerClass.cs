@@ -296,16 +296,18 @@ namespace BusinessLayer
             _merchantRepository.Remove(merchant);
         }
 
-        public IList<Merchant> searchMerchantOnAgent(SearchKeyword keyword)
+        public IList<Merchant> searchMerchant(SearchKeyword keyword)
         {
-            return _merchantRepository.GetList(m => m.AgentID == keyword.AgentID && 
-                                                   (m.MerchantID.Contains(keyword.Keyword) ||
-                                                    m.MerchantName.Contains(keyword.Keyword) ||
-                                                    m.Phone.Contains(keyword.Keyword) ||
-                                                    m.Address.Contains(keyword.Keyword) ||
-                                                    m.Email.Contains(keyword.Keyword)) &&
+            string key = keyword.Keyword.ToLower();
+            return _merchantRepository.GetList(m => m.AgentID.Contains(keyword.AgentID) &&
+                                                   (m.MerchantID.ToLower().Contains(key) ||
+                                                    m.MerchantName.ToLower().Contains(key) ||
+                                                    m.Phone.ToLower().Contains(key) ||
+                                                    m.Address.ToLower().Contains(key) ||
+                                                    m.Email.ToLower().Contains(key)) &&
                                                     m.MerchantRegionID.Contains(keyword.MerchantRegion) &&
-                                                    m.MerchantTypeID.Contains(keyword.MerchantType)
+                                                    m.MerchantTypeID.Contains(keyword.MerchantType) &&
+                                                    m.Status == keyword.Active
                                                     ).ToList();
 
         }
