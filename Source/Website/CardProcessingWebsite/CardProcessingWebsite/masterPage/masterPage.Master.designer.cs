@@ -22,6 +22,15 @@ namespace CardProcessingWebsite.masterPage {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
+        /// css control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder css;
+        
+        /// <summary>
         /// lblNamePage control.
         /// </summary>
         /// <remarks>
@@ -67,22 +76,22 @@ namespace CardProcessingWebsite.masterPage {
         protected global::System.Web.UI.WebControls.Panel pnlMaster;
         
         /// <summary>
-        /// LinkButton1 control.
+        /// btnSearchMerchant control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.LinkButton btnSearchMerchant;
         
         /// <summary>
-        /// LinkButton2 control.
+        /// btnSearchAgent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
+        protected global::System.Web.UI.WebControls.LinkButton btnSearchAgent;
         
         /// <summary>
         /// lblMerchantManagementforMaster control.
@@ -119,6 +128,15 @@ namespace CardProcessingWebsite.masterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlAgent;
+        
+        /// <summary>
+        /// btnSearchonAgent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnSearchonAgent;
         
         /// <summary>
         /// pnlMerchant control.

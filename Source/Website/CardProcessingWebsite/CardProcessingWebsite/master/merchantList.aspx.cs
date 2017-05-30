@@ -142,7 +142,7 @@ namespace CardProcessingWebsite
                     cboAgentE.DataTextField = "AgentName";
                     cboAgentE.DataValueField = "AgentID";
                     cboAgentE.DataBind();
-                    ListItem nullItem = new ListItem("Trống", "");
+                    ListItem nullItem = new ListItem("Select later", "");
                     cboAgentE.Items.Insert(0, nullItem);
                 }
             }

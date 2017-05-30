@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="agent\profileAgent.aspx" />
     <Content Include="agent\reportAgent.aspx" />
+    <Content Include="agent\searchMerchant.aspx" />
     <Content Include="assets\jquery-2.1.4.min.js" />
     <Content Include="assets\jquery-3.2.1.min.js" />
     <Content Include="bin\CardProcessingWebsite.dll" />
@@ -283,6 +284,13 @@
     <Compile Include="agent\reportAgent.aspx.designer.cs">
       <DependentUpon>reportAgent.aspx</DependentUpon>
     </Compile>
+    <Compile Include="agent\searchMerchant.aspx.cs">
+      <DependentUpon>searchMerchant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="agent\searchMerchant.aspx.designer.cs">
+      <DependentUpon>searchMerchant.aspx</DependentUpon>
+    </Compile>
     <Compile Include="class_DTO\Account.cs" />
     <Compile Include="class_DTO\Agent.cs" />
     <Compile Include="class_DTO\DailyReport.cs" />
@@ -290,6 +298,7 @@
     <Compile Include="class_DTO\Merchant.cs" />
     <Compile Include="class_DTO\MerchantRegion.cs" />
     <Compile Include="class_DTO\MerchantType.cs" />
+    <Compile Include="class_DTO\SearchKeyword.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

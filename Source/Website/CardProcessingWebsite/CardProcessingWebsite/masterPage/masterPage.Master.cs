@@ -149,5 +149,10 @@ namespace CardProcessingWebsite.masterPage
         
         }
 
+        protected void btnSearchonAgent_Click(object sender, EventArgs e)
+        {
+            ChuyenTrang("~/agent/searchMerchant.aspx");
+        }
+
     }
 }

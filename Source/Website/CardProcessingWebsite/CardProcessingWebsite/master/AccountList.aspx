@@ -209,7 +209,10 @@
 
     <script>
         $(document).ready(function () {
-            $('#tableAccount').DataTable();
+            $('#tableAccount').DataTable({
+                "order": []
+
+            });
         });
     </script>
 </asp:Content>

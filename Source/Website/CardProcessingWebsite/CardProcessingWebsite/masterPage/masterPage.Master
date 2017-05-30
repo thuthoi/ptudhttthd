@@ -41,6 +41,8 @@
         });
     </script>
 
+    <asp:ContentPlaceHolder ID="css" runat="server"></asp:ContentPlaceHolder>
+
 </head>
 <body>
     <form runat="server">
@@ -93,10 +95,10 @@
                                     <a href="#"><i class="fa fa-search fa-fw"></i>&nbsp;Search<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li>
-                                            <asp:LinkButton ID="LinkButton1" runat="server" OnClick="lbSearchMerchant_Click">Merchant</asp:LinkButton>
+                                            <asp:LinkButton ID="btnSearchMerchant" runat="server" OnClick="lbSearchMerchant_Click">Merchant</asp:LinkButton>
                                         </li>
                                         <li>
-                                            <asp:LinkButton ID="LinkButton2" runat="server" OnClick="lbSearchAgent_Click">Agent</asp:LinkButton>
+                                            <asp:LinkButton ID="btnSearchAgent" runat="server" OnClick="lbSearchAgent_Click">Agent</asp:LinkButton>
                                         </li>
                                     </ul>
                                 </li>
@@ -125,7 +127,8 @@
                                     <a href="chart.html"><i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;Report</a>
                                 </li>
                                 <li>
-                                    <a href="search.html"><i class="fa fa-search fa-fw"></i>&nbsp;Search Merchant</a>
+                                    <asp:LinkButton ID="btnSearchonAgent" runat="server" OnClick="btnSearchonAgent_Click"><i class="fa fa-search fa-fw"></i>&nbsp;Search Merchant</asp:LinkButton>
+                                   
                                 </li>
 
                             
@@ -180,7 +183,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Change Password</h4>
                     </div>
-                    <div class="modal-body form-horizontal">
+                    dre
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Old Password</label>
                             <div class="col-sm-5">
@@ -233,7 +236,7 @@
                         Change Password
                         </asp:LinkButton>
                     </div>
-                </div>
+                
             </div>
         </div>
 

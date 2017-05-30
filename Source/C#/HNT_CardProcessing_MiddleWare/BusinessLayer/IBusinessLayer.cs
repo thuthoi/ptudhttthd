@@ -23,6 +23,8 @@ namespace BusinessLayer
         IList<Agent> getAgentByAgentIDtoList(string id);
         IList<Agent> getAgent_NotHave_Account();
 
+
+
         //Account
         void AddAccount(Account account);
         void UpdateAccount(Account account);
@@ -43,6 +45,8 @@ namespace BusinessLayer
         IList<Merchant> getMerchantNotHaveAgent();
         void updateAgentforMerchant(Merchant merchant);
         void removeMerchant(Merchant merchant);
+
+        IList<Merchant> searchMerchantOnAgent(SearchKeyword keyword);
 
 
         //RegistrationForm

@@ -1,22 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage/masterPage.Master" AutoEventWireup="true" CodeBehind="merchantSearch.aspx.cs" Inherits="CardProcessingWebsite.master.merchantSearch" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage/masterPage.Master" AutoEventWireup="true" CodeBehind="searchMerchant.aspx.cs" Inherits="CardProcessingWebsite.agent.searchMerchant" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     Search Merchant
 </asp:Content>
-
-<asp:Content ID="Content5" ContentPlaceHolderID="css" runat="server">
-    <style>
-        /*.row-no-padding > [class*="col-"] {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-}*/
-    </style>
+<asp:Content ID="Content2" ContentPlaceHolderID="css" runat="server">
 </asp:Content>
-
-<asp:Content ID="Content2" ContentPlaceHolderID="pageheader" runat="server">
+<asp:Content ID="Content3" ContentPlaceHolderID="pageheader" runat="server">
     Search Merchant
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="main" runat="server">
+<asp:Content ID="Content4" ContentPlaceHolderID="main" runat="server">
 
     <div class="form-group input-group col-md-8" style="padding-left: 18px">
         
@@ -75,7 +66,7 @@
                                         <th class="text-center">Address</th>
                                         <th class="text-center">Phone</th>
                                         <th class="text-center">Email</th>
-                                        <th class="text-center" style="width: 13.5%">Detail & Edit</th>
+                                        <th class="text-center" style="width: 13%">Detail</th>
                                         <th class="text-center" style="width: 10%">Report</th>
                                     </tr>
                                 </thead>
@@ -92,8 +83,8 @@
                                 <td><%#Eval("Email") %></td>
                                 
                                 <td style="vertical-align: middle; text-align: center">
-                                    <asp:LinkButton ID="btnEdit" runat="server" ToolTip="Detail & Edit" CssClass="btn btn-success btn-xs" CommandName="EditMerchant" CommandArgument='<%# Eval("MerchantID") %>'>
-                                        <i class="fa fa-pencil"></i>
+                                    <asp:LinkButton ID="btnDetail" runat="server" ToolTip="Detail" CssClass="btn btn-success btn-xs" CommandName="DetailMerchant" CommandArgument='<%# Eval("MerchantID") %>'>
+                                        <i class="fa fa-info-circle"></i>
                                     </asp:LinkButton>
                                 </td>
 
@@ -118,19 +109,19 @@
 
 
      <%-- Modal Update merchant--%>
-    <div class="modal fade" id="editMerchantModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+    <div class="modal fade" id="detailMerchantModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabelE">Update Merchant</h4>
+                    <h4 class="modal-title" id="myModalLabelE">Merchant Detail</h4>
                 </div>
                 <div class="modal-body form-horizontal">
                     <div class="form-group">
                         <label for="<%=txtMerchantNameE.ClientID %>" class="col-sm-2 control-label">Merchant Name:</label>
                         <div class="col-sm-8">
                             <asp:TextBox ID="txtMerchantIDE" runat="server" Visible="false"></asp:TextBox>
-                            <asp:TextBox ID="txtMerchantNameE" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtMerchantNameE" runat="server" CssClass="form-control" disabled="true"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
                             <asp:RequiredFieldValidator ValidationGroup="UpdateMerchantGroup" ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtMerchantNameE" ForeColor="Red" ErrorMessage="Required">Required</asp:RequiredFieldValidator>
@@ -140,7 +131,7 @@
                     <div class="form-group">
                         <label for="<%=txtAddressE.ClientID %>" class="col-sm-2 control-label">Address:</label>
                         <div class="col-sm-8">
-                            <asp:TextBox ID="txtAddressE" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtAddressE" runat="server" CssClass="form-control" disabled="true"></asp:TextBox>
                         </div>
                         <div class="col-sm-2">
                             <asp:RequiredFieldValidator ValidationGroup="UpdateMerchantGroup" ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtAddressE" ForeColor="Red" ErrorMessage="Required">Required</asp:RequiredFieldValidator>
@@ -149,42 +140,39 @@
                     <div class="form-group">
                         <label for="<%=txtPhoneE.ClientID %>" class="col-sm-2 control-label">Phone:</label>
                         <div class="col-sm-3">
-                            <asp:TextBox ID="txtPhoneE" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtPhoneE" runat="server" CssClass="form-control" disabled="true"></asp:TextBox>
                         </div>
                         <label for="<%=txtEmailE.ClientID %>" class="col-sm-2 control-label">Email:</label>
                         <div class="col-sm-3">
-                            <asp:TextBox ID="txtEmailE" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtEmailE" runat="server" CssClass="form-control" disabled="true"></asp:TextBox>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="<%=cboMerchantTypeE.ClientID %>" class="col-sm-2 control-label">Type:</label>
                         <div class="col-sm-3">
-                            <asp:DropDownList ID="cboMerchantTypeE" runat="server" CssClass="form-control selectpicker">
+                            <asp:DropDownList ID="cboMerchantTypeE" runat="server" CssClass="form-control selectpicker" disabled="true">
                             </asp:DropDownList>
                         </div>
                         <label for="<%=cboMerchantRegionE.ClientID %>" class="col-sm-2 control-label">Region:</label>
                         <div class="col-sm-3">
-                            <asp:DropDownList ID="cboMerchantRegionE" runat="server" CssClass="form-control selectpicker">
+                            <asp:DropDownList ID="cboMerchantRegionE" runat="server" CssClass="form-control selectpicker" disabled="true">
                             </asp:DropDownList>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="<%=cboAgentE.ClientID %>" class="col-sm-2 control-label">Agent:</label>
                         <div class="col-sm-3">
-                            <asp:DropDownList ID="cboAgentE" runat="server" CssClass="form-control selectpicker">
+                            <asp:DropDownList ID="cboAgentE" runat="server" CssClass="form-control selectpicker" disabled="true">
                             </asp:DropDownList>
                         </div>
                         <label for="<%=chbxActiveE.ClientID %>" class="col-sm-2 control-label">Active:</label>
                         <div class="col-sm-4">
-                            <asp:CheckBox ID="chbxActiveE" Style="padding-left: 20px;" Checked="true" CssClass="checkbox" runat="server" />
+                            <asp:CheckBox ID="chbxActiveE" Style="padding-left: 20px;" CssClass="checkbox" runat="server" onclick="return false;"/>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <asp:LinkButton ID="btnUpdate" ValidationGroup="UpdateMerchantGroup" runat="server" CssClass="btn btn-primary" OnClick="btnUpdate_Click">
-                         Update
-                    </asp:LinkButton>
                 </div>
             </div>
         </div>
@@ -192,17 +180,12 @@
 
 
 </asp:Content>
-<asp:Content ID="Content4" ContentPlaceHolderID="scriptFile" runat="server">
+<asp:Content ID="Content5" ContentPlaceHolderID="scriptFile" runat="server">
     <script src="../assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="../assets/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="../assets/vendor/datatables-responsive/dataTables.responsive.js"></script>
 
-     <script>
-         $('.selectpicker').selectpicker();
-         $('#editMerchantModal').on('shown.bs.modal', function (e) {
-             $("#<%=txtMerchantNameE.ClientID%>").focus();
-        });
-    </script>
+
 
     <script>
         $(document).ready(function () {
@@ -213,7 +196,7 @@
                     "order": []
                     
                 });
-            
+
         });
     </script>
 

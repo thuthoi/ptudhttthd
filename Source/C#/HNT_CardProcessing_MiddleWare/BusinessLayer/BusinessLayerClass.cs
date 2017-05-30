@@ -296,6 +296,20 @@ namespace BusinessLayer
             _merchantRepository.Remove(merchant);
         }
 
+        public IList<Merchant> searchMerchantOnAgent(SearchKeyword keyword)
+        {
+            return _merchantRepository.GetList(m => m.AgentID == keyword.AgentID && 
+                                                   (m.MerchantID.Contains(keyword.Keyword) ||
+                                                    m.MerchantName.Contains(keyword.Keyword) ||
+                                                    m.Phone.Contains(keyword.Keyword) ||
+                                                    m.Address.Contains(keyword.Keyword) ||
+                                                    m.Email.Contains(keyword.Keyword)) &&
+                                                    m.MerchantRegionID.Contains(keyword.MerchantRegion) &&
+                                                    m.MerchantTypeID.Contains(keyword.MerchantType)
+                                                    ).ToList();
+
+        }
+
         //RegistrationForm
         public void addRegistrationForm(RegistrationForm registrationForm)
         {
@@ -377,7 +391,7 @@ namespace BusinessLayer
         public DailyReport GetDailyReport_By_MerID_Date(String MerID, DateTime dt)
         {
             // AddDays(-1) để có được ngày hôm trước
-            DateTime previous =  dt.AddDays(-1);
+            DateTime previous = dt.AddDays(-1);
             return _dailyReportRepository.GetSingle(
                             d => d.MerchantID.Equals(MerID) &&
                             d.Date.Equals(previous));
@@ -437,7 +451,7 @@ namespace BusinessLayer
             // tính xem hiện tại đang ở quý nào
             int quarter = GetQuarter(dt);
             // rơi quý 1 nên lấy thống kê của quý 4 năm trước 
-            if(quarter == 1)
+            if (quarter == 1)
             {
                 lst = Caculate_fromMonth_toMonth_Report(MerID, 10, 12, dt.AddYears(-1).Year);
             }
@@ -457,7 +471,7 @@ namespace BusinessLayer
                 {
                     lst = Caculate_fromMonth_toMonth_Report(MerID, 7, 9, dt.Year);
                 }
-                
+
             }
             return lst;
         }
@@ -596,11 +610,11 @@ namespace BusinessLayer
             DailyReport dl_1_pre_month = null;
             // nếu tháng trước là tháng 12 thì ko cần tính thống kê từ đầu năm tới tháng trước của ngày truyền vào
             // do đó dl_1_pre_month chỉ được tính khi tháng trước ko phải là tháng 12
-            if(previous_month != 12)
+            if (previous_month != 12)
             {
                 dl_1_pre_month = Caculate_fromMonth_toMonth_Report(MerID, 1, previous_month, custom_Day.Year);
             }
-           
+
             DailyReport dl_FDOM_CD = Get_MonthtoDate_Report_By_MerID_Date(MerID, custom_Day);
             DailyReport dl_YeartoDate = Sum_2_DailyReport(dl_1_pre_month, dl_FDOM_CD, firstDayOfYear);
             return dl_YeartoDate;
@@ -618,7 +632,7 @@ namespace BusinessLayer
             // nên tạo đại 1 ngày là ngày bắt đầu của năm (firstDayOfYear) để gắn vào
             DailyReport dl = null;
             // nếu dl_1, dl_2 dều khác null thì mới cộng lại
-            if(dl_1 != null && dl_2 != null)
+            if (dl_1 != null && dl_2 != null)
             {
                 dl = new DailyReport();
                 dl.MerchantID = dl_1.MerchantID;

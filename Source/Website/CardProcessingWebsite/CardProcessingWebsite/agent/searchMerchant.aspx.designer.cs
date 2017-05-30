@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CardProcessingWebsite.master {
+namespace CardProcessingWebsite.agent {
     
     
-    public partial class merchantSearch {
+    public partial class searchMerchant {
         
         /// <summary>
         /// txtKeyword control.
@@ -164,14 +164,5 @@ namespace CardProcessingWebsite.master {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chbxActiveE;
-        
-        /// <summary>
-        /// btnUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnUpdate;
     }
 }

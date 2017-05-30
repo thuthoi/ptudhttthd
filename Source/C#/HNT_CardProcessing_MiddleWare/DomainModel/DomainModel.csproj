@@ -78,6 +78,7 @@
     <Compile Include="RegistrationForm.cs">
       <DependentUpon>CardProcessingModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SearchKeyword.cs" />
     <Compile Include="sysdiagram.cs">
       <DependentUpon>CardProcessingModel.tt</DependentUpon>
     </Compile>

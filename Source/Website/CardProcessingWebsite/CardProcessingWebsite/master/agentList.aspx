@@ -207,7 +207,10 @@
     <script src="../assets/vendor/datatables-responsive/dataTables.responsive.js"></script>
     <script>
         $(document).ready(function () {
-            $('#tableAgent').DataTable();
+            $('#tableAgent').DataTable({
+                "order": []
+
+            });
         });
     </script>
 </asp:Content>

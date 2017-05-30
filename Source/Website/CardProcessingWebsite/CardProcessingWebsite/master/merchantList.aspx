@@ -104,7 +104,7 @@
                             <asp:TextBox ID="txtPhone" placeholder="Phone" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <label for="<%=txtEmail.ClientID %>" class="col-sm-2 control-label">Email:</label>
-                        <div class="col-sm-5">
+                        <div class="col-sm-3">
                             <asp:TextBox ID="txtEmail" placeholder="Email" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                     </div>
@@ -177,7 +177,7 @@
                             <asp:TextBox ID="txtPhoneE" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <label for="<%=txtEmailE.ClientID %>" class="col-sm-2 control-label">Email:</label>
-                        <div class="col-sm-5">
+                        <div class="col-sm-3">
                             <asp:TextBox ID="txtEmailE" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                     </div>
@@ -232,7 +232,10 @@
     <script src="../assets/vendor/datatables-responsive/dataTables.responsive.js"></script>
     <script>
         $(document).ready(function () {
-            $('#tableMerchant').DataTable();
+            $('#tableMerchant').DataTable({
+                "order": []
+
+            });
         });
     </script>
 </asp:Content>

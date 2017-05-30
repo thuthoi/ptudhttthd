@@ -146,5 +146,25 @@ namespace WebServices.Controllers
             bus.updateAgentforMerchant(merchant);
             return Request.CreateResponse(HttpStatusCode.OK);
         }
+
+
+        [HttpPost]
+        [Route("api/merchant/searchMerchantOnAgent")]
+        public HttpResponseMessage searchMerchantOnAgent([FromBody]SearchKeyword keyword)
+        {
+            var list = bus.searchMerchantOnAgent(keyword).Select(c => new
+            {
+                c.MerchantID,
+                c.MerchantName,
+                c.Address,
+                c.Phone,
+                c.Email,
+                c.Status,
+                c.MerchantTypeID,
+                c.MerchantRegionID,
+                c.AgentID
+            });
+            return Request.CreateResponse(HttpStatusCode.OK, list);
+        }
     }
 }
