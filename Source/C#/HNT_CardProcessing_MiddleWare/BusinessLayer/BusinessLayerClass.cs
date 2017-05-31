@@ -488,9 +488,9 @@ namespace BusinessLayer
 
         // Report Merchant
         /// <summary>
-        /// Lấy thống kê hàng ngày dựa theo merID và dt.
-        /// thống kê hàng ngày nhưng lấy dữ liệu của ngày hôm qua, ko phải ngày hiện tại của dt. 
-        /// VD: dt là ngày 19 thì dữ liệu lấy là ngày 18
+        /// Lấy thống kê theo ngày dựa theo merID và dt.
+        /// 
+        /// 
         /// </summary>
         /// <param name="MerID">mã số merchant</param>
         /// <param name="dt">ngày muốn lấy thống kê</param>
@@ -506,9 +506,9 @@ namespace BusinessLayer
         }
   
         /// <summary>
-        /// Lấy thống kê tháng dựa theo merID và dt.
-        /// thống kê tháng nhưng lấy dữ liệu của tháng trước ko phải tháng hiện tại của dt. 
-        /// VD: dt là ngày 19/5/2017 thì dữ liệu lấy là của tháng 4
+        /// Lấy thống kê theo tháng dựa theo merID,month và year.
+        /// 
+        /// 
         /// </summary>
         /// <param name="MerID"></param>
         /// <param name="dt"></param>
@@ -523,9 +523,9 @@ namespace BusinessLayer
                             && d.Date.Value.Year.Equals(year));
         }
         /// <summary>
-        /// Lấy thống kê năm dựa theo merID và dt.
-        /// thống kê năm nhưng lấy dữ liệu của năm trước ko phải năm hiện tại của dt. 
-        /// VD: dt là ngày 19/5/2017 thì dữ liệu lấy là của năm 2016
+        /// Lấy thống kê theo năm dựa theo merID và year.
+        /// 
+        /// 
         /// </summary>
         /// <param name="MerID"></param>
         /// <param name="dt"></param>
@@ -539,14 +539,8 @@ namespace BusinessLayer
                             d.Date.Value.Year.Equals(year));
         }
         /// <summary>
-        /// Lấy thống kê quý dựa theo merID và dt.
-        /// thống kê quý nhưng lấy dữ liệu của quý trước ko phải quý hiện tại của dt. 
-        /// VD: dt là ngày 19/5/2017 là quý 2 nên dữ liệu sẽ lấy là của tháng 1
-        /// nếu rơi vào quý 1 thì lấy quý 4 của năm trước
-        /// quý 1: 1,2,3
-        /// quý 2: 4,5,6
-        /// quý 3: 7,8,9
-        /// quý 4: 10,11,12
+        /// Lấy thống kê theo quý dựa theo merID,quarter và year.
+       
         /// </summary>
         /// <param name="MerID"></param>
         /// <param name="dt"></param>
@@ -555,11 +549,7 @@ namespace BusinessLayer
         public DailyReport GetMonthlyQuarterReport_By_MerID_Date(String MerID, int quarter, int year)
         {
             DailyReport lst = new DailyReport();
-            //DateTime dt = DateTime.Now;
-
-            // tính xem hiện tại đang ở quý nào
-            //int quarter = GetQuarter(dt);
-            // rơi vao quý 1 nên lấy thống kê của quý 4 năm trước 
+            
             if (quarter == 1)
             {
                 lst = Caculate_fromMonth_toMonth_Report(MerID, 1, 3, year);
@@ -589,7 +579,7 @@ namespace BusinessLayer
         /// <returns></returns>
         private DailyReport Caculate_fromMonth_toMonth_Report(String MerID, int fromMonth, int toMonth, int year)
         {
-            // do thống kê được tạo từ nhiều tháng nên thuộc tính Date trong DailyReport
+            // do thống kê được tạo từ nhiều tháng nên thuộc tính Date trong DailyReport bị dư
             // nên tạo đại 1 ngày là ngày bắt đầu của tháng bắt đầu(fromMonth) để gắn vào
             DateTime tmp_dt = new DateTime(year, fromMonth, 1);
             return _monthlyReportRepository.GetList(
@@ -633,8 +623,8 @@ namespace BusinessLayer
             return (date.Month + 2) / 3;
         }
         /// <summary>
-        /// hàm tính thống kê từ đầu tháng của ngày truyền vào (custom_Day) đến sau ngày truyền vào 1 ngày
-        /// VD: ngày truyền vào là 19/5/2017 thì hàm sẽ tính từ ngày 1/5/2017 đến 18/5/2017
+        /// hàm tính thống kê từ đầu tháng của ngày truyền vào (custom_Day) đến ngày truyền vào
+        /// 
         /// Chọn DailyReport để trả về do 3 cái Daily, Monthly, Yearly có thuộc tính giống nhau nên chọn đại 1 cái
         /// </summary>
         /// <param name="MerID"></param>
@@ -690,8 +680,8 @@ namespace BusinessLayer
         }
 
         /// <summary>
-        /// hàm tính thống kê từ đầu năm của ngày truyền vào (custom_Day) đến sau ngày truyền vào 1 ngày
-        /// VD: ngày truyền vào là 19/5/2017 thì hàm sẽ tính từ ngày 1/1/2017 đến 18/5/2017
+        /// hàm tính thống kê từ đầu năm của ngày truyền vào (custom_Day) đến sau ngày truyền 
+        /// VD: ngày truyền vào là 18/5/2017 thì hàm sẽ tính từ ngày 1/1/2017 đến 18/5/2017
         /// Cách tính là tính thống kê từ ngày ngầy đâu tiên của năm (1/1/2017 ) tới tháng trước của ngày truyền vào (custom_Day) (30/4/2017 )
         /// sau đó tính thống kê từ ngày đâu tháng (1/5/2017 ) tới ngày truyền vào  (18/5/2017)
         /// cộng 2 cái lại được kết quả
@@ -742,7 +732,7 @@ namespace BusinessLayer
                 dl.MerchantTypeID = dl_1.MerchantTypeID;
                 dl.MerchantRegionID = dl_1.MerchantRegionID;
                 dl.SaleAmount = dl_1.SaleAmount + dl_2.SaleAmount;
-                dl.ReturnAmount = dl_1.SaleAmount + dl_2.SaleAmount;
+                dl.ReturnAmount = dl_1.ReturnAmount + dl_2.ReturnAmount;
                 dl.SaleCount = dl_1.SaleCount + dl_2.SaleCount;
                 dl.ReturnCount = dl_1.ReturnCount + dl_2.ReturnCount;
                 dl.DebitCardSaleAmount = dl_1.DebitCardSaleAmount + dl_2.DebitCardSaleAmount;

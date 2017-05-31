@@ -142,14 +142,20 @@ namespace CardProcessingWebsite.merchant
             }
             if (rbMtDate.Checked)
             {
-                string day = txtDate.Text.Trim().Substring(0, 2);
-                api_url = "getMonthToDateReport/" + day;
+                //string day = txtDate.Text.Trim().Substring(0, 2);
+                DateTime myDate = DateTime.ParseExact(txtDate.Text.Trim(), "dd/MM/yyyy",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+                api_url = String.Format("getMonthtoDate/{0}/{1}", merID, myDate.ToString("yyyy-MM-dd"));
+                //api_url = "getMonthToDateReport/" + day;
             }
             if (rbYtDate.Checked)
             {
-                string day = txtDate.Text.Trim().Substring(0, 2);
-                string month = txtDate.Text.Substring(3, 2);
-                api_url = "getYearToDateReport/" + day + "/" + month;
+                //string day = txtDate.Text.Trim().Substring(0, 2);
+                //string month = txtDate.Text.Substring(3, 2);
+                DateTime myDate = DateTime.ParseExact(txtDate.Text.Trim(), "dd/MM/yyyy",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+                api_url = String.Format("getYeartoDate/{0}/{1}", merID, myDate.ToString("yyyy-MM-dd"));
+                //api_url = "getYearToDateReport/" + day + "/" + month;
             }
             return Generate_Report(api_url);
         }
