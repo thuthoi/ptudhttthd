@@ -16,7 +16,7 @@ namespace CardProcessingWebsite.merchant
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (CurrentContext.IsLogged() == false)
+            if (CurrentContext.IsLogged() == false )
             {
                 Response.Redirect("~/login/login.aspx?retUrl=~/merchant/profileMerchant.aspx");
             }
