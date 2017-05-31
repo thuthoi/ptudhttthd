@@ -224,8 +224,8 @@
                 <div>&nbsp;</div>
                 <div class="col-lg-5">&nbsp;</div>
                 <div class="col-lg-5">
-                    <asp:LinkButton ID="btnPrint"  CssClass="btn btn-warning" runat="server"><i class="fa fa-print" aria-hidden="true"></i>&nbsp;Print</asp:LinkButton>
-                    <asp:LinkButton ID="btnExport"  CssClass="btn btn-success" runat="server"><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp;Export</asp:LinkButton>
+                    <asp:LinkButton ID="btnPrint" OnClick="btnPrint_Click" CssClass="btn btn-warning" runat="server"><i class="fa fa-print" aria-hidden="true"></i>&nbsp;Print</asp:LinkButton>
+                    <asp:LinkButton ID="btnExport" OnClick="btnExport_Click"  CssClass="btn btn-success" runat="server"><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp;Export</asp:LinkButton>
                 </div>
                 <div class="panel-body"></div>
             </div>
@@ -244,15 +244,7 @@
 
         $(function () {
             ddlYear_Change();
-            <%--if (document.getElementById('<%=rbMaster.ClientID%>').checked == true) {
-                view3Click();
-            }
-            if (document.getElementById('<%=rbMerchant.ClientID%>').checked == true) {
-                view1Click();
-            }
-            if (document.getElementById('<%=rbOther.ClientID%>').checked == true) {
-                view2Click();
-            }--%>
+            
             if (document.getElementById('<%=rbDaily.ClientID %>').checked == true) {
                 checkDaily();
             }
@@ -351,32 +343,7 @@
             }
         }
 
-        <%--function view1Click() {
-            $('#<%=ddlAgent.ClientID %>').prop('disabled', true);
-            $('#<%=ddlType.ClientID %>').prop('disabled', true);
-            $('#<%=ddlRegion.ClientID %>').prop('disabled', true);
-            $('#<%=ddlMerchant.ClientID %>').prop('disabled', false);
-            $('#<%=ddlMaster.ClientID %>').prop('disabled', true);
-            document.getElementById('<%=lblMaster.ClientID%>').style.backgroundColor = '#eaeaea';
-        }
-
-        function view2Click() {
-            $('#<%=ddlAgent.ClientID %>').prop('disabled', false);
-            $('#<%=ddlType.ClientID %>').prop('disabled', false);
-            $('#<%=ddlRegion.ClientID %>').prop('disabled', false);
-            $('#<%=ddlMerchant.ClientID %>').prop('disabled', true);
-            $('#<%=ddlMaster.ClientID %>').prop('disabled', true);
-            document.getElementById('<%=lblMaster.ClientID%>').style.backgroundColor = '#eaeaea';
-        };
-
-        function view3Click() {
-            $('#<%=ddlAgent.ClientID %>').prop('disabled', true);
-            $('#<%=ddlType.ClientID %>').prop('disabled', false);
-            $('#<%=ddlRegion.ClientID %>').prop('disabled', false);
-            $('#<%=ddlMerchant.ClientID %>').prop('disabled', true);
-            $('#<%=ddlMaster.ClientID %>').prop('disabled', false);
-            document.getElementById('<%=lblMaster.ClientID%>').style.backgroundColor = '';
-        }--%>
+      
 
         function checkDaily() {
             document.getElementById('<%=panelDate.ClientID %>').style.display = 'block';
@@ -464,7 +431,7 @@
         function getSesionPrint() {
             $.ajax({
                 type: "POST",
-                url: "reportMaster.aspx/fn_Print",
+                url: "reportMerchant.aspx/fn_Print",
                 data: '{ }',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -482,7 +449,7 @@
             var pos = docCnt.search("<div>");
             if (pos != -1) {
                 var docType = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/loose.dtd">';
-                var docHead = '<head><title>Master Report</title><style>body{margin:5;padding:0;}</style></head>';
+                var docHead = '<head><title>Merchant Report</title><style>body{margin:5;padding:0;}</style></head>';
                 var winAttr = "location=yes,statusbar=no,directories=no,menubar=no,titlebar=no,toolbar=no,dependent=no,width=800,height=600,resizable=yes,screenX=250,screenY=50,personalbar=no,scrollbars=yes";;
                 var newWin = window.open("", "_blank", winAttr);
                 var docFooter = "<foo";
