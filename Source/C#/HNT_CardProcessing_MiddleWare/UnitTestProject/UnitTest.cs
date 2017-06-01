@@ -148,8 +148,7 @@ namespace UnitTestProject
                 Address = "3, Hòa Bình, Phường 3, Quận 11, TP Hồ Chí Minh",
                 Phone = "090.686.3336",
                 Email = "agentTest@gmail.com",
-                Status = true,
-                MasterID = "MASTER0001"
+                Status = true
             };
 
             bus.AddAgent(agent);
@@ -266,31 +265,6 @@ namespace UnitTestProject
             Assert.AreEqual(1, list.Count);
         }
        
-       
-        //registrationForm
-        [TestMethod]
-        public void Test_generateRegID_Success()
-        {
-            string regID = bus.generateRegID();
-            Assert.AreEqual("REG00002", regID);
-        }
-        [TestMethod]
-        public void Test_addRegistrationForm_Success()
-        {
-            string id = bus.generateRegID();
-            RegistrationForm reg = new RegistrationForm()
-            {
-                RegID = id,
-                Name = "Nhan",
-                Email = "nhan@gmail.com",
-                Phone = "0901111222",
-                Detail = "abc"
-            };
-            bus.addRegistrationForm(reg);
-            RegistrationForm regTest = bus.getAllRegistrationFormByRegID(id);
-            Assert.IsNotNull(regTest);
-            Assert.AreEqual("REG00002", regTest.RegID);
-        }
         
         //notification
         [TestMethod]

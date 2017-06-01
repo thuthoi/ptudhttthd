@@ -14,7 +14,6 @@ namespace BusinessLayer
         private readonly IAgentRepository _agentRepository;
         private readonly IAccountRepository _accountRepository;
         private readonly IMerchantRepository _merchantRepository;
-        private readonly IRegistrationFormRepository _registrationFormRepository;
         private readonly IMerchantTypeRepository _merchantTypeRepository;
         private readonly IMerchantRegionRepository _merchantRegionRepository;
         private readonly IMasterRepository _masterRepository;
@@ -28,7 +27,6 @@ namespace BusinessLayer
             _agentRepository = new AgentRepository();
             _accountRepository = new AccountRepository();
             _merchantRepository = new MerchantRepository();
-            _registrationFormRepository = new RegistrationFormRepository();
             _merchantRegionRepository = new MerchantRegionRepository();
             _merchantTypeRepository = new MerchantTypeRepository();
             _masterRepository = new MasterRepository();
@@ -40,13 +38,12 @@ namespace BusinessLayer
         }
 
         public BusinessLayerClass(IAgentRepository agentRepository,
-            IAccountRepository accountRepository, IMerchantRepository merchantRepository, IRegistrationFormRepository registrationFormRepository,
+            IAccountRepository accountRepository, IMerchantRepository merchantRepository,
             IMerchantTypeRepository merchantTypeRepository, IMerchantRegionRepository merchantRegionRepository, INotificationRepository notificationRepository)
         {
             _agentRepository = agentRepository;
             _accountRepository = accountRepository;
             _merchantRepository = merchantRepository;
-            _registrationFormRepository = registrationFormRepository;
             _merchantTypeRepository = merchantTypeRepository;
             _merchantRegionRepository = merchantRegionRepository;
             _notificationRepository = notificationRepository;
@@ -59,12 +56,7 @@ namespace BusinessLayer
         {
             return _agentRepository.GetAll();
         }
-        public Agent GetAgentByUsername(string username)
-        {
-            return _accountRepository.GetSingle(
-                a => a.Username.Equals(username),
-                a => a.Agent).Agent; //include related agent
-        }
+
         public void AddAgent(Agent agent)
         {
             /* Validation and error handling omitted */
@@ -85,7 +77,6 @@ namespace BusinessLayer
                 _agent.Phone = agent.Phone;
                 _agent.Email = agent.Email;
                 _agent.Status = agent.Status;
-                _agent.MasterID = agent.AgentID;
                 _agentRepository.Update(agent);
                 return "Cập nhật Agent thành công!";
             }
@@ -117,10 +108,7 @@ namespace BusinessLayer
         {
             return _agentRepository.GetAll(c => c.Accounts).Where(m => m.Accounts.Count == 0).ToList();
         }
-        public IList<Agent> getAgentbyMasterID(string id)
-        {
-            return _agentRepository.GetAll().Where(a => a.MasterID == id && a.Status == true).ToList();
-        }
+     
 
         public IList<Agent> getAgentByAgentIDtoList(string id)
         {
@@ -359,35 +347,6 @@ namespace BusinessLayer
                                                     m.Status == active
                                                     ).ToList();
             }
-        }
-
-        //RegistrationForm
-        public void addRegistrationForm(RegistrationForm registrationForm)
-        {
-            _registrationFormRepository.Add(registrationForm);
-        }
-        public IList<RegistrationForm> getAllRegistionForm()
-        {
-            return _registrationFormRepository.GetAll();
-        }
-        public string generateRegID()
-        {
-            string res = "";
-            string oldRegID = getAllRegistionForm().OrderByDescending(m => m.RegID).FirstOrDefault().RegID.ToString();
-            if (oldRegID != "")
-            {
-                res = "REG" + Convert.ToString((Convert.ToInt32(oldRegID.Substring(3)) + 1)).PadLeft(5, '0');
-            }
-            else
-            {
-                res = "REG00001";
-            }
-            return res;
-        }
-        public RegistrationForm getAllRegistrationFormByRegID(string id)
-        {
-            return _registrationFormRepository.GetSingle(
-                m => m.RegID.Equals(id));
         }
 
         //MerchantType

@@ -9,10 +9,10 @@
 
 namespace DataAccessLayer
 {
+    using DomainModel;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using DomainModel;
     
     public partial class CardProcessingEntities : DbContext
     {
@@ -36,8 +36,6 @@ namespace DataAccessLayer
         public virtual DbSet<MonthlyReport> MonthlyReports { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Parameter> Parameters { get; set; }
-        public virtual DbSet<RegistrationForm> RegistrationForms { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TransactionDetail> TransactionDetails { get; set; }
         public virtual DbSet<TransactionDetail_Temp> TransactionDetail_Temp { get; set; }
         public virtual DbSet<YearlyReport> YearlyReports { get; set; }

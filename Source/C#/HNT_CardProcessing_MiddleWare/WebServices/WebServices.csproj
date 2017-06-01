@@ -104,7 +104,6 @@
     <Compile Include="Controllers\MerchantReportController.cs" />
     <Compile Include="Controllers\MerchantTypeController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
-    <Compile Include="Controllers\RegistrationFormController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

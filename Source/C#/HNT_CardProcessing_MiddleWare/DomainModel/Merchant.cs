@@ -17,7 +17,6 @@ namespace DomainModel
         public Merchant()
         {
             this.Accounts = new HashSet<Account>();
-            this.TransactionDetails = new HashSet<TransactionDetail>();
         }
     
         public string MerchantID { get; set; }
@@ -31,9 +30,7 @@ namespace DomainModel
         public string AgentID { get; set; }
     
         public virtual ICollection<Account> Accounts { get; set; }
-        public virtual MerchantRegion MerchantRegion { get; set; }
         public virtual MerchantType MerchantType { get; set; }
-        public virtual Agent Agent { get; set; }
-        public virtual ICollection<TransactionDetail> TransactionDetails { get; set; }
+        public virtual MerchantRegion MerchantRegion { get; set; }
     }
 }

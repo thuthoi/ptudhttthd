@@ -84,7 +84,7 @@ namespace CardProcessingWebsite
             {
                 c.DefaultRequestHeaders.Accept.Clear();
                 c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                string url = localhost.hostname() + "api/agent/getAgentbyMaster/" + CurrentContext.GetCurUser().UserID.ToString();
+                string url = localhost.hostname() + "api/agent/getAll";
                 var response = c.GetAsync(url).Result;
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {

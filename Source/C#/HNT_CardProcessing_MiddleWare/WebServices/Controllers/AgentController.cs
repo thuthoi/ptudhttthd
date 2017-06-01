@@ -24,8 +24,7 @@ namespace WebServices.Controllers
                 a.Address,
                 a.Phone,
                 a.Email,
-                a.Status,
-                a.MasterID
+                a.Status
             });
             return Request.CreateResponse(HttpStatusCode.OK, list);
         }
@@ -66,8 +65,7 @@ namespace WebServices.Controllers
                 a.Address,
                 a.Phone,
                 a.Email,
-                a.Status,
-                a.MasterID
+                a.Status
             });
             return Request.CreateResponse(HttpStatusCode.OK, list);
         }
@@ -84,29 +82,11 @@ namespace WebServices.Controllers
                 a.AgentName,
                 a.Email,
                 a.Phone,
-                a.MasterID
+                a.Status
            
             });
             return Request.CreateResponse(HttpStatusCode.OK, list);
         }
-
-        [HttpGet]
-        [Route("api/agent/getAgentbyMaster/{masterID}")]
-        public HttpResponseMessage getAgentbyMaster(string masterID)
-        {
-            var list = bus.getAgentbyMasterID(masterID).Select(a=>new {
-                a.AgentID,
-                a.AgentName,
-                a.Address,
-                a.Phone,
-                a.Email,
-                a.Status,
-                a.MasterID
-            });
-
-            return Request.CreateResponse(HttpStatusCode.OK, list);
-        }
-
 
         [HttpPost]
         [Route("api/agent/searchAgent")]
@@ -119,8 +99,7 @@ namespace WebServices.Controllers
                 a.Address,
                 a.Phone,
                 a.Email,
-                a.Status,
-                a.MasterID
+                a.Status
             });
             return Request.CreateResponse(HttpStatusCode.OK, list);
         }

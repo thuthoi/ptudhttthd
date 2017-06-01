@@ -85,15 +85,6 @@ namespace CardProcessingWebsite.master {
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
         
         /// <summary>
-        /// cboMaster control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboMaster;
-        
-        /// <summary>
         /// btnAddAgent control.
         /// </summary>
         /// <remarks>
@@ -164,15 +155,6 @@ namespace CardProcessingWebsite.master {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEmailE;
-        
-        /// <summary>
-        /// cboMasterE control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboMasterE;
         
         /// <summary>
         /// chbxActiveE control.

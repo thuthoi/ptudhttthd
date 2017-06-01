@@ -27,33 +27,11 @@ namespace CardProcessingWebsite.master
                 if (IsPostBack == false)
                 {
                     loadListMerchant();
-                    loadListMasterForAdding();
-
-
-                    loadListMasterForEditing();
                 }
             }
             
         }
 
-        private void loadListMasterForAdding()
-        {
-            using (var c = new HttpClient())
-            {
-                c.DefaultRequestHeaders.Accept.Clear();
-                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                string url = localhost.hostname() + "api/master/getAll";
-                var response = c.GetAsync(url).Result;
-                if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                {
-                    var list = response.Content.ReadAsAsync<Master[]>().Result;
-                    cboMaster.DataSource = list;
-                    cboMaster.DataTextField = "MasterName";
-                    cboMaster.DataValueField = "MasterID";
-                    cboMaster.DataBind();
-                }
-            }
-        }
 
         protected void btnAddAgent_Click(object sender, EventArgs e)
         {
@@ -111,8 +89,7 @@ namespace CardProcessingWebsite.master
                     Address = txtAddress.Text.Trim(),
                     Phone = txtPhone.Text.Trim(),
                     Email = txtEmail.Text.Trim(),
-                    Status = true,
-                    MasterID = cboMaster.SelectedItem.Value
+                    Status = true
                 }).Result;
                 if (response.StatusCode == HttpStatusCode.Created)
                 {
@@ -166,7 +143,6 @@ namespace CardProcessingWebsite.master
                     Address = txtAddressE.Text.Trim(),
                     Phone = txtPhoneE.Text.Trim(),
                     Email = txtEmailE.Text.Trim(),
-                    MasterID = cboMasterE.SelectedItem.Value,
                     Status = chbxActiveE.Checked == true ? true : false,
                     
                     
@@ -178,24 +154,7 @@ namespace CardProcessingWebsite.master
                 return false;
             }
         }
-        private void loadListMasterForEditing()
-        {
-            using (var c = new HttpClient())
-            {
-                c.DefaultRequestHeaders.Accept.Clear();
-                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                string url = localhost.hostname() + "api/master/getAll";
-                var response = c.GetAsync(url).Result;
-                if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                {
-                    var list = response.Content.ReadAsAsync<Master[]>().Result;
-                    cboMasterE.DataSource = list;
-                    cboMasterE.DataTextField = "MasterName";
-                    cboMasterE.DataValueField = "MasterID";
-                    cboMasterE.DataBind();
-                }
-            }
-        }
+
         protected void listMerchant_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             if (e.CommandName.Equals("EditAgent"))
@@ -215,7 +174,7 @@ namespace CardProcessingWebsite.master
                         txtAddressE.Text = agent[0].Address;
                         txtPhoneE.Text = agent[0].Phone;
                         txtEmailE.Text = agent[0].Email;
-                        cboMasterE.SelectedValue = agent[0].MasterID;
+                        chbxActiveE.Checked = agent[0].Status;
                     }
 
                     string script = "$('#editAgentModal').modal('show');";

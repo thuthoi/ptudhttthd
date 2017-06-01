@@ -17,13 +17,11 @@ namespace DomainModel
         public MerchantRegion()
         {
             this.Merchants = new HashSet<Merchant>();
-            this.TransactionDetails = new HashSet<TransactionDetail>();
         }
     
         public string MerchantRegionID { get; set; }
         public string MerchantRegionName { get; set; }
     
         public virtual ICollection<Merchant> Merchants { get; set; }
-        public virtual ICollection<TransactionDetail> TransactionDetails { get; set; }
     }
 }

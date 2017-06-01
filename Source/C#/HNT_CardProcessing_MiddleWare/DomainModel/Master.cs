@@ -17,7 +17,6 @@ namespace DomainModel
         public Master()
         {
             this.Accounts = new HashSet<Account>();
-            this.Agents = new HashSet<Agent>();
         }
     
         public string MasterID { get; set; }
@@ -27,6 +26,5 @@ namespace DomainModel
         public Nullable<bool> Status { get; set; }
     
         public virtual ICollection<Account> Accounts { get; set; }
-        public virtual ICollection<Agent> Agents { get; set; }
     }
 }

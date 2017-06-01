@@ -110,13 +110,6 @@
                             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="<%=cboMaster.ClientID %>" class="col-sm-2 control-label">Master:</label>
-                        <div class="col-sm-10">
-                            <asp:DropDownList ID="cboMaster" runat="server" CssClass="form-control selectpicker">
-                            </asp:DropDownList>
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -168,11 +161,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="<%=cboMasterE.ClientID %>" class="col-sm-2 control-label">Master:</label>
-                        <div class="col-sm-3">
-                            <asp:DropDownList ID="cboMasterE" runat="server" CssClass="form-control selectpicker">
-                            </asp:DropDownList>
-                        </div>
                          <label for="<%=chbxActiveE.ClientID %>" class="col-sm-2 control-label">Active:</label>
                         <div class="col-sm-5">
                             <asp:CheckBox ID="chbxActiveE" Style="padding-left: 20px;" CssClass="checkbox" runat="server" />

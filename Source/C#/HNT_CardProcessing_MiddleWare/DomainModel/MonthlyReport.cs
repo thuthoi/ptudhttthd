@@ -37,5 +37,6 @@ namespace DomainModel
         public Nullable<decimal> NetAmount { get; set; }
         public Nullable<int> NetCount { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
+        public string AgentID { get; set; }
     }
 }

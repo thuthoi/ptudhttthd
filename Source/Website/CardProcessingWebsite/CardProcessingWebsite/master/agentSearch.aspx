@@ -135,11 +135,6 @@ input[type=radio] + label{
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="<%=cboMasterE.ClientID %>" class="col-sm-2 control-label">Master:</label>
-                        <div class="col-sm-3">
-                            <asp:DropDownList ID="cboMasterE" runat="server" CssClass="form-control selectpicker">
-                            </asp:DropDownList>
-                        </div>
                          <label for="<%=chbxActiveE.ClientID %>" class="col-sm-2 control-label">Active:</label>
                         <div class="col-sm-3">
                             <asp:CheckBox ID="chbxActiveE" Style="padding-left: 20px;" CssClass="checkbox" runat="server" />

@@ -75,13 +75,7 @@
       <DependentUpon>CardProcessingModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegistrationForm.cs">
-      <DependentUpon>CardProcessingModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="SearchKeyword.cs" />
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>CardProcessingModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="TransactionDetail.cs">
       <DependentUpon>CardProcessingModel.tt</DependentUpon>
     </Compile>

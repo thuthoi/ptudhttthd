@@ -17,7 +17,6 @@ namespace DomainModel
         public Agent()
         {
             this.Accounts = new HashSet<Account>();
-            this.Merchants = new HashSet<Merchant>();
         }
     
         public string AgentID { get; set; }
@@ -26,10 +25,7 @@ namespace DomainModel
         public string Phone { get; set; }
         public string Email { get; set; }
         public Nullable<bool> Status { get; set; }
-        public string MasterID { get; set; }
     
         public virtual ICollection<Account> Accounts { get; set; }
-        public virtual Master Master { get; set; }
-        public virtual ICollection<Merchant> Merchants { get; set; }
     }
 }

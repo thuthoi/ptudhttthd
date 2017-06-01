@@ -12,14 +12,12 @@ namespace BusinessLayer
         //Khai báo hàm cần định nghĩa ở đây
 
         //Agent
-        Agent GetAgentByUsername(string username);
         void AddAgent(Agent agent);
         string UpdateAgent(Agent agent);
         void RemoveAgent(Agent agent);
         IList<Agent> GetAllAgent();
         string generateAgentID();
         Agent getAgentByAgentID(string id);
-        IList<Agent> getAgentbyMasterID(string id);
         IList<Agent> getAgentByAgentIDtoList(string id);
         IList<Agent> getAgent_NotHave_Account();
 
@@ -49,13 +47,6 @@ namespace BusinessLayer
         void removeMerchant(Merchant merchant);
 
         IList<Merchant> searchMerchant(SearchKeyword keyword);
-
-
-        //RegistrationForm
-        void addRegistrationForm(RegistrationForm _registrationForm);
-        string generateRegID();
-        IList<RegistrationForm> getAllRegistionForm();
-        RegistrationForm getAllRegistrationFormByRegID(string id);
 
         //MerchantType 
         IList<MerchantType> getAllMerchantType();
