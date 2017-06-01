@@ -23,7 +23,11 @@ namespace CardProcessingWebsite.agent
             }
             else
             {
-                if (!Page.IsPostBack)
+                if (CurrentContext.GetCurUser().Role.ToString() != "agent")
+                {
+                    Response.Redirect("~/login/login.aspx");
+                }
+                else if (!Page.IsPostBack)
                 {
 
                     //loadListMerchant();

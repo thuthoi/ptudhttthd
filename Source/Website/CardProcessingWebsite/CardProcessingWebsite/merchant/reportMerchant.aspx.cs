@@ -24,27 +24,38 @@ namespace CardProcessingWebsite.merchant
             else
             {
 
-                // test chuc năng MERCH00001
-                if (CurrentContext.IsLogged() == true)
+                if (CurrentContext.GetCurUser().Role.ToString() != "merchant")
                 {
-                    string userID = CurrentContext.GetCurUser().UserID.ToString();
-                    loadProfileMerchant(userID);
+                    Response.Redirect("~/login/login.aspx");
                 }
                 else
                 {
-                    loadProfileMerchant("MERCH00001");
+
+                    // test chuc năng MERCH00001
+                    if (CurrentContext.IsLogged() == true)
+                    {
+                        string userID = CurrentContext.GetCurUser().UserID.ToString();
+                        loadProfileMerchant(userID);
+                    }
+                    else
+                    {
+                        loadProfileMerchant("MERCH00001");
+                    }
+
+
+                    if (IsPostBack == false)
+                    {
+                        loadReportType();
+
+
+                        dpnReportType_TextChanged(null, null);
+                        rdMonthToDate.Attributes.Add("onClick", "return handleClick();");
+                        rdYearToDate.Attributes.Add("onClick", "return handleClick();");
+                    }
+
                 }
 
-
-                if (IsPostBack == false)
-                {
-                    loadReportType();
-
-
-                    dpnReportType_TextChanged(null, null);
-                    rdMonthToDate.Attributes.Add("onClick", "return handleClick();");
-                    rdYearToDate.Attributes.Add("onClick", "return handleClick();");
-                }
+               
             }
 
             

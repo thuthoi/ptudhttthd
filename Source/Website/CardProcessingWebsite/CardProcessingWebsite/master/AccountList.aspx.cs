@@ -26,13 +26,17 @@ namespace CardProcessingWebsite.master
             else
             {
 
-                if (IsPostBack == false)
+                if (CurrentContext.GetCurUser().Role.ToString() != "master")
+                {
+                    Response.Redirect("~/login/login.aspx");
+                }
+                else if (IsPostBack == false)
                 {
                     loadListAccount();
                     Load_Role_Data();
                     check_add_button_enable_disable();
                 }
-                loadListAccount();
+                
             }
 
            

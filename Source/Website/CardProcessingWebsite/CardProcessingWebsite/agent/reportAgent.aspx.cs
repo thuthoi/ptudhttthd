@@ -18,7 +18,14 @@ namespace CardProcessingWebsite.agent
             }
             else
             {
-                
+                if (CurrentContext.GetCurUser().Role.ToString() != "agent")
+                {
+                    Response.Redirect("~/login/login.aspx");
+                }
+                else if (IsPostBack == false)
+                {
+                    
+                }
 
             }
 

@@ -23,7 +23,11 @@ namespace CardProcessingWebsite.merchant
             else
             {
 
-                if (IsPostBack == false)
+                if (CurrentContext.GetCurUser().Role.ToString() != "merchant")
+                {
+                    Response.Redirect("~/login/login.aspx");
+                }
+                else if (IsPostBack == false)
                 {
                     loadProfileMerchant();
                 }

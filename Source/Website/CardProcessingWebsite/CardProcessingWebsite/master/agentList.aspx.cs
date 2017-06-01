@@ -24,7 +24,11 @@ namespace CardProcessingWebsite.master
             else
             {
 
-                if (IsPostBack == false)
+                if (CurrentContext.GetCurUser().Role.ToString() != "master")
+                {
+                    Response.Redirect("~/login/login.aspx");
+                }
+                else if (IsPostBack == false)
                 {
                     loadListMerchant();
                 }

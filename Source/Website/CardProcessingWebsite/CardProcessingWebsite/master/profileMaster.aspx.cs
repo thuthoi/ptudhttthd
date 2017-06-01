@@ -26,12 +26,9 @@ namespace CardProcessingWebsite.master
                 {
                     Response.Redirect("~/login/login.aspx");
                 }
-                else
+                else if (IsPostBack == false)
                 {
-                    if (IsPostBack == false)
-                    {
                         loadProfileMaster();
-                    }
                 }
                
             }
