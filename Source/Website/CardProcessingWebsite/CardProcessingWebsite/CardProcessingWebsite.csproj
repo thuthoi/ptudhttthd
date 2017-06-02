@@ -67,7 +67,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="agent\profileAgent.aspx" />
     <Content Include="agent\reportAgent.aspx" />
     <Content Include="agent\searchMerchant.aspx" />
     <Content Include="assets\jquery-2.1.4.min.js" />
@@ -235,9 +234,7 @@
     <Content Include="master\agentSearch.aspx" />
     <Content Include="master\merchantOfAgent.aspx" />
     <Content Include="master\merchantSearch.aspx" />
-    <Content Include="master\profileMaster.aspx" />
     <Content Include="master\reportMaster.aspx" />
-    <Content Include="merchant\profileMerchant.aspx" />
     <Content Include="merchant\reportMerchant.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -271,13 +268,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="agent\profileAgent.aspx.cs">
-      <DependentUpon>profileAgent.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="agent\profileAgent.aspx.designer.cs">
-      <DependentUpon>profileAgent.aspx</DependentUpon>
-    </Compile>
     <Compile Include="agent\reportAgent.aspx.cs">
       <DependentUpon>reportAgent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -367,26 +357,12 @@
     <Compile Include="master\merchantSearch.aspx.designer.cs">
       <DependentUpon>merchantSearch.aspx</DependentUpon>
     </Compile>
-    <Compile Include="master\profileMaster.aspx.cs">
-      <DependentUpon>profileMaster.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="master\profileMaster.aspx.designer.cs">
-      <DependentUpon>profileMaster.aspx</DependentUpon>
-    </Compile>
     <Compile Include="master\reportMaster.aspx.cs">
       <DependentUpon>reportMaster.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="master\reportMaster.aspx.designer.cs">
       <DependentUpon>reportMaster.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="merchant\profileMerchant.aspx.cs">
-      <DependentUpon>profileMerchant.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="merchant\profileMerchant.aspx.designer.cs">
-      <DependentUpon>profileMerchant.aspx</DependentUpon>
     </Compile>
     <Compile Include="merchant\reportMerchant.aspx.cs">
       <DependentUpon>reportMerchant.aspx</DependentUpon>

@@ -1,4 +1,5 @@
-﻿using CardProcessingWebsite.helpers;
+﻿using CardProcessingWebsite.class_DTO;
+using CardProcessingWebsite.helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,20 +59,73 @@ namespace CardProcessingWebsite.masterPage
 
         protected void btnProfile_Click(object sender, EventArgs e)
         {
+            
+
             if (CurrentContext.GetCurUser().Role.ToString() == "merchant")
             {
-                ChuyenTrang("~/merchant/profileMerchant.aspx");
+                using (var c = new HttpClient())
+                {
+                    c.DefaultRequestHeaders.Accept.Clear();
+                    c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    string url = localhost.hostname() + "api/merchant/getProfileMerchant/" + CurrentContext.GetCurUser().UserID.ToString();
+                    var response = c.GetAsync(url).Result;
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var list = response.Content.ReadAsAsync<Merchant[]>().Result;
+                        lblName.Text = list[0].MerchantName;
+                        lblAddress.Text = list[0].Address;
+                        lblPhone.Text = list[0].Phone;
+                        lblEmail.Text = list[0].Email;
+                        lblID.Text = list[0].MerchantID;
+                        lblRole.Text = "Merchant";
+                        labelAddress.Style.Add("display", "block");
+                    }
+                }
             }
 
             if (CurrentContext.GetCurUser().Role.ToString() == "agent")
             {
-                ChuyenTrang("~/agent/profileAgent.aspx");
+                using (var c = new HttpClient())
+                {
+                    c.DefaultRequestHeaders.Accept.Clear();
+                    c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    string url = localhost.hostname() + "api/agent/getProfileAgent/" + CurrentContext.GetCurUser().UserID.ToString();
+                    var response = c.GetAsync(url).Result;
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var list = response.Content.ReadAsAsync<Agent[]>().Result;
+                        lblID.Text = list[0].AgentID;
+                        lblName.Text = list[0].AgentName;
+                        lblAddress.Text = list[0].Address;
+                        lblPhone.Text = list[0].Phone;
+                        lblEmail.Text = list[0].Email;
+                        lblRole.Text = "Agent";
+                        labelAddress.Style.Add("display", "block");
+                    }
+                }
             }
 
             if (CurrentContext.GetCurUser().Role.ToString() == "master")
             {
-                ChuyenTrang("~/master/profileMaster.aspx");
+                using (var c = new HttpClient())
+                {
+                    c.DefaultRequestHeaders.Accept.Clear();
+                    c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    string url = localhost.hostname() + "api/master/getProfileMaster/" + CurrentContext.GetCurUser().UserID.ToString();
+                    var response = c.GetAsync(url).Result;
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var list = response.Content.ReadAsAsync<Master[]>().Result;
+                        lblName.Text = list[0].MasterName;
+                        lblPhone.Text = list[0].Phone;
+                        lblEmail.Text = list[0].Email;
+                        lblID.Text = list[0].MasterID;
+                        lblRole.Text = "Master";
+                    }
+                }
             }
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openProfileModal();", true);
         }
 
         protected void lblMerchantManagementforMaster_Click(object sender, EventArgs e)

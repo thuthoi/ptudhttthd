@@ -32,6 +32,10 @@
             $('#changePasswordModal').modal('show');
         }
 
+        function openProfileModal() {
+            $('#profileModal').modal('show');
+        }
+
         $(function () {
             $('#changePasswordModal').on('hidden.bs.modal', function (e) {
                 document.getElementById("successDisplay").style["display"] = "none";
@@ -242,6 +246,39 @@
                 
             </div>
         </div>
+            </div>
+
+
+
+        <%-- Modal Profile--%>
+        <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="myProfileModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myProfileModalLabel">Detail Profile</h4>
+                    </div>
+
+                    <div class="modal-body form-horizontal">
+                   
+                         &nbsp;&nbsp;<asp:Label runat="server" Font-Bold="true" ID="lblName" Font-Size="X-Large"></asp:Label><br />
+                         - ID: <asp:Label runat="server" Font-Bold="true" ID="lblID"></asp:Label><br />
+                         - Role: <asp:Label runat="server" Font-Bold="true" ID="lblRole"></asp:Label><br />
+                         <div id="labelAddress" runat="server" style="margin-bottom: 0px; display: none;">
+                             - Address: <asp:Label runat="server" Font-Bold="true" ID="lblAddress"></asp:Label>
+                         </div>
+                         - Phone: <asp:Label runat="server" Font-Bold="true" ID="lblPhone"></asp:Label><br />
+                         - Email: <asp:Label runat="server" Font-Bold="true" ID="lblEmail"></asp:Label><br />
+                    </div>
+                   
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                
+            </div>
+        </div>
+            </div>
+
 
     </form>
 
