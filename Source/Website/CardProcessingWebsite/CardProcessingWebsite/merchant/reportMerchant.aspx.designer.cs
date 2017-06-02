@@ -40,6 +40,24 @@ namespace CardProcessingWebsite.merchant {
         protected global::System.Web.UI.WebControls.Label lbReport;
         
         /// <summary>
+        /// hdSaleAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdSaleAmount;
+        
+        /// <summary>
+        /// hdReturnAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdReturnAmount;
+        
+        /// <summary>
         /// list_Report_general control.
         /// </summary>
         /// <remarks>

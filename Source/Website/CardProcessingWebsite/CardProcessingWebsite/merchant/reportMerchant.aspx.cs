@@ -1,7 +1,9 @@
 ﻿using CardProcessingWebsite.class_DTO;
 using CardProcessingWebsite.helpers;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -23,14 +25,12 @@ namespace CardProcessingWebsite.merchant
             }
             else
             {
-
                 if (CurrentContext.GetCurUser().Role.ToString() != "merchant")
                 {
                     Response.Redirect("~/login/login.aspx");
                 }
                 else
                 {
-
                     // test chuc năng MERCH00001
                     if (CurrentContext.IsLogged() == true)
                     {
@@ -41,25 +41,15 @@ namespace CardProcessingWebsite.merchant
                     {
                         loadProfileMerchant("MERCH00001");
                     }
-
-
                     if (IsPostBack == false)
                     {
                         loadReportType();
-
-
                         dpnReportType_TextChanged(null, null);
                         rdMonthToDate.Attributes.Add("onClick", "return handleClick();");
                         rdYearToDate.Attributes.Add("onClick", "return handleClick();");
                     }
-
                 }
-
-               
             }
-
-            
-
         }
 
         private void loadReportType()
@@ -97,13 +87,15 @@ namespace CardProcessingWebsite.merchant
                 //string api_url = String.Format("api/merchant_report/getMonthly/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
                 // correct code
                 dt = now;
-                 string api_url = String.Format("api/merchant_report/getMonthly/{0}/{1}", merID, now.ToString("yyyy-MM-dd"));
+                string api_url = String.Format("api/merchant_report/getMonthly/{0}/{1}", merID, now.ToString("yyyy-MM-dd"));
 
                 lst = Get_Report(api_url);
 
                 DateTime previous = dt.AddMonths(-1);
                 string strDay = "tháng " + previous.Month;
-                SetHeader( strDay);
+                SetHeader(strDay);
+                hdSaleAmount.Value = lst[0].SaleAmount.ToString();
+                hdReturnAmount.Value = lst[0].ReturnAmount.ToString();
 
             }
             else if (dpnReportType.Text == "Năm trước")
@@ -113,12 +105,12 @@ namespace CardProcessingWebsite.merchant
                 //string api_url = String.Format("api/merchant_report/getYearly/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
                 // correct code
                 dt = now;
-                  string api_url = String.Format("api/merchant_report/getYearly/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
+                string api_url = String.Format("api/merchant_report/getYearly/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
                 lst = Get_Report(api_url);
 
                 int pre_year = dt.Date.Year - 1;
                 string strDay = "năm " + pre_year;
-                SetHeader( strDay);
+                SetHeader(strDay);
 
             }
             else
@@ -141,7 +133,7 @@ namespace CardProcessingWebsite.merchant
                 }
                 //string strDay = "quý " + pre_quarter + " năm " + lst[0].Date.Year.ToString();
                 string strDay = "quý " + pre_quarter + " năm " + year;
-                SetHeader( strDay);
+                SetHeader(strDay);
 
             }
             SetListView(lst);
@@ -215,7 +207,7 @@ namespace CardProcessingWebsite.merchant
 
                 DateTime firstDayOfMonth = new DateTime(myDate.Year, myDate.Month, 1);
                 string strDay = "từ ngày " + firstDayOfMonth.ToString("dd/MM/yyyy") + " tới ngày " + customDay;
-                SetHeader( strDay);
+                SetHeader(strDay);
 
             }
             else
@@ -233,7 +225,7 @@ namespace CardProcessingWebsite.merchant
 
                 DateTime firstDayOfYear = new DateTime(myDate.Year, 1, 1);
                 string strDay = "từ ngày " + firstDayOfYear.Date.ToString("dd/MM/yyyy") + " tới ngày " + customDay;
-                SetHeader( strDay);
+                SetHeader(strDay);
 
 
             }
@@ -243,6 +235,7 @@ namespace CardProcessingWebsite.merchant
         private void SetListView(List<DailyReport> lst)
         {
             list_Report_general.DataSource = lst;
+           
             list_Report_general.DataBind();
 
             list_Report_Visa.DataSource = lst;

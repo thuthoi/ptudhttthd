@@ -33,6 +33,10 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
+                    <div id="baocao">
+                    </div>
+                    <asp:HiddenField ID="hdSaleAmount" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdReturnAmount" Value="0" runat="server" />
                     <asp:ListView runat="server" ID="list_Report_general">
                         <LayoutTemplate>
                             <table style="width: 100%" class="table table-striped table-bordered table-hover">
@@ -67,7 +71,6 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -85,7 +88,7 @@
                                         <th>Tiền trả hàng</th>
                                         <th>Số lượng bán hàng</th>
                                         <th>Số lượng trả hàng</th>
-                                        
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -99,7 +102,7 @@
                                 <td><%#Eval("DebitCardReturnAmount","{0:#,##0.00}") %></td>
                                 <td><%# Convert.ToInt32(Eval("DebitCardSaleCount")) %></td>
                                 <td><%# Convert.ToInt32(Eval("DebitCardReturnCount")) %></td>
-                                
+
                             </tr>
                         </ItemTemplate>
                         <EmptyDataTemplate>
@@ -110,7 +113,6 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -128,7 +130,7 @@
                                         <th>Tiền trả hàng</th>
                                         <th>Số lượng bán hàng</th>
                                         <th>Số lượng trả hàng</th>
-                                        
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -142,7 +144,6 @@
                                 <td><%#Eval("VisaCardReturnAmount","{0:#,##0.00}") %></td>
                                 <td><%# Convert.ToInt32(Eval("VisaCardSaleCount")) %></td>
                                 <td><%# Convert.ToInt32(Eval("VisaCardReturnCount")) %></td>
-                                
                             </tr>
                         </ItemTemplate>
                         <EmptyDataTemplate>
@@ -153,7 +154,6 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -171,7 +171,7 @@
                                         <th>Tiền trả hàng</th>
                                         <th>Số lượng bán hàng</th>
                                         <th>Số lượng trả hàng</th>
-                                        
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -185,7 +185,7 @@
                                 <td><%#Eval("MasterCardReturnAmount","{0:#,##0.00}") %></td>
                                 <td><%# Convert.ToInt32(Eval("MasterCardSaleCount")) %></td>
                                 <td><%# Convert.ToInt32(Eval("MasterCardReturnCount")) %></td>
-                                
+
                             </tr>
                         </ItemTemplate>
                         <EmptyDataTemplate>
@@ -205,12 +205,7 @@
                     <h4 class="modal-title" id="myModalLabel">Xem thống kê</h4>
                 </div>
                 <div class="modal-body form-horizontal">
-
-                     <div class="form-group">
-                       
-
-                        
-
+                    <div class="form-group">
                         <div class="col-sm-12">
                             <div class="panel panel-green">
                                 <div class="panel-heading">
@@ -219,35 +214,26 @@
                                 <div class="panel-body">
 
                                     <label class="radio-inline">
-                                        <asp:RadioButton ID="rdMonthToDate" runat="server" GroupName="Role" Checked ="true"/>
+                                        <asp:RadioButton ID="rdMonthToDate" runat="server" GroupName="Role" Checked="true" />
                                         Đầu tháng cho tới sau ngày được chọn 1 ngày
                                     </label>
                                     <br />
                                     <label class="radio-inline">
-                                        <asp:RadioButton ID="rdYearToDate" runat="server" GroupName="Role"/>
+                                        <asp:RadioButton ID="rdYearToDate" runat="server" GroupName="Role" />
                                         Đầu năm cho tới sau ngày được chọn 1 ngày
                                     </label>
                                 </div>
                             </div>
                         </div>
-
-          <div class="col-sm-12">
+                        <div class="col-sm-12">
                             <div class='input-group date' id='datetimepicker1'>
                                 <asp:TextBox ID="txtCustomDay" runat="server" CssClass="form-control"></asp:TextBox>
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
                             </div>
-
-                     
                         </div>
-                       
-
                     </div>
-
-
-
-                   
                 </div>
                 <div class="modal-footer">
                     <asp:LinkButton ID="btnViewReport_customDay" runat="server" CssClass="btn btn-primary" OnClick="btnViewReport_customDay_Click">
@@ -260,20 +246,34 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="scriptFile" runat="server">
+
     <script>
         $('#addAccountModal').on('shown.bs.modal', function (e) {
             //alert('a');
-           // $("#<%=txtCustomDay.ClientID%>").focus();
+            // $("#<%=txtCustomDay.ClientID%>").focus();
         });
+
+
+        ///* Bieu do nhom hang*/
 
         $(function () {
             $('#datetimepicker1').datetimepicker({
                 format: 'DD/MM/YYYY',
                 keepOpen: true
-               
             });
             handleClick();
+
+            // Biểu đồ tròn tháng 
+            var sale = parseFloat($(<%=hdSaleAmount.ClientID%>).val()).toFixed(2);
+            var _return = parseFloat($(<%=hdReturnAmount.ClientID%>).val()).toFixed(2);
+            Morris.Donut({
+                element: 'baocao',
+                colors: ['#ff0000', '#3A89C9'],
+                data: [{ label: "Return Amount", value: _return },
+                    { label: "Sale Amount", value: sale }],
+            });
         });
+
         function handleClick() {
             var rates = document.getElementById('<%=rdMonthToDate.ClientID %>').checked;
             if (rates == true) {
@@ -290,8 +290,10 @@
                 $('#datetimepicker1').data("DateTimePicker").minDate(firstDay);
                 $('#datetimepicker1').data("DateTimePicker").maxDate(pre_date);
             }
-
         }
+
+
+
 
     </script>
     <script src="../assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
