@@ -393,6 +393,7 @@ namespace BusinessLayer
                                                               d.Date.Value.Month == month &&
                                                               d.Date.Value.Year == year).ToList();
         }
+
         //Monthly Report
         public IList<MonthlyReport> getMonthlyReportInMaster(int month, int year)
         {
@@ -406,10 +407,27 @@ namespace BusinessLayer
             return _monthlyReportRepository.GetAll().Where(m => GetQuarter(m.Date.Value) == quarter &&
                                                             m.Date.Value.Year == year).ToList();
         }
+
         //Yearly Report
         public IList<YearlyReport> getYearlyReportInMaster(int year)
         {
             return _yearlyReportRepository.GetAll().Where(y => y.Date.Value.Year == year).ToList();
+        }
+        
+        //Month To Date Report
+        public IList<DailyReport> getMonthToDateReportInMaster(int day)
+        {
+            return _dailyReportRepository.GetAll().Where(d => d.Date.Value.Day  <= day &&
+                                                              d.Date.Value.Month == DateTime.Now.Month &&
+                                                              d.Date.Value.Year == DateTime.Now.Year).ToList();
+        }
+
+        //Year To Date Report
+        public IList<DailyReport> getYearToDateReportInMaster(int day, int month)
+        {
+            return _dailyReportRepository.GetAll().Where(d => d.Date.Value.Day <= day &&
+                                                              d.Date.Value.Month <= month &&
+                                                              d.Date.Value.Year == DateTime.Now.Year).ToList();
         }
 
         // Report Merchant

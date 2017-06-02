@@ -74,6 +74,12 @@ namespace BusinessLayer
 
         //Yearly Report
         IList<YearlyReport> getYearlyReportInMaster(int year);
+
+        //Month To Date Report
+        IList<DailyReport> getMonthToDateReportInMaster(int day);
+
+        //Year To Date Report
+        IList<DailyReport> getYearToDateReportInMaster(int day, int month);
     }
 }
 
