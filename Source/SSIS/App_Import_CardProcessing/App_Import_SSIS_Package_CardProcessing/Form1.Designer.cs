@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label3 = new System.Windows.Forms.Label();
-            this.lv_sub_folder_import = new System.Windows.Forms.ListView();
             this.btnDir = new System.Windows.Forms.Button();
             this.btnFile = new System.Windows.Forms.Button();
             this.txtImport_File_Patch = new System.Windows.Forms.TextBox();
@@ -43,6 +42,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnDefault = new System.Windows.Forms.Button();
+            this.txt_Info = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label3
@@ -53,15 +53,6 @@
             this.label3.Size = new System.Drawing.Size(132, 26);
             this.label3.TabIndex = 17;
             this.label3.Text = "Danh sách các file \".csv\" \r\n trong thư mục import";
-            // 
-            // lv_sub_folder_import
-            // 
-            this.lv_sub_folder_import.Location = new System.Drawing.Point(172, 189);
-            this.lv_sub_folder_import.Name = "lv_sub_folder_import";
-            this.lv_sub_folder_import.Size = new System.Drawing.Size(375, 132);
-            this.lv_sub_folder_import.TabIndex = 16;
-            this.lv_sub_folder_import.UseCompatibleStateImageBehavior = false;
-            this.lv_sub_folder_import.View = System.Windows.Forms.View.List;
             // 
             // btnDir
             // 
@@ -177,11 +168,21 @@
             this.btnDefault.UseVisualStyleBackColor = true;
             this.btnDefault.Click += new System.EventHandler(this.btnDefault_Click);
             // 
+            // txt_Info
+            // 
+            this.txt_Info.Location = new System.Drawing.Point(172, 189);
+            this.txt_Info.Multiline = true;
+            this.txt_Info.Name = "txt_Info";
+            this.txt_Info.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txt_Info.Size = new System.Drawing.Size(375, 126);
+            this.txt_Info.TabIndex = 24;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(571, 369);
+            this.Controls.Add(this.txt_Info);
             this.Controls.Add(this.btnDefault);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -189,7 +190,6 @@
             this.Controls.Add(this.txtDatabase);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.lv_sub_folder_import);
             this.Controls.Add(this.btnDir);
             this.Controls.Add(this.btnFile);
             this.Controls.Add(this.txtImport_File_Patch);
@@ -210,7 +210,6 @@
         #endregion
 
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ListView lv_sub_folder_import;
         private System.Windows.Forms.Button btnDir;
         private System.Windows.Forms.Button btnFile;
         private System.Windows.Forms.TextBox txtImport_File_Patch;
@@ -224,6 +223,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnDefault;
+        private System.Windows.Forms.TextBox txt_Info;
     }
 }
 
