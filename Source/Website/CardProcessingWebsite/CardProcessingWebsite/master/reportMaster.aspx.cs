@@ -28,7 +28,12 @@ namespace CardProcessingWebsite.master
 
                 }
             }
+        }
 
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            string script = "window.onload = function() { chart(); };";
+            ClientScript.RegisterStartupScript(GetType(), "chart", script, true);
         }
     }
 }
