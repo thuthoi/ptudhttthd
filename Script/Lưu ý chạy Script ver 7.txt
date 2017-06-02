@@ -1,0 +1,5 @@
+﻿1. Xóa database cũ
+2. Chạy Navicat dưới quyền Administrator
+3. Click phải vào tên SQL chọn Excute SQL File
+4. Bỏ check Error...
+5. Chạy 
