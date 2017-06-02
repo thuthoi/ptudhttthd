@@ -62,6 +62,18 @@ namespace BusinessLayer
         //Notification
         IList<Notification> getAllNotificationByReceiveID(string _receiveID);
         IList<Notification> getLastThreeNotificationByReceiveID(string _receiveID);
+
+        //Daily Report
+        IList<DailyReport> getDailyReportInMaster(int day, int month, int year);
+
+        //Monthly Report
+        IList<MonthlyReport> getMonthlyReportInMaster(int month, int year);
+
+        //Quater Report
+        IList<MonthlyReport> getQuarterReportInMaster(int quater, int year);
+
+        //Yearly Report
+        IList<YearlyReport> getYearlyReportInMaster(int year);
     }
 }
 

@@ -108,7 +108,7 @@ namespace BusinessLayer
         {
             return _agentRepository.GetAll(c => c.Accounts).Where(m => m.Accounts.Count == 0).ToList();
         }
-     
+
 
         public IList<Agent> getAgentByAgentIDtoList(string id)
         {
@@ -317,7 +317,7 @@ namespace BusinessLayer
         {
             string key = keyword.Keyword.ToLower();
             bool active = true;
-            if(keyword.Active == 2)
+            if (keyword.Active == 2)
             {
                 return _merchantRepository.GetList(m => m.AgentID.Contains(keyword.AgentID) &&
                                                    (m.MerchantID.ToLower().Contains(key) ||
@@ -331,7 +331,7 @@ namespace BusinessLayer
             }
             else
             {
-                if(keyword.Active == 0)
+                if (keyword.Active == 0)
                 {
                     active = false;
                 }
@@ -386,7 +386,31 @@ namespace BusinessLayer
             return _notificationRepository.GetAll().Where(n => n.ReceiverID == _receiveID).OrderByDescending(n => n.Date).Take(3).ToList();
         }
 
+        //Daily Report
+        public IList<DailyReport> getDailyReportInMaster(int day, int month, int year)
+        {
+            return _dailyReportRepository.GetAll().Where(d => d.Date.Value.Day == day && 
+                                                              d.Date.Value.Month == month &&
+                                                              d.Date.Value.Year == year).ToList();
+        }
+        //Monthly Report
+        public IList<MonthlyReport> getMonthlyReportInMaster(int month, int year)
+        {
+            return _monthlyReportRepository.GetAll().Where(m => m.Date.Value.Month == month &&
+                                                            m.Date.Value.Year == year).ToList();
+        }
 
+        //Quarter Report
+        public IList<MonthlyReport> getQuarterReportInMaster(int quarter, int year)
+        {
+            return _monthlyReportRepository.GetAll().Where(m => GetQuarter(m.Date.Value) == quarter &&
+                                                            m.Date.Value.Year == year).ToList();
+        }
+        //Yearly Report
+        public IList<YearlyReport> getYearlyReportInMaster(int year)
+        {
+            return _yearlyReportRepository.GetAll().Where(y => y.Date.Value.Year == year).ToList();
+        }
 
         // Report Merchant
         /// <summary>
