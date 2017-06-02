@@ -17,8 +17,15 @@ BEGIN
 	,TransactionType,CreditCardID,CreditCardType,MerchantID,MerchantRegionID,
 	MerchantTypeID,Date
 	FROM TransactionDetail_Temp	
+	
+	DECLARE @AgentID VARCHAR(10)
+	SELECT @AgentID = AgentID
+	FROM Merchant
+	WHERE MerchantID = @MerchantID
 
-	EXEC USP_Tao_DailyReport @DATE,@MerchantID
+
+
+	EXEC USP_Tao_DailyReport @DATE,@MerchantID,@AgentID
 	
 	EXEC USP_Tao_MonthReport @MerchantID,@DATE
 	
@@ -27,10 +34,13 @@ BEGIN
 END
 
 GO
+
+
 -- tao daily report
-CREATE PROC [dbo].[USP_Tao_DailyReport]
+ALTER PROC [dbo].[USP_Tao_DailyReport]
 			@Date DATE,
-			@MerchantID VARCHAR(10)
+			@MerchantID VARCHAR(10),
+			@AgentID VARCHAR(10)
 AS 
 BEGIN
 	
@@ -92,8 +102,8 @@ BEGIN
 	set @ReturnAmount = @DebitCardReturnAmount + @MasterCardReturnAmount + @VisaCardReturnAmount
 	set @SaleCount = @DebitCardSaleCount + @MasterCardSaleCount + @VisaCardSaleCount
 	set @ReturnCount = @DebitCardReturnCount + @MasterCardReturnCount + @VisaCardReturnCount
-	set @NetAmount =  @SaleAmount + @ReturnAmount
-	set @NetCount = @SaleCount + @ReturnCount
+	set @NetAmount =  @SaleAmount - @ReturnAmount
+	set @NetCount = @SaleCount - @ReturnCount
 	DECLARE @MerchantID_1 varchar(10), @MerchantTypeID varchar(10), @MerchantRegionID varchar(10)
 	SELECT  @MerchantID_1 = tr.MerchantID,@MerchantTypeID = tr.MerchantTypeID,@MerchantRegionID = tr.MerchantRegionID
 	FROM TransactionDetail tr
@@ -109,14 +119,14 @@ BEGIN
 	DebitCardReturnAmount   ,MasterCardReturnAmount  ,VisaCardReturnAmount,
 	DebitCardSaleCount      ,MasterCardSaleCount     ,VisaCardSaleCount       ,
 	DebitCardReturnCount    ,MasterCardReturnCount   ,VisaCardReturnCount     ,
-	NetAmount               ,NetCount, Date)
+	NetAmount               ,NetCount, Date,AgentID )
 	VALUES (@MerchantID_1, @MerchantTypeID, @MerchantRegionID,
 	@SaleAmount              ,@ReturnAmount            ,@SaleCount  ,@ReturnCount,
 	@DebitCardSaleAmount     ,@MasterCardSaleAmount    ,@VisaCardSaleAmount,
 	@DebitCardReturnAmount   ,@MasterCardReturnAmount  ,@VisaCardReturnAmount,
 	@DebitCardSaleCount      ,@MasterCardSaleCount     ,@VisaCardSaleCount       ,
 	@DebitCardReturnCount    ,@MasterCardReturnCount   ,@VisaCardReturnCount     ,
-	@NetAmount               ,@NetCount, @Date)
+	@NetAmount               ,@NetCount, @Date,@AgentID)
 	
 	
 	UPDATE TransactionDetail 
@@ -144,21 +154,23 @@ BEGIN
 	DebitCardReturnAmount   ,MasterCardReturnAmount  ,VisaCardReturnAmount,
 	DebitCardSaleCount      ,MasterCardSaleCount     ,VisaCardSaleCount       ,
 	DebitCardReturnCount    ,MasterCardReturnCount   ,VisaCardReturnCount     ,
-	NetAmount               ,NetCount, Date)
+	NetAmount               ,NetCount, Date, AgentID)
 	SELECT MerchantID, MerchantTypeID, MerchantRegionID,
 	SUM(SaleAmount)              ,SUM(ReturnAmount)            ,SUM(SaleCount )             ,SUM(ReturnCount),
 	SUM(DebitCardSaleAmount )    ,SUM(MasterCardSaleAmount)    ,SUM(VisaCardSaleAmount)     ,
 	SUM(DebitCardReturnAmount )  ,SUM(MasterCardReturnAmount)  ,SUM(VisaCardReturnAmount)   ,
 	SUM(DebitCardSaleCount   )   ,SUM(MasterCardSaleCount)     ,SUM(VisaCardSaleCount   )   ,
 	SUM(DebitCardReturnCount  )  ,SUM(MasterCardReturnCount)   ,SUM(VisaCardReturnCount )   ,
-	SUM(NetAmount          )     ,SUM(NetCount),   DATEADD(month, DATEDIFF(month, 0, @Date), 0)
+	SUM(NetAmount          )     ,SUM(NetCount),   DATEADD(month, DATEDIFF(month, 0, @Date), 0), AgentID
 	FROM DailyReport
 	WHERE MONTH(DATE) = MONTH(@Date) 
 	AND YEAR(DATE) = YEAR(@Date)
 	AND MerchantID = @MerchantID
-	GROUP BY MerchantID, MerchantTypeID, MerchantRegionID
+	GROUP BY MerchantID, MerchantTypeID, MerchantRegionID, AgentID
 
 END
+
+
 
 GO
 
@@ -178,21 +190,23 @@ BEGIN
 	DebitCardReturnAmount   ,MasterCardReturnAmount  ,VisaCardReturnAmount,
 	DebitCardSaleCount      ,MasterCardSaleCount     ,VisaCardSaleCount       ,
 	DebitCardReturnCount    ,MasterCardReturnCount   ,VisaCardReturnCount     ,
-	NetAmount               ,NetCount, Date)
+	NetAmount               ,NetCount, Date, AgentID)
 	SELECT MerchantID, MerchantTypeID, MerchantRegionID,
 	SUM(SaleAmount)              ,SUM(ReturnAmount)            ,SUM(SaleCount )             ,SUM(ReturnCount),
 	SUM(DebitCardSaleAmount )    ,SUM(MasterCardSaleAmount)    ,SUM(VisaCardSaleAmount)     ,
 	SUM(DebitCardReturnAmount )  ,SUM(MasterCardReturnAmount)  ,SUM(VisaCardReturnAmount)   ,
 	SUM(DebitCardSaleCount   )   ,SUM(MasterCardSaleCount)     ,SUM(VisaCardSaleCount   )   ,
 	SUM(DebitCardReturnCount  )  ,SUM(MasterCardReturnCount)   ,SUM(VisaCardReturnCount )   ,
-	SUM(NetAmount          )     ,SUM(NetCount),  DATEADD(yy, DATEDIFF(yy, 0, @Date), 0)
+	SUM(NetAmount          )     ,SUM(NetCount),  DATEADD(yy, DATEDIFF(yy, 0, @Date), 0), AgentID
 	FROM MonthlyReport
 	WHERE YEAR(DATE) = YEAR(@Date)
 	AND MerchantID = @MerchantID
-	GROUP BY MerchantID, MerchantTypeID, MerchantRegionID
+	GROUP BY MerchantID, MerchantTypeID, MerchantRegionID, AgentID
 
 	
 END
+
+
 
 GO
 
