@@ -93,7 +93,7 @@
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
                                 <li class="active">
-                                    <a href="chart.html"><i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;Report</a>
+                                    <asp:LinkButton OnClick="btnReportMaster_Click" ID="btnReportMaster" runat="server"><i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;Report</asp:LinkButton>
                                 </li>
                                 <li>
                                     <a href="#"><i class="fa fa-search fa-fw"></i>&nbsp;Search<span class="fa arrow"></span></a>

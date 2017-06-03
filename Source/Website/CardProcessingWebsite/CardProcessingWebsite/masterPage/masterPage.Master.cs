@@ -208,5 +208,9 @@ namespace CardProcessingWebsite.masterPage
             ChuyenTrang("~/agent/searchMerchant.aspx");
         }
 
+        protected void btnReportMaster_Click(object sender, EventArgs e)
+        {
+            ChuyenTrang("~/master/reportMaster.aspx");
+        }
     }
 }
