@@ -71,6 +71,8 @@
     <Content Include="agent\searchMerchant.aspx" />
     <Content Include="assets\jquery-2.1.4.min.js" />
     <Content Include="assets\jquery-3.2.1.min.js" />
+    <Content Include="Content\select2.min.css" />
+    <Content Include="Content\select2.min.js" />
     <Content Include="bin\CardProcessingWebsite.dll" />
     <Content Include="bin\CardProcessingWebsite.pdb" />
     <Content Include="Content\bootstrap-datetimepicker.css" />

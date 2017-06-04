@@ -58,24 +58,6 @@ namespace CardProcessingWebsite.master {
         protected global::System.Web.UI.WebControls.HiddenField temp;
         
         /// <summary>
-        /// btnPrint control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnPrint;
-        
-        /// <summary>
-        /// btnExport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnExport;
-        
-        /// <summary>
         /// ddlMerchant control.
         /// </summary>
         /// <remarks>
@@ -94,13 +76,13 @@ namespace CardProcessingWebsite.master {
         protected global::System.Web.UI.WebControls.DropDownList ddlAgent;
         
         /// <summary>
-        /// ddlType control.
+        /// ddlMaster control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlType;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMaster;
         
         /// <summary>
         /// ddlRegion control.
@@ -112,84 +94,165 @@ namespace CardProcessingWebsite.master {
         protected global::System.Web.UI.WebControls.DropDownList ddlRegion;
         
         /// <summary>
-        /// txtCustomDay control.
+        /// ddlType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCustomDay;
+        protected global::System.Web.UI.WebControls.DropDownList ddlType;
         
         /// <summary>
-        /// txtCustomMonth control.
+        /// panelDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCustomMonth;
+        protected global::System.Web.UI.WebControls.Panel panelDate;
         
         /// <summary>
-        /// TextBox1 control.
+        /// txtCustom1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtCustom1;
         
         /// <summary>
-        /// rdDaily control.
+        /// panelMonth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdDaily;
+        protected global::System.Web.UI.WebControls.Panel panelMonth;
         
         /// <summary>
-        /// rdMonthly control.
+        /// txtCustom2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdMonthly;
+        protected global::System.Web.UI.WebControls.TextBox txtCustom2;
         
         /// <summary>
-        /// rdYearly control.
+        /// panelYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdYearly;
+        protected global::System.Web.UI.WebControls.Panel panelYear;
         
         /// <summary>
-        /// rdMtDate control.
+        /// txtCustom3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdMtDate;
+        protected global::System.Web.UI.WebControls.TextBox txtCustom3;
         
         /// <summary>
-        /// rdYtDate control.
+        /// btnChangeFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdYtDate;
+        protected global::System.Web.UI.WebControls.LinkButton btnChangeFilter;
         
         /// <summary>
-        /// btnAddMerchant control.
+        /// rbMaster control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAddMerchant;
+        protected global::System.Web.UI.WebControls.RadioButton rbMaster;
+        
+        /// <summary>
+        /// rbMerchant control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbMerchant;
+        
+        /// <summary>
+        /// rbOther control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbOther;
+        
+        /// <summary>
+        /// rbDaily control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbDaily;
+        
+        /// <summary>
+        /// rbMonthly control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbMonthly;
+        
+        /// <summary>
+        /// rbYearly control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbYearly;
+        
+        /// <summary>
+        /// rbMtDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbMtDate;
+        
+        /// <summary>
+        /// rbYtDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbYtDate;
+        
+        /// <summary>
+        /// btnPrint control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnPrint;
+        
+        /// <summary>
+        /// btnExport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnExport;
     }
 }

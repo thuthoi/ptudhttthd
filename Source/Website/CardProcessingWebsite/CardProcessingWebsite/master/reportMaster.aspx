@@ -17,32 +17,118 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Filter</div>
                 <div class="panel-body">
-                    <div class="col-lg-2">
-                        <a href="javascript: " class="btn btn-primary" data-backdrop="false" data-toggle="modal" data-target="#changeFilter">
-                            <i class="fa fa-bars" aria-hidden="true"></i>&nbsp;Change Filter
-                        </a>
+                    <div class="col-lg-9">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label style="padding-top: 7px;" for="<%=ddlMerchant.ClientID %>" class="col-sm-2 control-label">Merchant:</label>
+                                        <div class="col-sm-10">
+                                            <asp:DropDownList CssClass="form-control selectpicker" Enabled="false" ID="ddlMerchant" runat="server"></asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">&nbsp;</div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label style="padding-top: 7px;" for="<%=ddlAgent.ClientID %>" class="col-sm-2 control-label">Agent:</label>
+                                        <div class="col-sm-3">
+                                            <asp:DropDownList CssClass="form-control selectpicker" ID="ddlAgent" Enabled="false" runat="server"></asp:DropDownList>
+                                        </div>
+                                        <label style="padding-top: 7px;" for="<%=ddlMaster.ClientID %>" class="col-sm-3 control-label">Master:</label>
+                                        <div class="col-sm-4">
+                                            <asp:DropDownList CssClass="form-control selectpicker" ID="ddlMaster" runat="server"></asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">&nbsp;</div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label style="padding-top: 7px;" for="<%=ddlRegion.ClientID %>" class="col-sm-2 control-label">Region:</label>
+                                        <div class="col-sm-3">
+                                            <asp:DropDownList CssClass="form-control selectpicker" ID="ddlRegion" runat="server"></asp:DropDownList>
+                                        </div>
+                                        <label style="padding-top: 7px;" for="<%=ddlType.ClientID %>" class="col-sm-3 control-label">Merchant Type:</label>
+                                        <div class="col-sm-4">
+                                            <asp:DropDownList CssClass="form-control selectpicker" ID="ddlType" runat="server"></asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="col-sm-3">&nbsp;</div>
+                                        <div class="col-sm-6">
+                                            <asp:Panel ID="panelDate" Style="display: block" runat="server">
+                                                <div class='input-group date' id='datetimepicker1'>
+                                                    <asp:TextBox ID="txtCustom1" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="panelMonth" Style="display: none" runat="server">
+                                                <div class='input-group date' id='datetimepicker2'>
+                                                    <asp:TextBox ID="txtCustom2" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="panelYear" Style="display: none" runat="server">
+                                                <div class='input-group date' id='datetimepicker3'>
+                                                    <asp:TextBox ID="txtCustom3" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </asp:Panel>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-5">&nbsp;</div>
+                            <div class="col-sm-4">
+                                <asp:LinkButton ID="btnChangeFilter"  OnClick="btnChangeFilter_Click" class="btn btn-primary" runat="server"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;Change Filter</asp:LinkButton>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-10">
-                        <table style="width: 100%" class="table table-striped table-bordered table-hover" id="data">
-                            <thead>
-                                <tr>
-                                    <th>Report Type</th>
-                                    <th>Value</th>
-                                    <th>View (Agent/Merchant)</th>
-                                    <th>View (Region)</th>
-                                    <th>View (Merchant Type)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="odd gradeX">
-                                    <td>Daily</td>
-                                    <td>02/06/2017</td>
-                                    <td>Merchant 01</td>
-                                    <td>None</td>
-                                    <td>None</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="col-lg-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <asp:RadioButton runat="server" ID="rbMaster" onclick="view3Click()" Checked="true" GroupName="radioView" />
+                                <label for="rbMaster">View by Master</label>
+                                <br />
+                                <asp:RadioButton runat="server" ID="rbMerchant" onclick="view1Click()" GroupName="radioView" />
+                                <label for="rbMerchant">View by Merchant</label>
+                                <br />
+                                <asp:RadioButton runat="server" ID="rbOther" onclick="view2Click()"  GroupName="radioView" />
+                                <label for="rbOther">View by Agent</label>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <asp:RadioButton runat="server" ID="rbDaily" onclick="checkDaily()" Checked="true" GroupName="radioA" />
+                                <label for="rbDaily">Daily</label>
+                                <br />
+                                <asp:RadioButton runat="server" ID="rbMonthly" onclick="checkMonthly()" GroupName="radioA" />
+                                <label for="rbMonthly">Monthly</label>
+                                <br />
+                                <asp:RadioButton runat="server" ID="rbYearly" onclick="checkYearly()" GroupName="radioA" />
+                                <label for="rbYearly">Yearly</label>
+                                <br />
+                                <asp:RadioButton runat="server" ID="rbMtDate" onclick="checkMtDate()" GroupName="radioA" />
+                                <label for="rbMtDate">Month to Date</label>
+                                <br />
+                                <asp:RadioButton runat="server" ID="rbYtDate" onclick="checkYtDate()" GroupName="radioA" />
+                                <label for="rbYtDate">Year to Date</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -69,6 +155,7 @@
             </div>
         </div>
     </div>
+    <div class="row">&nbsp;</div>
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -136,112 +223,32 @@
             </div>
         </div>
     </div>
-
-    <%--#Filter Modal --%>
-    <div class="modal fade" id="changeFilter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Change Filter</h4>
-                </div>
-                <div class="modal-body form-horizontal">
-                    <div class="col-sm-12">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="form-group">
-                                    <label for="<%=ddlMerchant.ClientID %>" class="col-sm-2 control-label">Merchant:</label>
-                                    <div class="col-sm-10">
-                                        <asp:DropDownList CssClass="form-control selectpicker" ID="ddlMerchant" placeholder="Merchant" runat="server"></asp:DropDownList>
-                                    </div>
-                                    
-                                </div>
-                                <div class="form-group">
-                                    <label for="<%=ddlAgent.ClientID %>" class="col-sm-2 control-label">Agent:</label>
-                                    <div class="col-sm-2">
-                                        <asp:DropDownList CssClass="form-control selectpicker" ID="ddlAgent" placeholder="Agent" runat="server"></asp:DropDownList>
-                                    </div>
-                                    <label for="<%=ddlType.ClientID %>" class="col-sm-2 control-label">Merchant Type:</label>
-                                    <div class="col-sm-2">
-                                        <asp:DropDownList CssClass="form-control selectpicker" ID="ddlType" placeholder="Merchant" runat="server"></asp:DropDownList>
-                                    </div>
-                                    <label for="<%=ddlRegion.ClientID %>" class="col-sm-2 control-label">Region:</label>
-                                    <div class="col-sm-2">
-                                        <asp:DropDownList CssClass="form-control selectpicker" ID="ddlRegion" placeholder="Agent" runat="server"></asp:DropDownList>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <div class="col-sm-9">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <label id="lblType"></label>
-                                        <div class='input-group date' id='datetimepicker1'>
-                                            <asp:TextBox ID="txtCustomDay" runat="server" CssClass="form-control"></asp:TextBox>
-                                            <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </span>
-                                        </div>
-                                        <div>&nbsp;</div>
-                                        <div class='input-group date' id='datetimepicker2'>
-                                            <asp:TextBox ID="txtCustomMonth" runat="server" CssClass="form-control"></asp:TextBox>
-                                            <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </span>
-                                        </div>
-                                        <div>&nbsp;</div>
-                                        <div class='input-group date' id='datetimepicker3'>
-                                            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
-                                            <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <asp:RadioButton runat="server" ID="rdDaily" Checked="true" onclick="checkDaily()" GroupName="radioA" />
-                                        <label for="rdDaily">Daily</label>
-                                        <br />
-                                        <asp:RadioButton runat="server" ID="rdMonthly" onclick="checkMonthly()" GroupName="radioA" />
-                                        <label for="rdMonthly">Monthly</label>
-                                        <br />
-                                        <asp:RadioButton runat="server" ID="rdYearly" onclick="checkYearly()" GroupName="radioA" />
-                                        <label for="rdYearly">Yearly</label>
-                                        <br />
-                                        <asp:RadioButton runat="server" ID="rdMtDate" onclick="checkMtDate()" GroupName="radioA" />
-                                        <label for="rdMtDate">Month to Date</label>
-                                        <br />
-                                        <asp:RadioButton runat="server" ID="rdYtDate" onclick="checkYtDate()" GroupName="radioA" />
-                                        <label for="rdYtDate">Year to Date</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <asp:LinkButton ID="btnAddMerchant" runat="server" CssClass="btn btn-primary">Save</asp:LinkButton>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <label style="visibility: hidden;" id="lblType"></label>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="scriptFile" runat="server">
     <script type="text/javascript">
+        $(document).ready(function () {
+            $("#" + "<%=ddlMerchant.ClientID%>").select2({
+                placeholder: "Select a Subject",
+                allowClear: false
+            });
+        });
+
         $(function () {
-            var temp = $(<%=temp.ClientID%>).val();
-            //alert(temp);
-            if (temp == '1') {
-                alert('yeah');
+            if (document.getElementById('<%=rbDaily.ClientID %>').checked == true) {
+                checkDaily();
+            }
+            if (document.getElementById('<%=rbMonthly.ClientID %>').checked == true) {
+                checkMonthly();
+            }
+            if (document.getElementById('<%=rbYearly.ClientID %>').checked == true) {
+                checkYearly();
+            }
+            if (document.getElementById('<%=rbMtDate.ClientID %>').checked == true) {
+                checkMtDate();
+            }
+            if (document.getElementById('<%=rbYtDate.ClientID %>').checked == true) {
+                checkYtDate();
             }
         });
 
@@ -261,7 +268,34 @@
             });
         });
 
+        function view1Click() {
+            $('#<%=ddlAgent.ClientID %>').prop('disabled', true);
+            $('#<%=ddlType.ClientID %>').prop('disabled', true);
+            $('#<%=ddlRegion.ClientID %>').prop('disabled', true);
+            $('#<%=ddlMerchant.ClientID %>').prop('disabled', false);
+            $('#<%=ddlMaster.ClientID %>').prop('disabled', true);
+        }
+
+        function view2Click() {
+            $('#<%=ddlAgent.ClientID %>').prop('disabled', false);
+            $('#<%=ddlType.ClientID %>').prop('disabled', false);
+            $('#<%=ddlRegion.ClientID %>').prop('disabled', false);
+            $('#<%=ddlMerchant.ClientID %>').prop('disabled', true);
+            $('#<%=ddlMaster.ClientID %>').prop('disabled', true);
+        };
+
+        function view3Click() {
+            $('#<%=ddlAgent.ClientID %>').prop('disabled', true);
+            $('#<%=ddlType.ClientID %>').prop('disabled', false);
+            $('#<%=ddlRegion.ClientID %>').prop('disabled', false);
+            $('#<%=ddlMerchant.ClientID %>').prop('disabled', true);
+            $('#<%=ddlMaster.ClientID %>').prop('disabled', false);
+        }
+
         function checkDaily() {
+            document.getElementById('<%=panelDate.ClientID %>').style.display = 'block';
+            document.getElementById('<%=panelMonth.ClientID %>').style.display = 'none';
+            document.getElementById('<%=panelYear.ClientID %>').style.display = 'none';
             $('#datetimepicker1').datetimepicker({
                 format: 'DD/MM/YYYY',
                 keepOpen: true
@@ -272,6 +306,10 @@
             $('#datetimepicker1').data("DateTimePicker").maxDate(pre_date);
         };
         function checkMonthly() {
+            document.getElementById('<%=panelDate.ClientID %>').style.display = 'none';
+            document.getElementById('<%=panelMonth.ClientID %>').style.display = 'block';
+            document.getElementById('<%=panelYear.ClientID %>').style.display = 'none';
+            $('#<%=panelYear.ClientID %>').hide();
             $('#datetimepicker2').datetimepicker({
                 viewMode: 'months',
                 format: 'MM/YYYY',
@@ -283,6 +321,9 @@
             $('#datetimepicker2').data("DateTimePicker").maxDate(pre_date);
         };
         function checkYearly() {
+            document.getElementById('<%=panelDate.ClientID %>').style.display = 'none';
+            document.getElementById('<%=panelMonth.ClientID %>').style.display = 'none';
+            document.getElementById('<%=panelYear.ClientID %>').style.display = 'block';
             document.getElementById('lblType').innerHTML = '3';
             $('#datetimepicker3').datetimepicker({
                 viewMode: 'years',
@@ -294,6 +335,9 @@
             $('#datetimepicker3').data("DateTimePicker").maxDate(pre_date);
         };
         function checkMtDate() {
+            document.getElementById('<%=panelDate.ClientID %>').style.display = 'block';
+            document.getElementById('<%=panelMonth.ClientID %>').style.display = 'none';
+            document.getElementById('<%=panelYear.ClientID %>').style.display = 'none';
             $('#datetimepicker1').datetimepicker({
                 format: 'DD/MM/YYYY',
                 keepOpen: true
@@ -306,6 +350,9 @@
             $('#datetimepicker1').data("DateTimePicker").maxDate(pre_date);
         };
         function checkYtDate() {
+            document.getElementById('<%=panelDate.ClientID %>').style.display = 'block';
+            document.getElementById('<%=panelMonth.ClientID %>').style.display = 'none';
+            document.getElementById('<%=panelYear.ClientID %>').style.display = 'none';
             $('#datetimepicker1').datetimepicker({
                 format: 'DD/MM/YYYY',
                 keepOpen: true
@@ -319,6 +366,8 @@
         };
     </script>
     <link href="../Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="../Content/select2.min.css" rel="stylesheet" />
     <script src="../Scripts/moment.js"></script>
     <script src="../Scripts/bootstrap-datetimepicker.js"></script>
+    <script src="../Content/select2.min.js"></script>
 </asp:Content>
