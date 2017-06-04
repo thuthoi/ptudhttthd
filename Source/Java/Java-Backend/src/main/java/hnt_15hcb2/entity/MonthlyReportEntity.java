@@ -87,7 +87,12 @@ public class MonthlyReportEntity {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "MerchantID")
-    private AgentEntity MerchantID;
+    private MerchantEntity merchantEntity;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @Fetch(FetchMode.JOIN)
+    @JoinColumn(name = "AgentID")
+    private AgentEntity agentEntity;
 
     public int getReportID() {
         return ReportID;
@@ -265,11 +270,19 @@ public class MonthlyReportEntity {
         this.merchantRegionEntity = merchantRegionEntity;
     }
 
-    public AgentEntity getMerchantID() {
-        return MerchantID;
+    public MerchantEntity getMerchantEntity() {
+        return merchantEntity;
     }
 
-    public void setMerchantID(AgentEntity merchantID) {
-        MerchantID = merchantID;
+    public void setMerchantEntity(MerchantEntity merchantEntity) {
+        this.merchantEntity = merchantEntity;
+    }
+
+    public AgentEntity getAgentEntity() {
+        return agentEntity;
+    }
+
+    public void setAgentEntity(AgentEntity agentEntity) {
+        this.agentEntity = agentEntity;
     }
 }

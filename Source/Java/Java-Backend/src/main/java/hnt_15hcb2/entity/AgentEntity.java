@@ -36,13 +36,17 @@ public class AgentEntity {
     @Column(name = "Status")
     private boolean Status;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @Fetch(FetchMode.JOIN)
-    @JoinColumn(name = "MasterID")
-    private MasterEntity masterEntity;
-
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "agentEntity")
     private Set<MerchantEntity> merchantEntity;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "agentEntity")
+    private Set<DailyReportEntity> dailyReportEntity;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "agentEntity")
+    private Set<MonthlyReportEntity> monthlyReportEntity;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "agentEntity")
+    private Set<YearlyReportEntity> yearlyReportEntity;
 
     public String getAgentID() {
         return AgentID;
@@ -92,20 +96,36 @@ public class AgentEntity {
         Status = status;
     }
 
-    public MasterEntity getMasterEntity() {
-        return masterEntity;
-    }
-
-    public void setMasterEntity(MasterEntity masterEntity) {
-        this.masterEntity = masterEntity;
-    }
-
     public Set<MerchantEntity> getMerchantEntity() {
         return merchantEntity;
     }
 
     public void setMerchantEntity(Set<MerchantEntity> merchantEntity) {
         this.merchantEntity = merchantEntity;
+    }
+
+    public Set<DailyReportEntity> getDailyReportEntity() {
+        return dailyReportEntity;
+    }
+
+    public void setDailyReportEntity(Set<DailyReportEntity> dailyReportEntity) {
+        this.dailyReportEntity = dailyReportEntity;
+    }
+
+    public Set<MonthlyReportEntity> getMonthlyReportEntity() {
+        return monthlyReportEntity;
+    }
+
+    public void setMonthlyReportEntity(Set<MonthlyReportEntity> monthlyReportEntity) {
+        this.monthlyReportEntity = monthlyReportEntity;
+    }
+
+    public Set<YearlyReportEntity> getYearlyReportEntity() {
+        return yearlyReportEntity;
+    }
+
+    public void setYearlyReportEntity(Set<YearlyReportEntity> yearlyReportEntity) {
+        this.yearlyReportEntity = yearlyReportEntity;
     }
 
     @Override

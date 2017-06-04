@@ -32,9 +32,6 @@ public class MasterEntity {
     @Column(name = "Status")
     private boolean Status;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "masterEntity")
-    private Set<AgentEntity> agentEntity;
-
     public String getMasterID() {
         return MasterID;
     }
@@ -73,13 +70,5 @@ public class MasterEntity {
 
     public void setStatus(boolean status) {
         Status = status;
-    }
-
-    public Set<AgentEntity> getAgentEntity() {
-        return agentEntity;
-    }
-
-    public void setAgentEntity(Set<AgentEntity> agentEntity) {
-        this.agentEntity = agentEntity;
     }
 }
