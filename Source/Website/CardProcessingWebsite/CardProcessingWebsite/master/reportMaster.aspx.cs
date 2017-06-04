@@ -33,7 +33,33 @@ namespace CardProcessingWebsite.master
                     LoadRegion();
                     LoadMerchant();
                     LoadMaster();
+                    LoadYearDDL();
+                    LoadQuarterDDL();
                 }
+            }
+        }
+
+        private void LoadYearDDL()
+        {
+            int year = DateTime.Now.Year;
+            int month = ((DateTime.Now.Month + 2) / 3);
+            if (month <= 1)
+            {
+                year = year - 1;
+            }
+            for (int i = 1970; i <= year; i++)
+            {
+                ddlYear.Items.Insert(i - 1970, new ListItem(i.ToString(), i.ToString()));
+            }
+            ddlYear.SelectedValue = year.ToString();
+        }
+
+        private void LoadQuarterDDL()
+        {
+            int month = ((DateTime.Now.Month + 2) / 3);
+            for (int i = 1; i <= 4; i++)
+            {
+                ddlQuarter.Items.Insert(i - 1, new ListItem(i.ToString(), i.ToString()));
             }
         }
 

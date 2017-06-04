@@ -49,15 +49,6 @@ namespace CardProcessingWebsite.master {
         protected global::System.Web.UI.WebControls.HiddenField hdReturnCount;
         
         /// <summary>
-        /// temp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField temp;
-        
-        /// <summary>
         /// ddlMerchant control.
         /// </summary>
         /// <remarks>
@@ -139,6 +130,33 @@ namespace CardProcessingWebsite.master {
         protected global::System.Web.UI.WebControls.TextBox txtCustom2;
         
         /// <summary>
+        /// panelQuarter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelQuarter;
+        
+        /// <summary>
+        /// ddlQuarter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlQuarter;
+        
+        /// <summary>
+        /// ddlYear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlYear;
+        
+        /// <summary>
         /// panelYear control.
         /// </summary>
         /// <remarks>
@@ -209,6 +227,15 @@ namespace CardProcessingWebsite.master {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton rbMonthly;
+        
+        /// <summary>
+        /// rbQuarterly control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbQuarterly;
         
         /// <summary>
         /// rbYearly control.

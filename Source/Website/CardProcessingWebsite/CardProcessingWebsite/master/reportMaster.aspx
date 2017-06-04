@@ -11,7 +11,6 @@
     <asp:HiddenField ID="hdSaleCount" Value="0" runat="server" />
     <asp:HiddenField ID="hdReturnAmount" Value="0" runat="server" />
     <asp:HiddenField ID="hdReturnCount" Value="0" runat="server" />
-    <asp:HiddenField ID="temp" Value="1" runat="server" />
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -61,7 +60,7 @@
                                 <div class="panel panel-default">
                                     <div class="panel-body">
                                         <div class="col-sm-3">&nbsp;</div>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-5">
                                             <asp:Panel ID="panelDate" Style="display: block" runat="server">
                                                 <div class='input-group date' id='datetimepicker1'>
                                                     <asp:TextBox ID="txtCustom1" runat="server" CssClass="form-control"></asp:TextBox>
@@ -76,6 +75,16 @@
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="panelQuarter" Style="display: none" runat="server">
+                                                <div class="form-group">
+                                                    <div class="col-sm-5">
+                                                        <asp:DropDownList ID="ddlQuarter" CssClass="form-control selectpicker" runat="server"></asp:DropDownList>
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <asp:DropDownList ID="ddlYear" onChange="ddlYear_Change()" CssClass="form-control selectpicker" runat="server"></asp:DropDownList>
+                                                    </div>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="panelYear" Style="display: none" runat="server">
@@ -94,7 +103,7 @@
                         <div class="row">
                             <div class="col-sm-5">&nbsp;</div>
                             <div class="col-sm-4">
-                                <asp:LinkButton ID="btnChangeFilter"  OnClick="btnChangeFilter_Click" class="btn btn-primary" runat="server"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;Change Filter</asp:LinkButton>
+                                <asp:LinkButton ID="btnChangeFilter" OnClick="btnChangeFilter_Click" class="btn btn-primary" runat="server"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;Change Filter</asp:LinkButton>
                             </div>
                         </div>
                     </div>
@@ -107,7 +116,7 @@
                                 <asp:RadioButton runat="server" ID="rbMerchant" onclick="view1Click()" GroupName="radioView" />
                                 <label for="rbMerchant">View by Merchant</label>
                                 <br />
-                                <asp:RadioButton runat="server" ID="rbOther" onclick="view2Click()"  GroupName="radioView" />
+                                <asp:RadioButton runat="server" ID="rbOther" onclick="view2Click()" GroupName="radioView" />
                                 <label for="rbOther">View by Agent</label>
                             </div>
                         </div>
@@ -118,6 +127,9 @@
                                 <br />
                                 <asp:RadioButton runat="server" ID="rbMonthly" onclick="checkMonthly()" GroupName="radioA" />
                                 <label for="rbMonthly">Monthly</label>
+                                <br />
+                                <asp:RadioButton runat="server" ID="rbQuarterly" onclick="checkQuarterly()" GroupName="radioA" />
+                                <label for="rbQuarterly">Quarterly</label>
                                 <br />
                                 <asp:RadioButton runat="server" ID="rbYearly" onclick="checkYearly()" GroupName="radioA" />
                                 <label for="rbYearly">Yearly</label>
@@ -223,7 +235,6 @@
             </div>
         </div>
     </div>
-    <label style="visibility: hidden;" id="lblType"></label>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="scriptFile" runat="server">
     <script type="text/javascript">
@@ -235,11 +246,15 @@
         });
 
         $(function () {
+            ddlYear_Change();
             if (document.getElementById('<%=rbDaily.ClientID %>').checked == true) {
                 checkDaily();
             }
             if (document.getElementById('<%=rbMonthly.ClientID %>').checked == true) {
                 checkMonthly();
+            }
+            if (document.getElementById('<%=rbQuarterly.ClientID %>').checked == true) {
+                checkQuarterly();
             }
             if (document.getElementById('<%=rbYearly.ClientID %>').checked == true) {
                 checkYearly();
@@ -267,6 +282,40 @@
                    { label: "Sale Count", value: 30000000000.00 }],
             });
         });
+
+        function ddlYear_Change() {
+            var dYear = document.getElementById('<%=ddlYear.ClientID %>');
+            var dQuarter = document.getElementById('<%=ddlQuarter.ClientID %>');
+            var quy = Math.floor((new Date(Date.now()).getMonth() + 3) / 3);
+            if (dYear.options[dYear.selectedIndex].value != new Date(Date.now()).getFullYear()) {
+                for (i = 0; i < dQuarter.length; i++) {
+                    dQuarter[i].disabled = false;
+                }
+            }
+            else {
+                if (quy <= 1) {
+                    dQuarter.value = "4";
+                } else {
+                    if (quy <= 2) {
+                        dQuarter.value = "1";
+                        dQuarter[1].disabled = true;
+                        dQuarter[2].disabled = true;
+                        dQuarter[3].disabled = true;
+                    }
+                    else {
+                        if (quy <= 3) {
+                            dQuarter.value = "2";
+                            dQuarter[2].disabled = true;
+                            dQuarter[3].disabled = true;
+                        }
+                        else {
+                            dQuarter.value = "3";
+                            dQuarter[3].disabled = true;
+                        }
+                    }
+                }
+            }
+        }
 
         function view1Click() {
             $('#<%=ddlAgent.ClientID %>').prop('disabled', true);
@@ -296,11 +345,12 @@
             document.getElementById('<%=panelDate.ClientID %>').style.display = 'block';
             document.getElementById('<%=panelMonth.ClientID %>').style.display = 'none';
             document.getElementById('<%=panelYear.ClientID %>').style.display = 'none';
+            document.getElementById('<%=panelQuarter.ClientID %>').style.display = 'none';
             $('#datetimepicker1').datetimepicker({
                 format: 'DD/MM/YYYY',
                 keepOpen: true
             });
-            document.getElementById('lblType').innerHTML = '1';
+
             var date = new Date();
             var pre_date = new Date(date.setDate(date.getDate() - 1));
             $('#datetimepicker1').data("DateTimePicker").maxDate(pre_date);
@@ -309,6 +359,7 @@
             document.getElementById('<%=panelDate.ClientID %>').style.display = 'none';
             document.getElementById('<%=panelMonth.ClientID %>').style.display = 'block';
             document.getElementById('<%=panelYear.ClientID %>').style.display = 'none';
+            document.getElementById('<%=panelQuarter.ClientID %>').style.display = 'none';
             $('#<%=panelYear.ClientID %>').hide();
             $('#datetimepicker2').datetimepicker({
                 viewMode: 'months',
@@ -320,11 +371,18 @@
             var pre_date = new Date(date.setDate(0, date.getMonth() - 1, 0));
             $('#datetimepicker2').data("DateTimePicker").maxDate(pre_date);
         };
+        function checkQuarterly() {
+            document.getElementById('<%=panelDate.ClientID %>').style.display = 'none';
+            document.getElementById('<%=panelMonth.ClientID %>').style.display = 'none';
+            document.getElementById('<%=panelYear.ClientID %>').style.display = 'none';
+            document.getElementById('<%=panelQuarter.ClientID %>').style.display = 'block';
+        };
         function checkYearly() {
             document.getElementById('<%=panelDate.ClientID %>').style.display = 'none';
             document.getElementById('<%=panelMonth.ClientID %>').style.display = 'none';
             document.getElementById('<%=panelYear.ClientID %>').style.display = 'block';
-            document.getElementById('lblType').innerHTML = '3';
+            document.getElementById('<%=panelQuarter.ClientID %>').style.display = 'none';
+
             $('#datetimepicker3').datetimepicker({
                 viewMode: 'years',
                 format: 'YYYY',
@@ -338,11 +396,12 @@
             document.getElementById('<%=panelDate.ClientID %>').style.display = 'block';
             document.getElementById('<%=panelMonth.ClientID %>').style.display = 'none';
             document.getElementById('<%=panelYear.ClientID %>').style.display = 'none';
+            document.getElementById('<%=panelQuarter.ClientID %>').style.display = 'none';
             $('#datetimepicker1').datetimepicker({
                 format: 'DD/MM/YYYY',
                 keepOpen: true
             });
-            document.getElementById('lblType').innerHTML = '4';
+
             var date = new Date();
             var pre_date = new Date(date.setDate(date.getDate() - 1));
             var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
@@ -353,11 +412,12 @@
             document.getElementById('<%=panelDate.ClientID %>').style.display = 'block';
             document.getElementById('<%=panelMonth.ClientID %>').style.display = 'none';
             document.getElementById('<%=panelYear.ClientID %>').style.display = 'none';
+            document.getElementById('<%=panelQuarter.ClientID %>').style.display = 'none';
             $('#datetimepicker1').datetimepicker({
                 format: 'DD/MM/YYYY',
                 keepOpen: true
             });
-            document.getElementById('lblType').innerHTML = '5';
+
             var date = new Date();
             var pre_date = new Date(date.setDate(date.getDate() - 1));
             var firstDay = new Date(date.getFullYear(), 0, 1);
