@@ -401,8 +401,8 @@ namespace BusinessLayer
                                                             m.Date.Value.Year == year).ToList();
         }
 
-        //Quarter Report
-        public IList<MonthlyReport> getQuarterReportInMaster(int quarter, int year)
+        //Quarterly Report
+        public IList<MonthlyReport> getQuarterlyReportInMaster(int quarter, int year)
         {
             return _monthlyReportRepository.GetAll().Where(m => GetQuarter(m.Date.Value) == quarter &&
                                                             m.Date.Value.Year == year).ToList();

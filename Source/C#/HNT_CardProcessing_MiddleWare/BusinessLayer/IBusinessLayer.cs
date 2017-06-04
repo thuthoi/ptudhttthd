@@ -70,7 +70,7 @@ namespace BusinessLayer
         IList<MonthlyReport> getMonthlyReportInMaster(int month, int year);
 
         //Quater Report
-        IList<MonthlyReport> getQuarterReportInMaster(int quater, int year);
+        IList<MonthlyReport> getQuarterlyReportInMaster(int quater, int year);
 
         //Yearly Report
         IList<YearlyReport> getYearlyReportInMaster(int year);

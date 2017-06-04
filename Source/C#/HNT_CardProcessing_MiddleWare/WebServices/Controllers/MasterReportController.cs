@@ -79,6 +79,40 @@ namespace WebServices.Controllers
         }
 
         [HttpGet]
+        [Route("api/MasterReport/getQuarterlyReport/{quarter}/{year}")]
+        public HttpResponseMessage getQuarterlyReport(string quarter, string year)
+        {
+            var list = bus.getQuarterlyReportInMaster(int.Parse(quarter), int.Parse(year)).Select(d => new
+            {
+                d.ReportID,
+                d.MerchantID,
+                d.MerchantTypeID,
+                d.MerchantRegionID,
+                d.SaleAmount,
+                d.ReturnAmount,
+                d.SaleCount,
+                d.ReturnCount,
+                d.DebitCardSaleAmount,
+                d.MasterCardSaleAmount,
+                d.VisaCardSaleAmount,
+                d.DebitCardReturnAmount,
+                d.MasterCardReturnAmount,
+                d.VisaCardReturnAmount,
+                d.DebitCardSaleCount,
+                d.MasterCardSaleCount,
+                d.VisaCardSaleCount,
+                d.DebitCardReturnCount,
+                d.MasterCardReturnCount,
+                d.VisaCardReturnCount,
+                d.NetAmount,
+                d.NetCount,
+                d.Date,
+                d.AgentID
+            });
+            return Request.CreateResponse(HttpStatusCode.OK, list);
+        }
+
+        [HttpGet]
         [Route("api/MasterReport/getYearlyReport/{year}")]
         public HttpResponseMessage getYearlyReport(string year)
         {
