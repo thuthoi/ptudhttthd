@@ -103,13 +103,13 @@ namespace CardProcessingWebsite.master {
         protected global::System.Web.UI.WebControls.Panel panelDate;
         
         /// <summary>
-        /// txtCustom1 control.
+        /// txtDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCustom1;
+        protected global::System.Web.UI.WebControls.TextBox txtDate;
         
         /// <summary>
         /// panelMonth control.
@@ -121,13 +121,13 @@ namespace CardProcessingWebsite.master {
         protected global::System.Web.UI.WebControls.Panel panelMonth;
         
         /// <summary>
-        /// txtCustom2 control.
+        /// txtMonth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCustom2;
+        protected global::System.Web.UI.WebControls.TextBox txtMonth;
         
         /// <summary>
         /// panelQuarter control.
@@ -166,13 +166,13 @@ namespace CardProcessingWebsite.master {
         protected global::System.Web.UI.WebControls.Panel panelYear;
         
         /// <summary>
-        /// txtCustom3 control.
+        /// txtYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCustom3;
+        protected global::System.Web.UI.WebControls.TextBox txtYear;
         
         /// <summary>
         /// btnChangeFilter control.
@@ -263,6 +263,159 @@ namespace CardProcessingWebsite.master {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton rbYtDate;
+        
+        /// <summary>
+        /// lblSaleAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSaleAmount;
+        
+        /// <summary>
+        /// lblReturnAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblReturnAmount;
+        
+        /// <summary>
+        /// lblSaleCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSaleCount;
+        
+        /// <summary>
+        /// lblReturnCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblReturnCount;
+        
+        /// <summary>
+        /// lblNetAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNetAmount;
+        
+        /// <summary>
+        /// lblVisaSaleAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVisaSaleAmount;
+        
+        /// <summary>
+        /// lblMasterSaleAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMasterSaleAmount;
+        
+        /// <summary>
+        /// lblDebitSaleAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDebitSaleAmount;
+        
+        /// <summary>
+        /// lblVisaSaleCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVisaSaleCount;
+        
+        /// <summary>
+        /// lblMasterSaleCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMasterSaleCount;
+        
+        /// <summary>
+        /// lblDebitSaleCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDebitSaleCount;
+        
+        /// <summary>
+        /// lblVisaReturnAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVisaReturnAmount;
+        
+        /// <summary>
+        /// lblMasterReturnAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMasterReturnAmount;
+        
+        /// <summary>
+        /// lblDebitReturnAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDebitReturnAmount;
+        
+        /// <summary>
+        /// lblVisaReturnCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVisaReturnCount;
+        
+        /// <summary>
+        /// lblMasterReturnCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMasterReturnCount;
+        
+        /// <summary>
+        /// lblDebitReturnCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDebitReturnCount;
         
         /// <summary>
         /// btnPrint control.

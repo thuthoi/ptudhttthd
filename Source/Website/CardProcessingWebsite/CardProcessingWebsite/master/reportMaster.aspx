@@ -63,7 +63,7 @@
                                         <div class="col-sm-5">
                                             <asp:Panel ID="panelDate" Style="display: block" runat="server">
                                                 <div class='input-group date' id='datetimepicker1'>
-                                                    <asp:TextBox ID="txtCustom1" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    <asp:TextBox ID="txtDate" runat="server" CssClass="form-control"></asp:TextBox>
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
@@ -71,7 +71,7 @@
                                             </asp:Panel>
                                             <asp:Panel ID="panelMonth" Style="display: none" runat="server">
                                                 <div class='input-group date' id='datetimepicker2'>
-                                                    <asp:TextBox ID="txtCustom2" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    <asp:TextBox ID="txtMonth" runat="server" CssClass="form-control"></asp:TextBox>
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
@@ -89,7 +89,7 @@
                                             </asp:Panel>
                                             <asp:Panel ID="panelYear" Style="display: none" runat="server">
                                                 <div class='input-group date' id='datetimepicker3'>
-                                                    <asp:TextBox ID="txtCustom3" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    <asp:TextBox ID="txtYear" runat="server" CssClass="form-control"></asp:TextBox>
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
@@ -182,11 +182,16 @@
                             <td>Net Amount</td>
                         </tr>
                         <tr>
-                            <td>100.000</td>
-                            <td>100.000</td>
-                            <td>43</td>
-                            <td>43</td>
-                            <td>0</td>
+                            <td>
+                                <asp:Label ID="lblSaleAmount" runat="server" Text="0"></asp:Label></td>
+                            <td>
+                                <asp:Label ID="lblReturnAmount" runat="server" ForeColor="Red" Text="0"></asp:Label></td>
+                            <td>
+                                <asp:Label ID="lblSaleCount" runat="server" Text="0"></asp:Label></td>
+                            <td>
+                                <asp:Label ID="lblReturnCount" ForeColor="Red" runat="server" Text="0"></asp:Label></td>
+                            <td>
+                                <asp:Label ID="lblNetAmount" Font-Bold="true" Font-Size="Large" runat="server" Text="0"></asp:Label></td>
                         </tr>
                     </table>
                     <div>&nbsp;</div>
@@ -212,18 +217,30 @@
                             <td>Debit</td>
                         </tr>
                         <tr>
-                            <td>100.000</td>
-                            <td>100.000</td>
-                            <td>100.000</td>
-                            <td>43</td>
-                            <td>43</td>
-                            <td>43</td>
-                            <td>100.000</td>
-                            <td>100.000</td>
-                            <td>100.000</td>
-                            <td>43</td>
-                            <td>43</td>
-                            <td>43</td>
+                            <td>
+                                <asp:Label ID="lblVisaSaleAmount" runat="server" Text="0"></asp:Label></td>
+                            <td>
+                                <asp:Label ID="lblMasterSaleAmount" runat="server" Text="0"></asp:Label></td>
+                            <td>
+                                <asp:Label ID="lblDebitSaleAmount" runat="server" Text="0"></asp:Label></td>
+                            <td>
+                                <asp:Label ID="lblVisaSaleCount" runat="server" Text="0"></asp:Label></td>
+                            <td>
+                                <asp:Label ID="lblMasterSaleCount" runat="server" Text="0"></asp:Label></td>
+                            <td>
+                                <asp:Label ID="lblDebitSaleCount" runat="server" Text="0"></asp:Label></td>
+                            <td>
+                                <asp:Label ID="lblVisaReturnAmount" ForeColor="Red" runat="server" Text="0"></asp:Label></td>
+                            <td>
+                                <asp:Label ID="lblMasterReturnAmount" ForeColor="Red" runat="server" Text="0"></asp:Label></td>
+                            <td>
+                                <asp:Label ID="lblDebitReturnAmount" ForeColor="Red" runat="server" Text="0"></asp:Label></td>
+                            <td>
+                                <asp:Label ID="lblVisaReturnCount" ForeColor="Red" runat="server" Text="0"></asp:Label></td>
+                            <td>
+                                <asp:Label ID="lblMasterReturnCount" ForeColor="Red" runat="server" Text="0"></asp:Label></td>
+                            <td>
+                                <asp:Label ID="lblDebitReturnCount" ForeColor="Red" runat="server" Text="0"></asp:Label></td>
                         </tr>
                     </table>
                     <div class="col-lg-5">&nbsp;</div>
@@ -268,18 +285,23 @@
         });
 
         $(function chart() {
+            var _saleAmount = parseFloat($(<%=hdSaleAmount.ClientID%>).val()).toFixed(2);
+            var _returnAmount = parseFloat($(<%=hdReturnAmount.ClientID%>).val()).toFixed(2);
+            var _saleCount = parseFloat($(<%=hdSaleCount.ClientID%>).val()).toFixed(2);
+            var _returnCount = parseFloat($(<%=hdReturnCount.ClientID%>).val()).toFixed(2);
+
             Morris.Donut({
                 element: 'baocao2',
                 colors: ['#ff0000', '#3A89C9'],
-                data: [{ label: "Return Amount", value: 15 },
-                    { label: "Sale Amount", value: 21 }],
+                data: [{ label: "Return Amount", value: _returnAmount },
+                    { label: "Sale Amount", value: _saleAmount }],
             });
 
             Morris.Donut({
                 element: 'baocao',
                 colors: ['#ff0000', '#3A89C9'],
-                data: [{ label: "Return Count", value: 10000000000.00 },
-                   { label: "Sale Count", value: 30000000000.00 }],
+                data: [{ label: "Return Count", value: _returnCount },
+                   { label: "Sale Count", value: _saleCount }],
             });
         });
 
@@ -366,7 +388,6 @@
                 format: 'MM/YYYY',
                 keepOpen: true
             });
-            document.getElementById('lblType').innerHTML = '2';
             var date = new Date();
             var pre_date = new Date(date.setDate(0, date.getMonth() - 1, 0));
             $('#datetimepicker2').data("DateTimePicker").maxDate(pre_date);
