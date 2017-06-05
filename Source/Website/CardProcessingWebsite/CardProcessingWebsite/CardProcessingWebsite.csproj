@@ -71,6 +71,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404\404page.aspx" />
     <Content Include="agent\reportAgent.aspx" />
     <Content Include="agent\searchMerchant.aspx" />
     <Content Include="assets\jquery-2.1.4.min.js" />
@@ -275,6 +276,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="404\404page.aspx.cs">
+      <DependentUpon>404page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="404\404page.aspx.designer.cs">
+      <DependentUpon>404page.aspx</DependentUpon>
+    </Compile>
     <Compile Include="agent\reportAgent.aspx.cs">
       <DependentUpon>reportAgent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

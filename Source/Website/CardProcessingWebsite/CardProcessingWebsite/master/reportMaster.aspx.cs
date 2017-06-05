@@ -19,8 +19,12 @@ namespace CardProcessingWebsite.master
 {
     public partial class reportPage : System.Web.UI.Page
     {
+        public string agentID = "";
+        public string merchantID = "";
         protected void Page_Load(object sender, EventArgs e)
         {
+
+
             if (CurrentContext.IsLogged() == false)
             {
                 Response.Redirect("~/login/login.aspx?retUrl=~/master/reportMaster.aspx");
@@ -42,6 +46,20 @@ namespace CardProcessingWebsite.master
                     LoadMaster();
                     LoadYearDDL();
                     LoadQuarterDDL();
+
+                    if (!string.IsNullOrEmpty(Request.QueryString["MerchantID"]))
+                    {
+                        merchantID = Request.QueryString["MerchantID"].ToString();
+                        rbMerchant.Checked = true;
+                        ddlMerchant.SelectedValue = merchantID;
+                    }
+                    if (!string.IsNullOrEmpty(Request.QueryString["AgentID"]))
+                    {
+                        agentID = Request.QueryString["AgentID"].ToString();
+                        rbOther.Checked = true;
+                        ddlAgent.SelectedValue = agentID;
+                    }
+                    
                     GoReport();
                 }
             }

@@ -17,7 +17,15 @@ namespace CardProcessingWebsite.master
         public string agentID = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            agentID = Request.QueryString["AgentID"].ToString();
+            if (!string.IsNullOrEmpty(Request.QueryString["AgentID"]))
+            {
+                agentID = Request.QueryString["AgentID"].ToString();
+            }
+            else
+            {
+                Response.Redirect("~/404/404page.aspx");
+            }
+                
             if (CurrentContext.IsLogged() == false)
             {
                 Response.Redirect("~/login/login.aspx?retUrl=~/master/merchantOfAgent.aspx?AgentID=" + agentID);
@@ -221,7 +229,9 @@ namespace CardProcessingWebsite.master
             if (e.CommandName.Equals("ReportMerchant"))
             {
                 string merchantID = e.CommandArgument.ToString();
-                Response.Write("<script>alert('Hello');</script>");
+                //Response.Write("<script>alert('Hello');</script>");
+
+                Response.Redirect("~/master/reportMaster.aspx?MerchantID=" + merchantID);
 
             }
 

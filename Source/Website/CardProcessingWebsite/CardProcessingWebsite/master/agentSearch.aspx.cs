@@ -121,7 +121,10 @@ namespace CardProcessingWebsite.master
 
             if (e.CommandName.Equals("ReportAgent"))
             {
+                string agentID = e.CommandArgument.ToString();
+                //Response.Write("<script>alert('Hello');</script>");
 
+                Response.Redirect("~/master/reportMaster.aspx?AgentID=" + agentID);
             }
         }
 
