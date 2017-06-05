@@ -525,7 +525,7 @@ namespace CardProcessingWebsite.master
 
                 wsList.Cells[5, 5, 5, 9].Merge = true;
                 wsList.Cells[5, 1, 5, 9].Style.Font.Size = 14;
-               
+
                 wsList.Cells[11, 2, 11, 4].Merge = true;
                 wsList.Cells[11, 5, 11, 7].Merge = true;
                 wsList.Cells[11, 8, 11, 10].Merge = true;
@@ -647,6 +647,71 @@ namespace CardProcessingWebsite.master
                 Response.Redirect("/ExportFiles/" + filenameSave);
                 File.Delete(path);
             }
+        }
+
+        protected void btnPrint_Click(object sender, EventArgs e)
+        {
+            MasterReport res = FillSource(CheckReportView(CheckReportType()));
+            Session["reportMaster"] = "";
+            string str = string.Empty;
+            str += @"<div><table style='width: 100%; font-size: 10pt; padding-left: 5px'>
+            <tr><td colspan='2' style='text-align: center;'><span style='font-size: 18pt; font-weight: bold'>MASTER REPORT</span><br />
+             </td></tr><tr><td colspan='2'><table style='width: 50%; margin:auto' cellpadding='0' cellspacing='0'><tr><td style='font-size:14pt;'>";
+            str += @"" + exportType() + @"<br />" + exportView() + @"<br />" + exportRegion() + @"<br />" + exportMerchantType() + @"</td>
+                            <td style='width:20%;'></td></tr></table></td></tr><tr><td colspan='2'>&nbsp;</td></tr>";
+            str += @"<tr><td colspan='2'><table style='width: 80%; margin:auto' cellpadding='0' cellspacing='0'><tr style='font-weight: bold; text-align: center'>
+                        <td style='width: 20%; padding: 2px; border: 0.1em solid #000; border-right: none'>Sale Amount</td>
+                        <td style='width: 20%; padding: 2px; border: 0.1em solid #000; border-right: none'>Return Amount</td>
+                        <td style='width: 20%; padding: 2px; border: 0.1em solid #000; border-right: none'>Sale Count</td>
+                        <td style='width: 20%; padding: 2px; border: 0.1em solid #000; border-right: none'>Return Count</td>
+                        <td style='width: 20%; padding: 2px; border: 0.1em solid #000;'>Net Amount</td></tr>";
+
+            str += @"<tr><td style='text-align: center; padding: 2px; border: 0.1em solid #000; border-right: none; border-top: none'>
+                     " + res.SaleAmount.ToString("#,##0") + @"</td><td style='padding: 2px; text-align: center; border: 0.1em solid #000; border-right: none; border-top: none'>
+                     " + res.ReturnAmount.ToString("#,##0") + @"</td><td style='padding: 2px; text-align: center; border: 0.1em solid #000; border-right: none; border-top: none'>
+                     " + res.SaleCount.ToString("#,##0") + @"</td><td style='padding: 2px; text-align: center; border: 0.1em solid #000; border-right: none; border-top: none'>
+                     " + res.ReturnCount.ToString("#,##0") + @"</td><td style='padding: 2px; text-align: center; border: 0.1em solid #000; border-top: none'>
+                     " + res.NetAmount.ToString("#,##0") + @"</td></tr></table></td></tr><tr><td colspan='2'>&nbsp;</td></tr>";
+
+            str += @"<tr><td colspan= '2' style = 'text-align:center'><table style = 'width: 96%; margin:auto' cellpadding = '0' cellspacing = '0'>
+                    <tr style = 'font-weight: bold; text-align: center'><td colspan = '3' style = 'padding: 2px; border: 0.1em solid #000; border-right: none'>
+                    Card Sale Amount</td><td colspan = '3' style = 'padding: 2px; border: 0.1em solid #000; border-right: none'>
+                    Card Sale Count</td><td colspan = '3' style = 'padding: 2px; border: 0.1em solid #000; border-right: none'>
+                    Card Return Amount</td><td colspan = '3' style = 'padding: 2px; border: 0.1em solid #000;'>
+                    Card Return Count</td></tr><tr style = 'font-weight: bold; text-align: center'><td style = 'padding: 2px; text-align: center; width: 10%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    Visa</td><td style = 'padding: 2px; text-align: center; width: 10%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    Master</td><td style = 'padding: 2px; text-align: center; width: 10%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    Debit</td><td style = 'padding: 2px; text-align: center; width: 6%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    Visa</td><td style = 'padding: 2px; text-align: center; width: 6%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    Master</td><td style = 'padding: 2px; text-align: center; width: 6%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    Debit</td><td style = 'padding: 2px; text-align: center; width: 10%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    Visa</td><td style = 'padding: 2px; text-align: center; width: 10%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    Master</td><td style = 'padding: 2px; text-align: center; width: 10%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    Debit</td><td style = 'padding: 2px; text-align: center; width: 6%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    Visa</td><td style = 'padding: 2px; text-align: center; width: 6%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    Master</td><td style = 'padding: 2px; text-align: center; width: 6%; border: 0.1em solid #000; border-top: none'>
+                    Debit</td></tr><tr style = 'text-align: center'><td style = 'padding: 2px; text-align: center; width: 10%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    " + res.VisaSaleAmount.ToString("#,##0") + @"</td><td style = 'padding: 2px; text-align: center; width: 10%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    " + res.MasterSaleAmount.ToString("#,##0") + @"</td><td style = 'padding: 2px; text-align: center; width: 10%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    " + res.DebitSaleAmount.ToString("#,##0") + @"</td><td style = 'padding: 2px; text-align: center; width: 6%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    " + res.VisaSaleCount.ToString("#,##0") + @"</td><td style = 'padding: 2px; text-align: center; width: 6%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    " + res.MasterSaleCount.ToString("#,##0") + @"</td><td style = 'padding: 2px; text-align: center; width: 6%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    " + res.DebitSaleCount.ToString("#,##0") + @"</td><td style = 'padding: 2px; text-align: center; width: 10%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    " + res.VisaReturnAmount.ToString("#,##0") + @"</td><td style = 'padding: 2px; text-align: center; width: 10%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    " + res.MasterReturnAmount.ToString("#,##0") + @"</td><td style = 'padding: 2px; text-align: center; width: 10%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    " + res.DebitReturnAmount.ToString("#,##0") + @"</td><td style = 'padding: 2px; text-align: center; width: 6%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    " + res.VisaReturnCount.ToString("#,##0") + @"</td><td style = 'padding: 2px; text-align: center; width: 6%; border: 0.1em solid #000; border-right: none; border-top: none'>
+                    " + res.MasterReturnCount.ToString("#,##0") + @"</td><td style = 'padding: 2px; text-align: center; width: 6%; border: 0.1em solid #000; border-top: none'>
+                    " + res.DebitReturnCount.ToString("#,##0") + @"</td></tr></table></td></tr></table></div>";
+            Session["reportMaster"] = str;
+            string script = "window.onload = function() { getSesionPrint(); };";
+            ClientScript.RegisterStartupScript(GetType(), "chart", script, true);
+        }
+
+        [System.Web.Services.WebMethod()]
+        public static string fn_Print()
+        {
+            return HttpContext.Current.Session["reportMaster"].ToString();
         }
     }
 }

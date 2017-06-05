@@ -271,6 +271,7 @@
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="tempPrint.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
