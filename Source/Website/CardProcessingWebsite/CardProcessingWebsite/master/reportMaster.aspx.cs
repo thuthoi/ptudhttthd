@@ -1,5 +1,8 @@
 ﻿using CardProcessingWebsite.class_DTO;
 using CardProcessingWebsite.helpers;
+using OfficeOpenXml;
+using OfficeOpenXml.Table;
+using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +11,9 @@ using System.Net.Http.Headers;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Reflection;
+using System.IO;
 
 namespace CardProcessingWebsite.master
 {
@@ -415,6 +421,51 @@ namespace CardProcessingWebsite.master
                 res.DebitReturnCount = 0 + list.Sum(l => l.DebitCardReturnCount);
             }
             return res;
+        }
+
+
+        protected void btnExport_Click(object sender, EventArgs e)
+        {
+            MasterReport res = FillSource(CheckReportView(CheckReportType()));
+            using (ExcelPackage pck = new ExcelPackage())
+            {
+                string filenameSave = "RpMasterReport_" + DateTime.Now.ToString("_HH-mm_dd-MM-yyyy") + ".xlsx";
+                var wsList = pck.Workbook.Worksheets.Add("Sheet1");
+
+                wsList.Cells["A1"].LoadFromText("MASTER REPORT");
+
+                wsList.Cells[1, 1, 1, 12].Merge = true;
+                wsList.Cells[1, 1, 1, 12].Style.Font.Bold = true;
+                wsList.Cells[1, 1, 1, 12].Style.Font.Size = 16;
+                wsList.Cells[1, 1, 1, 12].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                wsList.Column(1).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                wsList.Column(1).Width = 20;
+                wsList.Column(2).Width = 20;
+                wsList.Column(3).Width = 20;
+                wsList.Column(4).Width = 20;
+                wsList.Column(5).Width = 20;
+                wsList.Column(6).Width = 20;
+                wsList.Column(7).Width = 20;
+                wsList.Column(8).Width = 20;
+                wsList.Column(9).Width = 20;
+                wsList.Column(10).Width = 20;
+                wsList.Column(11).Width = 20;
+                wsList.Column(12).Width = 20;
+
+
+                wsList.Cells["A3"].LoadFromText("Sale Amount");
+                wsList.Cells["A4"].LoadFromText(res.SaleAmount.ToString());
+                wsList.Cells["A4"].Style.Numberformat.Format = "#,#00";
+                //wsList.Cells["A4"].Style.
+
+                string path = Server.MapPath("/ExportFiles/" + filenameSave);
+                Stream stream = File.Create(path);
+                pck.SaveAs(stream);
+                stream.Close();
+                Response.Redirect("/ExportFiles/" + filenameSave);
+                File.Delete(path);
+            }
         }
     }
 }

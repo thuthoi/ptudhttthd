@@ -246,7 +246,7 @@
                     <div class="col-lg-5">&nbsp;</div>
                     <div class="col-lg-5">
                         <asp:LinkButton ID="btnPrint" CssClass="btn btn-warning" runat="server"><i class="fa fa-print" aria-hidden="true"></i>&nbsp;Print</asp:LinkButton>
-                        <asp:LinkButton ID="btnExport" CssClass="btn btn-success" runat="server"><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp;Export</asp:LinkButton>
+                        <asp:LinkButton ID="btnExport" OnClick="btnExport_Click" CssClass="btn btn-success" runat="server"><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp;Export</asp:LinkButton>
                     </div>
                 </div>
             </div>
@@ -264,6 +264,15 @@
 
         $(function () {
             ddlYear_Change();
+            if (document.getElementById('<%=rbMaster.ClientID%>').checked == true) {
+                view3Click();
+            }
+            if (document.getElementById('<%=rbMerchant.ClientID%>').checked == true) {
+                view1Click();
+            }
+            if (document.getElementById('<%=rbOther.ClientID%>').checked == true) {
+                view2Click();
+            }
             if (document.getElementById('<%=rbDaily.ClientID %>').checked == true) {
                 checkDaily();
             }
