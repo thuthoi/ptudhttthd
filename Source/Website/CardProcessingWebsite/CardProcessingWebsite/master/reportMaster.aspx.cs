@@ -131,7 +131,7 @@ namespace CardProcessingWebsite.master
                     ddlRegion.DataTextField = "MerchantRegionName";
                     ddlRegion.DataValueField = "MerchantRegionID";
                     ddlRegion.DataBind();
-                    ListItem nullItem = new ListItem("Select", "");
+                    ListItem nullItem = new ListItem("All", "");
                     ddlRegion.Items.Insert(0, nullItem);
                 }
             }
@@ -152,7 +152,7 @@ namespace CardProcessingWebsite.master
                     ddlType.DataTextField = "MerchantTypeName";
                     ddlType.DataValueField = "MerchantTypeID";
                     ddlType.DataBind();
-                    ListItem nullItem = new ListItem("Select", "");
+                    ListItem nullItem = new ListItem("All", "");
                     ddlType.Items.Insert(0, nullItem);
                 }
             }
@@ -423,6 +423,81 @@ namespace CardProcessingWebsite.master
             return res;
         }
 
+        private string exportType()
+        {
+            string res = "- Report Type: ";
+            if (rbDaily.Checked)
+            {
+                res += "Daily (" + txtDate.Text.Trim() + ")";
+            }
+            if (rbMonthly.Checked)
+            {
+                res += "Monthly (" + txtMonth.Text.Trim() + ")";
+            }
+            if (rbQuarterly.Checked)
+            {
+                res += "Quarterly (" + ddlQuarter.SelectedValue.ToString() + "/" + ddlYear.SelectedValue.ToString() + ")";
+            }
+            if (rbYearly.Checked)
+            {
+                res += "Yearly (" + txtYear.Text.Trim() + ")";
+            }
+            if (rbMtDate.Checked)
+            {
+                res += "Month to Date (" + txtDate.Text.Trim() + ")";
+            }
+            if (rbYtDate.Checked)
+            {
+                res += "Year to Date (" + txtDate.Text.Trim() + ")";
+            }
+            return res;
+        }
+
+        private string exportView()
+        {
+            string res = "- View by ";
+            if (rbMerchant.Checked)
+            {
+                res += "Merchant: " + ddlMerchant.SelectedItem.Text.ToString();
+            }
+            if (rbOther.Checked)
+            {
+                res += "Agent: " + ddlAgent.SelectedItem.Text.ToString();
+            }
+            if (rbMaster.Checked)
+            {
+                res += "Master: " + ddlMaster.SelectedItem.Text.ToString();
+            }
+            return res;
+        }
+
+        private string exportRegion()
+        {
+            string res = "- Region: ";
+            if (rbMerchant.Checked)
+            {
+                res += "None";
+            }
+            else
+            {
+                res += ddlRegion.SelectedItem.Text.ToString();
+            }
+            return res;
+        }
+
+        private string exportMerchantType()
+        {
+            string res = "- Merchant Type: ";
+            if (rbMerchant.Checked)
+            {
+                res += "None";
+            }
+            else
+            {
+                res += ddlType.SelectedItem.Text.ToString();
+            }
+            return res;
+        }
 
         protected void btnExport_Click(object sender, EventArgs e)
         {
@@ -434,10 +509,32 @@ namespace CardProcessingWebsite.master
 
                 wsList.Cells["A1"].LoadFromText("MASTER REPORT");
 
-                wsList.Cells[1, 1, 1, 12].Merge = true;
-                wsList.Cells[1, 1, 1, 12].Style.Font.Bold = true;
-                wsList.Cells[1, 1, 1, 12].Style.Font.Size = 16;
-                wsList.Cells[1, 1, 1, 12].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                wsList.Cells[1, 1, 1, 13].Merge = true;
+                wsList.Cells[1, 1, 1, 13].Style.Font.Bold = true;
+                wsList.Cells[1, 1, 1, 13].Style.Font.Size = 18;
+                wsList.Cells[1, 1, 1, 13].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                wsList.Cells[2, 5, 2, 9].Merge = true;
+                wsList.Cells[2, 1, 2, 9].Style.Font.Size = 14;
+
+                wsList.Cells[3, 5, 3, 9].Merge = true;
+                wsList.Cells[3, 1, 3, 9].Style.Font.Size = 14;
+
+                wsList.Cells[4, 5, 4, 9].Merge = true;
+                wsList.Cells[4, 1, 4, 9].Style.Font.Size = 14;
+
+                wsList.Cells[5, 5, 5, 9].Merge = true;
+                wsList.Cells[5, 1, 5, 9].Style.Font.Size = 14;
+               
+                wsList.Cells[11, 2, 11, 4].Merge = true;
+                wsList.Cells[11, 5, 11, 7].Merge = true;
+                wsList.Cells[11, 8, 11, 10].Merge = true;
+                wsList.Cells[11, 11, 11, 13].Merge = true;
+
+                wsList.Cells["E2"].LoadFromText(exportType());
+                wsList.Cells["E3"].LoadFromText(exportView());
+                wsList.Cells["E4"].LoadFromText(exportRegion());
+                wsList.Cells["E5"].LoadFromText(exportMerchantType());
 
                 wsList.Column(1).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 wsList.Column(1).Width = 20;
@@ -452,12 +549,96 @@ namespace CardProcessingWebsite.master
                 wsList.Column(10).Width = 20;
                 wsList.Column(11).Width = 20;
                 wsList.Column(12).Width = 20;
+                wsList.Column(13).Width = 20;
 
+                var cellTitle1 = wsList.Cells["E7:I7"];
+                var cellAll1 = wsList.Cells["E7:I8"];
+                cellTitle1.Style.Font.Color.SetColor(System.Drawing.Color.FromArgb(255, 255, 255));
+                cellTitle1.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                cellTitle1.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                cellTitle1.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.FromArgb(51, 122, 183));
+                var border1 = cellAll1.Style.Border;
+                border1.Bottom.Style = ExcelBorderStyle.Thin;
+                border1.Top.Style = ExcelBorderStyle.Thin;
+                border1.Left.Style = ExcelBorderStyle.Thin;
+                border1.Right.Style = ExcelBorderStyle.Thin;
 
-                wsList.Cells["A3"].LoadFromText("Sale Amount");
-                wsList.Cells["A4"].LoadFromText(res.SaleAmount.ToString());
-                wsList.Cells["A4"].Style.Numberformat.Format = "#,#00";
-                //wsList.Cells["A4"].Style.
+                wsList.Cells["E7"].LoadFromText("Sale Amount");
+                wsList.Cells["F7"].LoadFromText("Return Amount");
+                wsList.Cells["G7"].LoadFromText("Sale Count");
+                wsList.Cells["H7"].LoadFromText("Return Count");
+                wsList.Cells["I7"].LoadFromText("Net Amount");
+                wsList.Cells["I8"].Style.Font.Bold = true;
+
+                wsList.Cells["E8"].LoadFromText(res.SaleAmount.ToString());
+                wsList.Cells["E8"].Style.Numberformat.Format = "#,##0";
+                wsList.Cells["F8"].LoadFromText(res.ReturnAmount.ToString());
+                wsList.Cells["F8"].Style.Numberformat.Format = "#,##0";
+                wsList.Cells["G8"].LoadFromText(res.SaleCount.ToString());
+                wsList.Cells["G8"].Style.Numberformat.Format = "#,##0";
+                wsList.Cells["H8"].LoadFromText(res.ReturnCount.ToString());
+                wsList.Cells["H8"].Style.Numberformat.Format = "#,##0";
+                wsList.Cells["I8"].LoadFromText(res.NetAmount.ToString());
+                wsList.Cells["I8"].Style.Numberformat.Format = "#,##0";
+
+                var cellTitle2 = wsList.Cells["B11:M11"];
+                var cellAll2 = wsList.Cells["B11:M13"];
+                var cellTitle3 = wsList.Cells["B12:M12"];
+                cellTitle2.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                cellTitle2.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.FromArgb(51, 122, 183));
+                cellTitle2.Style.Font.Color.SetColor(System.Drawing.Color.FromArgb(255, 255, 255));
+                cellTitle2.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                cellTitle3.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                cellTitle3.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.FromArgb(244, 243, 248));
+                cellTitle3.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                var border2 = cellAll2.Style.Border;
+                border2.Bottom.Style = ExcelBorderStyle.Thin;
+                border2.Top.Style = ExcelBorderStyle.Thin;
+                border2.Left.Style = ExcelBorderStyle.Thin;
+                border2.Right.Style = ExcelBorderStyle.Thin;
+
+                wsList.Cells["B11"].LoadFromText("Card Sale Amount");
+                wsList.Cells["E11"].LoadFromText("Card Sale Count");
+                wsList.Cells["H11"].LoadFromText("Card Return Amount");
+                wsList.Cells["K11"].LoadFromText("Card Return Count");
+
+                wsList.Cells["B12"].LoadFromText("Visa");
+                wsList.Cells["C12"].LoadFromText("Master");
+                wsList.Cells["D12"].LoadFromText("Debit");
+                wsList.Cells["E12"].LoadFromText("Visa");
+                wsList.Cells["F12"].LoadFromText("Master");
+                wsList.Cells["G12"].LoadFromText("Debit");
+                wsList.Cells["H12"].LoadFromText("Visa");
+                wsList.Cells["I12"].LoadFromText("Master");
+                wsList.Cells["J12"].LoadFromText("Debit");
+                wsList.Cells["K12"].LoadFromText("Visa");
+                wsList.Cells["L12"].LoadFromText("Master");
+                wsList.Cells["M12"].LoadFromText("Debit");
+
+                wsList.Cells["B13"].LoadFromText(res.VisaSaleAmount.ToString());
+                wsList.Cells["C13"].LoadFromText(res.MasterSaleAmount.ToString());
+                wsList.Cells["D13"].LoadFromText(res.DebitSaleAmount.ToString());
+                wsList.Cells["E13"].LoadFromText(res.VisaSaleCount.ToString());
+                wsList.Cells["F13"].LoadFromText(res.MasterSaleCount.ToString());
+                wsList.Cells["G13"].LoadFromText(res.DebitSaleCount.ToString());
+                wsList.Cells["H13"].LoadFromText(res.VisaReturnAmount.ToString());
+                wsList.Cells["I13"].LoadFromText(res.MasterReturnAmount.ToString());
+                wsList.Cells["J13"].LoadFromText(res.DebitReturnAmount.ToString());
+                wsList.Cells["K13"].LoadFromText(res.VisaReturnCount.ToString());
+                wsList.Cells["L13"].LoadFromText(res.MasterReturnCount.ToString());
+                wsList.Cells["M13"].LoadFromText(res.DebitReturnCount.ToString());
+                wsList.Cells["B13"].Style.Numberformat.Format = "#,##0";
+                wsList.Cells["C13"].Style.Numberformat.Format = "#,##0";
+                wsList.Cells["D13"].Style.Numberformat.Format = "#,##0";
+                wsList.Cells["E13"].Style.Numberformat.Format = "#,##0";
+                wsList.Cells["F13"].Style.Numberformat.Format = "#,##0";
+                wsList.Cells["G13"].Style.Numberformat.Format = "#,##0";
+                wsList.Cells["H13"].Style.Numberformat.Format = "#,##0";
+                wsList.Cells["I13"].Style.Numberformat.Format = "#,##0";
+                wsList.Cells["J13"].Style.Numberformat.Format = "#,##0";
+                wsList.Cells["K13"].Style.Numberformat.Format = "#,##0";
+                wsList.Cells["L13"].Style.Numberformat.Format = "#,##0";
+                wsList.Cells["M13"].Style.Numberformat.Format = "#,##0";
 
                 string path = Server.MapPath("/ExportFiles/" + filenameSave);
                 Stream stream = File.Create(path);
