@@ -20,7 +20,7 @@ input[type=radio] + label{
     <div class="form-group input-group col-md-12" style="padding-left: 18px">
 
 
-        <asp:TextBox ID="txtKeyword" placeholder="Keywords" runat="server" class="form-control" autofocus="true"></asp:TextBox>
+        <asp:TextBox ID="txtKeyword" onkeypress="return EnterEvent(event)" placeholder="Keywords" runat="server" class="form-control" autofocus="true"></asp:TextBox>
 
         <span class="input-group-btn">
 
@@ -239,6 +239,13 @@ input[type=radio] + label{
                 });
 
         });
+
+        function EnterEvent(e) {
+            if (e.keyCode == 13) {
+                __doPostBack('<%=btnSearch.UniqueID%>', "");
+            }
+        }
+
     </script>
 
 </asp:Content>

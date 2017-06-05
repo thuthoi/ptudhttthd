@@ -38,8 +38,6 @@ namespace CardProcessingWebsite.master
                     loadMerchantRegionforEditing();
                     loadAgentforEditing();
 
-                    this.Form.DefaultButton = btnSearch.UniqueID;
-
                 }
             }
 
