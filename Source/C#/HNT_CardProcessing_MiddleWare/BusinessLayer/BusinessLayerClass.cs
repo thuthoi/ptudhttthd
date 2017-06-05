@@ -430,6 +430,58 @@ namespace BusinessLayer
                                                               d.Date.Value.Year == DateTime.Now.Year).ToList();
         }
 
+        //Report Agent
+        /// <summary>
+        /// Lấy thống kê hàng ngày dựa theo agtID và dt.
+        /// thống kê hàng ngày nhưng lấy dữ liệu của ngày hôm qua, ko phải ngày hiện tại của dt. 
+        /// VD: dt là ngày 19 thì dữ liệu lấy là ngày 18
+        /// </summary>
+        /// <param name="AgtID">mã số agent</param>
+        /// <param name="dt">ngày muốn lấy thống kê</param>
+        /// <returns></returns>
+
+        public DailyReport GetDailyReport_By_AgtID_Date(String AgtID, DateTime dt)
+        {
+            // AddDays(-1) để có được ngày hôm trước
+            DateTime previous = dt.AddDays(-1);
+            return _dailyReportRepository.GetSingle(
+                            d => d.MerchantID.Equals(AgtID) &&
+                            d.Date.Equals(previous));
+        }
+        /// <summary>
+        /// Lấy thống kê tháng dựa theo agtID và dt.
+        /// thống kê tháng nhưng lấy dữ liệu của tháng trước ko phải tháng hiện tại của dt. 
+        /// VD: dt là ngày 19/5/2017 thì dữ liệu lấy là của tháng 4
+        /// </summary>
+        /// <param name="AgtID"></param>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public MonthlyReport GetMonthlyReport_By_AgtID_Date(String AgtID, DateTime dt)
+        {
+            // AddMonths(-1) để có được tháng trước
+            DateTime previous = dt.AddMonths(-1);
+            return _monthlyReportRepository.GetSingle(
+                            d => d.MerchantID.Equals(AgtID) &&
+                            d.Date.Value.Month.Equals(previous.Month)
+                            && d.Date.Value.Year.Equals(previous.Year));
+        }
+        /// <summary>
+        /// Lấy thống kê năm dựa theo agtID và dt.
+        /// thống kê năm nhưng lấy dữ liệu của năm trước ko phải năm hiện tại của dt. 
+        /// VD: dt là ngày 19/5/2017 thì dữ liệu lấy là của năm 2016
+        /// </summary>
+        /// <param name="AgtID"></param>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public YearlyReport GetYearlyReport_By_AgtID_Date(String AgtID, DateTime dt)
+        {
+            // AddYears(-1) để có được năm trước
+            DateTime previous = dt.AddYears(-1);
+            return _yearlyReportRepository.GetSingle(
+                            d => d.MerchantID.Equals(AgtID) &&
+                            d.Date.Value.Year.Equals(previous.Year));
+        }
+
         // Report Merchant
         /// <summary>
         /// Lấy thống kê hàng ngày dựa theo merID và dt.
