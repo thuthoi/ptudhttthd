@@ -42,7 +42,8 @@
                                         </div>
                                         <label style="padding-top: 7px;" for="<%=ddlMaster.ClientID %>" class="col-sm-3 control-label">Master:</label>
                                         <div class="col-sm-4">
-                                            <asp:DropDownList CssClass="form-control selectpicker" ID="ddlMaster" runat="server"></asp:DropDownList>
+                                            <asp:Label ID="lblMaster" CssClass="form-control" runat="server" Text=""></asp:Label>
+                                            <asp:DropDownList CssClass="form-control selectpicker" Visible="false" ID="ddlMaster" runat="server"></asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>
@@ -395,6 +396,7 @@
             $('#<%=ddlRegion.ClientID %>').prop('disabled', true);
             $('#<%=ddlMerchant.ClientID %>').prop('disabled', false);
             $('#<%=ddlMaster.ClientID %>').prop('disabled', true);
+             document.getElementById('<%=lblMaster.ClientID%>').style.backgroundColor = '#eaeaea';
         }
 
         function view2Click() {
@@ -403,6 +405,7 @@
             $('#<%=ddlRegion.ClientID %>').prop('disabled', false);
             $('#<%=ddlMerchant.ClientID %>').prop('disabled', true);
             $('#<%=ddlMaster.ClientID %>').prop('disabled', true);
+            document.getElementById('<%=lblMaster.ClientID%>').style.backgroundColor = '#eaeaea';
         };
 
         function view3Click() {
@@ -411,6 +414,7 @@
             $('#<%=ddlRegion.ClientID %>').prop('disabled', false);
             $('#<%=ddlMerchant.ClientID %>').prop('disabled', true);
             $('#<%=ddlMaster.ClientID %>').prop('disabled', false);
+            document.getElementById('<%=lblMaster.ClientID%>').style.backgroundColor = '';
         }
 
         function checkDaily() {

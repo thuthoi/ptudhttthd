@@ -104,6 +104,7 @@ namespace CardProcessingWebsite.master
                     ddlMaster.DataTextField = "MasterName";
                     ddlMaster.DataValueField = "MasterID";
                     ddlMaster.DataBind();
+                    lblMaster.Text = list[0].MasterName.ToString();
                 }
             }
         }
