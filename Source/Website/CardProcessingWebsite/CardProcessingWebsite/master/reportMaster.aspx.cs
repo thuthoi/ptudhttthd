@@ -390,6 +390,13 @@ namespace CardProcessingWebsite.master
             hdReturnCount.Value = mr.ReturnCount.ToString();
             hdSaleAmount.Value = mr.SaleAmount.ToString();
             hdSaleCount.Value = mr.SaleCount.ToString();
+            hdVisaAmount.Value = (mr.VisaSaleAmount - mr.VisaReturnAmount).ToString();
+            hdMasterAmount.Value = (mr.MasterSaleAmount - mr.MasterReturnAmount).ToString();
+            hdDebitAmount.Value = (mr.DebitSaleAmount - mr.DebitReturnAmount).ToString();
+            hdVisaCount.Value = (mr.VisaSaleCount + mr.VisaReturnCount).ToString();
+            hdMasterCount.Value = (mr.MasterSaleCount + mr.MasterReturnCount).ToString();
+            hdDebitCount.Value = (mr.DebitSaleCount + mr.DebitReturnCount).ToString();
+
             lblSaleAmount.Text = formatMoney(mr.SaleAmount);
             lblReturnAmount.Text = "-" + formatMoney(mr.ReturnAmount);
             lblSaleCount.Text = mr.SaleCount.ToString();

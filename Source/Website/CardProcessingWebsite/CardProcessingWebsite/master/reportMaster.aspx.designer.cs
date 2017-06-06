@@ -49,6 +49,60 @@ namespace CardProcessingWebsite.master {
         protected global::System.Web.UI.WebControls.HiddenField hdReturnCount;
         
         /// <summary>
+        /// hdVisaAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdVisaAmount;
+        
+        /// <summary>
+        /// hdMasterAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdMasterAmount;
+        
+        /// <summary>
+        /// hdDebitAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdDebitAmount;
+        
+        /// <summary>
+        /// hdVisaCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdVisaCount;
+        
+        /// <summary>
+        /// hdMasterCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdMasterCount;
+        
+        /// <summary>
+        /// hdDebitCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdDebitCount;
+        
+        /// <summary>
         /// ddlMerchant control.
         /// </summary>
         /// <remarks>

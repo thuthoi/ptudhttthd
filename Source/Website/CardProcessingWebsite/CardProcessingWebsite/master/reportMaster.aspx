@@ -11,6 +11,12 @@
     <asp:HiddenField ID="hdSaleCount" Value="0" runat="server" />
     <asp:HiddenField ID="hdReturnAmount" Value="0" runat="server" />
     <asp:HiddenField ID="hdReturnCount" Value="0" runat="server" />
+    <asp:HiddenField ID="hdVisaAmount" Value="0" runat="server" />
+    <asp:HiddenField ID="hdMasterAmount" Value="0" runat="server" />
+    <asp:HiddenField ID="hdDebitAmount" Value="0" runat="server" />
+    <asp:HiddenField ID="hdVisaCount" Value="0" runat="server" />
+    <asp:HiddenField ID="hdMasterCount" Value="0" runat="server" />
+    <asp:HiddenField ID="hdDebitCount" Value="0" runat="server" />
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -149,31 +155,18 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Report Chart</div>
+                <div class="panel-heading">Amount & Count Report</div>
                 <div class="panel-body">
-                    <div class="col-lg-1">
-                        &nbsp;
-                    </div>
-                    <div class="col-lg-4">
-                        <div id="baocao" style="height: 300px;"></div>
-                    </div>
-                    <div class="col-lg-2">
-                        &nbsp;
-                    </div>
+                    <div class="col-lg-1">&nbsp;</div>
                     <div class="col-lg-4">
                         <div id="baocao2" style="height: 300px;"></div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">Report Table</div>
-                <div class="panel-body">
-                    <table style="border: 1px solid #337AB7" class="table table-bordered" id="dataTables">
+                    <div class="col-lg-2">&nbsp;</div>
+                    <div class="col-lg-4">
+                        <div id="baocao" style="height: 300px;"></div>
+                    </div>
+                    <div>&nbsp;</div>
+                    <table style="border: 1px solid #337AB7; width: 100%" class="table table-bordered" id="dataTables">
                         <tr style="font-weight: bold;" class="bg-primary">
                             <td>Sale Amount</td>
                             <td>Return Amount</td>
@@ -194,8 +187,25 @@
                                 <asp:Label ID="lblNetAmount" Font-Bold="true" Font-Size="Large" runat="server" Text="0"></asp:Label></td>
                         </tr>
                     </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Amount & Count By Card Report</div>
+                <div class="panel-body">
+                    <div class="col-lg-1">&nbsp;</div>
+                    <div class="col-lg-4">
+                        <div id="baocao3" style="height: 300px;"></div>
+                    </div>
+                    <div class="col-lg-2">&nbsp;</div>
+                    <div class="col-lg-4">
+                        <div id="baocao4" style="height: 300px;"></div>
+                    </div>
                     <div>&nbsp;</div>
-                    <table style="border: 1px solid #337AB7" class="table table-bordered" id="data2">
+                    <table style="border: 1px solid #337AB7; width: 100%" class="table table-bordered" id="data2">
                         <tr style="font-weight: bold;" class="bg-primary">
                             <td colspan="3">Card Sale Amount</td>
                             <td colspan="3">Card Sale Count</td>
@@ -243,12 +253,20 @@
                                 <asp:Label ID="lblDebitReturnCount" ForeColor="Red" runat="server" Text="0"></asp:Label></td>
                         </tr>
                     </table>
-                    <div class="col-lg-5">&nbsp;</div>
-                    <div class="col-lg-5">
-                        <asp:LinkButton ID="btnPrint" OnClick="btnPrint_Click" CssClass="btn btn-warning" runat="server"><i class="fa fa-print" aria-hidden="true"></i>&nbsp;Print</asp:LinkButton>
-                        <asp:LinkButton ID="btnExport" OnClick="btnExport_Click" CssClass="btn btn-success" runat="server"><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp;Export</asp:LinkButton>
-                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div>&nbsp;</div>
+                <div class="col-lg-5">&nbsp;</div>
+                <div class="col-lg-5">
+                    <asp:LinkButton ID="btnPrint" OnClick="btnPrint_Click" CssClass="btn btn-warning" runat="server"><i class="fa fa-print" aria-hidden="true"></i>&nbsp;Print</asp:LinkButton>
+                    <asp:LinkButton ID="btnExport" OnClick="btnExport_Click" CssClass="btn btn-success" runat="server"><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp;Export</asp:LinkButton>
+                </div>
+                <div class="panel-body"></div>
             </div>
         </div>
     </div>
@@ -298,6 +316,12 @@
             var _returnAmount = parseFloat($(<%=hdReturnAmount.ClientID%>).val()).toFixed(2);
             var _saleCount = parseFloat($(<%=hdSaleCount.ClientID%>).val()).toFixed(2);
             var _returnCount = parseFloat($(<%=hdReturnCount.ClientID%>).val()).toFixed(2);
+            var _visaAmount = parseFloat($(<%=hdVisaAmount.ClientID%>).val()).toFixed(2);
+            var _masterAmount = parseFloat($(<%=hdMasterAmount.ClientID%>).val()).toFixed(2);
+            var _debitAmount = parseFloat($(<%=hdDebitAmount.ClientID%>).val()).toFixed(2);
+            var _visaCount = parseFloat($(<%=hdVisaCount.ClientID%>).val()).toFixed(2);
+            var _masterCount = parseFloat($(<%=hdMasterCount.ClientID%>).val()).toFixed(2);
+            var _debitCount = parseFloat($(<%=hdDebitCount.ClientID%>).val()).toFixed(2);
 
             Morris.Donut({
                 element: 'baocao2',
@@ -312,6 +336,23 @@
                 data: [{ label: "Return Count", value: _returnCount },
                    { label: "Sale Count", value: _saleCount }],
             });
+
+            Morris.Donut({
+                element: 'baocao3',
+                colors: ['#FF5B33', '#3368FF', '#F9FF33'],
+                data: [{ label: "Visa Amount", value: _visaAmount },
+                        { label: "Master Amount", value: _masterAmount },
+                        { label: "Debit Amount", value: _debitAmount }],
+            });
+
+            Morris.Donut({
+                element: 'baocao4',
+                colors: ['#FF5B33', '#3368FF', '#F9FF33'],
+                data: [{ label: "Visa Count", value: _visaCount },
+                        { label: "Master Count", value: _masterCount },
+                        { label: "Debit Count", value: _debitCount }],
+            });
+            
         });
 
         function ddlYear_Change() {

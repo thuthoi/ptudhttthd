@@ -291,7 +291,6 @@
     <script src="../assets/vendor/morrisjs/morris.min.js"></script>
     <script src="../assets/data/morris-data.js"></script>
     <script src="../assets/vendor/raphael/raphael.min.js"></script>
-
     <asp:ContentPlaceHolder ID="scriptFile" runat="server">
     </asp:ContentPlaceHolder>
 </body>
