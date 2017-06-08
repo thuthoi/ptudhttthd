@@ -31,121 +31,203 @@ namespace CardProcessingWebsite.merchant
                 }
                 else
                 {
+                    txtDate.Text = (DateTime.Now.Day - 1).ToString().PadLeft(2, '0') + "/" + DateTime.Now.Month.ToString().PadLeft(2, '0') + "/" + DateTime.Now.Year;
+
+                    GoReport();
                     // test chuc năng MERCH00001
-                    if (CurrentContext.IsLogged() == true)
-                    {
+                    //if (CurrentContext.IsLogged() == true)
+                    //{
                         string userID = CurrentContext.GetCurUser().UserID.ToString();
                         loadProfileMerchant(userID);
-                    }
-                    else
-                    {
-                        loadProfileMerchant("MERCH00001");
-                    }
-                    if (IsPostBack == false)
-                    {
-                        loadReportType();
-                        dpnReportType_TextChanged(null, null);
-                        rdMonthToDate.Attributes.Add("onClick", "return handleClick();");
-                        rdYearToDate.Attributes.Add("onClick", "return handleClick();");
-                    }
+                    //}
+                    //else
+                    //{
+                    //    loadProfileMerchant("MERCH00001");
+                    //}
+                    //if (IsPostBack == false)
+                    //{
+                    //    loadReportType();
+                    //    //dpnReportType_TextChanged(null, null);
+                    //    //rdMonthToDate.Attributes.Add("onClick", "return handleClick();");
+                    //    //rdYearToDate.Attributes.Add("onClick", "return handleClick();");
+                    //}
                 }
             }
         }
 
+        private void GoReport()
+        {
+            //Generate Date
+            List<Report> list = CheckReportType();
+            //Generate View
+            //List<Report> listView = CheckReportView(list);
+            //FillSource
+            //MasterReport res = FillSource(listView);
+            //LoadTable(MasterReport masterReport);
+            //LoadTable(res);
+            //LoadChart
+            //LoadChart();
+        }
+
+        private List<Report> CheckReportType()
+        {
+            string api_url = string.Empty;
+            if (rbDaily.Checked)
+            {
+                string day = txtDate.Text.Trim().Substring(0, 2);
+                string month = txtDate.Text.Substring(3, 2);
+                string year = txtDate.Text.Substring(6, 4);
+                api_url = "getDailyReport/" + day + "/" + month + "/" + year;
+            }
+            if (rbMonthly.Checked)
+            {
+                string month = txtMonth.Text.Substring(0, 2);
+                string year = txtMonth.Text.Substring(3, 4);
+                api_url = "getMonthlyReport/" + month + "/" + year;
+            }
+            if (rbQuarterly.Checked)
+            {
+                string quarter = ddlQuarter.SelectedValue.ToString();
+                string year = ddlYear.SelectedValue.ToString();
+                api_url = "getQuarterlyReport/" + quarter + "/" + year;
+            }
+            if (rbYearly.Checked)
+            {
+                string year = txtYear.Text.Trim();
+                api_url = "getYearlyReport/" + year;
+            }
+            if (rbMtDate.Checked)
+            {
+                string day = txtDate.Text.Trim().Substring(0, 2);
+                api_url = "getMonthToDateReport/" + day;
+            }
+            if (rbYtDate.Checked)
+            {
+                string day = txtDate.Text.Trim().Substring(0, 2);
+                string month = txtDate.Text.Substring(3, 2);
+                api_url = "getYearToDateReport/" + day + "/" + month;
+            }
+            return Generate_Report(api_url);
+        }
+
+        private List<Report> Generate_Report(string api_url)
+        {
+            List<Report> lst = null;
+            using (var c = new HttpClient())
+            {
+                c.DefaultRequestHeaders.Accept.Clear();
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                string url = localhost.hostname() + "/api/MasterReport/" + api_url;
+                var response = c.GetAsync(url).Result;
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var dl = response.Content.ReadAsAsync<Report[]>().Result;
+                    if (dl != null)
+                    {
+                        lst = new List<Report>();
+                        foreach (Report re in dl)
+                        {
+                            lst.Add(re);
+                        }
+                    }
+                }
+            }
+            return lst;
+        }
         private void loadReportType()
         {
-            dpnReportType.DataSource = list_rp_type;
-            dpnReportType.DataBind();
+            //dpnReportType.DataSource = list_rp_type;
+            //dpnReportType.DataBind();
         }
 
-        protected void dpnReportType_TextChanged(object sender, EventArgs e)
-        {
-            List<DailyReport> lst = new List<DailyReport>();
-            List<DailyReport> lst_Report_card = new List<DailyReport>();
-            string merID = mr_current.MerchantID;
-            DateTime now = DateTime.Now;
+        //protected void dpnReportType_TextChanged(object sender, EventArgs e)
+        //{
+        //    List<DailyReport> lst = new List<DailyReport>();
+        //    List<DailyReport> lst_Report_card = new List<DailyReport>();
+        //    string merID = mr_current.MerchantID;
+        //    DateTime now = DateTime.Now;
 
-            if (dpnReportType.Text == "Hàng ngày")
-            {
-                // test
-                DateTime dt = new DateTime(2017, 5, 11);
-                //string api_url = String.Format("api/merchant_report/getDaily/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
-                // correct code
-                dt = now;
-                string api_url = String.Format("api/merchant_report/getDaily/{0}/{1}", merID, now.ToString("yyyy-MM-dd"));
-                lst = Get_Report(api_url);
-                DateTime previous = dt.AddDays(-1);
-                //string strDay = "ngày " + lst[0].Date.ToString("dd/MM/yyyy");
-                string strDay = "ngày " + previous.Date.ToString("dd/MM/yyyy");
-                SetHeader(strDay);
+        //    if (dpnReportType.Text == "Hàng ngày")
+        //    {
+        //        // test
+        //        DateTime dt = new DateTime(2017, 5, 11);
+        //        //string api_url = String.Format("api/merchant_report/getDaily/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
+        //        // correct code
+        //        dt = now;
+        //        string api_url = String.Format("api/merchant_report/getDaily/{0}/{1}", merID, now.ToString("yyyy-MM-dd"));
+        //        lst = Get_Report(api_url);
+        //        DateTime previous = dt.AddDays(-1);
+        //        //string strDay = "ngày " + lst[0].Date.ToString("dd/MM/yyyy");
+        //        string strDay = "ngày " + previous.Date.ToString("dd/MM/yyyy");
+        //        SetHeader(strDay);
 
-            }
-            else if (dpnReportType.Text == "Tháng trước")
-            {
-                // test
-                DateTime dt = new DateTime(2017, 5, 1);
-                //string api_url = String.Format("api/merchant_report/getMonthly/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
-                // correct code
-                dt = now;
-                string api_url = String.Format("api/merchant_report/getMonthly/{0}/{1}", merID, now.ToString("yyyy-MM-dd"));
+        //    }
+        //    else if (dpnReportType.Text == "Tháng trước")
+        //    {
+        //        // test
+        //        DateTime dt = new DateTime(2017, 5, 1);
+        //        //string api_url = String.Format("api/merchant_report/getMonthly/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
+        //        // correct code
+        //        dt = now;
+        //        string api_url = String.Format("api/merchant_report/getMonthly/{0}/{1}", merID, now.ToString("yyyy-MM-dd"));
 
-                lst = Get_Report(api_url);
+        //        lst = Get_Report(api_url);
 
-                DateTime previous = dt.AddMonths(-1);
-                string strDay = "tháng " + previous.Month;
-                SetHeader(strDay);
-                hdSaleAmount.Value = lst[0].SaleAmount.ToString();
-                hdReturnAmount.Value = lst[0].ReturnAmount.ToString();
+        //        DateTime previous = dt.AddMonths(-1);
+        //        string strDay = "tháng " + previous.Month;
+        //        SetHeader(strDay);
+        //        hdSaleAmount.Value = lst[0].SaleAmount.ToString();
+        //        hdReturnAmount.Value = lst[0].ReturnAmount.ToString();
 
-            }
-            else if (dpnReportType.Text == "Năm trước")
-            {
-                // test
-                DateTime dt = new DateTime(2017, 5, 1);
-                //string api_url = String.Format("api/merchant_report/getYearly/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
-                // correct code
-                dt = now;
-                string api_url = String.Format("api/merchant_report/getYearly/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
-                lst = Get_Report(api_url);
+        //    }
+        //    else if (dpnReportType.Text == "Năm trước")
+        //    {
+        //        // test
+        //        DateTime dt = new DateTime(2017, 5, 1);
+        //        //string api_url = String.Format("api/merchant_report/getYearly/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
+        //        // correct code
+        //        dt = now;
+        //        string api_url = String.Format("api/merchant_report/getYearly/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
+        //        lst = Get_Report(api_url);
 
-                int pre_year = dt.Date.Year - 1;
-                string strDay = "năm " + pre_year;
-                SetHeader(strDay);
+        //        int pre_year = dt.Date.Year - 1;
+        //        string strDay = "năm " + pre_year;
+        //        SetHeader(strDay);
 
-            }
-            else
-            {
-                // test
-                DateTime dt = new DateTime(2017, 1, 1);
-                //string api_url = String.Format("api/merchant_report/getQuarter/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
-                // correct code
-                dt = now;
-                string api_url = String.Format("api/merchant_report/getQuarter/{0}/{1}", merID, now.ToString("yyyy-MM-dd"));
-                lst = Get_Report(api_url);
+        //    }
+        //    else
+        //    {
+        //        // test
+        //        DateTime dt = new DateTime(2017, 1, 1);
+        //        //string api_url = String.Format("api/merchant_report/getQuarter/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
+        //        // correct code
+        //        dt = now;
+        //        string api_url = String.Format("api/merchant_report/getQuarter/{0}/{1}", merID, now.ToString("yyyy-MM-dd"));
+        //        lst = Get_Report(api_url);
 
-                int cur_quarter = (dt.Date.Month + 2) / 3;
-                int pre_quarter = cur_quarter - 1;
-                int year = dt.Date.Year;
-                if (pre_quarter == 0)
-                {
-                    pre_quarter = 4;
-                    year = (dt.Date.AddYears(-1)).Date.Year;
-                }
-                //string strDay = "quý " + pre_quarter + " năm " + lst[0].Date.Year.ToString();
-                string strDay = "quý " + pre_quarter + " năm " + year;
-                SetHeader(strDay);
+        //        int cur_quarter = (dt.Date.Month + 2) / 3;
+        //        int pre_quarter = cur_quarter - 1;
+        //        int year = dt.Date.Year;
+        //        if (pre_quarter == 0)
+        //        {
+        //            pre_quarter = 4;
+        //            year = (dt.Date.AddYears(-1)).Date.Year;
+        //        }
+        //        //string strDay = "quý " + pre_quarter + " năm " + lst[0].Date.Year.ToString();
+        //        string strDay = "quý " + pre_quarter + " năm " + year;
+        //        SetHeader(strDay);
 
-            }
-            SetListView(lst);
-        }
+        //    }
+        //    SetListView(lst);
+        //}
 
-        private void SetHeader(string dt)
-        {
-            lbReport.Text = " Thống kê chung " + dt;
-            lbReport_Debit.Text = "Thống kê theo Card DEBIT " + dt;
-            lbReport_Visa.Text = "Thống kê theo Card VISA " + dt;
-            lbReport_Master.Text = "Thống kê theo Card MASTER " + dt;
-        }
+        //private void SetHeader(string dt)
+        //{
+        //    lbReport.Text = " Thống kê chung " + dt;
+        //    lbReport_Debit.Text = "Thống kê theo Card DEBIT " + dt;
+        //    lbReport_Visa.Text = "Thống kê theo Card VISA " + dt;
+        //    lbReport_Master.Text = "Thống kê theo Card MASTER " + dt;
+        //}
 
         private void loadProfileMerchant(string UserID)
         {
@@ -186,66 +268,66 @@ namespace CardProcessingWebsite.merchant
             return lst;
         }
 
-        protected void btnViewReport_customDay_Click(object sender, EventArgs e)
-        {
-            List<DailyReport> lst = new List<DailyReport>();
-            List<DailyReport> lst_Report_card = new List<DailyReport>();
-            string merID = mr_current.MerchantID;
+        //protected void btnViewReport_customDay_Click(object sender, EventArgs e)
+        //{
+        //    List<DailyReport> lst = new List<DailyReport>();
+        //    List<DailyReport> lst_Report_card = new List<DailyReport>();
+        //    string merID = mr_current.MerchantID;
 
 
-            if (rdMonthToDate.Checked == true)
-            {
-                // test
-                // DateTime dt = new DateTime(2017, 5, 11);
-                //string api_url = String.Format("api/merchant_report/getMonthtoDate/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
-                // correct code
-                string customDay = txtCustomDay.Text;
-                DateTime myDate = DateTime.ParseExact(customDay, "dd/MM/yyyy",
-                                       System.Globalization.CultureInfo.InvariantCulture);
-                string api_url = String.Format("api/merchant_report/getMonthtoDate/{0}/{1}", merID, myDate.ToString("yyyy-MM-dd"));
-                lst = Get_Report(api_url);
+        //    if (rdMonthToDate.Checked == true)
+        //    {
+        //        // test
+        //        // DateTime dt = new DateTime(2017, 5, 11);
+        //        //string api_url = String.Format("api/merchant_report/getMonthtoDate/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
+        //        // correct code
+        //        string customDay = txtCustomDay.Text;
+        //        DateTime myDate = DateTime.ParseExact(customDay, "dd/MM/yyyy",
+        //                               System.Globalization.CultureInfo.InvariantCulture);
+        //        string api_url = String.Format("api/merchant_report/getMonthtoDate/{0}/{1}", merID, myDate.ToString("yyyy-MM-dd"));
+        //        lst = Get_Report(api_url);
 
-                DateTime firstDayOfMonth = new DateTime(myDate.Year, myDate.Month, 1);
-                string strDay = "từ ngày " + firstDayOfMonth.ToString("dd/MM/yyyy") + " tới ngày " + customDay;
-                SetHeader(strDay);
+        //        DateTime firstDayOfMonth = new DateTime(myDate.Year, myDate.Month, 1);
+        //        string strDay = "từ ngày " + firstDayOfMonth.ToString("dd/MM/yyyy") + " tới ngày " + customDay;
+        //        SetHeader(strDay);
 
-            }
-            else
-            {
-                // test
-                //DateTime dt = new DateTime(2017, 5, 1);
-                //string api_url = String.Format("api/merchant_report/getYeartoDate/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
-                // correct code
-                string customDay = txtCustomDay.Text;
-                DateTime myDate = DateTime.ParseExact(customDay, "dd/MM/yyyy",
-                                       System.Globalization.CultureInfo.InvariantCulture);
+        //    }
+        //    else
+        //    {
+        //        // test
+        //        //DateTime dt = new DateTime(2017, 5, 1);
+        //        //string api_url = String.Format("api/merchant_report/getYeartoDate/{0}/{1}", merID, dt.ToString("yyyy-MM-dd"));
+        //        // correct code
+        //        string customDay = txtCustomDay.Text;
+        //        DateTime myDate = DateTime.ParseExact(customDay, "dd/MM/yyyy",
+        //                               System.Globalization.CultureInfo.InvariantCulture);
 
-                string api_url = String.Format("api/merchant_report/getYeartoDate/{0}/{1}", merID, myDate.ToString("yyyy-MM-dd"));
-                lst = Get_Report(api_url);
+        //        string api_url = String.Format("api/merchant_report/getYeartoDate/{0}/{1}", merID, myDate.ToString("yyyy-MM-dd"));
+        //        lst = Get_Report(api_url);
 
-                DateTime firstDayOfYear = new DateTime(myDate.Year, 1, 1);
-                string strDay = "từ ngày " + firstDayOfYear.Date.ToString("dd/MM/yyyy") + " tới ngày " + customDay;
-                SetHeader(strDay);
+        //        DateTime firstDayOfYear = new DateTime(myDate.Year, 1, 1);
+        //        string strDay = "từ ngày " + firstDayOfYear.Date.ToString("dd/MM/yyyy") + " tới ngày " + customDay;
+        //        SetHeader(strDay);
 
 
-            }
-            SetListView(lst);
-        }
+        //    }
+        //    SetListView(lst);
+        //}
 
-        private void SetListView(List<DailyReport> lst)
-        {
-            list_Report_general.DataSource = lst;
+        //private void SetListView(List<DailyReport> lst)
+        //{
+        //    list_Report_general.DataSource = lst;
            
-            list_Report_general.DataBind();
+        //    list_Report_general.DataBind();
 
-            list_Report_Visa.DataSource = lst;
-            list_Report_Visa.DataBind();
+        //    list_Report_Visa.DataSource = lst;
+        //    list_Report_Visa.DataBind();
 
-            list_Report_Debit.DataSource = lst;
-            list_Report_Debit.DataBind();
+        //    list_Report_Debit.DataSource = lst;
+        //    list_Report_Debit.DataBind();
 
-            list_Report_Master.DataSource = lst;
-            list_Report_Master.DataBind();
-        }
+        //    list_Report_Master.DataSource = lst;
+        //    list_Report_Master.DataBind();
+        //}
     }
 }
