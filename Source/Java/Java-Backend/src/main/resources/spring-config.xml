@@ -8,6 +8,12 @@
     <!-- DailyReport -->
     <!-- Master -->
     <!-- Merchant -->
+    <bean id="merchantService" class="hnt_15hcb2.service.Impl.MerchantService">
+        <property name="merchantDAO" ref="merchantDAO"/>
+    </bean>
+    <bean id="merchantDAO" class="hnt_15hcb2.dao.Impl.MerchantDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
     <!-- MerchantRegion -->
     <!-- MerchantType -->
     <!-- MonthlyReport -->
