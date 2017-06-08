@@ -147,10 +147,14 @@ namespace BusinessLayer
         //Account
         public void AddAccount(Account account)
         {
-            /* Validation and error handling omitted */
-            string en_pass = StringUtils.Md5(account.Password);
-            account.Password = en_pass;
-            _accountRepository.Add(account);
+            if(Is_Account_UserName_Exist(account.Username) == false)
+            {
+                /* Validation and error handling omitted */
+                string en_pass = StringUtils.Md5(account.Password);
+                account.Password = en_pass;
+                _accountRepository.Add(account);
+            }
+            
         }
         public void UpdateAccount(Account account)
         {
@@ -214,17 +218,17 @@ namespace BusinessLayer
             }
             return lst;
         }
-        public bool Check_Account_UserName_Exist(string username)
+        public bool Is_Account_UserName_Exist(string username)
         {
             IList<Account> ck = _accountRepository.GetList(
                             a => a.Username.Equals(username));
             if (ck.Count > 0)
             {
-                return false;
+                return true;
             }
             else
             {
-                return true;
+                return false;
             }
         }
 

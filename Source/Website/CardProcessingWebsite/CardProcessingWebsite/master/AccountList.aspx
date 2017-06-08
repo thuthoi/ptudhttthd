@@ -71,7 +71,7 @@
                         <div class="col-sm-10">
                             <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control"></asp:TextBox>
                             <asp:RequiredFieldValidator ValidationGroup="AddAccountGroup" ID="rfv" runat="server" ControlToValidate="txtUserName" ForeColor="Red" ErrorMessage="Required" Display="Dynamic">Required</asp:RequiredFieldValidator>
-                            <asp:CustomValidator ID="validatorUID" runat="server" ControlToValidate="txtUserName" ErrorMessage="Username exists" ForeColor="Red" Display="Dynamic"  ClientValidationFunction="check_user_exist" SetFocusOnError="True">Username exists</asp:CustomValidator>
+                            <asp:CustomValidator ValidationGroup="AddAccountGroup" ID="validatorUID" runat="server" ControlToValidate="txtUserName" ErrorMessage="Username exists" ForeColor="Red" Display="Dynamic"  ClientValidationFunction="check_user_exist" SetFocusOnError="True">Username exists</asp:CustomValidator>
                         </div>
 
                     </div>
@@ -92,7 +92,7 @@
 
                             </asp:TextBox>
                             <asp:RequiredFieldValidator ValidationGroup="AddAccountGroup" ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtNLMK" ForeColor="Red" ErrorMessage="Required" Display="Dynamic">Required<br /></asp:RequiredFieldValidator>
-                            <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="No match" ControlToCompare="txtPassword" ControlToValidate="txtNLMK" Font-Bold="False" ForeColor="Red" SetFocusOnError="True" Display="Dynamic">No match</asp:CompareValidator>
+                            <asp:CompareValidator ValidationGroup="AddAccountGroup" ID="CompareValidator1" runat="server" ErrorMessage="No match" ControlToCompare="txtPassword" ControlToValidate="txtNLMK" Font-Bold="False" ForeColor="Red" SetFocusOnError="True" Display="Dynamic">No match</asp:CompareValidator>
                         </div>
 
                     </div>
@@ -151,7 +151,7 @@
 
         function check_user_exist(source, args) {
             
-            var _url = 'http://localhost:20752/api/account/Check_Account_UserName_Exist/' + $('#<%=txtUserName.ClientID %>').val();
+            var _url = 'http://localhost:20752/api/account/Is_Account_UserName_Exist/' + $('#<%=txtUserName.ClientID %>').val();
             // alert($('#<%=txtUserName.ClientID %>').val());
             //alert(_url);
             //var jsonToPost = JSON.stringify(dataToPost);
@@ -167,18 +167,28 @@
                 timeout: 30 * 1000
             })
                 .done(function (data, textStatus, jqXHR) {
-                    //console.log(data);
+                    console.log(data);
                     //console.log(jqXHR);
-                    args.IsValid = true;
+                    
+                    if (data == true)
+                    {
+
+                        args.IsValid = false;
+                    }
+                    else
+                    {
+                        args.IsValid = true;
+                    }
+                    
                     //alert("a");
                     return;
                    
                    
                 })
                 .fail(function (jqXHR, textStatus, error) {
-                    //console.log(textStatus);
-                    //console.log(error);
-                    args.IsValid = false;
+                    console.log(textStatus);
+                    console.log(error);
+                    //args.IsValid = false;
                     //alert("b");
                    
                     //args.IsValid = false;

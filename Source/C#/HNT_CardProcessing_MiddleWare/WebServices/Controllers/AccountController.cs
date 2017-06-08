@@ -101,18 +101,20 @@ namespace WebServices.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, list);
         }
         [HttpGet]
-        [Route("api/account/Check_Account_UserName_Exist/{username}")]
-        public HttpResponseMessage Check_Account_UserName_Exist(string username)
+        [Route("api/account/Is_Account_UserName_Exist/{username}")]
+        public HttpResponseMessage Is_Account_UserName_Exist(string username)
         {
-            bool ck = bus.Check_Account_UserName_Exist(username);
-            if(ck == true)
-            {
-                return Request.CreateResponse(HttpStatusCode.OK,"OK");
-            }
-            else
-            {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-            }
+            bool ck = bus.Is_Account_UserName_Exist(username);
+            return Request.CreateResponse(HttpStatusCode.OK, ck);
+            //if(ck == true)
+            //{
+            //    return Request.CreateResponse(HttpStatusCode.OK, "true");
+            //}
+            //else
+            //{
+            //    return Request.CreateResponse(HttpStatusCode.OK, "false");
+            //    //return Request.CreateResponse(HttpStatusCode.NotFound);
+            //}
         }
         [HttpPost]
         [Route("api/account/add")]

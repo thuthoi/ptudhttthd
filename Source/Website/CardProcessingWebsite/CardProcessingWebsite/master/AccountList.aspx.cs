@@ -57,7 +57,8 @@ namespace CardProcessingWebsite.master
             {
                 c.DefaultRequestHeaders.Accept.Clear();
                 c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                string url = localhost.hostname() + "api/merchant/getAll_NotHave_Account";
+                //string url = localhost.hostname() + "api/merchant/getAll_NotHave_Account";
+                string url = localhost.hostname() + "api/merchant/getAll";
                 var response = c.GetAsync(url).Result;
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -80,7 +81,8 @@ namespace CardProcessingWebsite.master
 
                 
 
-                url = localhost.hostname() + "api/agent/getAgent_NotHave_Account";
+                //url = localhost.hostname() + "api/agent/getAgent_NotHave_Account";
+                url = localhost.hostname() + "api/agent/getAll";
                 response = c.GetAsync(url).Result;
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -100,7 +102,8 @@ namespace CardProcessingWebsite.master
                         rdAgent.Checked = true;
                     }
                 }
-                url = localhost.hostname() + "api/master/getMaster_NotHave_Account";
+                //url = localhost.hostname() + "api/master/getMaster_NotHave_Account";
+                url = localhost.hostname() + "api/master/getAll";
                 response = c.GetAsync(url).Result;
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
