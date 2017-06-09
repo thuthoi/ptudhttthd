@@ -513,14 +513,14 @@ namespace BusinessLayer
         /// <param name="MerID"></param>
         /// <param name="dt"></param>
         /// <returns></returns>
-        public MonthlyReport GetMonthlyReport_By_MerID_Date(String MerID, DateTime dt)
+        public MonthlyReport GetMonthlyReport_By_MerID(String MerID, int month, int year)
         {
             // AddMonths(-1) để có được tháng trước
-            DateTime previous = dt.AddMonths(-1);
+            //DateTime previous = dt.AddMonths(-1);
             return _monthlyReportRepository.GetSingle(
                             d => d.MerchantID.Equals(MerID) &&
-                            d.Date.Value.Month.Equals(previous.Month)
-                            && d.Date.Value.Year.Equals(previous.Year));
+                            d.Date.Value.Month.Equals(month)
+                            && d.Date.Value.Year.Equals(year));
         }
         /// <summary>
         /// Lấy thống kê năm dựa theo merID và dt.
@@ -530,13 +530,13 @@ namespace BusinessLayer
         /// <param name="MerID"></param>
         /// <param name="dt"></param>
         /// <returns></returns>
-        public YearlyReport GetYearlyReport_By_MerID_Date(String MerID, DateTime dt)
+        public YearlyReport GetYearlyReport_By_MerID_Date(String MerID, int year)
         {
             // AddYears(-1) để có được năm trước
-            DateTime previous = dt.AddYears(-1);
+            //DateTime previous = dt.AddYears(-1);
             return _yearlyReportRepository.GetSingle(
                             d => d.MerchantID.Equals(MerID) &&
-                            d.Date.Value.Year.Equals(previous.Year));
+                            d.Date.Value.Year.Equals(year));
         }
         /// <summary>
         /// Lấy thống kê quý dựa theo merID và dt.
@@ -552,35 +552,29 @@ namespace BusinessLayer
         /// <param name="dt"></param>
         /// <returns></returns>
 
-        public DailyReport GetMonthlyQuarterReport_By_MerID_Date(String MerID, DateTime dt)
+        public DailyReport GetMonthlyQuarterReport_By_MerID_Date(String MerID, int quarter, int year)
         {
             DailyReport lst = new DailyReport();
             //DateTime dt = DateTime.Now;
 
             // tính xem hiện tại đang ở quý nào
-            int quarter = GetQuarter(dt);
-            // rơi quý 1 nên lấy thống kê của quý 4 năm trước 
+            //int quarter = GetQuarter(dt);
+            // rơi vao quý 1 nên lấy thống kê của quý 4 năm trước 
             if (quarter == 1)
             {
-                lst = Caculate_fromMonth_toMonth_Report(MerID, 10, 12, dt.AddYears(-1).Year);
+                lst = Caculate_fromMonth_toMonth_Report(MerID, 1, 3, year);
             }
-            else
+            else if (quarter == 2)
             {
-                // tính quý cần lấy dữ liệu 
-                int quarter_previous = quarter - 1;
-                if (quarter_previous == 1)
-                {
-                    lst = Caculate_fromMonth_toMonth_Report(MerID, 1, 3, dt.Year);
-                }
-                else if (quarter_previous == 2)
-                {
-                    lst = Caculate_fromMonth_toMonth_Report(MerID, 4, 6, dt.Year);
-                }
-                else if (quarter_previous == 3)
-                {
-                    lst = Caculate_fromMonth_toMonth_Report(MerID, 7, 9, dt.Year);
-                }
-
+                lst = Caculate_fromMonth_toMonth_Report(MerID, 4, 6, year);
+            }
+            else if (quarter == 3)
+            {
+                lst = Caculate_fromMonth_toMonth_Report(MerID, 7, 9, year);
+            }
+            else if (quarter == 4)
+            {
+                lst = Caculate_fromMonth_toMonth_Report(MerID, 10, 12, year);
             }
             return lst;
         }

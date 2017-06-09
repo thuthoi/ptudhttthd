@@ -19,24 +19,24 @@ namespace WebServices.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, dl);
         }
         [HttpGet]
-        [Route("api/merchant_report/getMonthly/{merID}/{dt:datetime}")]
-        public HttpResponseMessage getMonthlyReport(string merID, DateTime dt)
+        [Route("api/merchant_report/getMonthly/{merID}/{month}/{year}")]
+        public HttpResponseMessage getMonthlyReport(string merID,string month, string year)
         {
-            var dl = bus.GetMonthlyReport_By_MerID_Date(merID, dt);
+            var dl = bus.GetMonthlyReport_By_MerID(merID, int.Parse(month),int.Parse(year));
             return Request.CreateResponse(HttpStatusCode.OK, dl);
         }
         [HttpGet]
-        [Route("api/merchant_report/getYearly/{merID}/{dt:datetime}")]
-        public HttpResponseMessage getYearlyReport(string merID, DateTime dt)
+        [Route("api/merchant_report/getYearly/{merID}/{year}")]
+        public HttpResponseMessage getYearlyReport(string merID,string year)
         {
-            var dl = bus.GetYearlyReport_By_MerID_Date(merID, dt);
+            var dl = bus.GetYearlyReport_By_MerID_Date(merID,int.Parse(year));
             return Request.CreateResponse(HttpStatusCode.OK, dl);
         }
         [HttpGet]
-        [Route("api/merchant_report/getQuarter/{merID}/{dt:datetime}")]
-        public HttpResponseMessage getQuarterReport(string merID, DateTime dt)
+        [Route("api/merchant_report/getQuarter/{merID}/{quarter}/{year}")]
+        public HttpResponseMessage getQuarterReport(string merID, string quarter, string year)
         {
-            var dl = bus.GetMonthlyQuarterReport_By_MerID_Date(merID, dt);
+            var dl = bus.GetMonthlyQuarterReport_By_MerID_Date(merID, int.Parse(quarter), int.Parse(year));
             return Request.CreateResponse(HttpStatusCode.OK, dl);
         }
 

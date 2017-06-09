@@ -127,18 +127,18 @@ namespace CardProcessingWebsite.merchant
             {
                 string month = txtMonth.Text.Substring(0, 2);
                 string year = txtMonth.Text.Substring(3, 4);
-                api_url = "getMonthlyReport/" + month + "/" + year;
+                api_url = String.Format("getMonthly/{0}/{1}/{2}", merID, month, year);
             }
             if (rbQuarterly.Checked)
             {
                 string quarter = ddlQuarter.SelectedValue.ToString();
                 string year = ddlYear.SelectedValue.ToString();
-                api_url = "getQuarterlyReport/" + quarter + "/" + year;
+                api_url = String.Format("getQuarter/{0}/{1}/{2}", merID, quarter, year);
             }
             if (rbYearly.Checked)
             {
                 string year = txtYear.Text.Trim();
-                api_url = "getYearlyReport/" + year;
+                api_url = String.Format("getYearly/{0}/{1}", merID, year);
             }
             if (rbMtDate.Checked)
             {

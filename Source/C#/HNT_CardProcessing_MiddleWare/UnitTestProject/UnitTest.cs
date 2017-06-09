@@ -299,7 +299,7 @@ namespace UnitTestProject
         public void Test_GetMonthlyReport_By_MerID_Date()
         {
             DateTime dt = new DateTime(2017, 6, 7);
-            MonthlyReport dl = bus.GetMonthlyReport_By_MerID_Date("MERCH00001", dt);
+            MonthlyReport dl = bus.GetMonthlyReport_By_MerID("MERCH00001", 4,2017);
             Assert.IsNotNull(dl);
             Assert.AreEqual("MERCH00001", dl.MerchantID);
             Assert.AreEqual(dt.AddMonths(-1).Month, dl.Date.Value.Month);
@@ -309,7 +309,7 @@ namespace UnitTestProject
         public void Test_GetYearlyReport_By_MerID_Date()
         {
             DateTime dt = new DateTime(2017, 6, 7);
-            YearlyReport dl = bus.GetYearlyReport_By_MerID_Date("MERCH00001", dt);
+            YearlyReport dl = bus.GetYearlyReport_By_MerID_Date("MERCH00001", 2017);
             Assert.IsNotNull(dl);
             Assert.AreEqual("MERCH00001", dl.MerchantID);
             Assert.AreEqual(dt.AddYears(-1).Year, dl.Date.Value.Year);
@@ -319,7 +319,7 @@ namespace UnitTestProject
         public void Test_GetMonthlyQuarterReport_By_MerID_Date()
         {
             DateTime dt = new DateTime(2017, 7, 7);
-            DailyReport dl = bus.GetMonthlyQuarterReport_By_MerID_Date("MERCH00001", dt);
+            DailyReport dl = bus.GetMonthlyQuarterReport_By_MerID_Date("MERCH00001",4,2017);
             Assert.IsNotNull(dl);
             Assert.AreEqual("MERCH00001", dl.MerchantID);
             Assert.AreEqual(4, dl.Date.Value.Month);
