@@ -30,11 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.btnDir = new System.Windows.Forms.Button();
-            this.btnFile = new System.Windows.Forms.Button();
             this.txtImport_File_Patch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtPackage_Patch = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnStop = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtDatabase = new System.Windows.Forms.TextBox();
@@ -49,7 +46,7 @@
             // 
             // btnDir
             // 
-            this.btnDir.Location = new System.Drawing.Point(457, 154);
+            this.btnDir.Location = new System.Drawing.Point(457, 120);
             this.btnDir.Name = "btnDir";
             this.btnDir.Size = new System.Drawing.Size(90, 23);
             this.btnDir.TabIndex = 15;
@@ -57,19 +54,9 @@
             this.btnDir.UseVisualStyleBackColor = true;
             this.btnDir.Click += new System.EventHandler(this.btnDir_Click);
             // 
-            // btnFile
-            // 
-            this.btnFile.Location = new System.Drawing.Point(457, 119);
-            this.btnFile.Name = "btnFile";
-            this.btnFile.Size = new System.Drawing.Size(90, 23);
-            this.btnFile.TabIndex = 14;
-            this.btnFile.Text = "Chọn file";
-            this.btnFile.UseVisualStyleBackColor = true;
-            this.btnFile.Click += new System.EventHandler(this.btnFile_Click);
-            // 
             // txtImport_File_Patch
             // 
-            this.txtImport_File_Patch.Location = new System.Drawing.Point(172, 154);
+            this.txtImport_File_Patch.Location = new System.Drawing.Point(172, 120);
             this.txtImport_File_Patch.Name = "txtImport_File_Patch";
             this.txtImport_File_Patch.Size = new System.Drawing.Size(268, 20);
             this.txtImport_File_Patch.TabIndex = 13;
@@ -77,27 +64,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 157);
+            this.label2.Location = new System.Drawing.Point(10, 123);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(150, 13);
             this.label2.TabIndex = 12;
             this.label2.Text = "Đường dẫn chứa tập tin import";
-            // 
-            // txtPackage_Patch
-            // 
-            this.txtPackage_Patch.Location = new System.Drawing.Point(172, 119);
-            this.txtPackage_Patch.Name = "txtPackage_Patch";
-            this.txtPackage_Patch.Size = new System.Drawing.Size(268, 20);
-            this.txtPackage_Patch.TabIndex = 11;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 122);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 13);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Đường dẫn của package";
             // 
             // btnStop
             // 
@@ -164,11 +135,11 @@
             // 
             // txt_Info
             // 
-            this.txt_Info.Location = new System.Drawing.Point(13, 189);
+            this.txt_Info.Location = new System.Drawing.Point(13, 161);
             this.txt_Info.Multiline = true;
             this.txt_Info.Name = "txt_Info";
             this.txt_Info.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txt_Info.Size = new System.Drawing.Size(534, 126);
+            this.txt_Info.Size = new System.Drawing.Size(534, 154);
             this.txt_Info.TabIndex = 24;
             // 
             // timer1
@@ -182,7 +153,7 @@
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(90, 23);
             this.btnStart.TabIndex = 25;
-            this.btnStart.Text = "Start";
+            this.btnStart.Text = "Run";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnImport_Click);
             // 
@@ -200,11 +171,8 @@
             this.Controls.Add(this.txtDatabase);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnDir);
-            this.Controls.Add(this.btnFile);
             this.Controls.Add(this.txtImport_File_Patch);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtPackage_Patch);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnStop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -219,11 +187,8 @@
         #endregion
 
         private System.Windows.Forms.Button btnDir;
-        private System.Windows.Forms.Button btnFile;
         private System.Windows.Forms.TextBox txtImport_File_Patch;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtPackage_Patch;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtDatabase;
