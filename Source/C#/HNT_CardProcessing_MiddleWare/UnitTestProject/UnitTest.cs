@@ -75,7 +75,7 @@ namespace UnitTestProject
         public void Test_Check_Account_UserName_Exist()
         {
             BusinessLayerClass bus = new BusinessLayerClass();
-            bool ac = bus.Check_Account_UserName_Exist("merchant01");
+            bool ac = bus.Is_Account_UserName_Exist("merchant01");
             Assert.AreEqual(false, ac);
         }
 

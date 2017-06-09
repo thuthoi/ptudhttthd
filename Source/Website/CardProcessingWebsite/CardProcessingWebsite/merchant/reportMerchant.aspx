@@ -77,7 +77,7 @@
                         <div class="row">
                             <div class="col-sm-5">&nbsp;</div>
                             <div class="col-sm-4">
-                                <asp:LinkButton ID="btnChangeFilter" class="btn btn-primary" runat="server"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;Change Filter</asp:LinkButton>
+                                <asp:LinkButton ID="btnChangeFilter" OnClick="btnChangeFilter_Click" class="btn btn-primary" runat="server"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;Change Filter</asp:LinkButton>
                             </div>
                         </div>
                     </div>

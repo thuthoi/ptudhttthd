@@ -499,11 +499,12 @@ namespace BusinessLayer
         public DailyReport GetDailyReport_By_MerID_Date(String MerID, DateTime dt)
         {
             // AddDays(-1) để có được ngày hôm trước
-            DateTime previous = dt.AddDays(-1);
+            //DateTime previous = dt.AddDays(-1);
             return _dailyReportRepository.GetSingle(
                             d => d.MerchantID.Equals(MerID) &&
-                            d.Date.Equals(previous));
+                            d.Date.Equals(dt));
         }
+  
         /// <summary>
         /// Lấy thống kê tháng dựa theo merID và dt.
         /// thống kê tháng nhưng lấy dữ liệu của tháng trước ko phải tháng hiện tại của dt. 
