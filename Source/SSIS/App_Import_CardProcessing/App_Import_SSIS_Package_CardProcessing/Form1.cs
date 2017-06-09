@@ -55,10 +55,10 @@ namespace App_Import_SSIS_Package_CardProcessing
         private void Clear_ImportFile()
         {
             lst_import.Clear();
-            txt_Info.Text = "";
+            
         }
 
-        private void Check_Dir(string path)
+        private bool Check_Dir(string path)
         {
             Clear_ImportFile();
             //txt_Info.Text = "Danh sách các file import ";
@@ -66,19 +66,26 @@ namespace App_Import_SSIS_Package_CardProcessing
             FileInfo[] TXTFiles = dir.GetFiles("*.csv");
             if (TXTFiles.Length == 0)
             {
-                MessageBox.Show("thư mục import không chứa file có đuôi .csv");
+                //MessageBox.Show("thư mục import không chứa file có đuôi .csv");
+                
                 Clear_ImportFile();
+                return false;
             }
-            foreach (var file in TXTFiles)
+            else
             {
-                if (file.Exists)
+                txt_Info.Text += String.Format("Detected file {0}\r\n", TXTFiles.Count());
+                foreach (var file in TXTFiles)
                 {
-                    //lv_sub_folder_import.Items.Add(file.Name);
-                    lst_import.Add(file.Name);
-                    txt_Info.Text += String.Format(" - File: {0} \r\n", file.Name);
+                    if (file.Exists)
+                    {
+                        //lv_sub_folder_import.Items.Add(file.Name);
+                        lst_import.Add(file.Name);
+                        txt_Info.Text += String.Format(" - File: {0} \r\n", file.Name);
 
+                    }
                 }
             }
+            return true;
         }
 
         private void btnImport_Click(object sender, EventArgs e)
@@ -91,10 +98,6 @@ namespace App_Import_SSIS_Package_CardProcessing
             {
                 MessageBox.Show("Chưa nhập tên database");
             }
-            if (txtSerVerName.Text == "")
-            {
-                MessageBox.Show("Chưa nhập tên server");
-            }
             else if (txtImport_File_Patch.Text == "")
             {
                 MessageBox.Show("Chưa chọn thư mục chứa file muốn import");
@@ -103,24 +106,37 @@ namespace App_Import_SSIS_Package_CardProcessing
             {
                 MessageBox.Show("Chưa chọn package muốn gọi thực hiện import");
             }
-            else if (lst_import.Count == 0)
-            {
-                MessageBox.Show("Thư mục chọn không có file để import");
-            }
+            //else if (lst_import.Count == 0)
+            //{
+            //    MessageBox.Show("Thư mục chọn không có file để import");
+            //}
             else
             {
-                DialogResult result3 = MessageBox.Show("Bạn muốn tiến hành import toàn bộ file trong thư mục" + txtImport_File_Patch.Text,
-                                                   "Thông báo",
-                                                   MessageBoxButtons.OKCancel,
-                                                   MessageBoxIcon.Question,
-                                                   MessageBoxDefaultButton.Button2);
-                if (result3 == DialogResult.OK)
-                {
-                    Import_File(txtSerVerName.Text, txtDatabase.Text, txtImport_File_Patch.Text, txtPackage_Patch.Text);
+                //DialogResult result3 = MessageBox.Show("Bạn muốn tiến hành import toàn bộ file trong thư mục" + txtImport_File_Patch.Text,
+                //                                   "Thông báo",
+                //                                   MessageBoxButtons.OKCancel,
+                //                                   MessageBoxIcon.Question,
+                //                                   MessageBoxDefaultButton.Button2);
+                Start_App();
+                //if (result3 == DialogResult.OK)
+                //{
+                //    Import_File(txtSerVerName.Text, txtDatabase.Text, txtImport_File_Patch.Text, txtPackage_Patch.Text);
 
-                }
+                //}
 
             }
+        }
+
+        private void Start_App()
+        {
+            timer1.Start();
+            txt_Info.Text += " - App started  \r\n";
+            txt_Info.Text += String.Format(" - Waiting..... \r\n");
+            btnStop.Enabled = true;
+            txtSerVerName.Enabled = false;
+            txtDatabase.Enabled = false;
+            txtImport_File_Patch.Enabled = false;
+            txtPackage_Patch.Enabled = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -135,18 +151,22 @@ namespace App_Import_SSIS_Package_CardProcessing
             string Database_name = ConfigurationManager.AppSettings["Database_name"];
             string Dir_path = ConfigurationManager.AppSettings["Dir_path"];
             string File_path = ConfigurationManager.AppSettings["File_path"];
-            DialogResult result3 = MessageBox.Show("Bạn muốn tiến hành import toàn bộ file trong thư mục" + txtImport_File_Patch.Text,
-                                                   "Thông báo",
-                                                   MessageBoxButtons.OKCancel,
-                                                   MessageBoxIcon.Question,
-                                                   MessageBoxDefaultButton.Button2);
-            if (result3 == DialogResult.OK)
-            {
-                Check_Dir(Dir_path);
-                Import_File(Server_name, Database_name, Dir_path, File_path);
+            //DialogResult result3 = MessageBox.Show("Bạn muốn tiến hành import toàn bộ file trong thư mục" + txtImport_File_Patch.Text,
+            //                                       "Thông báo",
+            //                                       MessageBoxButtons.OKCancel,
+            //                                       MessageBoxIcon.Question,
+            //                                       MessageBoxDefaultButton.Button2);
+            txtSerVerName.Text = Server_name;
+            txtDatabase.Text = Database_name;
+            txtImport_File_Patch.Text = Dir_path;
+            txtPackage_Patch.Text = File_path;
+            //if (result3 == DialogResult.OK)
+            //{
+            //    Check_Dir(Dir_path);
+            //    Import_File(Server_name, Database_name, Dir_path, File_path);
 
-            }
-
+            //}
+            Start_App();
         }
 
         private void Import_File(string Server_name, string Database_name, string Dir_path, string File_path)
@@ -161,6 +181,8 @@ namespace App_Import_SSIS_Package_CardProcessing
 
                // file_import_path += string.Format("\\{0}", import_file_name.Text);
                string file_import_path = Dir_path + string.Format(@"\{0}", import_file_name);
+               string Success_file_import_path = Dir_path + "Success Import";
+               string Failed_file_import_path = Dir_path + "Failed Import";
                //file_import_path = "\"" + file_import_path + "\"";
 
 
@@ -187,61 +209,30 @@ namespace App_Import_SSIS_Package_CardProcessing
 
                 pkgResults = pkg.Execute(null, vars, null, null, null);
 
-                txt_Info.Text += "Tiến hành import file: " + import_file_name + " \r\n";
+                txt_Info.Text += "--- Starting import file: " + import_file_name + " \r\n";
 
                 if (pkgResults == DTSExecResult.Success)
                 {
                     //MessageBox.Show("Import thành công file" + import_file_name.Text);
                    // lv_sub_folder_import.Items.Add("Import thành công file" + import_file_name.Text);
-                    txt_Info.Text += "Import thành công file: " + import_file_name + " \r\n";
-
+                    txt_Info.Text += "--- Import success,  file: " + import_file_name + " \r\n";
+                    File.Move(file_import_path, Success_file_import_path);
                 }
                 else
                 {
                     //lv_sub_folder_import.Items.Add("Import thất bại file" + import_file_name.Text);
-                    txt_Info.Text += "*******Import thất bại file: " + import_file_name + "\r\n";
+                    txt_Info.Text += "*******Import failed, file: " + import_file_name + "\r\n";
                     foreach (Microsoft.SqlServer.Dts.Runtime.DtsError local_DtsError in pkg.Errors)
                     {
                         txt_Info.Text += "Lỗi: " + local_DtsError.Description + "\r\n";
                     }
-                    
+                    File.Move(file_import_path, Failed_file_import_path);
                 }
 
                 txt_Info.SelectionStart = txt_Info.TextLength;
                 txt_Info.ScrollToCaret();
 
 
-
-
-                //System.Diagnostics.Process process = new System.Diagnostics.Process();
-                //System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-                //startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-                //startInfo.FileName = "cmd.exe";
-                //startInfo.Arguments = lenh_comandline;
-                //process.StartInfo = startInfo;
-                //process.StartInfo.UseShellExecute = false;
-                //process.StartInfo.RedirectStandardOutput = true;
-                //process.Start();
-
-                ////Get program output
-                //string strOutput = process.StandardOutput.ReadToEnd();
-                ////Wait for process to finish
-                //process.WaitForExit();
-                //if (process.ExitCode == 0)
-                //{
-                //    MessageBox.Show("Import thành công file" + import_file_name.Text);
-
-                //    EditAppSetting("Server_name", Server_name);
-                //    EditAppSetting("Database_name", Database_name);
-                //    EditAppSetting("Dir_path", Dir_path);
-                //    EditAppSetting("File_path", File_path);  
-                //    ConfigurationManager.RefreshSection("appSettings");  
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Lỗi \n" + strOutput);
-                //    //MessageBox.Show("Lỗi file hoặc đường dẫn, mời xem lại");
-                //}
 
             }
 
@@ -260,6 +251,30 @@ namespace App_Import_SSIS_Package_CardProcessing
             config.AppSettings.Settings[key].Value = value;
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("appSettings");
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            bool kq = Check_Dir(txtImport_File_Patch.Text); ;
+            if (kq == true)
+            {
+                //txt_Info.Text += String.Format("De");
+                Import_File(txtSerVerName.Text, txtDatabase.Text, txtImport_File_Patch.Text, txtPackage_Patch.Text);
+            }
+            else
+            {
+
+            }
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            txt_Info.Text += " - App stopped  \r\n";
+            txtSerVerName.Enabled = true;
+            txtDatabase.Enabled = true;
+            txtImport_File_Patch.Enabled = true;
+            txtPackage_Patch.Enabled = true;
         }
     }
 }
