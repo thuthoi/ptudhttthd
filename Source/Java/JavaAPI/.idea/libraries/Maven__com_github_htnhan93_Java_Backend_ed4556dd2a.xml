@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.github.htnhan93:Java-Backend:ed4556dd2a">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/htnhan93/Java-Backend/ed4556dd2a/Java-Backend-ed4556dd2a.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/htnhan93/Java-Backend/ed4556dd2a/Java-Backend-ed4556dd2a-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/htnhan93/Java-Backend/ed4556dd2a/Java-Backend-ed4556dd2a-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
