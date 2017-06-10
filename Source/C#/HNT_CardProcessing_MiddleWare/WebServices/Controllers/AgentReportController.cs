@@ -112,5 +112,106 @@ namespace WebServices.Controllers
             });
             return Request.CreateResponse(HttpStatusCode.OK, list);
         }
+        [HttpGet]
+        [Route("api/AgentReport/getYearlyReport/{year}")]
+        public HttpResponseMessage getYearlyReport(string year)
+        {
+            var list = bus.getYearlyReportInMaster(int.Parse(year)).Select(d => new
+            {
+                d.ReportID,
+                d.MerchantID,
+                d.MerchantTypeID,
+                d.MerchantRegionID,
+                d.SaleAmount,
+                d.ReturnAmount,
+                d.SaleCount,
+                d.ReturnCount,
+                d.DebitCardSaleAmount,
+                d.MasterCardSaleAmount,
+                d.VisaCardSaleAmount,
+                d.DebitCardReturnAmount,
+                d.MasterCardReturnAmount,
+                d.VisaCardReturnAmount,
+                d.DebitCardSaleCount,
+                d.MasterCardSaleCount,
+                d.VisaCardSaleCount,
+                d.DebitCardReturnCount,
+                d.MasterCardReturnCount,
+                d.VisaCardReturnCount,
+                d.NetAmount,
+                d.NetCount,
+                d.Date,
+                d.AgentID
+            });
+            return Request.CreateResponse(HttpStatusCode.OK, list);
+        }
+
+        [HttpGet]
+        [Route("api/AgentReport/getMonthToDateReport/{day}")]
+        public HttpResponseMessage getMonthToDateReport(string day)
+        {
+            var list = bus.getMonthToDateReportInMaster(int.Parse(day)).Select(d => new
+            {
+                d.ReportID,
+                d.MerchantID,
+                d.MerchantTypeID,
+                d.MerchantRegionID,
+                d.SaleAmount,
+                d.ReturnAmount,
+                d.SaleCount,
+                d.ReturnCount,
+                d.DebitCardSaleAmount,
+                d.MasterCardSaleAmount,
+                d.VisaCardSaleAmount,
+                d.DebitCardReturnAmount,
+                d.MasterCardReturnAmount,
+                d.VisaCardReturnAmount,
+                d.DebitCardSaleCount,
+                d.MasterCardSaleCount,
+                d.VisaCardSaleCount,
+                d.DebitCardReturnCount,
+                d.MasterCardReturnCount,
+                d.VisaCardReturnCount,
+                d.NetAmount,
+                d.NetCount,
+                d.Date,
+                d.AgentID
+            });
+            return Request.CreateResponse(HttpStatusCode.OK, list);
+        }
+
+        [HttpGet]
+        [Route("api/AgentReport/getYearToDateReport/{day}/{month}")]
+        public HttpResponseMessage getYearToDateReport(string day, string month)
+        {
+            var list = bus.getYearToDateReportInMaster(int.Parse(day), int.Parse(month)).Select(d => new
+            {
+                d.ReportID,
+                d.MerchantID,
+                d.MerchantTypeID,
+                d.MerchantRegionID,
+                d.SaleAmount,
+                d.ReturnAmount,
+                d.SaleCount,
+                d.ReturnCount,
+                d.DebitCardSaleAmount,
+                d.MasterCardSaleAmount,
+                d.VisaCardSaleAmount,
+                d.DebitCardReturnAmount,
+                d.MasterCardReturnAmount,
+                d.VisaCardReturnAmount,
+                d.DebitCardSaleCount,
+                d.MasterCardSaleCount,
+                d.VisaCardSaleCount,
+                d.DebitCardReturnCount,
+                d.MasterCardReturnCount,
+                d.VisaCardReturnCount,
+                d.NetAmount,
+                d.NetCount,
+                d.Date,
+                d.AgentID
+            });
+            return Request.CreateResponse(HttpStatusCode.OK, list);
+        }
     }
 }
