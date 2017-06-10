@@ -23,18 +23,41 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Filter</div>
                 <div class="panel-body">
-                    <div class="col-lg-9">
-                        <%--<div class="panel panel-default">
+
+                    <div class="row">
+                    <div class="col-lg-8">
+                        <div class="panel panel-default">
                             <div class="panel-body">
+
+
+
+                                <asp:RadioButton runat="server" ID="rbDaily" onclick="checkDaily()" Checked="true" GroupName="radioA" />
+                                <label for="rbDaily" style="margin-right: 15px;">Daily</label>
                                 
+                                <asp:RadioButton runat="server" ID="rbMonthly" onclick="checkMonthly()" GroupName="radioA" />
+                                <label for="rbMonthly" style="margin-right: 15px;">Monthly</label>
+                                
+                                <asp:RadioButton runat="server" ID="rbQuarterly" onclick="checkQuarterly()" GroupName="radioA" />
+                                <label for="rbQuarterly" style="margin-right: 15px;">Quarterly</label>
+                                
+                                <asp:RadioButton runat="server" ID="rbYearly" onclick="checkYearly()" GroupName="radioA" />
+                                <label for="rbYearly" style="margin-right: 15px;">Yearly</label>
+                                
+                                <asp:RadioButton runat="server" ID="rbMtDate" onclick="checkMtDate()" GroupName="radioA" />
+                                <label for="rbMtDate" style="margin-right: 15px;">Month to Date</label>
+                               
+                                <asp:RadioButton runat="server" ID="rbYtDate" onclick="checkYtDate()" GroupName="radioA" />
+                                <label for="rbYtDate" style="margin-right: 15px;">Year to Date</label>
                             </div>
-                        </div>--%>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <div class="col-sm-3">&nbsp;</div>
-                                        <div class="col-sm-5">
+                        </div>
+                    </div>
+
+                        </div>
+
+                    <div class="row">
+                    <div class="col-lg-5">
+                     
+
                                             <asp:Panel ID="panelDate" Style="display: block" runat="server">
                                                 <div class='input-group date' id='datetimepicker1'>
                                                     <asp:TextBox ID="txtDate" runat="server" CssClass="form-control"></asp:TextBox>
@@ -52,14 +75,14 @@
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="panelQuarter" Style="display: none" runat="server">
-                                                <div class="form-group">
+                                                
                                                     <div class="col-sm-5">
                                                         <asp:DropDownList ID="ddlQuarter" CssClass="form-control selectpicker" runat="server"></asp:DropDownList>
                                                     </div>
                                                     <div class="col-sm-7">
                                                         <asp:DropDownList ID="ddlYear" onChange="ddlYear_Change()" CssClass="form-control selectpicker" runat="server"></asp:DropDownList>
                                                     </div>
-                                                </div>
+                                               
                                             </asp:Panel>
                                             <asp:Panel ID="panelYear" Style="display: none" runat="server">
                                                 <div class='input-group date' id='datetimepicker3'>
@@ -69,50 +92,23 @@
                                                     </span>
                                                 </div>
                                             </asp:Panel>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                        
+
+                                        
+                              
+                           
                         </div>
-                        <div class="row">
-                            <div class="col-sm-5">&nbsp;</div>
-                            <div class="col-sm-4">
-                                <asp:LinkButton ID="btnChangeFilter" OnClick="btnChangeFilter_Click" class="btn btn-primary" runat="server"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;Change Filter</asp:LinkButton>
-                            </div>
+
+                         <div class="col-lg-3">
+                        <asp:LinkButton ID="btnChangeFilter" OnClick="btnChangeFilter_Click" class="btn btn-primary btn-block" runat="server"><i class="fa fa-filter" aria-hidden="true"></i>&nbsp;Change Filter</asp:LinkButton>
                         </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <%--<div class="panel panel-default">
-                            <div class="panel-body">
-                               
-                            </div>
-                        </div>--%>
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <asp:RadioButton runat="server" ID="rbDaily" onclick="checkDaily()" Checked="true" GroupName="radioA" />
-                                <label for="rbDaily">Daily</label>
-                                <br />
-                                <asp:RadioButton runat="server" ID="rbMonthly" onclick="checkMonthly()" GroupName="radioA" />
-                                <label for="rbMonthly">Monthly</label>
-                                <br />
-                                <asp:RadioButton runat="server" ID="rbQuarterly" onclick="checkQuarterly()" GroupName="radioA" />
-                                <label for="rbQuarterly">Quarterly</label>
-                                <br />
-                                <asp:RadioButton runat="server" ID="rbYearly" onclick="checkYearly()" GroupName="radioA" />
-                                <label for="rbYearly">Yearly</label>
-                                <br />
-                                <asp:RadioButton runat="server" ID="rbMtDate" onclick="checkMtDate()" GroupName="radioA" />
-                                <label for="rbMtDate">Month to Date</label>
-                                <br />
-                                <asp:RadioButton runat="server" ID="rbYtDate" onclick="checkYtDate()" GroupName="radioA" />
-                                <label for="rbYtDate">Year to Date</label>
-                            </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
-    </div>
+   
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -225,7 +221,7 @@
                 <div class="col-lg-5">&nbsp;</div>
                 <div class="col-lg-5">
                     <asp:LinkButton ID="btnPrint" OnClick="btnPrint_Click" CssClass="btn btn-warning" runat="server"><i class="fa fa-print" aria-hidden="true"></i>&nbsp;Print</asp:LinkButton>
-                    <asp:LinkButton ID="btnExport" OnClick="btnExport_Click"  CssClass="btn btn-success" runat="server"><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp;Export</asp:LinkButton>
+                    <asp:LinkButton ID="btnExport" OnClick="btnExport_Click" CssClass="btn btn-success" runat="server"><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp;Export</asp:LinkButton>
                 </div>
                 <div class="panel-body"></div>
             </div>
@@ -244,7 +240,7 @@
 
         $(function () {
             ddlYear_Change();
-            
+
             if (document.getElementById('<%=rbDaily.ClientID %>').checked == true) {
                 checkDaily();
             }
@@ -343,7 +339,7 @@
             }
         }
 
-      
+
 
         function checkDaily() {
             document.getElementById('<%=panelDate.ClientID %>').style.display = 'block';
@@ -466,9 +462,9 @@
         }
 
     </script>
-    
 
-   <%-- <script src="../assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
+
+    <%-- <script src="../assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="../assets/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="../assets/vendor/datatables-responsive/dataTables.responsive.js"></script>
     <script src="../assets/vendor/jquery/jquery.min.js"></script>
