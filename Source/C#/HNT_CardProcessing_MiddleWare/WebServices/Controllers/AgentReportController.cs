@@ -12,25 +12,37 @@ namespace WebServices.Controllers
     {
         BusinessLayerClass bus = new BusinessLayerClass();
         [HttpGet]
-        [Route("api/agent_report/getDaily/{agtID}/{dt:datetime}")]
-        public HttpResponseMessage getDailyReport(string agtID, DateTime dt)
+        [Route("api/AgentReport/getDailyReport/{day}/{month}/{year}")]
+        public HttpResponseMessage getDailyReport(string day, string month, string year)
         {
-            var dl = bus.GetDailyReport_By_AgtID_Date(agtID, dt);
-            return Request.CreateResponse(HttpStatusCode.OK, dl);
-        }
-        [HttpGet]
-        [Route("api/agent_report/getMonthly/{agtID}/{dt:datetime}")]
-        public HttpResponseMessage getMonthlyReport(string merID, DateTime dt)
-        {
-            var dl = bus.GetMonthlyReport_By_AgtID_Date(merID, dt);
-            return Request.CreateResponse(HttpStatusCode.OK, dl);
-        }
-        [HttpGet]
-        [Route("api/agent_report/getYearly/{agtID}/{dt:datetime}")]
-        public HttpResponseMessage getYearlyReport(string merID, DateTime dt)
-        {
-            var dl = bus.GetYearlyReport_By_AgtID_Date(merID, dt);
-            return Request.CreateResponse(HttpStatusCode.OK, dl);
+            var list = bus.getDailyReportInMaster(int.Parse(day), int.Parse(month), int.Parse(year)).Select(d => new
+            {
+                d.ReportID,
+                d.MerchantID,
+                d.MerchantTypeID,
+                d.MerchantRegionID,
+                d.SaleAmount,
+                d.ReturnAmount,
+                d.SaleCount,
+                d.ReturnCount,
+                d.DebitCardSaleAmount,
+                d.MasterCardSaleAmount,
+                d.VisaCardSaleAmount,
+                d.DebitCardReturnAmount,
+                d.MasterCardReturnAmount,
+                d.VisaCardReturnAmount,
+                d.DebitCardSaleCount,
+                d.MasterCardSaleCount,
+                d.VisaCardSaleCount,
+                d.DebitCardReturnCount,
+                d.MasterCardReturnCount,
+                d.VisaCardReturnCount,
+                d.NetAmount,
+                d.NetCount,
+                d.Date,
+                d.AgentID
+            });
+            return Request.CreateResponse(HttpStatusCode.OK, list);
         }
     }
 }
