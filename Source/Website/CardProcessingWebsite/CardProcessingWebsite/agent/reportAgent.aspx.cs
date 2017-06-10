@@ -14,8 +14,10 @@ using System.Web.UI.WebControls;
 
 namespace CardProcessingWebsite.agent
 {
+
     public partial class reportPage : System.Web.UI.Page
     {
+        public string merchantID = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (CurrentContext.IsLogged() == false)
@@ -36,6 +38,17 @@ namespace CardProcessingWebsite.agent
                     LoadMerchantType();
                     LoadYearDDL();
                     LoadQuarterDDL();
+
+                    if (!string.IsNullOrEmpty(Request.QueryString["MerchantID"]))
+                    {
+                        merchantID = Request.QueryString["MerchantID"].ToString();
+                        rbMerchant.Checked = true;
+                        rbOther.Checked = false;
+                        ddlMerchant.SelectedValue = merchantID;
+                    }
+
+                    GoReport();
+
                 }
 
             }

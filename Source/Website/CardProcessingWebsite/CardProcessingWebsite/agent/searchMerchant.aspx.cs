@@ -218,8 +218,8 @@ namespace CardProcessingWebsite.agent
             if (e.CommandName.Equals("ReportMerchant"))
             {
                 string merchantID = e.CommandArgument.ToString();
-                Response.Write("<script>alert('Hello');</script>");
-
+                Response.Redirect("~/agent/reportAgent.aspx?MerchantID=" + merchantID);
+                
             }
 
         }

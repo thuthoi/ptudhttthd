@@ -105,10 +105,10 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                             
-                                <asp:RadioButton runat="server" ID="rbMerchant" onclick="view1Click()" Checked="true" GroupName="radioView" />
+                                <asp:RadioButton runat="server" ID="rbMerchant" onclick="view1Click()" GroupName="radioView" />
                                 <label for="rbMerchant">View by Merchant</label>
                                 <br />
-                                <asp:RadioButton runat="server" ID="rbOther" onclick="view2Click()" GroupName="radioView" />
+                                <asp:RadioButton runat="server" ID="rbOther" onclick="view2Click()" Checked="true" GroupName="radioView" />
                                 <label for="rbOther">View by Agent</label>
                             </div>
                         </div>
