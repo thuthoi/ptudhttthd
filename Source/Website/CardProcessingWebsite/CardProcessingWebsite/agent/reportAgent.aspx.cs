@@ -46,11 +46,28 @@ namespace CardProcessingWebsite.agent
                         rbOther.Checked = false;
                         ddlMerchant.SelectedValue = merchantID;
                     }
-
+                    GetCurrentAgent();
                     GoReport();
 
                 }
 
+            }
+
+        }
+
+        private void GetCurrentAgent()
+        {
+            using (var c = new HttpClient())
+            {
+                c.DefaultRequestHeaders.Accept.Clear();
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                string url = localhost.hostname() + "api/agent/getProfileAgent/" + CurrentContext.GetCurUser().UserID.ToString();
+                var response = c.GetAsync(url).Result;
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var list = response.Content.ReadAsAsync<Agent[]>().Result;
+                    lbName.Text = list[0].AgentName;
+                }
             }
 
         }

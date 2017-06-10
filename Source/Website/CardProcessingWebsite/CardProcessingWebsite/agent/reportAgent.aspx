@@ -3,7 +3,7 @@
     Agent Report
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="pageheader" runat="server">
-
+    Agent Report of "<asp:Label ID="lbName" runat="server"></asp:Label>"
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="main" runat="server">

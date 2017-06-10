@@ -13,6 +13,15 @@ namespace CardProcessingWebsite.agent {
     public partial class reportPage {
         
         /// <summary>
+        /// lbName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbName;
+        
+        /// <summary>
         /// hdSaleAmount control.
         /// </summary>
         /// <remarks>

@@ -4,8 +4,8 @@
     Merchant Report
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="pageheader" runat="server">
-    Báo cáo của Merchant:
-    <asp:Label ID="lblMerchantID" runat="server" Text=""></asp:Label>
+    Merchant Report of 
+    "<asp:Label ID="lblMerchantID" runat="server" Text=""></asp:Label>"
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="main" runat="server">
     <asp:HiddenField ID="hdSaleAmount" Value="0" runat="server" />
