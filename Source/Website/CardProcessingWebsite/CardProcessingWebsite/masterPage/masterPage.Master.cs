@@ -212,5 +212,10 @@ namespace CardProcessingWebsite.masterPage
         {
             ChuyenTrang("~/master/reportMaster.aspx");
         }
+
+        protected void btnAgentReport_Click(object sender, EventArgs e)
+        {
+            ChuyenTrang("~/agent/reportAgent.aspx");
+        }
     }
 }
