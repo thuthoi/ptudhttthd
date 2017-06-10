@@ -7,7 +7,7 @@
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="main" runat="server">
-  <asp:HiddenField ID="hdSaleAmount" Value="0" runat="server" />
+ <asp:HiddenField ID="hdSaleAmount" Value="0" runat="server" />
     <asp:HiddenField ID="hdSaleCount" Value="0" runat="server" />
     <asp:HiddenField ID="hdReturnAmount" Value="0" runat="server" />
     <asp:HiddenField ID="hdReturnCount" Value="0" runat="server" />
@@ -33,6 +33,20 @@
                                         </div>
                                     </div>
                                 </div>
+                               <%-- <div class="row">&nbsp;</div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label style="padding-top: 7px;" for="<%=ddlAgent.ClientID %>" class="col-sm-2 control-label">Agent:</label>
+                                        <div class="col-sm-3">
+                                            <asp:DropDownList CssClass="form-control selectpicker" ID="ddlAgent" Enabled="false" runat="server"></asp:DropDownList>
+                                        </div>
+                                        <label style="padding-top: 7px;" for="<%=ddlMaster.ClientID %>" class="col-sm-3 control-label">Master:</label>
+                                        <div class="col-sm-4">
+                                            <asp:Label ID="lblMaster" CssClass="form-control" runat="server" Text=""></asp:Label>
+                                            <asp:DropDownList CssClass="form-control selectpicker" Visible="false" ID="ddlMaster" runat="server"></asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>--%>
                                 <div class="row">&nbsp;</div>
                                 <div class="row">
                                     <div class="form-group">
@@ -103,7 +117,10 @@
                     <div class="col-lg-3">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <asp:RadioButton runat="server" ID="rbMerchant" onclick="view1Click()" GroupName="radioView" />
+                              <%--  <asp:RadioButton runat="server" ID="rbMaster" onclick="view3Click()" Checked="true" GroupName="radioView" />
+                                <label for="rbMaster">View by Master</label>
+                                <br />--%>
+                                <asp:RadioButton runat="server" ID="rbMerchant" onclick="view1Click()" Checked="true" GroupName="radioView" />
                                 <label for="rbMerchant">View by Merchant</label>
                                 <br />
                                 <asp:RadioButton runat="server" ID="rbOther" onclick="view2Click()" GroupName="radioView" />
@@ -266,7 +283,7 @@
 
         $(function () {
             ddlYear_Change();
-          
+            
             if (document.getElementById('<%=rbMerchant.ClientID%>').checked == true) {
                 view1Click();
             }
@@ -372,31 +389,31 @@
         }
 
         function view1Click() {
-            $('#<%=ddlAgent.ClientID %>').prop('disabled', true);
+           
             $('#<%=ddlType.ClientID %>').prop('disabled', true);
             $('#<%=ddlRegion.ClientID %>').prop('disabled', true);
             $('#<%=ddlMerchant.ClientID %>').prop('disabled', false);
-            $('#<%=ddlMaster.ClientID %>').prop('disabled', true);
-            document.getElementById('<%=lblMaster.ClientID%>').style.backgroundColor = '#eaeaea';
+          
+           <%-- document.getElementById('<%=lblMaster.ClientID%>').style.backgroundColor = '#eaeaea';--%>
         }
 
         function view2Click() {
-            $('#<%=ddlAgent.ClientID %>').prop('disabled', false);
+           
             $('#<%=ddlType.ClientID %>').prop('disabled', false);
             $('#<%=ddlRegion.ClientID %>').prop('disabled', false);
             $('#<%=ddlMerchant.ClientID %>').prop('disabled', true);
-            $('#<%=ddlMaster.ClientID %>').prop('disabled', true);
-            document.getElementById('<%=lblMaster.ClientID%>').style.backgroundColor = '#eaeaea';
+           
+            <%--document.getElementById('<%=lblMaster.ClientID%>').style.backgroundColor = '#eaeaea';--%>
         };
 
-        function view3Click() {
+     <%--   function view3Click() {
             $('#<%=ddlAgent.ClientID %>').prop('disabled', true);
             $('#<%=ddlType.ClientID %>').prop('disabled', false);
             $('#<%=ddlRegion.ClientID %>').prop('disabled', false);
             $('#<%=ddlMerchant.ClientID %>').prop('disabled', true);
             $('#<%=ddlMaster.ClientID %>').prop('disabled', false);
             document.getElementById('<%=lblMaster.ClientID%>').style.backgroundColor = '';
-        }
+        }--%>
 
         function checkDaily() {
             document.getElementById('<%=panelDate.ClientID %>').style.display = 'block';
@@ -524,4 +541,5 @@
     <script src="../Scripts/moment.js"></script>
     <script src="../Scripts/bootstrap-datetimepicker.js"></script>
     <script src="../Content/select2.min.js"></script>
+   
 </asp:Content>
