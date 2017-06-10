@@ -33,20 +33,7 @@
                                         </div>
                                     </div>
                                 </div>
-                               <%-- <div class="row">&nbsp;</div>
-                                <div class="row">
-                                    <div class="form-group">
-                                        <label style="padding-top: 7px;" for="<%=ddlAgent.ClientID %>" class="col-sm-2 control-label">Agent:</label>
-                                        <div class="col-sm-3">
-                                            <asp:DropDownList CssClass="form-control selectpicker" ID="ddlAgent" Enabled="false" runat="server"></asp:DropDownList>
-                                        </div>
-                                        <label style="padding-top: 7px;" for="<%=ddlMaster.ClientID %>" class="col-sm-3 control-label">Master:</label>
-                                        <div class="col-sm-4">
-                                            <asp:Label ID="lblMaster" CssClass="form-control" runat="server" Text=""></asp:Label>
-                                            <asp:DropDownList CssClass="form-control selectpicker" Visible="false" ID="ddlMaster" runat="server"></asp:DropDownList>
-                                        </div>
-                                    </div>
-                                </div>--%>
+                              
                                 <div class="row">&nbsp;</div>
                                 <div class="row">
                                     <div class="form-group">
@@ -117,9 +104,7 @@
                     <div class="col-lg-3">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                              <%--  <asp:RadioButton runat="server" ID="rbMaster" onclick="view3Click()" Checked="true" GroupName="radioView" />
-                                <label for="rbMaster">View by Master</label>
-                                <br />--%>
+                            
                                 <asp:RadioButton runat="server" ID="rbMerchant" onclick="view1Click()" Checked="true" GroupName="radioView" />
                                 <label for="rbMerchant">View by Merchant</label>
                                 <br />
