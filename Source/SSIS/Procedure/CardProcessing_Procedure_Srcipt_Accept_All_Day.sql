@@ -46,50 +46,50 @@ BEGIN
 	
 	DELETE FROM DailyReport WHERE Date = @Date AND MerchantID = @MerchantID
 	
-	DECLARE @DebitCardSaleAmount decimal(18, 0)    , @DebitCardSaleCount int, 
-	        @MasterCardSaleAmount decimal(18, 0)   , @MasterCardSaleCount int,
-	        @VisaCardSaleAmount decimal(18, 0)     , @VisaCardSaleCount int
+	DECLARE @DebitCardSaleAmount decimal(18, 0) = 0   , @DebitCardSaleCount int = 0, 
+	        @MasterCardSaleAmount decimal(18, 0) = 0  , @MasterCardSaleCount int = 0,
+	        @VisaCardSaleAmount decimal(18, 0) = 0    , @VisaCardSaleCount int = 0
 	        
-	SELECT @DebitCardSaleAmount = SUM(tr.Amount), @DebitCardSaleCount = COUNT(tr.MerchantID)
+	SELECT @DebitCardSaleAmount = ISNULL(SUM(tr.Amount),0), @DebitCardSaleCount = ISNULL(COUNT(tr.MerchantID),0)
 	FROM TransactionDetail tr
 	WHERE tr.Complete = 0 
 	AND tr.TransactionType = 'Ban Hang'
 	AND tr.CreditCardType = 'DEBIT'
 	GROUP BY tr.MerchantID,tr.Date
 	
-	SELECT @MasterCardSaleAmount = SUM(tr.Amount), @MasterCardSaleCount = COUNT(tr.MerchantID)
+	SELECT @MasterCardSaleAmount = ISNULL(SUM(tr.Amount),0), @MasterCardSaleCount = ISNULL(COUNT(tr.MerchantID),0)
 	FROM TransactionDetail tr
 	WHERE tr.Complete = 0 
 	AND tr.TransactionType = 'Ban Hang'
 	AND tr.CreditCardType = 'MASTER'
 	GROUP BY tr.MerchantID,tr.Date
 	
-	SELECT @VisaCardSaleAmount = SUM(tr.Amount), @VisaCardSaleCount = COUNT(tr.MerchantID)
+	SELECT @VisaCardSaleAmount = ISNULL(SUM(tr.Amount),0), @VisaCardSaleCount = ISNULL(COUNT(tr.MerchantID),0)
 	FROM TransactionDetail tr
 	WHERE tr.Complete = 0 
 	AND tr.TransactionType = 'Ban Hang'
 	AND tr.CreditCardType = 'VISA'
 	GROUP BY tr.MerchantID,tr.Date
 
-	DECLARE @DebitCardReturnAmount decimal(18, 0)    , @DebitCardReturnCount int, 
-	        @MasterCardReturnAmount decimal(18, 0)   , @MasterCardReturnCount int,
-	        @VisaCardReturnAmount decimal(18, 0)     , @VisaCardReturnCount int
+	DECLARE @DebitCardReturnAmount decimal(18, 0)  = 0  , @DebitCardReturnCount int = 0, 
+	        @MasterCardReturnAmount decimal(18, 0) = 0  , @MasterCardReturnCount int = 0,
+	        @VisaCardReturnAmount decimal(18, 0)  = 0   , @VisaCardReturnCount int = 0
 	        
-	SELECT @DebitCardReturnAmount = SUM(tr.Amount), @DebitCardReturnCount = COUNT(tr.MerchantID)
+	SELECT @DebitCardReturnAmount = ISNULL(SUM(tr.Amount),0), @DebitCardReturnCount = ISNULL(COUNT(tr.MerchantID),0)
 	FROM TransactionDetail tr
 	WHERE tr.Complete = 0 
 	AND tr.TransactionType = 'Tra Hang'
 	AND tr.CreditCardType = 'DEBIT'
 	GROUP BY tr.MerchantID,tr.Date
 	
-	SELECT @MasterCardReturnAmount = SUM(tr.Amount), @MasterCardReturnCount = COUNT(tr.MerchantID)
+	SELECT @MasterCardReturnAmount = ISNULL(SUM(tr.Amount),0), @MasterCardReturnCount = ISNULL(COUNT(tr.MerchantID),0)
 	FROM TransactionDetail tr
 	WHERE tr.Complete = 0 
 	AND tr.TransactionType = 'Tra Hang'
 	AND tr.CreditCardType = 'MASTER'
 	GROUP BY tr.MerchantID,tr.Date
 	
-	SELECT @VisaCardReturnAmount = SUM(tr.Amount), @VisaCardReturnCount = COUNT(tr.MerchantID)
+	SELECT @VisaCardReturnAmount = ISNULL(SUM(tr.Amount),0), @VisaCardReturnCount = ISNULL(COUNT(tr.MerchantID),0)
 	FROM TransactionDetail tr
 	WHERE tr.Complete = 0 
 	AND tr.TransactionType = 'Tra Hang'
