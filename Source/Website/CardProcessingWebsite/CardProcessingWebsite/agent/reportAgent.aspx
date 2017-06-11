@@ -486,7 +486,7 @@
         function getSesionPrint() {
             $.ajax({
                 type: "POST",
-                url: "reportMaster.aspx/fn_Print",
+                url: "reportAgent.aspx/fn_Print",
                 data: '{ }',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
