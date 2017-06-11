@@ -177,7 +177,7 @@ input[type=radio] + label{
             $('#tableAgent').DataTable(
                 {
                     "searching": false,
-                    "lengthChange": false,
+                    
                     "order": []
 
                 });

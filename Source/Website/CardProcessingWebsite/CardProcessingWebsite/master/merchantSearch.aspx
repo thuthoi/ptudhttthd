@@ -233,7 +233,7 @@ input[type=radio] + label{
             $('#tableMerchant').DataTable(
                 {
                     "searching": false,
-                    "lengthChange": false,
+                    
                     "order": []
 
                 });
