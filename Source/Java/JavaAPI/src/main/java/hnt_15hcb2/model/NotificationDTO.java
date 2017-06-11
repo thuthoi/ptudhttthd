@@ -1,12 +1,14 @@
 package hnt_15hcb2.model;
 
+import org.joda.time.LocalDate;
+
 import java.io.Serializable;
 
 public class NotificationDTO implements Serializable {
     private String NotiID;
     private String Detail;
     private String Summary;
-    private String Date; // Định dạng dd/MM/yyyy
+    private LocalDate Date; // Định dạng dd/MM/yyyy
     private String SenderID;
     private String ReceiverID;
     private boolean Status;
@@ -39,11 +41,11 @@ public class NotificationDTO implements Serializable {
         Summary = summary;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return Date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         Date = date;
     }
 
