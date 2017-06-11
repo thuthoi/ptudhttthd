@@ -60,7 +60,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="http://localhost:30502/login/login.aspx">
+                    <a class="navbar-brand" style="color: #337ab7;font-weight: 900;" href="http://localhost:30502/login/login.aspx">
                         <asp:Label ID="lblNamePage" runat="server" Text=""></asp:Label></a>
                 </div>
                 <!-- /.navbar-header -->
