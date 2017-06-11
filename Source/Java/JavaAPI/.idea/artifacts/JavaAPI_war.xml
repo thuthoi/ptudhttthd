@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="JavaAPI:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="JavaAPI-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="JavaAPI:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -5,7 +5,7 @@
   <groupId>hnt_15hcb2</groupId>
   <artifactId>JavaAPI</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
 
   <name>JavaAPI</name>
   <url>http://maven.apache.org</url>
@@ -32,7 +32,7 @@
     <dependency>
       <groupId>com.github.htnhan93</groupId>
       <artifactId>Java-Backend</artifactId>
-      <version>ed4556dd2a</version>
+      <version>966290051a</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>

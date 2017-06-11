@@ -21,8 +21,8 @@ public class NotificationAPI {
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public @ResponseBody List<NotificationDTO> list() {
         try {
-            List<NotificationDTO> notificationDTOList = new NotificationUtils().getAll(notificationService.getall());
-            return  notificationDTOList;
+//            List<NotificationDTO> notificationDTOList = new NotificationUtils().getAll(notificationService.getall());
+            return new ArrayList<NotificationDTO>();
         } catch (Exception e) {
             e.printStackTrace();;
         }
