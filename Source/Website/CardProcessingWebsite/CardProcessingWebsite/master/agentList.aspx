@@ -38,7 +38,7 @@
                                         <th class="text-center">Phone</th>
                                         <th class="text-center">Email</th>
                                         <th class="text-center" style="width: 10%">Active</th>
-                                        <th class="text-center" style="width: 8%">Edit</th>
+                                        <th class="text-center" style="width: 13.5%">Detail & Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,7 +55,7 @@
                                 <td><%#Eval("Email") %></td>
                                 <td style="vertical-align: middle; text-align: center">
                                     <asp:CheckBox ID="chkID" CssClass="center-block" AutoPostBack="false" runat="server" Enabled="false" Checked='<%#Eval("Status").ToString()=="True"?true:false %>' /></td>
-                                <td style="text-align: center">
+                                <td style="text-align: center; vertical-align: middle;">
                                     <asp:LinkButton ID="btnEdit" runat="server" ToolTip="Update" CssClass="btn btn-success btn-xs" CommandName="EditAgent" CommandArgument='<%# Eval("AgentID") %>'>
                                         <i class="fa fa-pencil"></i>
                                     </asp:LinkButton>
@@ -168,10 +168,20 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <asp:LinkButton ID="LinkButton1" ValidationGroup="UpdateAgentGroup" runat="server" CssClass="btn btn-primary" OnClick="btnUpdate_Click">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:LinkButton ID="btnViewDetailMerchant" runat="server" CssClass="btn btn-info" OnClick="btnViewDetailMerchant_Click">
+                        <i class="fa fa-info-circle"></i>&nbsp;
+                        View Detail Merchant
+                    </asp:LinkButton>
+                    </div>
+                        <div class="col-sm-9">
+                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <asp:LinkButton ID="btnUpdate" ValidationGroup="UpdateAgentGroup" runat="server" CssClass="btn btn-primary" OnClick="btnUpdate_Click">
                         Update
                     </asp:LinkButton>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>

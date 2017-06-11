@@ -59,7 +59,7 @@
                         </ItemTemplate>
                         <EmptyDataTemplate>
                             <div class="alert alert-warning">
-                                Did not match any merchants.
+                                This agent does not have any merchants.
                             </div>
 
                         </EmptyDataTemplate>

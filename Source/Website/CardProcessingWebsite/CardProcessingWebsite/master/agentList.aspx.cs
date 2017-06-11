@@ -190,5 +190,11 @@ namespace CardProcessingWebsite.master
             }
         }
 
+        protected void btnViewDetailMerchant_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/master/merchantOfAgent.aspx?AgentID=" + txtAgentIDE.Text);
+            //Response.Write("<script>alert('" + txtAgentIDE.Text+"');</script>");
+        }
+
     }
 }

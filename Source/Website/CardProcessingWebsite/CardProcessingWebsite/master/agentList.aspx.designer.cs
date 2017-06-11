@@ -166,12 +166,21 @@ namespace CardProcessingWebsite.master {
         protected global::System.Web.UI.WebControls.CheckBox chbxActiveE;
         
         /// <summary>
-        /// LinkButton1 control.
+        /// btnViewDetailMerchant control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.LinkButton btnViewDetailMerchant;
+        
+        /// <summary>
+        /// btnUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnUpdate;
     }
 }
