@@ -504,7 +504,7 @@
             var pos = docCnt.search("<div>");
             if (pos != -1) {
                 var docType = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/loose.dtd">';
-                var docHead = '<head><title>Master Report</title><style>body{margin:5;padding:0;}</style></head>';
+                var docHead = '<head><title>Agent Report</title><style>body{margin:5;padding:0;}</style></head>';
                 var winAttr = "location=yes,statusbar=no,directories=no,menubar=no,titlebar=no,toolbar=no,dependent=no,width=800,height=600,resizable=yes,screenX=250,screenY=50,personalbar=no,scrollbars=yes";;
                 var newWin = window.open("", "_blank", winAttr);
                 var docFooter = "<foo";

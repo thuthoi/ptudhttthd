@@ -378,7 +378,7 @@ namespace CardProcessingWebsite.agent
             Session["reportAgent"] = "";
             string str = string.Empty;
             str += @"<div><table style='width: 100%; font-size: 10pt; padding-left: 5px'>
-            <tr><td colspan='2' style='text-align: center;'><span style='font-size: 18pt; font-weight: bold'>MASTER REPORT</span><br />
+            <tr><td colspan='2' style='text-align: center;'><span style='font-size: 18pt; font-weight: bold'>AGENT REPORT</span><br />
              </td></tr><tr><td colspan='2'><table style='width: 50%; margin:auto' cellpadding='0' cellspacing='0'><tr><td style='font-size:14pt;'>";
             str += @"" + exportType() + @"<br />" + exportView() + @"<br />" + exportRegion() + @"<br />" + exportMerchantType() + @"</td>
                             <td style='width:20%;'></td></tr></table></td></tr><tr><td colspan='2'>&nbsp;</td></tr>";
@@ -468,10 +468,10 @@ namespace CardProcessingWebsite.agent
 
         private string exportView()
         {
-            string res = "- View by ";
+            string res = "- View by Agent: " + lbName.Text;
             if (rbMerchant.Checked)
             {
-                res += "Merchant: " + ddlMerchant.SelectedItem.Text.ToString();
+                res = "- View by Merchant: " + ddlMerchant.SelectedItem.Text.ToString();
             }
           
             return res;
