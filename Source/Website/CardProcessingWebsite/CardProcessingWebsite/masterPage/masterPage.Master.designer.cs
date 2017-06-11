@@ -76,60 +76,6 @@ namespace CardProcessingWebsite.masterPage {
         protected global::System.Web.UI.WebControls.Panel pnlMaster;
         
         /// <summary>
-        /// btnReportMaster control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnReportMaster;
-        
-        /// <summary>
-        /// btnSearchMerchant control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnSearchMerchant;
-        
-        /// <summary>
-        /// btnSearchAgent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnSearchAgent;
-        
-        /// <summary>
-        /// lblMerchantManagementforMaster control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lblMerchantManagementforMaster;
-        
-        /// <summary>
-        /// lblAgentManagementforMaster control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lblAgentManagementforMaster;
-        
-        /// <summary>
-        /// lbAccountManager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbAccountManager;
-        
-        /// <summary>
         /// pnlAgent control.
         /// </summary>
         /// <remarks>
@@ -137,24 +83,6 @@ namespace CardProcessingWebsite.masterPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlAgent;
-        
-        /// <summary>
-        /// btnAgentReport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAgentReport;
-        
-        /// <summary>
-        /// btnSearchonAgent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnSearchonAgent;
         
         /// <summary>
         /// pnlMerchant control.
