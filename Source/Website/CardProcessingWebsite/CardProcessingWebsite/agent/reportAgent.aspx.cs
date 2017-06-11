@@ -18,6 +18,7 @@ namespace CardProcessingWebsite.agent
     public partial class reportPage : System.Web.UI.Page
     {
         public string merchantID = "";
+        Agent ag_current = new Agent();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (CurrentContext.IsLogged() == false)
@@ -30,24 +31,30 @@ namespace CardProcessingWebsite.agent
                 {
                     Response.Redirect("~/login/login.aspx");
                 }
-                else if (IsPostBack == false)
+                else 
                 {
-                    txtDate.Text = (DateTime.Now.Day - 1).ToString().PadLeft(2, '0') + "/" + DateTime.Now.Month.ToString().PadLeft(2, '0') + "/" + DateTime.Now.Year;
-                    LoadMerchant();
-                    LoadRegion();
-                    LoadMerchantType();
-                    LoadYearDDL();
-                    LoadQuarterDDL();
-
-                    if (!string.IsNullOrEmpty(Request.QueryString["MerchantID"]))
-                    {
-                        merchantID = Request.QueryString["MerchantID"].ToString();
-                        rbMerchant.Checked = true;
-                        rbOther.Checked = false;
-                        ddlMerchant.SelectedValue = merchantID;
-                    }
                     GetCurrentAgent();
-                    GoReport();
+                    if (IsPostBack == false)
+                    {
+                        txtDate.Text = (DateTime.Now.Day - 1).ToString().PadLeft(2, '0') + "/" + DateTime.Now.Month.ToString().PadLeft(2, '0') + "/" + DateTime.Now.Year;
+                        LoadMerchant();
+                        LoadRegion();
+                        LoadMerchantType();
+                        LoadYearDDL();
+                        LoadQuarterDDL();
+
+                        if (!string.IsNullOrEmpty(Request.QueryString["MerchantID"]))
+                        {
+                            merchantID = Request.QueryString["MerchantID"].ToString();
+                            rbMerchant.Checked = true;
+                            rbOther.Checked = false;
+                            ddlMerchant.SelectedValue = merchantID;
+                        }
+                        GoReport();
+                    }
+                    
+                   
+                   
 
                 }
 
@@ -67,6 +74,7 @@ namespace CardProcessingWebsite.agent
                 {
                     var list = response.Content.ReadAsAsync<Agent[]>().Result;
                     lbName.Text = list[0].AgentName;
+                    ag_current = list[0];
                 }
             }
 
@@ -194,20 +202,21 @@ namespace CardProcessingWebsite.agent
             {
                 string regID = ddlRegion.SelectedValue.ToString();
                 string typeID = ddlType.SelectedValue.ToString();
+                string agentID = ag_current.AgentID;
                 foreach (Report _report in listRe)
                 {
                     if (ddlRegion.SelectedIndex != 0)
                     {
                         if (ddlType.SelectedIndex != 0)
                         {
-                            if (_report.MerchantRegionID == regID && _report.MerchantTypeID == typeID)
+                            if (_report.MerchantRegionID == regID && _report.MerchantTypeID == typeID && _report.AgentID == agentID)
                             {
                                 lst.Add(_report);
                             }
                         }
                         else
                         {
-                            if (_report.MerchantRegionID == regID)
+                            if (_report.MerchantRegionID == regID && _report.AgentID == agentID)
                             {
                                 lst.Add(_report);
                             }
@@ -217,14 +226,17 @@ namespace CardProcessingWebsite.agent
                     {
                         if (ddlType.SelectedIndex != 0)
                         {
-                            if (_report.MerchantTypeID == typeID)
+                            if (_report.MerchantTypeID == typeID && _report.AgentID == agentID) 
                             {
                                 lst.Add(_report);
                             }
                         }
                         else
                         {
-                            lst.Add(_report);
+                            if (_report.AgentID == agentID)
+                            {
+                                lst.Add(_report);
+                            }
                         }
                     }
                 }
@@ -653,5 +665,7 @@ namespace CardProcessingWebsite.agent
                 File.Delete(path);
             }
         }
+
+       
     }
 }
