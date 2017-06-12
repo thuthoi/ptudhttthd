@@ -21,6 +21,7 @@ namespace DomainModel
         public string Role { get; set; }
 
         public string Master_Agent_Merchant_Name { get; set; }
+        public Nullable<bool>  Master_Agent_Merchant_Status { get; set; }
     
         public virtual Agent Agent { get; set; }
         public virtual Merchant Merchant { get; set; }

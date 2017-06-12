@@ -58,11 +58,20 @@ namespace CardProcessingWebsite
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     var ac = response.Content.ReadAsAsync<Account[]>().Result;
-                    XuLyDangNhap(ac[0]);
+                    Account _ac = (Account)ac[0];
+                    if(_ac.Master_Agent_Merchant_Status == false)
+                    {
+                        lbErr.Text = "Your account is not active";
+                    }
+                    else
+                    {
+                        XuLyDangNhap(ac[0]);
+                    }
+                    
                 }
                 else
                 {
-                    lbErr.Text = "Tên đăng nhập hoặc mật khẩu không đúng";
+                    lbErr.Text = "UserName or password is Incorrect";
                 }
 
             }

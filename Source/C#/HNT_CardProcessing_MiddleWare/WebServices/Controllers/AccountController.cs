@@ -41,7 +41,8 @@ namespace WebServices.Controllers
                 c.Password,
                 c.OldPassword,
                 c.Role,
-                c.Master_Agent_Merchant_Name
+                c.Master_Agent_Merchant_Name,
+                c.Master_Agent_Merchant_Status
 
             });
             //var _ac = bus.GetAccountBy_Username_Password(ac.Username, ac.Password);
@@ -69,7 +70,8 @@ namespace WebServices.Controllers
                 c.Password,
                 c.OldPassword,
                 c.Role,
-                c.Master_Agent_Merchant_Name
+                c.Master_Agent_Merchant_Name,
+                c.Master_Agent_Merchant_Status
 
             });
             //var _ac = bus.GetAccountBy_Username_Password(ac.Username, ac.Password);

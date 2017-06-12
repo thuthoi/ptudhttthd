@@ -185,9 +185,21 @@ namespace BusinessLayer
         public IList<Account> GetAccountBy_Username_Password(String username, String pass)
         {
             string en_pass = StringUtils.Md5(pass);
-            return _accountRepository.GetList(
+
+            IList<Account> lst = _accountRepository.GetList(
                             a => a.Username.Equals(username) &&
-                            a.Password.Equals(en_pass));
+                            a.Password.Equals(en_pass), acc => acc.Agent, acc => acc.Merchant, acc => acc.Master);
+            if(lst.Count != 0)
+            {
+                if(lst[0].Role == "merchant")
+                {
+                    lst[0].Master_Agent_Merchant_Status = lst[0].Merchant.Status;
+                } else if (lst[0].Role == "agent")
+                {
+                    lst[0].Master_Agent_Merchant_Status = lst[0].Agent.Status;
+                }
+            }
+            return lst;
         }
         public IList<Account> GetAccountBy_Username(String username)
         {
