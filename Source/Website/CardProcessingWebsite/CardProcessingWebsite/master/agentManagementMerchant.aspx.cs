@@ -29,14 +29,16 @@ namespace CardProcessingWebsite.master
                 }
                 else if (IsPostBack == false)
                 {
+                    btnSave.Enabled = false;
+                    btnSaveUpdate.Enabled = false;
+
                     rbtnGanQuyen.Checked = true;
                     loadMerchantListForGanQuyen();
                     loadAgentForGanQuyen();
                     loadAgentForChuyenQuyen();
                     loadAgentForChuyenQuyenSang();
                     loadMerchantListForChuyenQuyen(cboAgentforPrevious.SelectedValue);
-                    btnSave.Enabled = false;
-                    btnSaveUpdate.Enabled = false;
+                   
                 }
             }
 
@@ -56,6 +58,14 @@ namespace CardProcessingWebsite.master
                     var list = response.Content.ReadAsAsync<Merchant[]>().Result;
                     listMerchantUpdate.DataSource = list;
                     listMerchantUpdate.DataBind();
+                    if (list.Count() != 0)
+                    {
+                        btnSaveUpdate.Enabled = true;
+                    }
+                    else
+                    {
+                        btnSaveUpdate.Enabled = false;
+                    }
                 }
             }
         }
@@ -130,6 +140,14 @@ namespace CardProcessingWebsite.master
                     var list = response.Content.ReadAsAsync<Merchant[]>().Result;
                     listMerchant.DataSource = list;
                     listMerchant.DataBind();
+                    if(list.Count() != 0)
+                    {
+                        btnSave.Enabled = true;
+                    }
+                    else
+                    {
+                        btnSave.Enabled = false;
+                    }
                 }
             }
         }
@@ -153,7 +171,7 @@ namespace CardProcessingWebsite.master
             loadAgentForGanQuyen();
         }
 
-        bool AddAgent(string id)
+        bool AddAgent(string id, int type)
         {
             Merchant mer = null;
             using (var c = new HttpClient())
@@ -168,20 +186,31 @@ namespace CardProcessingWebsite.master
                     mer = merchant[0];
                 }
             }
-            if (UpdateAgent(mer))
+            if (UpdateAgent(mer,type))
             {
                 return true;
             }
             else { return false; }
         }
-
-        private bool UpdateAgent(Merchant mer)
+        // type 0 la them quyen, 1 la chuyen quyen
+        private bool UpdateAgent(Merchant mer, int type)
         {
             using (var c = new HttpClient())
             {
                 c.DefaultRequestHeaders.Accept.Clear();
                 c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 string url = localhost.hostname() + "api/merchant/updateAgentforMerchant";
+                string agentID = "0";
+                if(type == 0)
+                {
+                    agentID =  cboAgentforAdd.SelectedItem.Value;
+                }
+                else
+                {
+                    agentID =  cboAgentforNext.SelectedItem.Value;
+                }
+
+
                 var response = c.PutAsJsonAsync(url, new
                 {
                     MerchantID = mer.MerchantID,
@@ -192,7 +221,7 @@ namespace CardProcessingWebsite.master
                     Status = true,
                     MerchantTypeID = mer.MerchantTypeID,
                     MerchantRegionID = mer.MerchantRegionID,
-                    AgentID = cboAgentforNext.SelectedItem.Value
+                    AgentID = agentID
                 }).Result;
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
@@ -212,7 +241,7 @@ namespace CardProcessingWebsite.master
                 {
                     id = string.Empty;
                     id = chkbox.Attributes["Key"].ToString();
-                    AddAgent(id);
+                    AddAgent(id,0);
                 }
             }
             loadAgentForGanQuyen();
@@ -229,7 +258,7 @@ namespace CardProcessingWebsite.master
                 {
                     id = string.Empty;
                     id = chkbox.Attributes["Key"].ToString();
-                    AddAgent(id);
+                    AddAgent(id,1);
                 }
             }
             loadAgentForChuyenQuyen();
